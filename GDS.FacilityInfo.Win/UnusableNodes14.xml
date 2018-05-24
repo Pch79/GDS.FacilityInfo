@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="boWartungszone_lstOrtsteile_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Wartungszone" Index="2" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boOrt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boOrt">
+              <LayoutGroup Id="boOrt_col1">
+                <LayoutItem Id="Land" ViewItem="Land" />
+                <LayoutItem Id="Name" ViewItem="Name" />
+                <LayoutItem Id="PLZ" ViewItem="PLZ" />
+              </LayoutGroup>
+              <LayoutGroup Id="boOrt_col2">
+                <LayoutItem Id="KeyNational" ViewItem="KeyNational" />
+                <LayoutItem Id="KeyInternational" ViewItem="KeyInternational" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boOrt_lstOrtsteile_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Wartungszone" Index="2" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

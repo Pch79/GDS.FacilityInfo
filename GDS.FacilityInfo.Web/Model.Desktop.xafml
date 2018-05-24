@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="17.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerAspNetModule" Version="17.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="17.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemAspNetModule" Version="17.1.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="17.1.4.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="boAnlage_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAnlage" Caption="Anlagendaten">
+              <LayoutGroup Id="boAnlage_col1">
+                <LayoutItem Id="Mainimage" ShowCaption="" Index="4" ViewItem="Mainimage" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" MultiLine="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boAnlage_ListView">
+      <Columns>
+        <ColumnInfo Id="AnlagenGruppe" Index="2" />
+        <ColumnInfo Id="AnlagenArt" Index="3" />
+        <ColumnInfo Id="AnlagenNummer" Index="4" />
+        <ColumnInfo Id="Bezeichnung" Index="5" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col1">
+                <LayoutItem Id="PhotoM" ViewItem="PhotoM" ShowCaption="" Index="3" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

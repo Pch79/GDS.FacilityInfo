@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <LayoutItem Id="Hausverwalter" Removed="True" />
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabLiegenschaft">
+                    <LayoutItem Id="Hausverwalter" ViewItem="Hausverwalter" />
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

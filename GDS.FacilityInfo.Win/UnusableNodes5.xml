@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabAdresse">
+                    <LayoutGroup Id="grpLand">
+                      <LayoutItem Id="itmLand" ViewItem="Adresse.land" />
+                      <LayoutItem Id="itmFlagge" ViewItem="Adresse.Flagge" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpAdressData">
+                      <LayoutItem Id="itm.Ort" ViewItem="Adresse.ort" />
+                      <LayoutItem Id="itmPlz" ViewItem="Adresse.PLZ" />
+                    </LayoutGroup>
+                    <LayoutItem Id="itmStrasse" ViewItem="Adresse.Strasse" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabLiegenschaft">
+                    <LayoutItem Id="Hausverwalter" ViewItem="Hausverwalter" />
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

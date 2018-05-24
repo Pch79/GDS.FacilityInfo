@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boKunde_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Notizen" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAdresse" Index="0" CaptionLocation="Top" Caption="Kunde">
+              <LayoutGroup Id="boAdresse_col1">
+                <LayoutGroup Id="grpMandant" Caption="" Index="0" Direction="Horizontal">
+                  <LayoutItem Id="AdressTyp" ViewItem="AdressTyp" Index="1" ShowCaption="" />
+                  <LayoutItem Id="Mandant" Index="2" ViewItem="Mandant" ShowCaption="" />
+                </LayoutGroup>
+                <LayoutItem Id="AdressTyp" Index="1" CaptionLocation="Top" ViewItem="AdressTyp" Removed="True" />
+                <LayoutItem Id="Anrede" Index="1" CaptionLocation="Top" ViewItem="Anrede" />
+                <LayoutItem Id="firmenname" ViewItem="firmenname" ShowCaption="" Index="2" CaptionLocation="Top" />
+                <LayoutItem Id="Mandant" Index="2" Removed="True" />
+                <LayoutGroup Id="grpName" Caption="Name" Index="3" ShowCaption="False" Direction="Horizontal" CaptionLocation="Top">
+                  <LayoutItem Id="vorname" ViewItem="vorname" ShowCaption="" Index="0" CaptionLocation="Top" />
+                  <LayoutItem Id="nachname" ViewItem="nachname" ShowCaption="" Index="1" CaptionLocation="Top" />
+                </LayoutGroup>
+                <LayoutItem Id="Notizen" Index="3" ViewItem="Notizen" Removed="True" />
+                <LayoutItem Id="Land" ViewItem="Land" Index="4" Removed="True" />
+                <LayoutItem Id="Zusatz" CaptionLocation="Top" Index="4" />
+                <LayoutItem Id="Bundesland" ViewItem="Bundesland" Index="5" Removed="True" />
+                <LayoutItem Id="internet" ViewItem="internet" ShowCaption="" Index="5" CaptionLocation="Top" />
+                <LayoutItem Id="Matchkey" ViewItem="Matchkey" Index="6" CaptionLocation="Top" Removed="True" />
+                <LayoutItem Id="Ortsteil" Removed="True" />
+                <LayoutItem Id="Plz" Removed="True" />
+                <LayoutItem Id="Wartungszone" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boAdresse_col2">
+                <LayoutItem Id="nachname" ViewItem="nachname" Index="1" Removed="True" />
+                <LayoutItem Id="ort" Index="2" ViewItem="ort" Removed="True" />
+                <LayoutItem Id="strasse" Index="4" ViewItem="strasse" Removed="True" />
+                <LayoutItem Id="vorname" ViewItem="vorname" Index="5" Removed="True" />
+                <LayoutItem Id="longitude" ViewItem="longitude" Index="6" Removed="True" />
+                <LayoutItem Id="latitude" ViewItem="latitude" Index="7" Removed="True" />
+                <LayoutItem Id="firmenname" Removed="True" />
+                <LayoutItem Id="FremdsystemId" Removed="True" />
+                <LayoutItem Id="hausnummer" Removed="True" />
+                <LayoutItem Id="internet" Removed="True" />
+                <TabbedGroup Id="tabAdressData" Caption="tabAdressdata">
+                  <LayoutGroup Id="tabAnschrift" Caption="Anschrift" Index="0">
+                    <LayoutGroup Id="grpStrasse" Caption="Strasse" Direction="Horizontal" Index="0">
+                      <LayoutItem Id="strasse" Index="0" ViewItem="strasse" ShowCaption="" CaptionLocation="Top" />
+                      <LayoutItem Id="hausnummer" Index="1" ViewItem="hausnummer" ShowCaption="" CaptionLocation="Top" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpOrt" Caption="Ort" Direction="Horizontal">
+                      <LayoutItem Id="Plz" ViewItem="Plz" ShowCaption="" Index="2" CaptionLocation="Top" />
+                      <LayoutItem Id="ort" Index="3" ViewItem="ort" ShowCaption="" CaptionLocation="Top" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpOrtsteil" Caption="" Direction="Horizontal">
+                      <LayoutItem Id="viewitemOrtsteil" ViewItem="Ortsteil" Index="0" />
+                      <LayoutItem Id="Wartungszone" ViewItem="Wartungszone" ShowCaption="" Index="1" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabRegion" Caption="Region" Index="1">
+                    <LayoutItem Id="Land" Index="4" ViewItem="Land" ShowCaption="" CaptionLocation="Top" />
+                    <LayoutItem Id="Bundesland" Index="5" ViewItem="Bundesland" ShowCaption="" CaptionLocation="Top" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="boKunde" Index="2" ShowCaption="True" Caption="Kundendaten">
+                    <LayoutItem Id="UstIdNummer" ViewItem="UstIdNummer" Index="0" ShowCaption="" />
+                    <LayoutItem Id="DebitorenNummer" ViewItem="DebitorenNummer" Index="1" ShowCaption="" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabZusatzinfos" Caption="Zusatzinfos" Index="3">
+                    <LayoutItem Id="FremdsystemId" ViewItem="FremdsystemId" Index="0" CaptionLocation="Top" />
+                    <LayoutItem Id="longitude" ViewItem="longitude" Index="1" CaptionLocation="Top" />
+                    <LayoutItem Id="latitude" ViewItem="latitude" Index="2" CaptionLocation="Top" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabNotizen" Caption="Notizen">
+                    <LayoutItem Id="viewItemNotizen" ViewItem="Notizen" />
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="boKunde" Removed="True">
+              <LayoutItem Id="DebitorenNummer" ViewItem="DebitorenNummer" />
+              <LayoutItem Id="UstIdNummer" ViewItem="UstIdNummer" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstLiegenschaften">
+              <LayoutItem Id="lstLiegenschaften" ViewItem="lstLiegenschaften" />
+            </LayoutGroup>
+            <LayoutGroup Id="Kontakt">
+              <LayoutItem Id="Kontakt" ViewItem="Kontakt" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLieferant_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Notizen" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAdresse">
+              <LayoutGroup Id="boAdresse_col1">
+                <LayoutItem Id="Matchkey" Index="0" ViewItem="Matchkey" ShowCaption="" Removed="True" />
+                <LayoutGroup Id="grpMandant" Caption="" Index="1" Direction="Horizontal">
+                  <LayoutItem Id="AdressTyp" Index="0" ViewItem="AdressTyp" ShowCaption="" />
+                  <LayoutItem Id="Mandant" Index="1" ViewItem="Mandant" ShowCaption="" />
+                </LayoutGroup>
+                <LayoutItem Id="Mandant" Index="1" Removed="True" />
+                <LayoutItem Id="Anrede" Index="2" />
+                <LayoutItem Id="firmenname" ViewItem="firmenname" ShowCaption="" Index="3" />
+                <LayoutGroup Id="grpName" Caption="" Index="4" Direction="Horizontal">
+                  <LayoutItem Id="vorname" ViewItem="vorname" ShowCaption="" Index="0" />
+                  <LayoutItem Id="nachname" ViewItem="nachname" ShowCaption="" Index="1" />
+                </LayoutGroup>
+                <LayoutItem Id="Zusatz" Index="5" />
+                <LayoutItem Id="internet" ViewItem="internet" ShowCaption="" Index="6" />
+                <LayoutItem Id="Wartungszone" Index="6" Removed="True" />
+                <LayoutItem Id="Land" Index="7" Removed="True" />
+                <LayoutItem Id="AdressTyp" Index="8" Removed="True" />
+                <LayoutItem Id="Bundesland" Index="8" Removed="True" />
+                <LayoutItem Id="Plz" Index="9" Removed="True" />
+                <LayoutItem Id="Ortsteil" Index="10" Removed="True" />
+                <LayoutItem Id="Notizen" Index="11" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boAdresse_col2">
+                <TabbedGroup Id="tabAdressData" Index="0">
+                  <LayoutGroup Id="tabAnschrift" Caption="Anschrift" Index="0">
+                    <LayoutGroup Id="grpStrasse" Caption="" Index="0" Direction="Horizontal">
+                      <LayoutItem Id="strasse" Index="0" ViewItem="strasse" ShowCaption="" />
+                      <LayoutItem Id="hausnummer" Index="1" ViewItem="hausnummer" ShowCaption="" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpPLZ" Caption="" Index="1" Direction="Horizontal">
+                      <LayoutItem Id="Plz" Index="0" ViewItem="Plz" ShowCaption="" />
+                      <LayoutItem Id="ort" Index="1" ViewItem="ort" ShowCaption="" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpOrtsteil" Caption="" Direction="Horizontal">
+                      <LayoutItem Id="Ortsteil" Index="0" ViewItem="Ortsteil" ShowCaption="" />
+                      <LayoutItem Id="Wartungszone" Index="1" ViewItem="Wartungszone" ShowCaption="" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabRegion" Caption="Region" Index="1">
+                    <LayoutGroup Id="grpLand" Caption="" Index="0" Direction="Horizontal">
+                      <LayoutItem Id="Land" Index="0" ViewItem="Land" ShowCaption="" />
+                      <LayoutItem Id="Bundesland" Index="1" ViewItem="Bundesland" ShowCaption="" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpGeodata" Caption="" Direction="Horizontal">
+                      <LayoutItem Id="longitude" Index="2" ViewItem="longitude" ShowCaption="" />
+                      <LayoutItem Id="latitude" Index="3" ViewItem="latitude" ShowCaption="" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabLieferantenkonto" Caption="Lieferantenkonto" Index="2" Direction="Horizontal">
+                    <LayoutItem Id="Lieferantennummer" ViewItem="Lieferantennummer" ShowCaption="" Index="0" />
+                    <LayoutItem Id="eigneKundennummer" ViewItem="eigneKundennummer" ShowCaption="" Index="1" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabZusatzinfos" Caption="Zusatzinfos" Index="3">
+                    <LayoutItem Id="FremdsystemId" Index="1" ViewItem="FremdsystemId" ShowCaption="" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabNotiz" Caption="Notiz">
+                    <LayoutItem Id="Notizen" Index="12" ViewItem="Notizen" ShowCaption="" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutItem Id="FremdsystemId" Index="1" Removed="True" />
+                <LayoutItem Id="hausnummer" Index="2" Removed="True" />
+                <LayoutItem Id="ort" Index="3" Removed="True" />
+                <LayoutItem Id="strasse" Index="4" Removed="True" />
+                <LayoutItem Id="longitude" Index="7" Removed="True" />
+                <LayoutItem Id="latitude" Index="9" Removed="True" />
+                <LayoutItem Id="firmenname" Removed="True" />
+                <LayoutItem Id="internet" Removed="True" />
+                <LayoutItem Id="nachname" Removed="True" />
+                <LayoutItem Id="vorname" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="boLieferant" Removed="True">
+              <LayoutItem Id="eigneKundennummer" Removed="True" />
+              <LayoutItem Id="Lieferantennummer" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="itmHausbetreuerKontakte" PropertyName="Hausbetreuer.Kontakt" />
+        <PropertyEditor Id="itmDebitorennummer" PropertyName="Liegenschaftsadresse.DebitorenNummer" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabHausbereuer">
+                    <TabbedGroup Id="grpHausbetreuerMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="itmHausbetreuerKontakte" ViewItem="itmHausbetreuerKontakte" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabAdresse">
+                    <TabbedGroup Id="tabAdrMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="viewItemKontakteLiegenschaft" ViewItem="KontakteLiegenschaft" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabObjekt">
+                    <TabbedGroup Id="tabObjektMain">
+                      <LayoutGroup Id="tabGrunddaten">
+                        <LayoutGroup Id="col2">
+                          <LayoutItem Id="itmDebitorennummer" ViewItem="itmDebitorennummer" />
+                        </LayoutGroup>
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAdresse_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAdresse">
+              <LayoutGroup Id="boAdresse_col1">
+                <LayoutItem Id="AdressTyp" Index="3" CaptionLocation="Top" ViewItem="AdressTyp" Removed="True" />
+                <LayoutGroup Id="grpMandant">
+                  <LayoutItem Id="AdressTyp" ViewItem="AdressTyp" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="boAdresse_col2">
+                <LayoutItem Id="FremdsystemId" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navItemAdressen">
+        <Items Id="Items">
+          <Item Id="boLieferant_ListView" ViewId="boLieferant_ListView" />
+          <Item Id="navItemKunden" ViewId="boKunde_ListView" />
+        </Items>
+      </Item>
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemServiceSettings">
+            <Items Id="Items">
+              <Item Id="navItemServicepaket" ViewId="fiServicePaket_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

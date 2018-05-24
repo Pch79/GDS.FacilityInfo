@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views Id="Views">
+    <DetailView Id="boMandant_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="boMandant">
+            <LayoutGroup Id="boMandant_col2">
+              <TabbedGroup Id="tabMandantData">
+                <LayoutGroup Id="tabMandant">
+                  <LayoutItem Id="viewItemCEO" ViewItem="Geschaeftsfuehrer" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAdresse_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Kontakt_Group" Removed="True">
+            <LayoutItem Id="Kontakt" ViewItem="Kontakt" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabAdresse">
+                    <TabbedGroup Id="tabAdrMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="viewItemKontakteLiegenschaft" ViewItem="KontakteLiegenschaft" />
+                      </LayoutGroup>
+                      <LayoutGroup Id="LGAdresse">
+                        <LayoutGroup Id="grpAdressData">
+                          <LayoutItem Id="itm.Ort" ViewItem="itmOrt" />
+                          <LayoutItem Id="itmPlz" ViewItem="itmPlz" />
+                        </LayoutGroup>
+                        <LayoutItem Id="itmStrasse" ViewItem="itmStrasse" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

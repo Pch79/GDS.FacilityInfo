@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views Id="Views">
+    <DetailView Id="boAnlagenArt_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Icon" ImageEditorFixedHeight="90" ImageEditorFixedWidth="90" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="grpHeader">
+            <LayoutGroup Id="AnlagenArtCol1">
+              <LayoutItem Id="Icon" ViewItem="Icon" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlagenGruppe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAnlagenGruppe">
+              <LayoutGroup Id="AnlagenGruppeCol1">
+                <LayoutItem Id="Icon" ViewItem="Icon" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabAdresse">
+                    <TabbedGroup Id="tabAdrMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="viewItemKontakteLiegenschaft" ViewItem="KontakteLiegenschaft" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

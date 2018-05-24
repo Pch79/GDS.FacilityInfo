@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views Id="Views">
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabAdresse">
+                    <TabbedGroup Id="tabAdrMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="viewItemKontakteLiegenschaft" ViewItem="KontakteLiegenschaft" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiHersteller_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Firmenlogo" Removed="True" />
+            <LayoutGroup Id="tabNotiz" Caption="Notiz">
+              <LayoutItem Id="Notiz" ViewItem="Notiz" ShowCaption="" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiHersteller">
+              <LayoutItem Id="Internet" Index="1" Removed="True" />
+              <LayoutItem Id="Telefon" Index="2" Removed="True" />
+              <LayoutItem Id="Mail" Index="4" Removed="True" />
+              <LayoutItem Id="Bezeichnung" Index="5" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

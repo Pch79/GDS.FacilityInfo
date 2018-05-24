@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Settings">
+        <Items Id="Items">
+          <Item Id="Zugangsinformationen">
+            <Items Id="Items">
+              <Item Id="ZugangBeschreibung" ViewId="fiZugangBeschreibung_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="navBusinessManagement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views Id="Views">
+    <DetailView Id="boMandant_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="HomeVerzeichnis" PropertyEditorType="GDS.FacilityInfo.Module.Win.Editors.XafFolderBrowserDialog" />
+      </Items>
+    </DetailView>
+    <DetailView Id="boMassnahme_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMassnahme">
+              <LayoutGroup Id="boMassnahme_col1">
+                <LayoutItem Id="viewItemIcon" ViewItem="itemIcon" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

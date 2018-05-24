@@ -1,0 +1,15 @@
+﻿using System;
+using DevExpress.Xpo;
+using DevExpress.Data.Filtering;
+using System.Collections.Generic;
+using System.ComponentModel;
+namespace FacilityInfo.WebService.FacilityInfo_Data
+{
+
+    public partial class boAttachmentBibliothek
+    {
+        public boAttachmentBibliothek(Session session) : base(session) { }
+        public override void AfterConstruction() { base.AfterConstruction(); }
+    }
+
+}

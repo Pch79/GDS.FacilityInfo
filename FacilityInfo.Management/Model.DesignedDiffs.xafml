@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel>
+    <Class Name="FacilityInfo.Anlagen.BusinessObjects.boAnlage">
+      <OwnMembers>
+        <Member Name="Baujahr" DisplayFormat="" />
+      </OwnMembers>
+    </Class>
+    <Class Name="FacilityInfo.Hersteller.BusinessObjects.fiHerstellerProdukt" ImageName="FlowDecision" />
+    <Class Name="FacilityInfo.Hersteller.BusinessObjects.fiHerstellerProduktgruppe" ImageName="FlowSwitch" />
+    <Class Name="FacilityInfo.Management.BusinessObjects.fiBildtitel" DefaultListViewAllowEdit="True" />
+    <Class Name="FacilityInfo.Messung.BusinessObjects.boMessItemData" DefaultListViewAllowEdit="True">
+      <OwnMembers>
+        <Member Name="MessItemEntry" AllowEdit="False" />
+        <Member Name="Messprobe" AllowEdit="False" />
+        <Member Name="Messwert" DisplayFormat="{0:n2}" EditMask="n2" />
+      </OwnMembers>
+    </Class>
+    <Class Name="FacilityInfo.Messung.BusinessObjects.boWertebereich">
+      <OwnMembers>
+        <Member Name="MaxWert" DisplayFormat="{0:n2}" EditMask="N2" />
+        <Member Name="MinWert" DisplayFormat="{0:n2}" EditMask="N2" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="17.1.7.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="17.1.7.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="17.1.7.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="boLiegenschaft_lstHaustechnikKomponenten_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="fiGebaeude_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="LgHaustechnikKomponente_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+  </Views>
+</Application>

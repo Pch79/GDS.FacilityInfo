@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navitemvertragsVerwaltung">
+        <Items Id="Items">
+          <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+          <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+        </Items>
+      </Item>
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+          <Item Id="boMandant_ListView">
+            <Items Id="Items">
+              <Item Id="+">
+                <Items Id="Items">
+                  <Item Id="ZugangBeschreibung" ViewId="fiZugangBeschreibung_ListView" />
+                </Items>
+              </Item>
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="navItemLiegenschaften">
+        <Items Id="Items">
+          <Item Id="Hausbetreuer" ViewId="Hausbetreuer_ListView" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <CreatableItems Id="CreatableItems">
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.fiZugangBeschreibung" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.fiZugangsTyp" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.Hausbetreuer" Index="-1" Removed="True" />
+  </CreatableItems>
+  <Views Id="Views">
+    <DetailView Id="boMassnahme_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMassnahme">
+              <LayoutGroup Id="boMassnahme_col1">
+                <LayoutItem Id="viewItemIcon" ViewItem="itemIcon" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

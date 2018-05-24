@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="boChecklisteLiegenschaft_CheckItemLiegenschaft_ListView" AllowEdit="True" />
+    <ListView Id="boLiegenschaft_ChecklisteLiegenschaft_ListView" MasterDetailMode="ListViewAndDetailView" AllowEdit="True" AllowDelete="False" AllowLink="False" AllowNew="False" AllowUnlink="False" />
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="ChecklisteLiegenschaft" TextAlignMode="AlignWithChildren" RelativeSize="100">
+              <LayoutItem Id="ChecklisteLiegenschaft" TextAlignMode="AutoSize" RelativeSize="100" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Default">
+        <Items Id="Items">
+          <Item Id="boCheckItemLiegenschaft_ListView" Removed="True" />
+          <Item Id="boChecklisteLiegenschaft_ListView" Removed="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

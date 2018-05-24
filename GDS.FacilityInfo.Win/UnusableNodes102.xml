@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel Id="BOModel">
+    <Class Name="FacilityInfo.Management.BusinessObjects.boAdresse">
+      <OwnMembers Id="OwnMembers">
+        <Member Name="Notizen" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
+      </OwnMembers>
+    </Class>
+    <Class Name="FacilityInfo.Management.BusinessObjects.boADRKommunikation" DefaultListViewNewItemRowPosition="Top" />
+    <Class Name="FacilityInfo.Management.BusinessObjects.boKommunikationItem" DefaultListViewNewItemRowPosition="Top" />
+    <Class Name="FacilityInfo.Management.BusinessObjects.boKontakt" DefaultListViewNewItemRowPosition="Top" />
+    <Class Name="FacilityInfo.Management.BusinessObjects.boKontaktKommunikation" DefaultListViewNewItemRowPosition="Top" />
+    <Class Name="FacilityInfo.Management.BusinessObjects.boOrtsteil" DefaultListViewAllowEdit="True" DefaultListViewNewItemRowPosition="Top" DefaultListViewShowAutoFilterRow="True" />
+  </BOModel>
+  <Views Id="Views">
+    <DetailView Id="Kontakt_DetailView_Small" ClassName="FacilityInfo.Management.BusinessObjects.boKontakt">
+      <Items Id="Items">
+        <PropertyEditor Id="Anrede" PropertyName="Anrede" />
+        <PropertyEditor Id="Geburtsdatum" PropertyName="Geburtsdatum" />
+        <PropertyEditor Id="lstKontaktKommunikation" PropertyName="lstKontaktKommunikation" View="boKontakt_lstKontaktKommunikation_ListView" />
+        <PropertyEditor Id="Matchkey" PropertyName="Matchkey" />
+        <PropertyEditor Id="Nachname" PropertyName="Nachname" />
+        <PropertyEditor Id="Position" PropertyName="Position" />
+        <PropertyEditor Id="Vorname" PropertyName="Vorname" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False">
+          <LayoutGroup Id="lstKontaktKommunikation_Group" Index="1" Direction="Horizontal" ShowCaption="True">
+            <LayoutItem Id="lstKontaktKommunikation" ViewItem="lstKontaktKommunikation" Index="0" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boAdresse_Kontakt_ListView" MasterDetailView="Kontakt_DetailView_Small" />
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabAdresse">
+                    <TabbedGroup Id="tabAdrMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="viewItemKontakteLiegenschaft" ViewItem="KontakteLiegenschaft" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMandant_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="boMandant">
+            <LayoutGroup Id="boMandant_col2">
+              <TabbedGroup Id="tabMandantData">
+                <LayoutGroup Id="tabMandant">
+                  <LayoutItem Id="Mandant" ViewItem="Mandant" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemHersteller">
+            <Items Id="Items">
+              <Item Id="navitemhersteller" ViewId="fiHersteller_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

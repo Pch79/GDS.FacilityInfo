@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navitemvertragsVerwaltung">
+        <Items Id="Items">
+          <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+          <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+        </Items>
+      </Item>
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemLaenderUndRegionen">
+            <Items Id="Items">
+              <Item Id="navItemOrtsteil" ViewId="boOrtsteil_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+          <Item Id="boMandant_ListView">
+            <Items Id="Items">
+              <Item Id="Fremdsystem" ViewId="fiFremdsystem_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views Id="Views">
+    <DetailView Id="boAnlagenArt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="tabFurtherData">
+            <LayoutGroup Id="lstServiceDefinitionen">
+              <LayoutItem Id="lstServiceDefinitionen" ViewItem="lstServiceDefinitionen" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAdresse_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAdresse">
+              <LayoutGroup Id="boAdresse_col1">
+                <LayoutGroup Id="grpMandant">
+                  <LayoutItem Id="AdressTyp" ViewItem="AdressTyp" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="boAdresse_col2">
+                <TabbedGroup Id="tabAdressData">
+                  <LayoutGroup Id="tabAnschrift">
+                    <LayoutGroup Id="grpOrtsteil">
+                      <LayoutItem Id="viewitemOrtsteil" ViewItem="itmOrtsteil" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMassnahme_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMassnahme">
+              <LayoutGroup Id="boMassnahme_col1">
+                <LayoutItem Id="viewItemIcon" ViewItem="itemIcon" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views Id="Views">
+    <DetailView Id="boMandant_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="boMandant">
+            <LayoutGroup Id="boMandant_col1">
+              <LayoutItem Id="Firmenlogo" ViewItem="Firmenlogo" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Titelbild" ImageEditorFixedHeight="90" ImageEditorFixedWidth="90" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAnlage">
+              <LayoutGroup Id="boAnlage_col1">
+                <LayoutItem Id="Titelbild" ViewItem="Titelbild" />
+              </LayoutGroup>
+              <LayoutGroup Id="boAnlage_col2">
+                <LayoutItem Id="Titelbild" ViewItem="Titelbild" Index="8" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boAnlage_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Titelbild" Index="0" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boAnlagenGruppe_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Icon" ImageEditorFixedHeight="90" ImageEditorFixedWidth="90" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAnlagenGruppe">
+              <LayoutItem Id="Icon" ViewItem="Icon" Index="0" Removed="True" />
+              <LayoutGroup Id="AnlagenGruppeCol1">
+                <LayoutItem Id="Icon" ViewItem="Icon" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boLiegenschaft_Anlagen_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Titelbild" Index="0" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col1">
+                <LayoutItem Id="Titelbild" ViewItem="Titelbild" />
+              </LayoutGroup>
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <LayoutItem Id="Titelbild" Removed="True" />
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabAdresse">
+                    <TabbedGroup Id="tabAdrMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="viewItemKontakteLiegenschaft" ViewItem="KontakteLiegenschaft" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boLiegenschaft_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Titelbild" Index="0" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

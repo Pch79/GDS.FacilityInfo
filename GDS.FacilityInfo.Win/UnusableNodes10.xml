@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boAnlagenArt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="AnlagenGruppe_Group">
+            <LayoutItem Id="AnlagenGruppe" ViewItem="AnlagenGruppe" />
+            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

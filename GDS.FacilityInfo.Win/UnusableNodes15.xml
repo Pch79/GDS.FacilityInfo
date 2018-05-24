@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boOrt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boOrt">
+              <LayoutItem Id="Name" ViewItem="Name" />
+              <LayoutItem Id="PLZ" ViewItem="PLZ" />
+              <LayoutItem Id="KeyNational" ViewItem="KeyNational" Index="3" />
+              <LayoutItem Id="KeyInternational" ViewItem="KeyInternational" Index="4" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

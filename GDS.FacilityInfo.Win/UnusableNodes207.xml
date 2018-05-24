@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="importDokumentTyp_lstImportObjekte_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="ImportObjekt" Index="1" />
+        <ColumnInfo Id="ImportAktiv" Index="2" />
+        <ColumnInfo Id="DokumentTyp" Index="3" />
+        <ColumnInfo Id="StartIndexZeile" Index="4" />
+        <ColumnInfo Id="StopIndexZeile" Index="5" />
+        <ColumnInfo Id="StartIndexSpalte" Index="6" />
+        <ColumnInfo Id="StopIndexSpalte" Index="7" />
+        <ColumnInfo Id="StartStringSpalte" Removed="True" />
+        <ColumnInfo Id="StartStringZeile" Removed="True" />
+        <ColumnInfo Id="StopStringSpalte" Removed="True" />
+        <ColumnInfo Id="StopStringZeile" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boMassnahme_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMassnahme">
+              <LayoutGroup Id="boMassnahme_col1">
+                <LayoutItem Id="viewItemIcon" ViewItem="itemIcon" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Settings">
+        <Items Id="Items">
+          <Item Id="Zugangsinformationen">
+            <Items Id="Items">
+              <Item Id="ZugangBeschreibung" ViewId="fiZugangBeschreibung_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="navBusinessManagement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

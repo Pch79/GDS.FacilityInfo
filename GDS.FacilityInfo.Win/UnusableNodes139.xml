@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boOrtsteil_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Ort" PropertyName="Ort" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boOrtsteil">
+              <LayoutGroup Id="col2" Caption="" Index="0" Direction="Horizontal">
+                <LayoutItem Id="Ort" ViewItem="Ort" Index="0" />
+                <LayoutItem Id="Matchkey" ViewItem="Matchkey" Index="1" ShowCaption="" />
+              </LayoutGroup>
+              <LayoutGroup Id="col1" Caption="" Index="1" Direction="Horizontal">
+                <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" Index="1" ShowCaption="" />
+                <LayoutItem Id="Vorwahl" ViewItem="Vorwahl" Index="2" ShowCaption="" />
+              </LayoutGroup>
+              <LayoutItem Id="Matchkey" ViewItem="Matchkey" Index="1" Removed="True" />
+              <LayoutItem Id="Vorwahl" ViewItem="Vorwahl" Index="2" Removed="True" />
+              <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" Index="3" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstWartungszonen_Group">
+            <LayoutItem Id="lstWartungszonen" ViewItem="lstWartungszonen" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boOrtsteil_LookupListView" AllowEdit="False" AllowDelete="False" AllowLink="False" AllowNew="True" />
+    <ListView Id="boOrtsteil_lstWartungszonen_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="CalcFaktor" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="0" />
+        <ColumnInfo Id="Mandant" Index="1" />
+        <ColumnInfo Id="Matchkey" Index="2" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_AdressVariant_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Wartungszone" PropertyName="Wartungszone" Index="9" Width="70" />
+        <ColumnInfo Id="Ortsteil" PropertyName="Liegenschaftsadresse.Ortsteil" Index="6" DataSourceCriteria="Ort.Oid = '@this.Liegenschaftsadresse.ort.Oid'" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boOrt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="lstOrtsteile_Group">
+            <LayoutItem Id="lstOrtsteile" ViewItem="lstOrtsteile" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boOrt">
+              <LayoutGroup Id="boOrt_col2">
+                <LayoutItem Id="Anzeigename" ViewItem="Anzeigename" />
+              </LayoutGroup>
+              <LayoutGroup Id="boOrt_col1">
+                <LayoutItem Id="Anzeigename" ViewItem="Anzeigename" ShowCaption="" Index="0" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boOrt_lstOrtsteile_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Ort" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="1" />
+        <ColumnInfo Id="Vorwahl" Index="2" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boAdresse_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="itmOrtsteil" PropertyName="Ortsteil" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAdresse">
+              <LayoutGroup Id="boAdresse_col1">
+                <LayoutItem Id="Wartungszone" Index="5" Removed="True" />
+                <LayoutItem Id="Ortsteil" Removed="True" />
+                <LayoutGroup Id="grpMandant">
+                  <LayoutItem Id="AdressTyp" ViewItem="AdressTyp" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="boAdresse_col2">
+                <TabbedGroup Id="tabAdressData">
+                  <LayoutGroup Id="tabAnschrift">
+                    <LayoutGroup Id="grpOrtsteil">
+                      <LayoutItem Id="Wartungszone" ViewItem="Wartungszone" />
+                      <LayoutItem Id="viewitemOrtsteil" ViewItem="itmOrtsteil" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="itmWartungszone" PropertyName="Wartungszone" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAnlage">
+              <LayoutGroup Id="boAnlage_col1">
+                <LayoutItem Id="Wartungszone" ViewItem="Wartungszone" Index="2" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boAnlage_col2">
+                <LayoutGroup Id="tabAnlagendaten">
+                  <TabbedGroup Id="tabAnlagenInfos">
+                    <LayoutGroup Id="tabLiegenschaft">
+                      <TabbedGroup Id="tabLiegenschaftDFetails">
+                        <LayoutGroup Id="tabLiegenschaftAdresse">
+                          <LayoutGroup Id="grpMandant">
+                            <LayoutItem Id="Wartungszone" ViewItem="Wartungszone" />
+                          </LayoutGroup>
+                        </LayoutGroup>
+                      </TabbedGroup>
+                    </LayoutGroup>
+                  </TabbedGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boAnlage_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Wartungszone" Index="10" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_Anlagen_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Wartungszone" Index="10" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="itmWartungsZone" PropertyName="Wartungszone" />
+        <PropertyEditor Id="Adresse.Ortsteil" PropertyName="Liegenschaftsadresse.Ortsteil" DataSourceCriteria="Ort.Oid = '@this.Liegenschaftsadresse.ort.Oid'" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col1">
+                <LayoutItem Id="Wartungszone" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabHausbereuer">
+                    <TabbedGroup Id="grpHausbetreuerMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="itmHausbetreuerKontakte" ViewItem="itmHausbetreuerKontakte" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabAdresse">
+                    <TabbedGroup Id="tabAdrMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="viewItemKontakteLiegenschaft" ViewItem="KontakteLiegenschaft" />
+                      </LayoutGroup>
+                      <LayoutGroup Id="LGAdresse">
+                        <LayoutGroup Id="grpMandatenData">
+                          <LayoutItem Id="itmWartungsZone" ViewItem="itmWartungsZone" />
+                        </LayoutGroup>
+                        <LayoutGroup Id="grpAdressData">
+                          <LayoutItem Id="AdresseOrtsteil" ViewItem="Adresse.Ortsteil" />
+                        </LayoutGroup>
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boLiegenschaft_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Wartungszone" Index="6" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="LgHaustechnikKomponente_lstAnlagen_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Wartungszone" Removed="True" />
+      </Columns>
+    </ListView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemServiceSettings">
+            <Items Id="Items">
+              <Item Id="navItemServicepaket" ViewId="fiServicePaket_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemLaenderUndRegionen">
+            <Items Id="Items">
+              <Item Id="navItemOrtsteil" ViewId="boOrtsteil_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

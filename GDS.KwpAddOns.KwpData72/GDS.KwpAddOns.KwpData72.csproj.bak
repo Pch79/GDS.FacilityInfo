@@ -1,0 +1,859 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{106CFEA9-4C2B-4C11-97CC-305FAC38AD4D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GDS.KwpAddOns.KwpData72</RootNamespace>
+    <AssemblyName>GDS.KwpAddOns.KwpData72</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v17.1">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.1.Export">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.1.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v17.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v17.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v17.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v17.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v17.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DatabaseUpdate\Updater.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrAdressen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrAdressen.Designer.cs">
+      <DependentUpon>adrAdressen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrAdressVerteiler.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrAdressVerteiler.Designer.cs">
+      <DependentUpon>adrAdressVerteiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrAnreden.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrAnreden.Designer.cs">
+      <DependentUpon>adrAnreden.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrBanken.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrBanken.Designer.cs">
+      <DependentUpon>adrBanken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrBriefAnreden.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrBriefAnreden.Designer.cs">
+      <DependentUpon>adrBriefAnreden.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrKonditionen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrKonditionen.Designer.cs">
+      <DependentUpon>adrKonditionen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrKontakte.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrKontakte.Designer.cs">
+      <DependentUpon>adrKontakte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrOrte.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrOrte.Designer.cs">
+      <DependentUpon>adrOrte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrRabatte.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrRabatte.Designer.cs">
+      <DependentUpon>adrRabatte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrSelekts.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrSelekts.Designer.cs">
+      <DependentUpon>adrSelekts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrSonderFaktoren.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrSonderFaktoren.Designer.cs">
+      <DependentUpon>adrSonderFaktoren.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrSonderPreise.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrSonderPreise.Designer.cs">
+      <DependentUpon>adrSonderPreise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrTextRecherche.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrTextRecherche.Designer.cs">
+      <DependentUpon>adrTextRecherche.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrVerknuepfungen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrVerknuepfungen.Designer.cs">
+      <DependentUpon>adrVerknuepfungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\adrVerteiler.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\adrVerteiler.Designer.cs">
+      <DependentUpon>adrVerteiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Angebot.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Angebot.Designer.cs">
+      <DependentUpon>Angebot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\AngebotFw.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\AngebotFw.Designer.cs">
+      <DependentUpon>AngebotFw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\AngPos.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\AngPos.Designer.cs">
+      <DependentUpon>AngPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArbeitsZeit.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArbeitsZeit.Designer.cs">
+      <DependentUpon>ArbeitsZeit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Archive.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Archive.Designer.cs">
+      <DependentUpon>Archive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivFiles.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivFiles.Designer.cs">
+      <DependentUpon>ArchivFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivFilesRevision.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivFilesRevision.Designer.cs">
+      <DependentUpon>ArchivFilesRevision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivHeader.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivHeader.Designer.cs">
+      <DependentUpon>ArchivHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivRelations.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivRelations.Designer.cs">
+      <DependentUpon>ArchivRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivStempel.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivStempel.Designer.cs">
+      <DependentUpon>ArchivStempel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivVerzeichnis.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivVerzeichnis.Designer.cs">
+      <DependentUpon>ArchivVerzeichnis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivVerzeichnisLink.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArchivVerzeichnisLink.Designer.cs">
+      <DependentUpon>ArchivVerzeichnisLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ARTBILD.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ARTBILD.Designer.cs">
+      <DependentUpon>ARTBILD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArtVerzeichnisDetails.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArtVerzeichnisDetails.Designer.cs">
+      <DependentUpon>ArtVerzeichnisDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ArtVerzeichnisStruktur.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ArtVerzeichnisStruktur.Designer.cs">
+      <DependentUpon>ArtVerzeichnisStruktur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Aufmass.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Aufmass.Designer.cs">
+      <DependentUpon>Aufmass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BankVerbindungen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BankVerbindungen.Designer.cs">
+      <DependentUpon>BankVerbindungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BASIS.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BASIS.Designer.cs">
+      <DependentUpon>BASIS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Bautagebuch.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Bautagebuch.Designer.cs">
+      <DependentUpon>Bautagebuch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BauTageBuchArbZeiten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BauTageBuchArbZeiten.Designer.cs">
+      <DependentUpon>BauTageBuchArbZeiten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Bedarfsmeldung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Bedarfsmeldung.Designer.cs">
+      <DependentUpon>Bedarfsmeldung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BedarfsmeldungPositionen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BedarfsmeldungPositionen.Designer.cs">
+      <DependentUpon>BedarfsmeldungPositionen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BestellPos.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BestellPos.Designer.cs">
+      <DependentUpon>BestellPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Bestellung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Bestellung.Designer.cs">
+      <DependentUpon>Bestellung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BstLager.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BstLager.Designer.cs">
+      <DependentUpon>BstLager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BstLagerBeleg.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BstLagerBeleg.Designer.cs">
+      <DependentUpon>BstLagerBeleg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BstLagerBuchung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BstLagerBuchung.Designer.cs">
+      <DependentUpon>BstLagerBuchung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Buchungen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Buchungen.Designer.cs">
+      <DependentUpon>Buchungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\BURGERLE.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\BURGERLE.Designer.cs">
+      <DependentUpon>BURGERLE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ConnectionHelper.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\DatanormDownload.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\DatanormDownload.Designer.cs">
+      <DependentUpon>DatanormDownload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\DatanormDownLoadFile.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\DatanormDownLoadFile.Designer.cs">
+      <DependentUpon>DatanormDownLoadFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\DatanormDownloadFiles.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\DatanormDownloadFiles.Designer.cs">
+      <DependentUpon>DatanormDownloadFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\EMailBuch.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\EMailBuch.Designer.cs">
+      <DependentUpon>EMailBuch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ErlGrp.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ErlGrp.Designer.cs">
+      <DependentUpon>ErlGrp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ErlKonten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ErlKonten.Designer.cs">
+      <DependentUpon>ErlKonten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\FeierTage.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\FeierTage.Designer.cs">
+      <DependentUpon>FeierTage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\gumvBuchungen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\gumvBuchungen.Designer.cs">
+      <DependentUpon>gumvBuchungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\gumvGeraetegruppen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\gumvGeraetegruppen.Designer.cs">
+      <DependentUpon>gumvGeraetegruppen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\gumvReparatur.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\gumvReparatur.Designer.cs">
+      <DependentUpon>gumvReparatur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\gumvStammdaten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\gumvStammdaten.Designer.cs">
+      <DependentUpon>gumvStammdaten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\KATALOG.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\KATALOG.Designer.cs">
+      <DependentUpon>KATALOG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Kataloggruppe.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Kataloggruppe.Designer.cs">
+      <DependentUpon>Kataloggruppe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\KategorienVerzeichnisStruktur.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\KategorienVerzeichnisStruktur.Designer.cs">
+      <DependentUpon>KategorienVerzeichnisStruktur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\KategorienVerzeichnisStrukturTextbausteine.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\KategorienVerzeichnisStrukturTextbausteine.Designer.cs">
+      <DependentUpon>KategorienVerzeichnisStrukturTextbausteine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\kbuBelege.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\kbuBelege.Designer.cs">
+      <DependentUpon>kbuBelege.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\kbuBuchungen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\kbuBuchungen.Designer.cs">
+      <DependentUpon>kbuBuchungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\kbuKassen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\kbuKassen.Designer.cs">
+      <DependentUpon>kbuKassen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Lager.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Lager.Designer.cs">
+      <DependentUpon>Lager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\LagerArtikelQualifikation.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\LagerArtikelQualifikation.Designer.cs">
+      <DependentUpon>LagerArtikelQualifikation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\LagerArtikelQuantifikation.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\LagerArtikelQuantifikation.Designer.cs">
+      <DependentUpon>LagerArtikelQuantifikation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\LagerBestand.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\LagerBestand.Designer.cs">
+      <DependentUpon>LagerBestand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\LagerGewichtRohstoffe.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\LagerGewichtRohstoffe.Designer.cs">
+      <DependentUpon>LagerGewichtRohstoffe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\LagerStruktur.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\LagerStruktur.Designer.cs">
+      <DependentUpon>LagerStruktur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Leihstellung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Leihstellung.Designer.cs">
+      <DependentUpon>Leihstellung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Lieferung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Lieferung.Designer.cs">
+      <DependentUpon>Lieferung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\LohnArten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\LohnArten.Designer.cs">
+      <DependentUpon>LohnArten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MENGENEH.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MENGENEH.Designer.cs">
+      <DependentUpon>MENGENEH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MenueGruppen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MenueGruppen.Designer.cs">
+      <DependentUpon>MenueGruppen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MenueLaschen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MenueLaschen.Designer.cs">
+      <DependentUpon>MenueLaschen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MenueProgramme.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MenueProgramme.Designer.cs">
+      <DependentUpon>MenueProgramme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MenueProgrammeEXT.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MenueProgrammeEXT.Designer.cs">
+      <DependentUpon>MenueProgrammeEXT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MenueVorlagen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MenueVorlagen.Designer.cs">
+      <DependentUpon>MenueVorlagen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MonteurGruppe.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MonteurGruppe.Designer.cs">
+      <DependentUpon>MonteurGruppe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MonteurGruppePersonal.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MonteurGruppePersonal.Designer.cs">
+      <DependentUpon>MonteurGruppePersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontJourn.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontJourn.Designer.cs">
+      <DependentUpon>MontJourn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournAufmass.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournAufmass.Designer.cs">
+      <DependentUpon>MontJournAufmass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournBase64Items.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournBase64Items.Designer.cs">
+      <DependentUpon>MontJournBase64Items.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournMobLog.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournMobLog.Designer.cs">
+      <DependentUpon>MontJournMobLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournMonteureStundenID.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournMonteureStundenID.Designer.cs">
+      <DependentUpon>MontJournMonteureStundenID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournPos.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournPos.Designer.cs">
+      <DependentUpon>MontJournPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournPosLager.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournPosLager.Designer.cs">
+      <DependentUpon>MontJournPosLager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournPosMat.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontJournPosMat.Designer.cs">
+      <DependentUpon>MontJournPosMat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrg.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrg.Designer.cs">
+      <DependentUpon>MontStrg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgEinstellungen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgEinstellungen.Designer.cs">
+      <DependentUpon>MontStrgEinstellungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgPers.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgPers.Designer.cs">
+      <DependentUpon>MontStrgPers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgRelations.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgRelations.Designer.cs">
+      <DependentUpon>MontStrgRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgTermine.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgTermine.Designer.cs">
+      <DependentUpon>MontStrgTermine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgTerminSerie.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgTerminSerie.Designer.cs">
+      <DependentUpon>MontStrgTerminSerie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgTerminSerieAusnahmen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgTerminSerieAusnahmen.Designer.cs">
+      <DependentUpon>MontStrgTerminSerieAusnahmen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgTerminVerschiebungMM.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\MontStrgTerminVerschiebungMM.Designer.cs">
+      <DependentUpon>MontStrgTerminVerschiebungMM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\OrdnerBeschriftung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\OrdnerBeschriftung.Designer.cs">
+      <DependentUpon>OrdnerBeschriftung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Personal.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Personal.Designer.cs">
+      <DependentUpon>Personal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PersonalBewertung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PersonalBewertung.Designer.cs">
+      <DependentUpon>PersonalBewertung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PersonalJahreswerte.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PersonalJahreswerte.Designer.cs">
+      <DependentUpon>PersonalJahreswerte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PersonalQualifikation.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PersonalQualifikation.Designer.cs">
+      <DependentUpon>PersonalQualifikation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PosBilder.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PosBilder.Designer.cs">
+      <DependentUpon>PosBilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Position.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Position.Designer.cs">
+      <DependentUpon>Position.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PosMat.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PosMat.Designer.cs">
+      <DependentUpon>PosMat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Projekt.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Projekt.Designer.cs">
+      <DependentUpon>Projekt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ProjektAdressen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ProjektAdressen.Designer.cs">
+      <DependentUpon>ProjektAdressen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ProjektInfo.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ProjektInfo.Designer.cs">
+      <DependentUpon>ProjektInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ProjektNachtrag.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ProjektNachtrag.Designer.cs">
+      <DependentUpon>ProjektNachtrag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\ProjektStatus.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\ProjektStatus.Designer.cs">
+      <DependentUpon>ProjektStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSBieter.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSBieter.Designer.cs">
+      <DependentUpon>PSBieter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSBietergruppen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSBietergruppen.Designer.cs">
+      <DependentUpon>PSBietergruppen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSBietergruppe_Bieterkopf.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSBietergruppe_Bieterkopf.Designer.cs">
+      <DependentUpon>PSBietergruppe_Bieterkopf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSBieterkopf.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSBieterkopf.Designer.cs">
+      <DependentUpon>PSBieterkopf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSPositionen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSPositionen.Designer.cs">
+      <DependentUpon>PSPositionen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSPreise.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSPreise.Designer.cs">
+      <DependentUpon>PSPreise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSPreiseKorr.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSPreiseKorr.Designer.cs">
+      <DependentUpon>PSPreiseKorr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSPreisZusammensetzung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSPreisZusammensetzung.Designer.cs">
+      <DependentUpon>PSPreisZusammensetzung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSProjekt.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSProjekt.Designer.cs">
+      <DependentUpon>PSProjekt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\PSRabatte.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\PSRabatte.Designer.cs">
+      <DependentUpon>PSRabatte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebBemerkung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebBemerkung.Designer.cs">
+      <DependentUpon>rebBemerkung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebBenutzerKfg.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebBenutzerKfg.Designer.cs">
+      <DependentUpon>rebBenutzerKfg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebBuchung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebBuchung.Designer.cs">
+      <DependentUpon>rebBuchung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebBuchungTmp.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebBuchungTmp.Designer.cs">
+      <DependentUpon>rebBuchungTmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebEinRechnung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebEinRechnung.Designer.cs">
+      <DependentUpon>rebEinRechnung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebEinReStatus.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebEinReStatus.Designer.cs">
+      <DependentUpon>rebEinReStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebFilterKfg.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebFilterKfg.Designer.cs">
+      <DependentUpon>rebFilterKfg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebGrundDaten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebGrundDaten.Designer.cs">
+      <DependentUpon>rebGrundDaten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebLieferschein.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebLieferschein.Designer.cs">
+      <DependentUpon>rebLieferschein.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebTextMemo.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebTextMemo.Designer.cs">
+      <DependentUpon>rebTextMemo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebZahlung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebZahlung.Designer.cs">
+      <DependentUpon>rebZahlung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\rebZahlungArt.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\rebZahlungArt.Designer.cs">
+      <DependentUpon>rebZahlungArt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Rechnung.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Rechnung.Designer.cs">
+      <DependentUpon>Rechnung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RechnungFw.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RechnungFw.Designer.cs">
+      <DependentUpon>RechnungFw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RechPos.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RechPos.Designer.cs">
+      <DependentUpon>RechPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RechZahlungen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RechZahlungen.Designer.cs">
+      <DependentUpon>RechZahlungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RegelArbeitsZeit.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RegelArbeitsZeit.Designer.cs">
+      <DependentUpon>RegelArbeitsZeit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Regie.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Regie.Designer.cs">
+      <DependentUpon>Regie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RegieDeleted.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RegieDeleted.Designer.cs">
+      <DependentUpon>RegieDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RegieInfo.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RegieInfo.Designer.cs">
+      <DependentUpon>RegieInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RegiePos.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RegiePos.Designer.cs">
+      <DependentUpon>RegiePos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RegiePosBilder.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RegiePosBilder.Designer.cs">
+      <DependentUpon>RegiePosBilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\RegieStatus.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\RegieStatus.Designer.cs">
+      <DependentUpon>RegieStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\SachKonten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\SachKonten.Designer.cs">
+      <DependentUpon>SachKonten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\SerienNr.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\SerienNr.Designer.cs">
+      <DependentUpon>SerienNr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\SerienNrLog.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\SerienNrLog.Designer.cs">
+      <DependentUpon>SerienNrLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\SMSBuch.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\SMSBuch.Designer.cs">
+      <DependentUpon>SMSBuch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\SteuerKonten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\SteuerKonten.Designer.cs">
+      <DependentUpon>SteuerKonten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Textbausteine.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Textbausteine.Designer.cs">
+      <DependentUpon>Textbausteine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\UBRAHMEN.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\UBRAHMEN.Designer.cs">
+      <DependentUpon>UBRAHMEN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\Vergleich.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\Vergleich.Designer.cs">
+      <DependentUpon>Vergleich.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartAnlagen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartAnlagen.Designer.cs">
+      <DependentUpon>WartAnlagen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartAntritt.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartAntritt.Designer.cs">
+      <DependentUpon>WartAntritt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartAuftraege.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartAuftraege.Designer.cs">
+      <DependentUpon>WartAuftraege.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartAuftraegeInfo.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartAuftraegeInfo.Designer.cs">
+      <DependentUpon>WartAuftraegeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartAuftragPos.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartAuftragPos.Designer.cs">
+      <DependentUpon>WartAuftragPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartGridGeraeteDaten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartGridGeraeteDaten.Designer.cs">
+      <DependentUpon>WartGridGeraeteDaten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartMessdaten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartMessdaten.Designer.cs">
+      <DependentUpon>WartMessdaten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartMonteure.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartMonteure.Designer.cs">
+      <DependentUpon>WartMonteure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartPosBilder.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartPosBilder.Designer.cs">
+      <DependentUpon>WartPosBilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartSelektAnlage.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartSelektAnlage.Designer.cs">
+      <DependentUpon>WartSelektAnlage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartSelektVertrag.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartSelektVertrag.Designer.cs">
+      <DependentUpon>WartSelektVertrag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartTermine.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartTermine.Designer.cs">
+      <DependentUpon>WartTermine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartTerminNrBlock.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartTerminNrBlock.Designer.cs">
+      <DependentUpon>WartTerminNrBlock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\WartVertraege.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\WartVertraege.Designer.cs">
+      <DependentUpon>WartVertraege.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAdressen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAdressen.Designer.cs">
+      <DependentUpon>wflowAdressen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAktivitaeten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAktivitaeten.Designer.cs">
+      <DependentUpon>wflowAktivitaeten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAktivitaetenToAutoAktivitaeten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAktivitaetenToAutoAktivitaeten.Designer.cs">
+      <DependentUpon>wflowAktivitaetenToAutoAktivitaeten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowArten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowArten.Designer.cs">
+      <DependentUpon>wflowArten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowArtGruppen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowArtGruppen.Designer.cs">
+      <DependentUpon>wflowArtGruppen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowArtUsers.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowArtUsers.Designer.cs">
+      <DependentUpon>wflowArtUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAutoAktivitaeten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAutoAktivitaeten.Designer.cs">
+      <DependentUpon>wflowAutoAktivitaeten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAutoAktivitaetenAdressen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAutoAktivitaetenAdressen.Designer.cs">
+      <DependentUpon>wflowAutoAktivitaetenAdressen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAutoAktivitaetenWorkflow.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowAutoAktivitaetenWorkflow.Designer.cs">
+      <DependentUpon>wflowAutoAktivitaetenWorkflow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowEreignisAktivitaeten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowEreignisAktivitaeten.Designer.cs">
+      <DependentUpon>wflowEreignisAktivitaeten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowGruppen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowGruppen.Designer.cs">
+      <DependentUpon>wflowGruppen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowInfos.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowInfos.Designer.cs">
+      <DependentUpon>wflowInfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowPrioritaeten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowPrioritaeten.Designer.cs">
+      <DependentUpon>wflowPrioritaeten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowSelekts.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowSelekts.Designer.cs">
+      <DependentUpon>wflowSelekts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowUnterAktivitaeten.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowUnterAktivitaeten.Designer.cs">
+      <DependentUpon>wflowUnterAktivitaeten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowUsers.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowUsers.Designer.cs">
+      <DependentUpon>wflowUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KwpDataModel\KwpModelCode\wflowVerknuepfungen.cs" />
+    <Compile Include="KwpDataModel\KwpModelCode\wflowVerknuepfungen.Designer.cs">
+      <DependentUpon>wflowVerknuepfungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Module.Designer.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticData\StaticValues.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Module.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Module.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DatabaseUpdate\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BusinessObjects\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controllers\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\ReadMe.txt" />
+    <None Include="KwpDataModel\KwpModel.xpo" />
+    <None Include="KwpDataModel\KwpModel.xpo.diagram">
+      <DependentUpon>KwpModel.xpo</DependentUpon>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

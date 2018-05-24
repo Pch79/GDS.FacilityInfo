@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel>
+    <Class Name="GDS.KwpAddOns.KwpData72.KwpDataModel.BNWINS_Demo_new.rebEinRechnung" ImageName="BO_Opportunity" />
+    <Class Name="GDS.KwpAddOns.KwpData72.KwpDataModel.BNWINS_Demo_new.Rechnung" ImageName="BO_Invoice" />
+    <Class Name="GDS.KwpAddOns.KwpData72.KwpDataModel.BNWINS_Demo_new.RechZahlungen">
+      <OwnMembers>
+        <Member Name="RechNr" LookupProperty="RECHNR" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="15.2.9.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="AusgangsRechnung_ListView" ClassName="GDS.KwpAddOns.KwpData72.KwpDataModel.BNWINS_Demo_new.Rechnung" Caption="Ausgangsrechnung" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="BETREFF" PropertyName="BETREFF" Index="-1" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="RECHNR" PropertyName="RECHNR" Index="0" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="ERSTDAT" PropertyName="ERSTDAT" Index="1" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="Rechnung_RechnungsTyp" PropertyName="Rechnung_RechnungsTyp" Index="2" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="Rechnung_ErloesGruppe" PropertyName="Rechnung_ErloesGruppe" Index="3" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="USTBASIS" PropertyName="USTBASIS" Index="25" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="USTWERT" PropertyName="USTWERT" Index="26" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="BRUTTOWERT" PropertyName="BRUTTOWERT" Index="27" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="UEBGDAT" PropertyName="UEBGDAT" Index="28" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="ZAHLBETR" PropertyName="ZAHLBETR" Index="34" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="SKONTOPR" PropertyName="SKONTOPR" Index="35" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="SKONTOBETR" PropertyName="SKONTOBETR" Index="36" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="SKONTODATUM" PropertyName="SKONTODATUM" Index="37" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="NETTODATUM" PropertyName="NETTODATUM" Index="38" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="PROJNR" PropertyName="PROJNR" Index="148" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="ADRKUERZ" PropertyName="ADRKUERZ" Index="149" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="AUFTRNR" PropertyName="AUFTRNR" Index="150" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="DEBNR" PropertyName="DEBNR" Index="151" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="STORNOMK" PropertyName="STORNOMK" Index="153" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="ZAHLUNGSTATUS" PropertyName="ZAHLUNGSTATUS" Index="155" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="SKONTOUMFANG" PropertyName="SKONTOUMFANG" Index="156" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="RECHTYP" PropertyName="RECHTYP" Index="158" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="MwstSatz" PropertyName="MwstSatz" Index="163" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="LeistungsDatum" PropertyName="LeistungsDatum" Index="185" Width="70" IsNewNode="True" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boWartungsVertrag_DetailView" CaptionLocation="Top">
+      <Items Id="Items">
+        <PropertyEditor Id="itmAnlage" PropertyName="Anlage" />
+        <PropertyEditor Id="itmKontakte" PropertyName="Kunde.Kontakt" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boVertrag" Caption="Wartungsvertrag">
+              <LayoutGroup Id="boVertrag_col1">
+                <LayoutGroup Id="grpStatus" Caption="grpStatus" Index="0" Direction="Horizontal">
+                  <LayoutItem Id="Vertragsnummer" ViewItem="Vertragsnummer" Index="1" ShowCaption="" />
+                  <LayoutItem Id="Vertragsstatus" Index="2" ViewItem="Vertragsstatus" ShowCaption="" />
+                </LayoutGroup>
+                <LayoutItem Id="Kuendigungsgrund" ViewItem="Kuendigungsgrund" Index="0" Removed="True" />
+                <LayoutItem Id="Abschlussdatum" Index="1" ViewItem="Abschlussdatum" Removed="True" />
+                <LayoutItem Id="Vertragsnummer" Index="1" ViewItem="Vertragsnummer" Removed="True" />
+                <LayoutItem Id="Mandant" Index="3" />
+                <LayoutItem Id="Kunde" Index="4" ViewItem="Kunde" />
+                <LayoutItem Id="Laufzeitbeginn" ViewItem="Laufzeitbeginn" Index="4" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boVertrag_col2">
+                <LayoutItem Id="Mindestlaufzeit" ViewItem="Mindestlaufzeit" Index="0" Removed="True" />
+                <TabbedGroup Id="tabVertragData" Caption="tabVertragData" Index="0">
+                  <LayoutGroup Id="tabAnlage" Caption="Anlage" Index="0">
+                    <LayoutItem Id="viewItemAnlage" ViewItem="itmAnlage" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabLaufzeit" Caption="Laufzeit" Index="1">
+                    <LayoutItem Id="Abschlussdatum" ViewItem="Abschlussdatum" Index="1" ShowCaption="" />
+                    <LayoutGroup Id="grpLaufzeit" Caption="grpLaufzeit" Direction="Horizontal">
+                      <LayoutItem Id="Mindestlaufzeit" Index="0" ViewItem="Mindestlaufzeit" ShowCaption="" />
+                      <LayoutItem Id="Laufzeit" Index="1" ViewItem="Laufzeit" ShowCaption="" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grplaufzeitDat" Caption="grplaufzeitDat" Direction="Horizontal">
+                      <LayoutItem Id="Laufzeitbeginn" Index="0" ViewItem="Laufzeitbeginn" ShowCaption="" />
+                      <LayoutItem Id="Laufzeitende" Index="3" ViewItem="Laufzeitende" ShowCaption="" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabKuendigung" Caption="Kündigung">
+                    <LayoutItem Id="Kuendigungsfrist" Index="3" ViewItem="Kuendigungsfrist" ShowCaption="" />
+                    <LayoutItem Id="Kuendigungsgrund" Index="3" ViewItem="Kuendigungsgrund" ShowCaption="" />
+                    <LayoutItem Id="Kuendigungsdatum" Index="4" ViewItem="Kuendigungsdatum" ShowCaption="" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutItem Id="Vertragsstatus" ViewItem="Vertragsstatus" Index="1" Removed="True" />
+                <LayoutItem Id="Laufzeitende" ViewItem="Laufzeitende" Index="2" Removed="True" />
+                <LayoutItem Id="Kuendigungsfrist" ViewItem="Kuendigungsfrist" Index="3" Removed="True" />
+                <LayoutItem Id="Kuendigungsdatum" ViewItem="Kuendigungsdatum" Index="4" Removed="True" />
+                <LayoutItem Id="Laufzeit" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstVertragsleistungen_Group">
+            <LayoutItem Id="lstVertragsleistungen" ShowCaption="False" ViewItem="lstVertragsleistungen" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabLiegenschaftData">
+                  <LayoutGroup Id="tabAdresse">
+                    <TabbedGroup Id="tabAdrMain">
+                      <LayoutGroup Id="grpKontakte">
+                        <LayoutItem Id="viewItemKontakteLiegenschaft" ViewItem="KontakteLiegenschaft" />
+                      </LayoutGroup>
+                    </TabbedGroup>
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="navitemvertragsVerwaltung">
+        <Items Id="Items">
+          <Item Id="boWartungsVertrag_ListView" ViewId="boWartungsVertrag_ListView" />
+        </Items>
+      </Item>
+      <Item Id="navItemVerwaltung">
+        <Items Id="Items">
+          <Item Id="navItemStammdaten">
+            <Items Id="Items">
+              <Item Id="boPrioritaet_ListView" ViewId="boPrioritaet_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>
