@@ -22,7 +22,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
     [ImageName("vcard_16")]
     [XafDefaultProperty("Matchkey")]
     
-    public class boKontakt : BaseObject
+    public class boKontakt : BaseObject,Ikommunikation
     {
         private System.String _vorname;
         private System.String _nachname;
@@ -32,8 +32,17 @@ namespace FacilityInfo.Adresse.BusinessObjects
         private boAnrede _anrede;
         private String _notiz;
         private String _abteilung;
+        private adresseTitel _titel;
 
-      
+        //Kommunikation
+        private String _telefon1;
+        private String _telefon2;
+        private String _fax;
+        private String _mobil;
+        private String _mail;
+        private String _internet;
+
+
 
         public boKontakt(Session session)
             : base(session)
@@ -44,8 +53,20 @@ namespace FacilityInfo.Adresse.BusinessObjects
             base.AfterConstruction();
            
         }
+     
+               
+                  
 
-        [XafDisplayName("Matchkey")]
+        #region Properties
+          
+        [XafDisplayName("Titel")]
+        public adresseTitel Titel
+        {
+            get { return _titel; }
+            set { SetPropertyValue("Titel", ref _titel, value); }
+        }
+
+        [XafDisplayName("Anzeigename")]
         public System.String Matchkey
         {
             get
@@ -53,9 +74,11 @@ namespace FacilityInfo.Adresse.BusinessObjects
                 var retVal = string.Empty;
                 var name = string.Empty;
                 var vorname = string.Empty;
-                vorname = (this.Vorname != null) ? this.Vorname : "N/A";
-                name = (this.Nachname != null) ? this.Nachname : "N/A";
-                retVal = string.Format("{0} {1}", vorname, name);
+                var anrede = string.Empty;
+                vorname = (this.Vorname != null) ? this.Vorname : string.Empty;
+                name = (this.Nachname != null) ? this.Nachname : string.Empty;
+                anrede = (this.Anrede != null) ? this.Anrede.Text : string.Empty;
+                retVal = string.Format("{0} {1} {2}",anrede, vorname, name);
                 return retVal;
             }
         }
@@ -121,6 +144,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
 
 
         [XafDisplayName("Vorname")]
+        [ImmediatePostData(true)]
         public System.String Vorname
         {
             get
@@ -135,6 +159,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
 
 
         [XafDisplayName("Nachname")]
+        [ImmediatePostData(true)]
         public System.String Nachname
         {
             get
@@ -198,5 +223,53 @@ namespace FacilityInfo.Adresse.BusinessObjects
                 return GetCollection<boKontaktKommunikation>("lstKontaktKommunikation");
             }
         }
+        #region iKommunikation
+        [XafDisplayName("Telefon1")]
+        public string Telefon1
+        {
+            get { return _telefon1; }
+            set { SetPropertyValue("Telefon1", ref _telefon1, value); }
+        }
+        [XafDisplayName("Telefon2")]
+        public string Telefon2
+        {
+            get { return _telefon2; }
+            set { SetPropertyValue("Telefon2", ref _telefon2, value); }
+
+
+        }
+        [XafDisplayName("Mobil")]
+        public string Mobil
+        {
+            get { return _mobil; }
+            set { SetPropertyValue("Mobil", ref _mobil, value); }
+        }
+
+
+
+        [XafDisplayName("Fax")]
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        public string Fax
+        {
+            get { return _fax; }
+            set { SetPropertyValue("Fax", ref _fax, value); }
+        }
+        [XafDisplayName("Mail")]
+        public string Mail
+        {
+            get { return _mail; }
+            set { SetPropertyValue("Mail", ref _mail, value); }
+        }
+        [XafDisplayName("Internet")]
+        public String Internet
+        {
+            get { return _internet; }
+            set { SetPropertyValue("Internet", ref _internet, value); }
+        }
+
+        #endregion
+
+        #endregion
     }
 }

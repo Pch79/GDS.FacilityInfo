@@ -11,7 +11,8 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-using FacilityInfo.Datenfeld.BusinessObjects;
+
+using FacilityInfo.Parameter.BusinessObjects;
 
 namespace FacilityInfo.Hersteller.BusinessObjects
 {
@@ -26,34 +27,20 @@ namespace FacilityInfo.Hersteller.BusinessObjects
         private System.String _notiz;
 
         //Steuerungsvariablen
-        private bool _valueAdded;
-        private XPCollection<fiDatenfeldProduktgruppe> lstAddedObjects;
-
+    
        
         public fiHerstellerProduktgruppe(Session session)
             : base(session)
         {
-            this.lstDatenfeldProduktgruppe.CollectionChanged += LstDatenfeldProduktgruppe_CollectionChanged;
             //this.Session.ObjectSaved += Session_ObjectSaved;
         }
 
         private void Session_ObjectSaved(object sender, ObjectManipulationEventArgs e)
         {
-            if (this._valueAdded)
-            {
-              //  updateHerstellerProdukt();
-            }
+          
         }
 
-        private void LstDatenfeldProduktgruppe_CollectionChanged(object sender, XPCollectionChangedEventArgs e)
-        {
-           if(e.CollectionChangedType == XPCollectionChangedType.AfterAdd)
-            {
-                
-                this._valueAdded = true;
-            }
-        }
-
+       
         public override void AfterConstruction()
         {
             base.AfterConstruction();
@@ -64,59 +51,15 @@ namespace FacilityInfo.Hersteller.BusinessObjects
         {
             base.OnSaved();
             //die Datenfelder bei allen zugeordenten Produkten nachziehen
-            //die Collection 
-            if (this._valueAdded)
-            {
-                updateHerstellerProdukt();
-            }
-
+          
         }
 
-        private void updateHerstellerProdukt()
-        {
-            //eine Collectiona us allen Herstellerprodukten laden die zu der Gruppe gehören
-            XPCollection<fiHerstellerProdukt> lstProdukte = new XPCollection<fiHerstellerProdukt>(this.Session, new BinaryOperator("Produktgruppe.Oid", this.Oid, BinaryOperatorType.Equal));
-            if(lstProdukte != null)
-            {
-                foreach (fiHerstellerProdukt item in lstProdukte)
-                {
-                    //working Field
-
-                    foreach (fiDatenfeldProduktgruppe addedItem in this.lstDatenfeldProduktgruppe)
-                    {
-                        fiDatenfeldHerstellerprodukt workingItem = this.Session.FindObject<fiDatenfeldHerstellerprodukt>(new BinaryOperator("DatenfeldProduktgruppe.Oid", addedItem.Oid, BinaryOperatorType.Equal));
-                        if (workingItem == null)
-                        {
-                            //dann den EIntrag machen
-                            workingItem = new fiDatenfeldHerstellerprodukt(this.Session);
-                            workingItem.DatenfeldProduktgruppe = this.Session.GetObjectByKey<fiDatenfeldProduktgruppe>(addedItem.Oid);
-                            workingItem.Herstellerprodukt = this.Session.GetObjectByKey<fiHerstellerProdukt>(item.Oid);
-                            
-                            workingItem.Save();
-                        }
-                    }
-                    item.Save();
-                       
-                }
-            }
-            Session.CommitTransaction();
-
-
-        }
 
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
             base.OnChanged(propertyName, oldValue, newValue);
-            switch(propertyName)
-            {
-                case "lstDatenfeldProduktgruppe":
-                    if(!this.Session.IsObjectToDelete(this))
-                    {
-                       
-                    }
-                    break;
-            }
+          
         }
 
         #region Properties
@@ -149,8 +92,8 @@ namespace FacilityInfo.Hersteller.BusinessObjects
 
 
         [XafDisplayName("Icon")]
-        [ImageEditor]
-        [Delayed]
+       // [ImageEditor]
+       // [Delayed]
         public byte[] Icon
         {
             get
@@ -163,17 +106,17 @@ namespace FacilityInfo.Hersteller.BusinessObjects
             }
         }
 
-        [Association("fiHerstellerProduktgruppe-fiDatenfeldProduktgruppe")]
-       
-        public XPCollection<fiDatenfeldProduktgruppe> lstDatenfeldProduktgruppe
+        [XafDisplayName("Parameter (Produktgruppe)")]
+        [Association("fiHerstellerProduktgruppe-parameterProduktGruppeParam"),DevExpress.Xpo.Aggregated]
+        public XPCollection<parameterProduktGruppeParam> lstParameterProduktGruppe
         {
-        
             get
             {
-                return GetCollection<fiDatenfeldProduktgruppe>("lstDatenfeldProduktgruppe");
+                return GetCollection<parameterProduktGruppeParam>("lstParameterProduktGruppe");
             }
         }
-        
+
+       
         #endregion
     }
 }

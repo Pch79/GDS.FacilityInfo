@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="fiZugangLiegenschaft_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="ZugangKontakt" View="Kontakt_LookUp_DetailView" />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>

@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="boANMassnahme_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Anlage" Index="0" />
+        <ColumnInfo Id="Prioritaet" Index="1" />
+        <ColumnInfo Id="MassnahmenTyp" Index="2" />
+        <ColumnInfo Id="Art" Index="3" />
+        <ColumnInfo Id="Status" Index="4" />
+        <ColumnInfo Id="Betreff" Index="5" />
+        <ColumnInfo Id="Zieldatum" Index="6" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLGMassnahme_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Liegenschaft" Index="0" />
+        <ColumnInfo Id="Prioritaet" Index="1" />
+        <ColumnInfo Id="MassnahmenTyp" Index="2" />
+        <ColumnInfo Id="Art" Index="3" />
+        <ColumnInfo Id="Status" Index="4" />
+        <ColumnInfo Id="Zieldatum" Index="5" />
+        <ColumnInfo Id="Betreff" Index="6" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boMassnahme_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutItem Id="Betreff" ViewItem="Betreff" ShowCaption="" Index="0" />
+            <LayoutGroup Id="boMassnahme" Index="1">
+              <LayoutGroup Id="boMassnahme_col1">
+                <LayoutItem Id="viewItemIcon" ViewItem="itemIcon" Index="0" />
+                <LayoutItem Id="MassnahmenTyp" Index="1" Removed="True" />
+                <LayoutItem Id="Art" Index="2" Removed="True" />
+                <LayoutItem Id="Status" Index="3" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boMassnahme_col2">
+                <TabbedGroup Id="tabData" Caption="TabData" Index="0">
+                  <LayoutGroup Id="tabMassnahme" Caption="Maßnahme">
+                    <LayoutItem Id="MassnahmenTyp" Index="1" ViewItem="MassnahmenTyp" ShowCaption="" />
+                    <LayoutItem Id="Art" Index="2" ViewItem="Art" ShowCaption="" />
+                    <LayoutItem Id="Status" Index="3" ViewItem="Status" ShowCaption="" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabZeitraum" Caption="Zeitraum">
+                    <LayoutItem Id="Erfassungsdatum" Index="0" ViewItem="Erfassungsdatum" ShowCaption="" />
+                    <LayoutItem Id="Zieldatum" Index="1" ViewItem="Zieldatum" ShowCaption="" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutItem Id="Zieldatum" Index="1" Removed="True" />
+                <LayoutItem Id="Erfassungsdatum" Index="2" Removed="True" />
+                <LayoutItem Id="Betreff" Index="3" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="tabMassnahmenInfo" Caption="MassnahmenInfos">
+            <LayoutGroup Id="lstMADatenfelder_Group" Index="2" Direction="Horizontal" ShowCaption="True" Caption="Datenfelder">
+              <LayoutItem Id="lstMADatenfelder" ViewItem="lstMADatenfelder" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boMassnahme_lstMADatenfelder_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="EintragswertSecure" Index="-1" />
+        <ColumnInfo Id="Datenfeld" Index="0" />
+        <ColumnInfo Id="EintragswertValueItem" Index="1" />
+        <ColumnInfo Id="EintragswertKurz" Index="2" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstAnMassnahmen" Index="5" ImageName="table_gear_16" TextAlignMode="AlignWithChildren" RelativeSize="100">
+              <LayoutItem Id="lstAnMassnahmen" TextAlignMode="AutoSize" RelativeSize="100" ViewItem="lstAnMassnahmen" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstLgMassnahmen" Index="6" ImageName="table_key_16" />
+            <LayoutGroup Id="Dokumenete">
+              <LayoutGroup Id="lstAttachment">
+                <LayoutItem Id="lstAttachment" ViewItem="lstAttachment" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="KwpDaten">
+              <TabbedGroup Id="tabKwpData">
+                <LayoutGroup Id="lstKwpTermine">
+                  <LayoutItem Id="lstKwpTermine" ViewItem="lstKwpTermine" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartTermin_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartTermin">
+              <LayoutGroup Id="KwpWartTermin_col1">
+                <LayoutGroup Id="grpBezug">
+                  <LayoutItem Id="KwpAnlage" ViewItem="KwpAnlage" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <BOModel Id="BOModel">
+    <Class Name="FacilityInfo.Management.BusinessObjects.boMassnahme">
+      <OwnMembers Id="OwnMembers">
+        <Member Name="Erfassungsdatum" DisplayFormat="{0:g}" />
+        <Member Name="Zieldatum" DisplayFormat="{0:g}" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Parkplatz">
+        <Items Id="Items">
+          <Item Id="navItemDatenfelder">
+            <Items Id="Items">
+              <Item Id="Antwortkatalog" ViewId="fiDatenfeldAntwort_ListView" />
+              <Item Id="navItemDatenfeld" ViewId="fiDatenfeld_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemDatenFeldProdukte">
+            <Items Id="Items">
+              <Item Id="Datenfeld (Produktgruppe)" ViewId="fiDatenfeldProduktgruppe_ListView" />
+              <Item Id="Antwortkatalog (Herstellerprodukt)" ViewId="fiDatenFeldHerstellerProduktAntwort_ListView" />
+              <Item Id="Produktdatenfeld" ViewId="fiDatenfeldHerstellerprodukt_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Developement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemMassnahmen">
+            <Items Id="Items">
+              <Item Id="boMassnahmenArt_ListView" ViewId="boMassnahmenArt_ListView" />
+              <Item Id="navItemANMassnahme" ViewId="boANMassnahme_ListView" />
+              <Item Id="navitemLGMAssnahme" ViewId="boLGMassnahme_ListView" />
+              <Item Id="boMassnahme_ListView" ViewId="boMassnahme_ListView" />
+            </Items>
+          </Item>
+          <Item Id="Dokumentverwaltung">
+            <Items Id="Items">
+              <Item Id="boMAAttachment_ListView" ViewId="boMAAttachment_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <CreatableItems Id="CreatableItems">
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boANMassnahme" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boLGMassnahme" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boMAAttachment" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boMADatenEntry" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boMADatenItem" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boMassnahme" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boMassnahmenArt" Index="-1" Removed="True" />
+  </CreatableItems>
+</Application>

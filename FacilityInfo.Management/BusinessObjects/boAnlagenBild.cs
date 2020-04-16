@@ -11,13 +11,15 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-using FacilityInfo.GlobalObjects.DomainComponents;
+
 using System.Drawing;
 using FacilityInfo.Anlagen.BusinessObjects;
-using FacilityInfo.GlobalObjects.Helpers;
+
 using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.Base.BusinessObjects;
+using FacilityInfo.Management.DomainComponents;
+using FacilityInfo.Management.Helpers;
 
 namespace FacilityInfo.Bildverarbeitung.BusinessObjects
 {

@@ -16,6 +16,7 @@ namespace FacilityInfo.Artikelverwaltung.BusinessObjects
 {
     [DefaultClassOptions]
     [XafDisplayName("Serviceartikel")]
+    [ImageName("box_down_16")]
     public class artikelServiceArtikel : artikelArtikelBase
     {
         private Decimal _dauerNominell;

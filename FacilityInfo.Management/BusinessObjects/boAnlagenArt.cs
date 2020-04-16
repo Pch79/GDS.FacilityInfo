@@ -15,6 +15,11 @@ using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.Messung.BusinessObjects;
 using FacilityInfo.Parameter.BusinessObjects;
 using DevExpress.Persistent.Base.General;
+using FacilityInfo.Wartung.BusinessObjects;
+using FacilityInfo.Management.Helpers;
+using System.Drawing;
+
+using FacilityInfo.Action.BusinessObjects;
 
 namespace FacilityInfo.Anlagen.BusinessObjects
 {
@@ -29,9 +34,10 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         
         private System.String _kuerzel;
         private System.String _beschreibung;
-        private boAnlagenGruppe _anlagengruppe;
+        private boAnlagenKategorie _anlagenkategorie;
         private System.String _ansprechcode;
         private System.Boolean _aktiv;
+        
     
         
         public boAnlagenArt(Session session)
@@ -55,47 +61,57 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 this.Kuerzel = this.Ansprechcode.Trim();
             }
         }
-        /*
+        protected override void OnChanged(string propertyName, object oldValue, object newValue)
+        {
+            base.OnChanged(propertyName, oldValue, newValue);
+            switch(propertyName)
+            {
+                case "Icon":
+                
+                    
+                    break;
+            }
+        }
 
-        #region ITReeNode
+        private byte[] resizeIcon(byte[] source)
+        {
+            byte[] retVal = null;
+            if (source != null)
+            {
+                Image workingImage = PictureHelper.ImageFromByteArray(source);
+               retVal= PictureHelper.ResizePicByHeight(workingImage, 32);
+            }
+            return retVal;
+            
+            
+        }
+
+
+        [XafDisplayName("Icon")]
+        public byte[] Icon
+        {
+            get
+            {
+                return GetPropertyValue<byte[]>("Icon");
+            }
+            set
+            {
+
+               
+                SetPropertyValue<byte[]>("Icon",resizeIcon(value));
+            }
+        }
+
+        [XafDisplayName("Baugruppen")]
+        [Association("boAnlagenart-anlageBauGruppe")]
+        public XPCollection<anlageBauGruppe> lstBauGruppe
+        {
+            get
+            {
+                return GetCollection<anlageBauGruppe>("lstBauGruppe");
+            }
+        }
         
-        IBindingList ITreeNode.Children
-        {
-            get
-            {
-                return lstAnlagen;
-            }
-        }
-        String ITreeNode.Name
-        {
-            get
-            {
-                return Bezeichnung;
-            }
-        }
-
-        ITreeNode ITreeNode.Parent
-        {
-            get
-            {
-                return null;
-            }
-        }
-        
-        #endregion
-        */
-
-
-
-        [XafDisplayName("Komponenten")]
-        [Association("boAnlagenart-AnKomponente")]
-        public XPCollection<AnKomponente> lstKomponenten
-        {
-            get
-            {
-                return GetCollection<AnKomponente>("lstKomponenten");
-            }
-        }
 
         [XafDisplayName("Messtypen")]
         [Association("boMesstyp-boAnlagenArt")]
@@ -123,6 +139,18 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
+        [XafDisplayName("Service-Pakete")]
+        [Association("serviceServicePackage-boAnlagenArt")]
+        public XPCollection<serviceServicePackage> lstServicePackage
+        {
+            get
+            {
+                return GetCollection<serviceServicePackage>("lstServicePackage");
+            }
+        }
+
+        
+        
         [XafDisplayName("Technikeinheiten")]
         [Association("fiTechnikeinheit-boAnlagenArt")]
         public XPCollection<fiTechnikeinheit> lstTechnikeinheit
@@ -134,6 +162,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
         [XafDisplayName("Ansprechcode")]
+        [RuleRequiredField]
         [Size(4)]
         public System.String Ansprechcode
         {
@@ -162,8 +191,16 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 var retVal = string.Empty;
                 var gruppe = string.Empty;
                 var bezeichnung = string.Empty;
-                gruppe = (this.AnlagenGruppe != null) ? this.AnlagenGruppe.Bezeichnung : "N/A";
-                bezeichnung = (this.Bezeichnung != null) ? this.Bezeichnung : "N/A";
+                gruppe = (this.AnlagenKategorie != null) ? this.AnlagenKategorie.Bezeichnung : "N/A";
+                if (this.Bezeichnung != null)
+                {
+                    bezeichnung = this.Bezeichnung;
+                }
+                else
+                {
+                    bezeichnung = "N/A";
+                }
+
                 retVal = string.Format("{0} - {1}", gruppe, bezeichnung);
                 return retVal;
             }
@@ -184,19 +221,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
 
-        [XafDisplayName("Symbol")]
-        [ImageEditor(DetailViewImageEditorFixedHeight = 180, DetailViewImageEditorFixedWidth = 180, ListViewImageEditorCustomHeight =30,ImageSizeMode =ImageSizeMode.Zoom)]
-        public byte[] Symbol
-        {
-            get
-            {
-                return GetPropertyValue<byte[]>("Symbol");
-            }
-            set
-            {
-                SetPropertyValue<byte[]>("Symbol", value);
-            }
-        }
+       
 
 
        
@@ -231,32 +256,24 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("Kuerzel", ref _kuerzel, value);
             }
         }
-        [XafDisplayName("Anlagengruppe")]
-        [Association("boAnlagengruppe-boAnlagenart")]
+        [XafDisplayName("Anlagenkategorie")]
+        [Association("boAnlagenKategorie-boAnlagenart")]
         [RuleRequiredField]
-        public boAnlagenGruppe AnlagenGruppe
+        public boAnlagenKategorie AnlagenKategorie
         {
             get
             {
-                return _anlagengruppe;
+                return _anlagenkategorie;
             }
             set
             {
-                SetPropertyValue("AnlagenGruppe", ref _anlagengruppe, value);
+                SetPropertyValue("AnlagenKategorie", ref _anlagenkategorie, value);
             }
         }
 
-        
-        [XafDisplayName("Datenfelder")]
-        [Association("boAnlagenArt-boANDatenItem"), DevExpress.ExpressApp.DC.Aggregated]
-        public XPCollection<boANDatenItem> lstDatenFelder
-        {
-            get
-            {
-                return GetCollection<boANDatenItem>("lstDatenFelder");
-            }
-        }
+      
 
+    
         [XafDisplayName("Servicepunkte")]
         [Association("boAnlagenArt-anlagenServicePunkt")]
         public XPCollection<anlagenServicePunkt> lstServicePunkte
@@ -266,16 +283,24 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 return GetCollection<anlagenServicePunkt>("lstServicePunkte");
             }
         }
-
+        
         [XafDisplayName("Parameter")]
-        [Association("boAnlagenArt-parameterParameterItem")]
-        public XPCollection<parameterParameterItem> lstParameterItem
+        [Association("boAnlagenArt-parameterAnlagenArtParam")]
+        public XPCollection<parameterAnlagenArtParam> lstParameterItem
         {
             get
             {
-                return GetCollection<parameterParameterItem>("lstParameterItem");
+                return GetCollection<parameterAnlagenArtParam>("lstParameterItem");
             }
         }
+
+
+        [Association("boAnlagenArt-wartungWartungsPlanAnlagenArt")]
+        public XPCollection<wartungWartungsPlanAnlagenArt> lstWartungsPlan
+        {
+            get { return GetCollection<wartungWartungsPlanAnlagenArt>("lstWartungsPlan"); }
+        }
+
 
         //Liste der Anlagen
         [XafDisplayName("Anlagen")]
@@ -286,6 +311,14 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             {
                 return GetCollection<boAnlage>("lstAnlagen");
             }
+        }
+
+        //Actionpackages
+        [XafDisplayName("Maßnahmenpakete")]
+        [Association("boAnlagenArt-actionActionPackage")]
+        public XPCollection<actionActionPackage>lstActionPackage
+        {
+            get { return GetCollection<actionActionPackage>("lstActionPackage"); }
         }
     }
 }

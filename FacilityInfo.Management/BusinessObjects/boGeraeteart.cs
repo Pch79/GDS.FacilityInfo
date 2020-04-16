@@ -73,7 +73,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
         [XafDisplayName("Icon")]
-        [ImageEditor(ListViewImageEditorCustomHeight =30,ImageSizeMode =ImageSizeMode.Normal,DetailViewImageEditorFixedHeight =90)]
+       // [ImageEditor(ListViewImageEditorCustomHeight =30,ImageSizeMode =ImageSizeMode.Normal,DetailViewImageEditorFixedHeight =90)]
         public byte[] Icon
         {
             get

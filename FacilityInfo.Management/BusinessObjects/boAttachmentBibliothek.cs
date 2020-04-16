@@ -26,6 +26,9 @@ namespace FacilityInfo.DMS.BusinessObjects
         private System.String _beschreibung;
         private boMandant _mandant;
         private System.Int32 _sortposition;
+        private String _key;
+        //hier noch einbauen ob das Ding online stehen soll oder nicht
+        private bool _online;
 
         public boAttachmentBibliothek(Session session)
             : base(session)
@@ -36,8 +39,22 @@ namespace FacilityInfo.DMS.BusinessObjects
             base.AfterConstruction();
         }
         #region Properties
-
-
+        [XafDisplayName("Key")]
+        public String Key
+        {
+            get { return _key; }
+            set { SetPropertyValue("Key", ref _key, value); }
+        }
+        [XafDisplayName("Online")]
+        [ImagesForBoolValues("Action_Grant","Action_Deny")]
+        [CaptionsForBoolValues("ja","nein")]
+        public Boolean Online
+        { get
+            {
+                return _online;
+            }
+            set { SetPropertyValue("Online", ref _online, value); }
+        }
         [XafDisplayName("Sortierposition")]
         public System.Int32 Sortposition
         {

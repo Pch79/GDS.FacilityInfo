@@ -26,7 +26,7 @@ namespace FacilityInfo.Management.BusinessObjects
     {
         private boLiegenschaft _liegenschaft;
         private System.String _bezeichnung;
-        private enmMassnahmenStatus _status;
+        private enmBearbeitungsStatus _status;
         private System.DateTime _erstellungsdatum;
         private PermissionPolicyUser _ersteller;
         private System.DateTime _datumFertigstellung;
@@ -122,7 +122,7 @@ namespace FacilityInfo.Management.BusinessObjects
 
         [XafDisplayName("Bearbeitungsstatus")]
         [ReadOnly(true)]
-        public enmMassnahmenStatus status
+        public enmBearbeitungsStatus status
         {
             get
             {
@@ -156,7 +156,7 @@ namespace FacilityInfo.Management.BusinessObjects
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
 
-            this.status = enmMassnahmenStatus.offen;
+            this.status = enmBearbeitungsStatus.neu;
             this.erstellungsdatum = DateTime.Now;
             this.ersteller = this.Session.GetObjectByKey<PermissionPolicyUser>(SecuritySystem.CurrentUserId);
         }
@@ -166,7 +166,7 @@ namespace FacilityInfo.Management.BusinessObjects
             switch(propertyName)
             {
                 case "status":
-                    if((enmMassnahmenStatus)newValue == enmMassnahmenStatus.erledigt)
+                    if((enmBearbeitungsStatus)newValue == enmBearbeitungsStatus.erledigt)
                     {
                         this.datumFertigstellung = DateTime.Now;
                     }

@@ -1,29 +1,20 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
+﻿using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
-using FacilityInfo.GlobalObjects.DomainComponents;
-using System.Drawing;
-using FacilityInfo.GlobalObjects.Helpers;
-using FacilityInfo.Management.BusinessObjects;
+using DevExpress.Xpo;
 using FacilityInfo.Core.BusinessObjects;
-using FacilityInfo.Base.BusinessObjects;
 using FacilityInfo.Liegenschaft.BusinessObjects;
+using FacilityInfo.Management.DomainComponents;
+using FacilityInfo.Management.Helpers;
+using System;
+using System.Drawing;
+using System.Linq;
 
 namespace FacilityInfo.Bildverarbeitung.BusinessObjects
 {
     [DefaultClassOptions]
     [XafDisplayName("Liegenschaftsbild")]
-    [ImageName("picture")]
+    [ImageName("picture_16")]
     [Serializable]
     public class boLiegenschaftsBild : BaseObject,IpictureItem
     {

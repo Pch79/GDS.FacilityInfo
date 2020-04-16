@@ -37,14 +37,18 @@ namespace FacilityInfo.Management.BusinessObjects
         public boNummernkreis(Session session)
             : base(session)
         {
-            curMandantID = clsStatic.loggedOnMandantOid;
+            //TODO: MAndantenzuordnung umbauen
+           // curMandantID = clsStatic.loggedOnMandantOid;
         }
         public override void AfterConstruction()
         {
             base.AfterConstruction();
+            //TODO: MAndantenzuordnung umbauen
+            /*
             curMandantID = clsStatic.loggedOnMandantOid;
             //hier gleich den Mandanten setzen
             this.Mandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
+            */
 
         }
 

@@ -13,6 +13,8 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
+using FacilityInfo.Liegenschaft.BusinessObjects;
+
 namespace FacilityInfo.Fremdsystem.BusinessObjects
 {
     [DefaultClassOptions]
@@ -31,6 +33,7 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
         private DateTime _terminZeit;
         private Decimal _planstunden;
         private boMandant _mandant;
+        
            
      // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
         public KwpWartungsAuftrag(Session session)
@@ -146,6 +149,19 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
         set {
                 SetPropertyValue("Planstunden", ref _planstunden, value);
         }
+        }
+
+        //die Liegenschaft ergibt sich aus der ANlage
+      
+
+        [XafDisplayName("KWP-Anlage")]
+        public KwpWartungsAnlage KwpAnlage
+        {
+            get
+            {
+                KwpWartungsAnlage retVal = this.Session.FindObject<KwpWartungsAnlage>(new BinaryOperator("FremdsystemId", this.KwpAnlagenNummer, BinaryOperatorType.Equal));
+                return retVal;
+            }
         }
         #endregion
     }

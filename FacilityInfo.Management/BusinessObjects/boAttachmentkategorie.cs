@@ -24,6 +24,7 @@ namespace FacilityInfo.DMS.BusinessObjects
         private System.String _beschreibung;
         private boAttachment _attachment;
         private System.Boolean _online;
+        private String _key;
         public boAttachmentkategorie(Session session)
             : base(session)
         {
@@ -34,6 +35,12 @@ namespace FacilityInfo.DMS.BusinessObjects
             this.Online = false;
         }
         #region Properties
+        [XafDisplayName("Key")]
+        public String Key
+        {
+            get { return _key; }
+            set { SetPropertyValue("Key", ref _key, value); }
+        }
         [XafDisplayName("Bezeichnung")]
         public System.String Bezeichnung
         {

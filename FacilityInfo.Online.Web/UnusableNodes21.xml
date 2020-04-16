@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstBauGruppe" Index="1" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartungsVertrag_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="lstAttachments_Group" Removed="True">
+            <LayoutItem Id="lstAttachments" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Vertragstext" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartungsVertrag">
+              <LayoutGroup Id="KwpWartungsVertrag_col1">
+                <LayoutItem Id="VertragsStatus" Index="2" Removed="True" />
+                <LayoutItem Id="contractAttached" Index="3" Removed="True" />
+                <LayoutItem Id="KuendigungsDatum" Index="4" Removed="True" />
+                <LayoutItem Id="KuendigungsGrund" Index="5" Removed="True" />
+                <LayoutItem Id="VertragsEnde" Index="6" Removed="True" />
+                <LayoutItem Id="VertragZurueck" Index="6" Removed="True" />
+                <LayoutItem Id="Mandant" Index="7" Removed="True" />
+                <LayoutItem Id="VertragsBeginn" Index="7" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="KwpWartungsVertrag_col2">
+                <LayoutItem Id="Bezeichnung" Removed="True" />
+                <LayoutItem Id="FremdsystemId" Removed="True" />
+                <LayoutItem Id="Liegenschaft" Removed="True" />
+                <LayoutItem Id="LinkKeyLiegenschaft" Removed="True" />
+                <LayoutItem Id="VertragsDatum" Removed="True" />
+                <LayoutItem Id="VertragsNummer" Removed="True" />
+                <LayoutItem Id="WartungsAnlage" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

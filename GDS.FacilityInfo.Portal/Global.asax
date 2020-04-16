@@ -1,1 +1,0 @@
-<%@ Application Codebehind="Global.asax.cs" Inherits="GDS_FacilityInfo_Portal.MvcApplication" Language="C#" %>

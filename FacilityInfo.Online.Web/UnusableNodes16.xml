@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boAdresse_Lookup_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstZugangsInfos">
+              <LayoutItem Id="lstZugangsInfos" ViewItem="lstZugangsInfos" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <TabbedGroup Id="tabDetailInfos">
+                  <LayoutGroup Id="tabHausbetreuer">
+                    <LayoutItem Id="Hausbetreuer" ViewItem="Hausbetreuer_Adresse" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabHausverwaltung">
+                    <LayoutItem Id="Hausverwalter" ViewItem="HausverWalter_Adresse" />
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

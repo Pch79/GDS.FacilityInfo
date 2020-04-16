@@ -17,6 +17,7 @@ namespace FacilityInfo.Base.BusinessObjects
     [DefaultClassOptions]
     [XafDisplayName("Einheit")]
     [XafDefaultProperty("Einheit_Bezeichnung")]
+    [ImageName("ModelEditor_Member")]
     
     public class boEinheit : BaseObject
     {

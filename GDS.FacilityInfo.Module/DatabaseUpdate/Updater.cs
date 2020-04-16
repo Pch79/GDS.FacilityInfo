@@ -43,13 +43,13 @@ namespace GDS.FacilityInfo.Module.DatabaseUpdate {
             }
 
 
-            PermissionPolicyUser gdsAdmin = ObjectSpace.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", "GdsAdmin"));
+            PermissionPolicyUser gdsAdmin = ObjectSpace.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", "PcoAdmin"));
             if (gdsAdmin == null)
             {
                 gdsAdmin = ObjectSpace.CreateObject<PermissionPolicyUser>();
-                gdsAdmin.UserName = "GdsAdmin";
+                gdsAdmin.UserName = "PcoAdmin";
                 // Set a password if the standard authentication type is used
-                gdsAdmin.SetPassword("Opg#842+89");
+                gdsAdmin.SetPassword("84Pco178");
             }
 
             // If a role with the Administrators name doesn't exist in the database, create this role

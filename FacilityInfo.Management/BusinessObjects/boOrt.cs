@@ -18,7 +18,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
     [DefaultClassOptions]
     [XafDisplayName("Ort")]
     [XafDefaultProperty("Matchkey")]
-    [ImageName("google_map")]
+    [ImageName("google_map_16")]
     public class boOrt : BaseObject
     {
         

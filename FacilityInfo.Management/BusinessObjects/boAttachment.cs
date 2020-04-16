@@ -1,22 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
+﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
-using System.ComponentModel;
 using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
-using FacilityInfo.GlobalObjects.DomainComponents;
-using FacilityInfo.GlobalObjects.EnumStore;
-using FacilityInfo.Anlagen.BusinessObjects;
-using FacilityInfo.Management.BusinessObjects;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
+using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
 using FacilityInfo.Core.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects;
+using FacilityInfo.Management.EnumStore;
+using System;
+using System.ComponentModel;
+using System.Linq;
 
 
 namespace FacilityInfo.DMS.BusinessObjects
@@ -46,6 +41,8 @@ namespace FacilityInfo.DMS.BusinessObjects
         private System.String _objektkey;
         //private System.String _linkedobject;
 
+        private Boolean _online;
+
 
 
         public boAttachment(Session session)
@@ -56,15 +53,30 @@ namespace FacilityInfo.DMS.BusinessObjects
         {
             base.AfterConstruction();
             this.Uploaddate = DateTime.Now;
-            PermissionPolicyUser curUser = this.Session.GetObjectByKey<PermissionPolicyUser>(SecuritySystem.CurrentUserId);
+            PermissionPolicyUser curUser;
+            try
+            {
+                 curUser = this.Session.GetObjectByKey<PermissionPolicyUser>(SecuritySystem.CurrentUserId);
+             
+            }
+            catch
+            {
+                curUser = this.Session.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", "GdsAdmin", BinaryOperatorType.Equal))
+                    ;
+               
+            }
             this.Uploaduser = curUser;
             //hier gleich den Mandanten Standardmässig setzen
             //gibt es zu dem User ein Mitarbeiterkonto??
+            /*
             boMitarbeiter curMitarbeiter = this.Session.FindObject<boMitarbeiter>(new BinaryOperator("Systembenutzer.Oid", curUser.Oid, BinaryOperatorType.Equal));
             if(curMitarbeiter != null)
             {
                 this.Mandant = this.Session.GetObjectByKey<boMandant>(curMitarbeiter.Mandant.Oid);
-            }         
+            } 
+            */
+            //den Stasndradmandanten nehmen??
+
         }
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
@@ -109,20 +121,19 @@ namespace FacilityInfo.DMS.BusinessObjects
             }
         }
 
-        /*
-        [XafDisplayName("Linked Object")]
-        public System.String LinkedObject
+       
+
+        [XafDisplayName("Online")]
+        [ImagesForBoolValues("Action_Grant", "Action_Deny")]
+        [CaptionsForBoolValues("ja", "nein")]
+        public Boolean Online
         {
             get
             {
-                return _linkedobject;
+                return _online;
             }
-            set
-            {
-                SetPropertyValue("LinkedObject", ref _linkedobject, value); 
-            }
+            set { SetPropertyValue("Online", ref _online, value); }
         }
-        */
         [XafDisplayName("Parentkey")]
         public System.String Parentkey
         {
@@ -230,9 +241,7 @@ namespace FacilityInfo.DMS.BusinessObjects
                 if (curType == typeof(boLGAttachment))
                     return enmAttatchmenttyp.Liegenschaft;
 
-                if (curType == typeof(boMAAttachment))
-                    return enmAttatchmenttyp.Massnahme;
-
+             
                 if (curType == typeof(fiMesstypAttachment))
                     return enmAttatchmenttyp.Mestyp;
 
@@ -244,8 +253,13 @@ namespace FacilityInfo.DMS.BusinessObjects
 
                 if (curType == typeof(fiHerstellerProduktAttachment))
                     return enmAttatchmenttyp.Produktattachment;
-
-
+                if(curType == typeof(docKwpVertragAttachment))
+                {
+                    return enmAttatchmenttyp.WartungsvertragKWP;
+                }
+                //kann auch ein KWP-Vertrag sein
+                //oder ein FI-eigener Vertrag
+                
                 return enmAttatchmenttyp.Attachment;
             }
         }
@@ -355,17 +369,7 @@ namespace FacilityInfo.DMS.BusinessObjects
             }
         }
 
-        /*
-        [Association("boAttachment-fiAttachmentreference")]
-        [DevExpress.Xpo.Aggregated]
-        public XPCollection<fiAttachmentreference> lstAttachmentReferences
-        {
-            get
-            {
-                return GetCollection<fiAttachmentreference>("lstAttachmentReferences");
-            }
-        }
-        */
+       
 
     }
 }

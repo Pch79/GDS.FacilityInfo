@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.doRefreshData = new DevExpress.ExpressApp.Actions.SingleChoiceAction(this.components);
+            this.doPrintListe = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
             // 
             // doRefreshData
             // 
@@ -38,14 +39,27 @@
             this.doRefreshData.Id = "doRefreshData";
             this.doRefreshData.ToolTip = null;
             // 
+            // doPrintListe
+            // 
+            this.doPrintListe.Caption = "Liegenschaftsliste";
+            this.doPrintListe.Category = "RecordsNavigation";
+            this.doPrintListe.ConfirmationMessage = null;
+            this.doPrintListe.Id = "doPrintListe";
+            this.doPrintListe.PaintStyle = DevExpress.ExpressApp.Templates.ActionItemPaintStyle.CaptionAndImage;
+            this.doPrintListe.Tag = "Liegenschaftsliste";
+            this.doPrintListe.ToolTip = null;
+            this.doPrintListe.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.doPrintListe_Execute);
+            // 
             // Ctrl_Liegenschaften_ListView
             // 
             this.Actions.Add(this.doRefreshData);
+            this.Actions.Add(this.doPrintListe);
 
         }
 
         #endregion
 
         private DevExpress.ExpressApp.Actions.SingleChoiceAction doRefreshData;
+        private DevExpress.ExpressApp.Actions.SimpleAction doPrintListe;
     }
 }

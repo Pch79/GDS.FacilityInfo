@@ -23,12 +23,12 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
     public class boANDatenEntry : BaseObject
     {
-        private boDatenItem _datenfeld;
+        //private boDatenItem _datenfeld;
         private boAnlage _anlage;
         private System.String _eintragswertLang;
         private System.String _eintragswertKurz;
         private System.String _eintragswertSecure;
-        private boDatenValueItem _eintragswertValueItem;
+       // private boDatenValueItem _eintragswertValueItem;
 
         public boANDatenEntry(Session session)
             : base(session)
@@ -56,7 +56,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 return retVal;
             }
         }
-        */
+        
         [XafDisplayName("Antwortkatalog")]
         [DataSourceProperty("Datenfeld.lstDatenValueItems")]
         //[DataSourceCriteria("CONTAINS(lstDatenItems[Oid = '@This.Datenfeld.Oid'])")]
@@ -72,7 +72,20 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
+            [XafDisplayName("Datenfeld")]
+        public boDatenItem Datenfeld
+        {
+            get
+            {
+                return _datenfeld;
+            }
+            set
+            {
+                SetPropertyValue("Datenfeld", ref _datenfeld, value);
+            }
+        }
 
+    */
 
         [XafDisplayName("Eintragswert (Langtext)")]
         [Size(500)]
@@ -134,18 +147,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
 
-        [XafDisplayName("Datenfeld")]
-        public boDatenItem Datenfeld
-        {
-            get
-            {
-                return _datenfeld;
-            }
-            set
-            {
-                SetPropertyValue("Datenfeld", ref _datenfeld, value);
-            }
-        }
+        
         #endregion
 
     }

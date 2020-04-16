@@ -11,12 +11,12 @@ namespace FacilityInfo.Management.DomainComponents
     [DomainComponent]
     public interface Ikommunikation
     {
-        string telefon1 { get; set; }
-        string telefon2 { get; set; }
-        string mobil { get; set; }
-        string fax { get; set; }
-        string internet { get; set; }
-        string mail { get; set; }
+        string Telefon1 { get; set; }
+        string Telefon2 { get; set; }
+        string Mobil { get; set; }
+        string Fax { get; set; }
+        string Internet { get; set; }
+        string Mail { get; set; }
 
     }
 }

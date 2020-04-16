@@ -106,6 +106,8 @@ namespace FacilityInfo.Building.BusinessObjects
         }
         [XafDisplayName("Ebene")]
         [Association("fiEbene-fiRaum")]
+        [DataSourceProperty("lstFloors")]
+        //[DataSourceCriteria("Gebaeude.Oid = '@this.Gebaeude.Oid'")]
         public fiEbene Ebene
         {
             get
@@ -118,6 +120,27 @@ namespace FacilityInfo.Building.BusinessObjects
             }
         }
 
+
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public List<fiEbene> lstFloors
+        {
+            get
+            {
+                return lstAvailableFloors();
+            }
+        }
+
+        public List<fiEbene> lstAvailableFloors()
+        {
+            List<fiEbene> lstRetVal = new List<fiEbene>();
+            if (this.Gebaeude != null)
+            {
+                lstRetVal.AddRange(this.Gebaeude.lstEbenen);
+            }
+            return lstRetVal;
+        }
         [XafDisplayName("Gebäude")]
         [Association("fiGebaeude-fiRaum")]
         public fiGebaeude Gebaeude

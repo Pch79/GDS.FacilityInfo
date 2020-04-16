@@ -37,7 +37,7 @@ namespace FacilityInfo.Management.Controllers
             // ListPropertyEditor lstKontakte = curView.FindItem("boKontakt_LookupListView") as ListPropertyEditor;
             //on changed -> muss das Objet reloaden
             fiZugangLiegenschaft curObject = (fiZugangLiegenschaft)((DetailView)View).CurrentObject;
-            curObject.ZugangKategorie.Changed += ZugangKategorie_Changed;          
+            //curObject.ZugangKategorie.Changed += ZugangKategorie_Changed;          
         }
 
         private void ZugangKategorie_Changed(object sender, DevExpress.Xpo.ObjectChangeEventArgs e)
@@ -59,7 +59,6 @@ namespace FacilityInfo.Management.Controllers
                     }
                 }
             }
-
         }
 
         protected override void OnViewControlsCreated()

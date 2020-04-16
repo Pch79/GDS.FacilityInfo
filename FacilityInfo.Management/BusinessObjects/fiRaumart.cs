@@ -69,8 +69,9 @@ namespace FacilityInfo.Building.BusinessObjects
                 SetPropertyValue("Beschreibung", ref _beschreibung, value);
             }
         }
-
+        /*
         [ImageEditor(DetailViewImageEditorFixedHeight = 120, DetailViewImageEditorMode = ImageEditorMode.PictureEdit, ListViewImageEditorCustomHeight = 40, ListViewImageEditorMode = ImageEditorMode.PictureEdit, ImageSizeMode = ImageSizeMode.StretchImage)]
+        */
         [XafDisplayName("Symbol")]
         public byte[] Symbol
         {

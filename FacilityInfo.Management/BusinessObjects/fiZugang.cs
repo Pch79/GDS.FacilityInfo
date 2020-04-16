@@ -19,25 +19,26 @@ namespace FacilityInfo.Management.BusinessObjects
     [DefaultClassOptions]
     [XafDisplayName("Zugang")]
     [ImageName("license_key_16")]
-    [XafDefaultProperty("Bezeichnung")]
+ 
     public class fiZugang : BaseObject
     {
         //private fiZugangsTyp _typ;
         private fiZugangKategorie _zugangKategorie;
+        private fiZugangKategorie _subKategorie;
         private fiZugangBezeichnung _zugangBezeichnung;
         private System.String _wert;
         private System.String _bemerkung;
-        private boKontakt _kontakt;
+        
         private String _keyCodeIntern;
         private String _keyList;
         private String _ort;
         private enmStatusZugang _status;
-        private boAdresse _zugangAdresse;
+        
         private String _notiz;
-        private XPCollection<boKontakt> _lstAvailableContacts;
+  
 
         //private fiZugangBeschreibung _beschreibung;
-
+        //TODO: Matchkey einbauen für den Zugang
         public fiZugang(Session session)
             : base(session)
         {
@@ -45,64 +46,18 @@ namespace FacilityInfo.Management.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            this.Status = enmStatusZugang.nichtOK;
-
+            
         }
 
-        protected override void OnChanged(string propertyName, object oldValue, object newValue)
-        {
-            base.OnChanged(propertyName, oldValue, newValue);
-            
-            switch (propertyName)
-            {
-                case "ZugangKategorie":
-                    if (!this.Session.IsObjectToDelete(this))
-                    {
-                        if (newValue != null)
-                        {
-                            fiZugangKategorie curKategorie = (fiZugangKategorie)(newValue);
-                            if(curKategorie != null)
-                            {
-                                this.Status = curKategorie.DefaultStatus;
-                                
-                            }                            
-                        }
-                        this.Save();
-                        if(!IsLoading)
-                        {
-                            //  this.Session.CommitTransaction();
-                            saveAndLoad();
-                        }
-                    }
-                        break;
-
-                case "ZugangAdresse":
-                    //filterKotnakt.
-                    
-                     
-                    break;
-            }
-
-      
-            
        
-            
-            
-        }
 
-        private void saveAndLoad()
-        {
-            if(this.Session.IsObjectToSave(this))
-            {
-                this.Save();
-                this.Session.CommitTransaction();
-            }
-            this.Session.Reload(this);
-
-           
-        }
+  
         
         #region Properties
+       
+       
+       
+       
         [XafDisplayName("Notiz")]
         [Size(300)]
         public String Notiz
@@ -131,6 +86,7 @@ namespace FacilityInfo.Management.BusinessObjects
             }
         }
         [XafDisplayName("Ort")]
+        [ImmediatePostData(true)]
         public String Ort
         {
             get
@@ -157,7 +113,8 @@ namespace FacilityInfo.Management.BusinessObjects
             }
 
         }
-        [XafDisplayName("Schlüsselnummer (intern)")]
+        [XafDisplayName("Schl. Nr.")]
+        [ImmediatePostData(true)]
         public String KeyCodeIntern
         {
             get
@@ -170,57 +127,16 @@ namespace FacilityInfo.Management.BusinessObjects
             }
         }
         
-        [XafDisplayName("Adresse")]
-        [Association("boAdresse-fiZugang")]
-        [ImmediatePostData(true)]
+       
+
+       
         
-        public boAdresse ZugangAdresse
-        {
-            get
-                {
-                return _zugangAdresse;
-            }
-            set
-            {
-                SetPropertyValue("ZugangAdresse", ref _zugangAdresse, value);
-                if (!IsLoading)
-                {
-                    Kontakt = null;
-                }
-          
-                //RefreshContacts();
-
-
-
-            }
-        }
-
-
-        [XafDisplayName("Kontakt")]
-        //[DataSourceCriteria("[Adresse.Oid] = '@this.ZugangAdresse.Oid'")]
-        //[DataSourceProperty("lstAvailableContacts",DataSourcePropertyIsNullMode.SelectNothing)]
-        
-        //[DataSourceProperty("filterKontakt")]
-        
-        //[ImmediatePostData(true)]
-            
-        public boKontakt Kontakt
-        {
-            get
-            {
-                return _kontakt;
-            }
-            set
-            {
-                SetPropertyValue("Kontakt", ref _kontakt, value);
-                
-            }
-        }
         
       
 
         [XafDisplayName("Kategorie")]
         [RuleRequiredField]
+        [DataSourceCriteria("[ParentItem] is NULL")]
         [ImmediatePostData(true)]
         
         public fiZugangKategorie ZugangKategorie
@@ -231,9 +147,18 @@ namespace FacilityInfo.Management.BusinessObjects
             }
             set
             {
-                
+
                 SetPropertyValue("ZugangKategorie", ref _zugangKategorie, value);
             }
+        }
+
+        [XafDisplayName("Unterkategorie")]
+        [DataSourceCriteria("[ParentItem.Oid] ='@this.ZugangKategorie.Oid'")]
+        [ImmediatePostData(true)]
+        public fiZugangKategorie SubKategorie
+        {
+            get { return _subKategorie; }
+            set { SetPropertyValue("SubKategorie", ref _subKategorie, value); }
         }
 
         [XafDisplayName("Bezeichnung")]
@@ -262,6 +187,7 @@ namespace FacilityInfo.Management.BusinessObjects
             }
         }
         [XafDisplayName("Wert")]
+        [ImmediatePostData(true)]
         public System.String Wert
         {
             get
@@ -274,71 +200,10 @@ namespace FacilityInfo.Management.BusinessObjects
             }
         }
 
-   
-        [XafDisplayName("AvailableContacts")]
-        [Browsable(false)]
-        public XPCollection<boKontakt> lstAvailableContacts
-        {
-            get
-            {
-                if(_lstAvailableContacts == null)
-                {
-                    _lstAvailableContacts = new XPCollection<boKontakt>(this.Session);
-                    RefreshContacts();
-                }
-             
-                return _lstAvailableContacts;
-                
-            }
-        }
+     
 
-        private void RefreshContacts()
-        {
-            if(_lstAvailableContacts == null)
-            {
-              
-              return;
-            }
-
-            if(this.ZugangAdresse != null)
-            {
-                
-                _lstAvailableContacts.Criteria = new BinaryOperator("Adresse.Oid", this.ZugangAdresse.Oid, BinaryOperatorType.Equal);
-            }
-            else
-            {
-                _lstAvailableContacts.Criteria = new BinaryOperator("1", "1", BinaryOperatorType.Equal);
-
-            }
-
-            this.Kontakt = null;
-
-        }
-        
-        
-       
         
         #endregion
 
-        #region CriteriaOperators
-        public CriteriaOperator filterKontakt
-        {
-            get
-            {
-
-                if (this.ZugangAdresse != null)
-                {
-                    return CriteriaOperator.Parse("[Adresse].[Oid] = '@this.ZugangAdresse.Oid'");
-                }
-
-          
-                else
-                {
-                    return CriteriaOperator.Parse("[Oid] != null");
-                }
-           
-            }
-        }
-        #endregion
     }
 }

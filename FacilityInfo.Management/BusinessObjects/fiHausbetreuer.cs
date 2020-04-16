@@ -15,6 +15,7 @@ using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.Adresse.BusinessObjects;
+using FacilityInfo.Management;
 
 namespace FacilityInfo.Liegenschaft.BusinessObjects
 {
@@ -32,7 +33,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         private System.String _hausbetreuerSelekt2;
         private System.String _fremdsystemId;
         private System.String _kwpCode;
-
+        private System.String _kuerzel;
         public fiHausbetreuer(Session session)
             : base(session)
         {
@@ -40,9 +41,33 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            //TODO: MAndantenzuordnung umbauen
+            /*
+            string curMandantID = clsStatic.loggedOnMandantOid;
+            this.Mandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
+            */
+            if (this.Adresse == null)
+            {
+                this.Adresse = new boAdresse(this.Session);
+            }
         }
+
+        protected override void OnLoaded()
+        {
+            base.OnLoaded();
+        if(this.Adresse == null)
+            {
+                this.Adresse = new boAdresse(this.Session);
+            }
+        }
+
         #region Properties
+        [XafDisplayName("HB-Kürzel")]
+        public System.String Kuerzel
+        {
+            get { return _kuerzel; }
+            set { SetPropertyValue("Kuerzel", ref _kuerzel, value); }
+        }
         [XafDisplayName("KwpCode")]
         public System.String KwpCode
         {

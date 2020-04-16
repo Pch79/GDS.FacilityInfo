@@ -13,9 +13,9 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Management.DomainComponents;
 using FacilityInfo.Anlagen.BusinessObjects;
-using FacilityInfo.GlobalObjects.EnumStore;
-using FacilityInfo.GlobalObjects.BusinessObjects;
-using FacilityInfo.GlobalObjects.Helpers;
+
+
+
 using System.Drawing;
 using System.IO;
 using FacilityInfo.Management.EnumStore;
@@ -29,6 +29,8 @@ using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.Fremdsystem.BusinessObjects;
 using FacilityInfo.BusinessManagement.BusinessObjects;
 using FacilityInfo.Bildverarbeitung.BusinessObjects;
+using FacilityInfo.Management.Helpers;
+using FacilityInfo.Action.BusinessObjects;
 
 namespace FacilityInfo.Liegenschaft.BusinessObjects
 {
@@ -48,20 +50,17 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         private fiHausbetreuer _hausbetreuer;
         private System.String _hausverwlaterSelekt;
         private boAdresse _liegenschaftsadresse;
-        //private boAdresse _hausbetreuer;
+   
         private System.String _objektNummer;
         private System.Boolean _liegenschaftOnline;
         private System.String _bezeichnung;
 
-        //private System.Drawing
-        //private byte[] _mainimage;
         private enmZustand _zustand;
         private System.String _beschreibung;
         private System.Int32 _wohneinheiten;
 
-        //private System.DateTime _zugang;
-        //private System.DateTime _abgang;
-        private enmWartungsStatus _Wartungsstatus;
+        
+        private enmWartungsStatus _wartungsStatus;
         private System.String _notiz;
         private enmWasserbereitung _warmwasserbereitung;
         private enmWasserbereitung _heizungsbereitung;
@@ -74,11 +73,9 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         private Debitorenkonto _debitorenKonto;
 
         private fiRisikoGruppe _risikoGruppe;
+        private System.String _kuerzel;
 
-        //Anlagedatum
-        // private System.DateTime _erstellungsdatum;
-        //private System.DateTime _ladstChange;
-
+       
 
         public boLiegenschaft(Session session)
             : base(session)
@@ -91,28 +88,53 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             if (e.CollectionChangedType == XPCollectionChangedType.AfterAdd || e.CollectionChangedType == XPCollectionChangedType.AfterRemove)
             {
                 this.lstHaustechnikKomponenten.Reload();
+                this.Reload();
             }
         }
 
         #region Methoden
-
-
+       
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
             base.OnChanged(propertyName, oldValue, newValue);
+            switch(propertyName)
+            {
+                //wenn sich das MainImage ändert Thumbnial und Web-Titelbild erstellen
+                case "MainImage":
+                    if (!this.IsLoading)
+                    {
+                        if (newValue != null)
+                        {
+                            setMainThumbnail();
+                            //hier kan ich auch gleich die Web-Implementierung erstellen
+                            setMainImageWeb();
+                        }
+                        if(newValue == null)
+                        {
+                            this.MainImageThumb = null;
+                            this.MainImageWeb = null;
+                        }
+                    }
+                    break;
+            }
+
+          
 
         }
         public override void AfterConstruction()
         {
             base.AfterConstruction();
+            //ier umbauen auf den Stasndard-Mandanten
+            //TODO: Mandantenzuordnung umbauen
+            /*
             curMandantID = clsStatic.loggedOnMandantOid;
             //hier gleich den Mandanten setzen
             this.Mandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
 
-
-            this._Wartungsstatus = enmWartungsStatus.BesichtigungOffen;
-            this._warmwasserbereitung = enmWasserbereitung.unbekannt;
-            this._heizungsbereitung = enmWasserbereitung.unbekannt;
+            */
+            this.WartungsStatus = enmWartungsStatus.BesichtigungOffen;
+            this.Warmwasserbereitung = enmWasserbereitung.unbekannt;
+            this.Heizungsbereitung = enmWasserbereitung.unbekannt;
             //beim Erstellen könnte ich nachschauen ob schon eine Aufnahmecheckliste existiert und diese dann gleich einbauen
 
             //die datenitems setzen
@@ -122,67 +144,82 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             boFIObjekt curFiObjekt = Session.FindObject<boFIObjekt>(new BinaryOperator("Objekttyp", curType, BinaryOperatorType.Equal));
             if (curFiObjekt != null)
             {
-                if (curFiObjekt.lstDatenFelder.Count > 0)
-                {
-                    //dann die Collection durchparsen und die Felder erstellen
-                    foreach (boDatenItem datenItem in curFiObjekt.lstDatenFelder)
-                    {
-                        boLGDatenEntry curLgDatenEntry = Session.FindObject<boLGDatenEntry>(new GroupOperator(new BinaryOperator("Liegenschaft.Oid", this.Oid, BinaryOperatorType.Equal), new BinaryOperator("Datenfeld.Oid", datenItem.Oid, BinaryOperatorType.Equal)));
-                        if (curLgDatenEntry == null)
-                        {
-                            curLgDatenEntry = new boLGDatenEntry(Session);
-                            curLgDatenEntry.Datenfeld = Session.GetObjectByKey<boDatenItem>(datenItem.Oid);
-                            curLgDatenEntry.Liegenschaft = this;
-                            this.lstObjektDaten.Add(curLgDatenEntry);
-                            curLgDatenEntry.Save();
-                        }
-                    }
-                }
+                
+                
             }
+
+            //createNumber();
+        }
+        public void createNumber()
+        {
+            Type curType = this.GetType();
+            boMandant curMandant;
+            //die Anlage sollte einemMandanten zugeweisen werden
+            if (this.Mandant != null)
+            {
+                curMandant = this.Session.GetObjectByKey<boMandant>(this.Mandant.Oid);
+
+
+                var nummer = this.Session.FindObject<boNummernkreis>(new GroupOperator(new BinaryOperator("Objekt", curType, BinaryOperatorType.Equal), new BinaryOperator("Mandant.Oid", curMandant.Oid, BinaryOperatorType.Equal),
+                         new BinaryOperator("GueltigAb", DateTime.Now, BinaryOperatorType.LessOrEqual),
+                         new BinaryOperator("GueltigBis", DateTime.Now, BinaryOperatorType.GreaterOrEqual)));
+                var retVal = string.Empty;
+
+                //dann noch den Acode dazuholen
+                if (nummer != null)
+                {
+                    //jetzt das Teil zusammenbauen
+                    if (nummer.Suffix != null && nummer.Suffix != string.Empty)
+                    {
+                        retVal = string.Format("{0}{1}{2}", nummer.Praefix, nummer.FortlaufendeNummer, nummer.Suffix);
+                    }
+                    else
+                    {
+                        retVal = string.Format("{0}{1}", nummer.Praefix, nummer.FortlaufendeNummer, nummer.Suffix);
+                    }
+
+                    //retVal = nummer.NextNumber;
+                    nummer.FortlaufendeNummer = nummer.FortlaufendeNummer + 1;
+                    nummer.Save();
+                }
+
+                this.Liegenschaftsnummer = retVal;
+                this.Save();
+                //this.DebitKreditNr = retVal;
+            }
+            this.Session.CommitTransaction();
         }
 
         protected override void OnSaved()
         {
             base.OnSaved();
+
             if (!this.IsDeleted)
             {
+                
                 if (!this.Session.IsObjectToDelete(this))
                 {
+                    /*
                     if (this.Mandant != null)
                     {
                         if (this.Liegenschaftsnummer == null || this.Liegenschaftsnummer == string.Empty)
                         {
-                            this.Liegenschaftsnummer = createNumber(this.Mandant);
+                             createNumber();
                         }
                     }
-                    if (this.Mainimage != null)
-                    {
-                        saveImageCopy();
-                    }
-                    //das Bild mit Wasserzeichen versehen
-                    if (this.MainImageOriginal != null)
-                    {
-                        try
-                        {
-                            setWatermark();
-                        }
-                        catch (Exception ex)
-                        {
-
-                        }
-                    }
-
-                    //hier könnte man gleich ein Gebäude anlegen
-                   
-
-                        createDefaultBuilding();
-
-
                     
+                   */
+                    createDefaultBuilding();
                 }
             }
         }
-
+       
+        protected override void OnLoaded()
+        {
+            base.OnLoaded();
+            //TODO Wartungsstatus muss anders gesetzt werden
+            getWartungsStatus();
+        }
         private fiGebaeude createDefaultBuilding()
         {
             fiGebaeude curBuilding = this.Session.FindObject<fiGebaeude>(new BinaryOperator("Liegenschaft.Oid", this.Oid, BinaryOperatorType.Equal));
@@ -213,9 +250,6 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 defaultRaum.Ebene = defaultFloor;
                 defaultRaum.Gebaeude = curBuilding;
                 defaultRaum.Save();
-
-
-
                 this.Session.CommitTransaction();
                 return curBuilding;
             }
@@ -224,25 +258,9 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 return null;
             }
         }
-        private System.String createNumber(boMandant selectedMandant)
-        {
-            Type curType = this.GetType();
+      
 
-            var nummer = this.Session.FindObject<boNummernkreis>(new GroupOperator(new BinaryOperator("Objekt", curType, BinaryOperatorType.Equal), new BinaryOperator("Mandant.Oid", selectedMandant.Oid, BinaryOperatorType.Equal),
-                    new BinaryOperator("GueltigAb", DateTime.Now, BinaryOperatorType.LessOrEqual),
-                    new BinaryOperator("GueltigBis", DateTime.Now, BinaryOperatorType.GreaterOrEqual)));
-
-            var retVal = string.Empty;
-
-            if (nummer != null)
-            {
-                retVal = nummer.NextNumber;
-                nummer.FortlaufendeNummer = nummer.FortlaufendeNummer + 1;
-                nummer.Save();
-            }
-            return retVal;
-        }
-
+        /*
         private void saveImageCopy()
         {
             Bitmap addedImage = PictureHelper.byteArrayToBitmap(this.Mainimage);
@@ -257,7 +275,8 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             }
             this.MainImageOriginal = PictureHelper.imageToByteArray(copy);
         }
-
+        */
+        /*
         private void setWatermark()
         {
             // und dann die Watermark setzen
@@ -276,13 +295,104 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 }
             }
         }
+        */
+
+        public enmWartungsStatus getWartungsStatus()
+        {
+               enmWartungsStatus retVal = enmWartungsStatus.none;
+                try
+                {
+                    if (this.lstKwpVertrag != null)
+                    {
+                        int contractgesamtCount = 0;
+                        int contractAktivCount = 0;
+                        try
+                        {
+                            contractgesamtCount = this.lstKwpVertrag.Where(t => !t.WartungsAnlage.BrennstoffArt.StartsWith("LEGIO")).Count();
+                        }
+                        catch
+                        {
+                            contractgesamtCount = 0;
+                        }
+                        try
+                        {
+                            contractAktivCount = this.lstKwpVertrag.Where(t => t.VertragZurueck == true && !t.WartungsAnlage.BrennstoffArt.StartsWith("LEGIO")).Count();
+                        }
+                        catch
+                        {
+                            contractAktivCount = 0;
+                        }
+                        if (contractgesamtCount > 0)
+                        {
+                            if (contractAktivCount > 0)
+                            {
+
+                                if (contractAktivCount < contractgesamtCount)
+                                {
+                                    retVal = enmWartungsStatus.WartungTeilweise;
+                                }
+
+                                else
+                                {
+                                    retVal = enmWartungsStatus.WartungKomplett;
+                                }
+                            }
+                            else
+                            {
+                                retVal = enmWartungsStatus.VerträgeOffen;
+                            }
+
+                        }
+                        else
+                        {
+                            retVal = enmWartungsStatus.BesichtigungOffen;
+                        }
+                    }
+                    else
+                    {
+                        retVal = enmWartungsStatus.BesichtigungOffen;
+                    }
+
+                this.WartungsStatus = retVal;
+                    return retVal;
+                }
+                catch (Exception excWartungStatus)
+                {
+                   
+                this.WartungsStatus = enmWartungsStatus.none;
+                return enmWartungsStatus.none;
+
+            }
+                
+
+        }
         #endregion
 
         #region Properties
+        [XafDisplayName("Kommunikation")]
+        public List<boKommunikationItem> lstKommunikation
+        {
+            get
+            {
+                List<boKommunikationItem> retVal = new List<boKommunikationItem>();
+                //1. Kommunikation aus der Liegenschaftsadresse
+                //2. Kommnikation aus dem Hausverwalter
+                //3. 
 
+                return retVal;
+            }
+        }
+        
+        [XafDisplayName("Wartungsstatus")]
+        public enmWartungsStatus WartungsStatus
+        {
+            get { return _wartungsStatus; }
+            set { SetPropertyValue("WartungsStatus", ref _wartungsStatus, value); }
+        }
         [XafDisplayName("Trinkwasserprüfung")]
         [ImagesForBoolValues("Action_Grant","Action_Deny")]
         [CaptionsForBoolValues("ja","nein")]
+        [Delayed(true)]
         public Boolean TrinkwasserPruefung
         {
             get
@@ -293,7 +403,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 //
                 if (this.lstKwpVertrag != null)
                 {
-                    cnt = this.lstKwpVertrag.Where(t => t.VertragZurueck == true && t.WartungsAnlage.BrennstoffArt.StartsWith("TW-")).Count();
+                    cnt = this.lstKwpVertrag.Where(t => t.VertragZurueck == true && t.WartungsAnlage.BrennstoffArt.StartsWith("LEGIO")).Count();
                 }
                 if(cnt>0)
                 {
@@ -309,11 +419,13 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         [XafDisplayName("Status Hauptzugang")]
         [CaptionsForBoolValues("vorhanden","nicht vorhanden")]
         [ImagesForBoolValues("Action_Grant","Action_Deny")]
+        [Delayed(true)]
         public Boolean StatusHauptzugang
         {
             get
             {
                 var retVal = false;
+                
                 if(this.lstZugangLiegenschaft != null)
                 {
                     var cnt = this.lstZugangLiegenschaft.Where(t => t.HauptZugang == true).Count();
@@ -330,7 +442,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 {
                     retVal = false;
                 }
-                    
+                 
                 return retVal;
             }
         }
@@ -338,8 +450,9 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
 
 
         //den Wartungsstatus automatisiert setzen.
-
+        /*
         [XafDisplayName("Wartungsstatus")]
+        [Delayed(true)]
         public enmWartungsStatus WartungsStatus
         {
             get
@@ -410,10 +523,24 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 }
                 }
         }
-
+        */
+        [XafDisplayName("Kürzel")]
      
+        public System.String Kuerzel
+        {
+            get
+            {
+                return _kuerzel;
+            }
+            set
+            {
+                SetPropertyValue("Kuerzel", ref _kuerzel, value);
+
+            }
+        }
 
         [XafDisplayName("Hauptzugang")]
+        [Delayed(true)]
         public fiZugangLiegenschaft HauptZuganng
         {
             get
@@ -441,7 +568,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         }
 
 
-        [XafDisplayName("Hausverwlaterselekt")]
+        [XafDisplayName("Hausverawlterselekt")]
         public System.String HausverwlaterSelekt
         {
             get {
@@ -482,7 +609,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         }
 
         [XafDisplayName("Haustechnikkomponenten")]
-        [Association("boLiegenschaft-LGHaustechnikKomponente")]
+        [Association("boLiegenschaft-LGHaustechnikKomponente"), DevExpress.ExpressApp.DC.Aggregated]
 
         public XPCollection<LgHaustechnikKomponente> lstHaustechnikKomponenten
         {
@@ -554,19 +681,12 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             }
         }
 
-        [XafDisplayName("Massnahmen")]
-        [Association("boLiegenschaft-boLGMassnahme"), DevExpress.ExpressApp.DC.Aggregated]
-        public XPCollection<boLGMassnahme> lstLgMassnahmen
-        {
-            get
-            {
-                return GetCollection<boLGMassnahme>("lstLgMassnahmen");
-            }
-        }
+        
 
 
 
         [XafDisplayName("Wartungszone")]
+       // [Delayed(true)]
         public boWartungszone Wartungszone
         {
             get
@@ -601,7 +721,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             }
         }
 
-
+        /*
         [XafDisplayName("Objektdaten")]
         [Association("boLiegenschaft-boLGDatenEntry"), DevExpress.Xpo.Aggregated]
         public XPCollection<boLGDatenEntry> lstObjektDaten
@@ -612,7 +732,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             }
         }
 
-
+        */
        
        
         [XafDisplayName("Wohneinheiten")]
@@ -673,57 +793,117 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 return GetCollection<boAnlage>("Anlagen");
             }
         }
+
+        //Hauptanlagen und deren Unteranlagen 
+        [XafDisplayName("Hauptanlagen")]
+        public List<boAnlage> lstHauptanlagen
+        {
+            get
+            {
+                List<boAnlage> lstRetVal = new List<boAnlage>();
+                lstRetVal = this.Anlagen.Where(t => t.ParentAnlage == null).ToList();
+                return lstRetVal;
+            }
+        }
         //die Assoziation mit den Liegenschaftsbildern 
         
         [XafDisplayName("Bilder")]
         [Association("boLiegenschaft-boLiegenschaftsBild"), DevExpress.ExpressApp.DC.Aggregated]
-        [Delayed("LiegenschaftsBilder")]
+        [Delayed(true)]
         public XPCollection<boLiegenschaftsBild> LiegenschaftsBilder
         {
             get
             {
+          
                 return GetCollection<boLiegenschaftsBild>("LiegenschaftsBilder");
             }
         }
-        
 
 
 
+        /*
         [ImageEditor(DetailViewImageEditorFixedHeight = 240, DetailViewImageEditorFixedWidth = 240, DetailViewImageEditorMode = ImageEditorMode.PictureEdit, ImageSizeMode = ImageSizeMode.Zoom, ListViewImageEditorCustomHeight = 60, ListViewImageEditorMode = ImageEditorMode.PictureEdit)]
         [XafDisplayName("Titelbild")]
         [ImmediatePostData(true)]
-      
-        public byte[] Mainimage
+         */
+        [XafDisplayName("Titelbild")]
+        [Delayed(true)]
+        public byte[] MainImage
         {
             get
             {
-                return GetPropertyValue<byte[]>("Mainimage");
+                return GetDelayedPropertyValue<byte[]>("MainImage");
             }
             set
             {
-                SetPropertyValue<byte[]>("Mainimage", value);
+                SetDelayedPropertyValue<byte[]>("MainImage", value);
+            }
+        }
+        //TODO': auskommenteirt 13.02.02019 -> Test der Webversion
+        /*
+        [ImageEditor(DetailViewImageEditorFixedHeight = 240, DetailViewImageEditorFixedWidth = 240, DetailViewImageEditorMode = ImageEditorMode.PictureEdit, ImageSizeMode = ImageSizeMode.Zoom, ListViewImageEditorCustomHeight = 60, ListViewImageEditorMode = ImageEditorMode.PictureEdit)]
+        */
+        [XafDisplayName("Vorschaubild")]
+        public byte[] MainImageThumb
+        {
+            get
+            {
+                return GetPropertyValue<byte[]>("MainImageThumb");
+            }
+            set { SetPropertyValue<byte[]>("MainImageThumb", value); }
+
+
+        }
+
+        
+       // [Action(Caption ="Thumbnail erstellen")]
+       //TODO: Den Funktionsaufruf in einen Controller packen (Web und Desktop)
+        public void makeMainThumbnail()
+        {
+            setMainThumbnail();
+            //hier kan ich auch gleich die Web-Implementierung erstellen
+            setMainImageWeb();
+           
+        }
+
+        //TODO: 
+        
+        public void setMainImageWeb()
+        {
+            if(this.MainImage != null)
+            {
+                Image workingImage = PictureHelper.ImageFromByteArray(this.MainImage);
+                this.MainImageWeb = PictureHelper.ResizePicByWidth(workingImage, 400);
+                this.Save();
+                this.Session.CommitTransaction();
             }
         }
 
-        [XafDisplayName("Originalbild")]
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [ReadOnly(true)]
-        [ImageEditor]
-  
-        public byte[] MainImageOriginal
+        public void setMainThumbnail()
+        {
+            if(this.MainImage != null)
+            {
+                this.MainImageThumb = PictureHelper.getThumbnailByteArray(this.MainImage);
+                this.Save();
+                this.Session.CommitTransaction();
+            }
+        }
+            
+        
+        [XafDisplayName("Titelbild (Web)")]
+        public byte[] MainImageWeb
         {
             get
             {
                 
-                return GetPropertyValue<byte[]>("MainImageOriginal");
+                return GetPropertyValue<byte[]>("MainImageWeb");
             }
             set
             {
-                SetPropertyValue<byte[]>("MainImageOriginal", value);
+                SetPropertyValue<byte[]>("MainImageWeb", value);
             }
         }
-
+        
 
 
 
@@ -758,7 +938,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 SetPropertyValue("LiegenschaftOnline", ref _liegenschaftOnline, value);
             }
         }
-        [XafDisplayName("Objektnummmer")]
+        [XafDisplayName("Objekt Nr.")]
         public System.String ObjektNummer
         {
             get
@@ -803,7 +983,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         }
 
 
-
+        
 
         [XafDisplayName("Mandant")]
         [ImmediatePostData(true)]
@@ -832,6 +1012,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             }
         }
 
+      
         [XafDisplayName("Gebäude")]
 
         [Association("boLiegenschaft-fiGebaeude")]
@@ -875,19 +1056,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 
             }
         }
-        //Termine
-        /*
-        [XafDisplayName("KWP-Termine")]
-        public XPCollection<KwpWartTermin> lstKwpTermine
-        {
-            get
-            {
-                XPCollection<KwpWartTermin> lstRetVal = new XPCollection<KwpWartTermin>(this.Session, new BinaryOperator("Liegenschaft.Oid", this.Oid, BinaryOperatorType.Equal));
-
-                return lstRetVal;
-            }
-        }
-        */
+        
 
         [XafDisplayName("Risikogruppe")]
         public fiRisikoGruppe RisikoGruppe
@@ -904,12 +1073,30 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         [XafDisplayName("Ansprechpartner")]
         [Association("boLiegenschaft-fiKontaktLiegenschaft")]
         public XPCollection<fiKontaktLiegenschaft> lstAnsprechpartner
-            {
+        {
             get
             {
                 return GetCollection<fiKontaktLiegenschaft>("lstAnsprechpartner");
             }
+        }
+        [XafDisplayName("Wartungstermine")]
+        public XPCollection<KwpWartTermin> lstKwpWartungsTermine
+        {
+            get
+            {
+                //List<KwpWartTermin> lstRetVal = new List<KwpWartTermin>();
+                XPCollection<KwpWartTermin> retVal = new XPCollection<KwpWartTermin>(this.Session ,new BinaryOperator("Liegenschaft.Oid", this.Oid, BinaryOperatorType.Equal));
+                return retVal;
             }
+        }
+
+        [XafDisplayName("Maßnahmen")]
+        [Association("boLiegenschaft-actionActionBase")]
+        public XPCollection<actionActionBase> lstActionBase
+        {
+            get { return GetCollection<actionActionBase>("lstActionBase"); }
+        }
+
         #endregion
     }
 }

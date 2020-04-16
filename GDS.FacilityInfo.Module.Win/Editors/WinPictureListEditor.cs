@@ -13,9 +13,7 @@ using DevExpress.ExpressApp.Templates;
 using DevExpress.ExpressApp.Utils;
 using DevExpress.ExpressApp.Win.Controls;
 using DevExpress.Utils.Menu;
-using FacilityInfo.GlobalObjects.DomainComponents;
-
-
+using FacilityInfo.Management.DomainComponents;
 
 namespace GDS.FacilityInfo.Module.Win.Editors
 {

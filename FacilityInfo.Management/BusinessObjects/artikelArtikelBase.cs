@@ -16,6 +16,8 @@ namespace FacilityInfo.Artikelverwaltung.BusinessObjects
 {
     [DefaultClassOptions]
      [XafDisplayName("Artikel")]
+     [ImageName("box_16")]
+     [XafDefaultProperty("KurzText")]
     public class artikelArtikelBase : BaseObject
     {
         private String _artikelNummer;
@@ -24,6 +26,7 @@ namespace FacilityInfo.Artikelverwaltung.BusinessObjects
         private String _kurzText;
         private String _langText;
         private artikelArtikelKatalog _artikelKatalog;
+        private artikelWarenGruppe _warenGruppe;
         public artikelArtikelBase(Session session)
             : base(session)
         {
@@ -34,6 +37,13 @@ namespace FacilityInfo.Artikelverwaltung.BusinessObjects
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
         #region Properties
+        [XafDisplayName("Warengruppe")]
+        [Association("artikelArtikelBase-artikelWarenGruppe")]
+        public artikelWarenGruppe WarenGruppe
+        {
+            get { return _warenGruppe; }
+            set { SetPropertyValue("WarenGruppe", ref _warenGruppe, value); }
+        }
         [XafDisplayName("Herstellernummer")]
         public String HerstellerNummer
         {

@@ -90,6 +90,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("Geraet", ref _geraet, value);
             }
         }
+        
         [XafDisplayName("Anlage")]
         [Association("boAnlage-fiAnlagengeraet")]
         public boAnlage Anlage
@@ -103,6 +104,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("Anlage", ref _anlage, value);
             }
         }
+        
         [XafDisplayName("Hersteller")]
         public boHersteller Hersteller
         {
@@ -128,6 +130,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("Notiz", ref _notiz, value);
             }
         }
+        
         [XafDisplayName("Mandant")]
         public boMandant Mandant
         {
@@ -138,5 +141,6 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 return retVal;
             }
         }
+        
     }
 }

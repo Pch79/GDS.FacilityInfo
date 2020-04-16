@@ -27,6 +27,12 @@ namespace GDS.FacilityInfo.Win {
 #endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            DevExpress.XtraEditors.WindowsFormsSettings.AllowDpiScale = true;
+            DevExpress.XtraEditors.WindowsFormsSettings.AllowRibbonFormGlass = DevExpress.Utils.DefaultBoolean.True;
+            DevExpress.XtraEditors.WindowsFormsSettings.DefaultRibbonStyle = DevExpress.XtraEditors.DefaultRibbonControlStyle.Office2019;
+            DevExpress.XtraEditors.WindowsFormsSettings.SetDPIAware();
+
+
             EditModelPermission.AlwaysGranted = System.Diagnostics.Debugger.IsAttached;
 			Tracing.LocalUserAppDataPath = Application.LocalUserAppDataPath;
 			Tracing.Initialize();
@@ -53,12 +59,14 @@ namespace GDS.FacilityInfo.Win {
                 winApplication.DatabaseUpdateMode = DatabaseUpdateMode.UpdateDatabaseAlways;
             }
             try {
-                
+
+
                 winApplication.LoggedOn += new EventHandler<LogonEventArgs>(winApplication_LoggedOn);
-               
-               // winApplication.LoggedOff += new EventHandler<LoggedOffEventArgs>(winApplication_LoggedOff);
+                
+                // winApplication.LoggedOff += new EventHandler<LoggedOffEventArgs>(winApplication_LoggedOff);
                 winApplication.Setup();
                 winApplication.Start();
+                
             }
             catch(Exception e) {
                 winApplication.HandleException(e);
@@ -72,15 +80,15 @@ namespace GDS.FacilityInfo.Win {
 
             //das Heimverzeichnis prüfen und erstellen
             
-            clsStatic.AppName = (ConfigurationManager.AppSettings["AppName"] != null) ? ConfigurationManager.AppSettings["AppName"] : "FacilityInfo";
-            var defaultDirectory = @"c:\Temp\" + clsStatic.AppName;
+            var AppName = (ConfigurationManager.AppSettings["AppName"] != null) ? ConfigurationManager.AppSettings["AppName"] : "FacilityInfo";
+            var defaultDirectory = @"c:\Temp\" + AppName;
 
             //das Arbetisverzeichnis = Pfad aus der Knfiguration + AooName+
             //das Heim-Verzreichnis der Anwendung finden
 
-            clsStatic.AppHomeDirectory = (ConfigurationManager.AppSettings["AppHomeDirectory"] != null) ? ConfigurationManager.AppSettings["AppHomeDirectory"] : defaultDirectory;
+            var AppHomeDirectory = (ConfigurationManager.AppSettings["AppHomeDirectory"] != null) ? ConfigurationManager.AppSettings["AppHomeDirectory"] : defaultDirectory;
             //jetzt prüfen ob das Teil vorhanden ist, ansonsten anlegen
-            DirectoryInfo di = new DirectoryInfo(clsStatic.AppHomeDirectory);
+            DirectoryInfo di = new DirectoryInfo(AppHomeDirectory);
             if(!di.Exists)
             {
                 di.Create();
@@ -89,7 +97,7 @@ namespace GDS.FacilityInfo.Win {
             }
             else
             {
-                DirectoryInfo globalDi = new DirectoryInfo(String.Format("{0}\\{1}", clsStatic.AppHomeDirectory, "Global"));
+                DirectoryInfo globalDi = new DirectoryInfo(String.Format("{0}\\{1}", AppHomeDirectory, "Global"));
                 if(!globalDi.Exists)
                 {
                     globalDi.Create();
@@ -98,10 +106,7 @@ namespace GDS.FacilityInfo.Win {
                 
             }
            
-            
-            //und auch gleich das Globale datenverzeichnis erstellen
-
-            //jetzt hab ich das Arbeitsverzeichnis der Anwendung erstellt. -> rest muss im Mandanten erfolgen
+         
 
             
         }
@@ -109,6 +114,7 @@ namespace GDS.FacilityInfo.Win {
        
         private static void winApplication_LoggedOn(object sender, LogonEventArgs e)
         {
+            /*
             AuthenticationStandardLogonParameters myParams = (AuthenticationStandardLogonParameters)e.LogonParameters;
             Session XpoSession = XpoHelper.GetNewSession();
 
@@ -117,36 +123,64 @@ namespace GDS.FacilityInfo.Win {
             //wenn isch der Huasverwalter einoggd muss ich den Mandanten auch finden
             //beim Ersten Aufruf
             //ist der Benutzer in der Adminstratorrolle
-            if(!curUser.IsUserInRole("Administrators"))
+
+            //vorweg schau ich aber ob ich adminbin dann is EventHandleralles wurscht
+            
+            //Benutzer uist einem Hausverwalter zugeordnet?
+            //hier ist der Hausverwalter entscheidend
+
+            //Benutzer ist keinem Hausverwalter zugeordnet
+            //dannist der Mandant entscheidend
+
+
+            if (!curUser.IsUserInRole("Administrators"))
             {
-                
-                    //jetzt aufgrund des Systembenutzers den Mandanten finden
+                clsStatic.adminLoggedOn = false;
+                //jetzt aufgrund des Systembenutzers den Mandanten finden
+                //gibt es einen portalaccount mit dem Systembenutzer?
+                corePortalAccount curPortalAccount = XpoSession.FindObject<corePortalAccount>(new BinaryOperator("SystemBenutzer.Oid", curUser.Oid,BinaryOperatorType.Equal));
+                if(curPortalAccount != null)
+                {
+                    //den hausverwalter rausfinden
+                    boHausverwalter curHausverwalter = XpoSession.FindObject<boHausverwalter>(new BinaryOperator("Oid", curPortalAccount.HausVerwalter.Oid, BinaryOperatorType.Equal));
+
+                    clsStatic.loggedOnMandantOid = curHausverwalter.Mandant.Oid.ToString();
+                    //clsStatic.loggedOnMandant = XpoSession.GetObjectByKey<boMandant>(curHausverwalter.Mandant.Oid);
+                    clsStatic.loggedOnHausVerwalterOid = curHausverwalter.Oid.ToString();
+
+
+                }
+                else
+                {
+                    //dann kann es sich nur um einenMA handeln
+                    //alles andere wäre autschn
+
                     boMitarbeiter curMitarbeiter = XpoSession.FindObject<boMitarbeiter>(new BinaryOperator("Systembenutzer.Oid", curUser.Oid, BinaryOperatorType.Equal));
+
                     if (curMitarbeiter != null)
                     {
                         if (curMitarbeiter.Mandant != null)
                         {
                             clsStatic.loggedOnMandantOid = curMitarbeiter.Mandant.Oid.ToString();
-                            clsStatic.loggedOnMandant = XpoSession.GetObjectByKey<boMandant>(curMitarbeiter.Mandant.Oid);
-                            clsStatic.loggedOnHausverwalter = null;
-                        }
-                    }
-                    else
-                    {
-                        
-                        boHausverwalter curHausverwalter = XpoSession.FindObject<boHausverwalter>(new BinaryOperator("Systembenutzer.Oid", curUser.Oid, BinaryOperatorType.Equal));
-                        if(curHausverwalter != null)
-                        {
-                            clsStatic.loggedOnMandantOid = curHausverwalter.Mandant.Oid.ToString();
-                            clsStatic.loggedOnMandant = XpoSession.GetObjectByKey<boMandant>(curHausverwalter.Mandant.Oid);
-                            clsStatic.loggedOnHausverwalter = curHausverwalter;
+                            //clsStatic.loggedOnMandant = XpoSession.GetObjectByKey<boMandant>(curMitarbeiter.Mandant.Oid);
+                            clsStatic.loggedOnHausVerwalterOid = null;
                         }
                     }
 
-                    //dann schauen ob es ein Hausverwalter ist          
+                   
+                    
+                    }
+                  
+
+                     
             }
+            else
+            {
+                clsStatic.adminLoggedOn = true;
+            }
+            
         
-           
+           */
         }
     }
 }

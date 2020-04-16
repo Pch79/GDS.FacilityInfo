@@ -40,10 +40,12 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
         {
             base.AfterConstruction();
             //wenn der Mandant feststeht kann ich diesen gleich setzen
+            //TODO: MAndantenzuordnung umbauen
+            /*
             curMandantID = clsStatic.loggedOnMandantOid;
             //hier gleich den Mandanten setzen
             this.Mandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            */
         }
         #region Properties
 

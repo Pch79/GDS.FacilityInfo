@@ -13,14 +13,22 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.DMS.BusinessObjects;
-using FacilityInfo.Datenfeld.BusinessObjects;
+
+using FacilityInfo.Parameter.BusinessObjects;
+using FacilityInfo.Anlagen.BusinessObjects;
+using System.Drawing;
+using FacilityInfo.Management.Helpers;
+using FacilityInfo.Wartung.BusinessObjects;
+using FacilityInfo.Artikelverwaltung.BusinessObjects;
+using DevExpress.Persistent.BaseImpl.PermissionPolicy;
+using FacilityInfo.Core.BusinessObjects;
 
 namespace FacilityInfo.Hersteller.BusinessObjects
 {
     [DefaultClassOptions]
-    [XafDisplayName("Produktblatt")]
+    [XafDisplayName("Herstellerartikel")]
     [XafDefaultProperty("Bezeichnung")]
-    public class fiHerstellerProdukt : BaseObject
+    public class fiHerstellerProdukt : artikelArtikelBase
     {
         private boHersteller _hersteller;
         private System.String _typbezeichnung;
@@ -38,88 +46,129 @@ namespace FacilityInfo.Hersteller.BusinessObjects
         protected override void OnLoaded()
         {
             base.OnLoaded();
-            /*
-            if (!this.Session.IsObjectToSave(this))
+
+            if (this.Produktgruppe != null)
             {
-                if (!this.Session.IsNewObject(this))
-                {
-                    if (this.Produktgruppe != null)
-                    {
-                        fiHerstellerProduktgruppe curGruppe = this.Session.GetObjectByKey<fiHerstellerProduktgruppe>
-                    (this.Produktgruppe.Oid);
-
-                        generateFields(curGruppe);
-
-                    }
-                }
-
+                generateParamList(this.Produktgruppe);
             }
-            */
+            if (this.Produktbild != null)
+            {
+                if (this.MainImageThumb == null)
+                {
+                    setMainThumbnail();
+                }
+                if (this.MainImageWeb == null)
+                {
+                    setMainImageWeb();
+                }
+            }
+            if(this.KurzText == null || this.KurzText == string.Empty)
+            {
+                this.KurzText = this.Bezeichnung;
+                this.Save();
+            }
         }
+
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
             base.OnChanged(propertyName, oldValue, newValue);
             //wenn sich die Gruppe ändert müssen die Felder neu geschrieben werden
-            switch(propertyName)
+            switch (propertyName)
             {
                 case "Produktgruppe":
-                    this.Session.Delete(lstDatenFeldHerstellerprodukt);
+
                     //die Felder des tps auslesn und hzuordnen
                     if (newValue != null)
                     {
-                        fiHerstellerProduktgruppe curGruppe = (fiHerstellerProduktgruppe)newValue;
-                        generateFields(curGruppe);
-                   
+                        if (this.lstProduktParameter != null)
+                        {
+                            this.Session.Delete(this.lstProduktParameter);
+                            this.Save();
+                            this.Session.CommitTransaction();
+                        }
+
+                        generateParamList((fiHerstellerProduktgruppe)newValue);
+
                     }
                     else
                     {
-                        this.Session.Delete(lstDatenFeldHerstellerprodukt);
-
+                        if (this.lstProduktParameter != null)
+                        {
+                            this.Session.Delete(this.lstProduktParameter);
+                            this.Save();
+                            this.Session.CommitTransaction();
+                        }
                     }
-
+                    break;
+                case "Produktbild":
+                    if (!this.IsLoading)
+                    {
+                        if (newValue != null)
+                        {
+                            setMainThumbnail();
+                            //hier kan ich auch gleich die Web-Implementierung erstellen
+                            setMainImageWeb();
+                        }
+                        if (newValue == null)
+                        {
+                            this.MainImageThumb = null;
+                            this.MainImageWeb = null;
+                        }
+                    }
                     break;
             }
         }
 
-        public void generateFields(fiHerstellerProduktgruppe curGruppe)
+        public void makeMainThumbnail()
         {
-            if (curGruppe.lstDatenfeldProduktgruppe != null)
+            setMainThumbnail();
+            setMainImageWeb();
+        }
+        public void setMainThumbnail()
+        {
+            if (this.Produktbild != null)
             {
-                foreach (fiDatenfeldProduktgruppe item in curGruppe.lstDatenfeldProduktgruppe)
-                {
-                    //dieFelder neu schreiben
-                    //gibt es das Tei schon im aktuellen Produkt???
-                    fiDatenfeldHerstellerprodukt curFeld = this.Session.FindObject<fiDatenfeldHerstellerprodukt>(new GroupOperator(new BinaryOperator("Herstellerprodukt.Oid", this.Oid, BinaryOperatorType.Equal), new BinaryOperator("DatenfeldProduktgruppe.Oid", item.Oid, BinaryOperatorType.Equal)));
-                    if (curFeld == null)
-                    {
-                        //das Feild neu erstellen
-                        curFeld = new fiDatenfeldHerstellerprodukt(this.Session);
-                        curFeld.DatenfeldProduktgruppe = this.Session.GetObjectByKey<fiDatenfeldProduktgruppe>(item.Oid);
-                        curFeld.Save();
-
-                        this.lstDatenFeldHerstellerprodukt.Add(curFeld);
-                    }
-                   
-                        
-                    
-
-                }
+                this.MainImageThumb = PictureHelper.getThumbnailByteArray(this.Produktbild);
                 this.Save();
+                this.Session.CommitTransaction();
+            }
+        }
+
+        public void setMainImageWeb()
+        {
+            if (this.Produktbild != null)
+            {
+                Image workingImage = PictureHelper.ImageFromByteArray(this.Produktbild);
+                this.MainImageWeb = PictureHelper.ResizePicByWidth(workingImage, 300);
+                this.Save();
+                this.Session.CommitTransaction();
+            }
+        }
+
+        public void generateParamList(fiHerstellerProduktgruppe curGruppe)
+        {
+            if (curGruppe.lstParameterProduktGruppe != null && curGruppe.lstParameterProduktGruppe.Count > 0)
+            {
+                for (int i = 0; i < curGruppe.lstParameterProduktGruppe.Count; i++)
+                {
+                    parameterProduktGruppeParam paramToAdd = this.Session.GetObjectByKey<parameterProduktGruppeParam>(curGruppe.lstParameterProduktGruppe[i].Oid);
+                    if (this.lstProduktParameter.Where(t => t.ParameterItem.ParamKey == paramToAdd.ParameterDefinition.ParamKey).Count() <= 0)
+                    {
+                        parameterHerstellerProduktParameter curParam = new parameterHerstellerProduktParameter(this.Session);
+                        curParam.ParameterItem = paramToAdd.ParameterDefinition;
+                        curParam.DefaultValue = paramToAdd.SollWert;
+                        curParam.Save();
+                        this.lstProduktParameter.Add(curParam);
+                        this.Save();
+                        this.Session.CommitTransaction();
+                    }
+                }
             }
         }
         #endregion
 
         #region Properties
 
-        [XafDisplayName("Parameter")]
-        [Association("fiHerstellerprodukt-fiProduktparameter")]
-        public XPCollection<fiProduktparameter> lstParameter
-        {
-            get
-            {
-                return GetCollection<fiProduktparameter>("lstParameter");
-            }
-        }
 
         [XafDisplayName("Seriennummer")]
         public System.String Seriennummer
@@ -134,6 +183,8 @@ namespace FacilityInfo.Hersteller.BusinessObjects
                 SetPropertyValue("Seriennummer", ref _seriennummer, value);
             }
         }
+
+
         [XafDisplayName("Modellbezeichnung")]
         public System.String Modellbezeichnung
         {
@@ -146,7 +197,7 @@ namespace FacilityInfo.Hersteller.BusinessObjects
                 SetPropertyValue("Modellbezeichnung", ref _modellbezeichnung, value);
             }
         }
-            
+
         [XafDisplayName("Produktgruppe")]
         [ImmediatePostData]
         public fiHerstellerProduktgruppe Produktgruppe
@@ -202,7 +253,7 @@ namespace FacilityInfo.Hersteller.BusinessObjects
         }
 
         [XafDisplayName("Produktbild")]
-        [ImageEditor]
+      
         [Delayed]
         public byte[] Produktbild
         {
@@ -216,13 +267,39 @@ namespace FacilityInfo.Hersteller.BusinessObjects
             }
         }
 
-        [XafDisplayName("Dokumente")]
-        [Association("fiHerstellerProdukt-fiHerstellerProduktAttachment")]
-        public XPCollection<fiHerstellerProduktAttachment> lstDokumente
+        //Thumbnail und Image Web einbauen
+        [XafDisplayName("Vorschaubild")]
+        public byte[] MainImageThumb
         {
             get
             {
-                return GetCollection<fiHerstellerProduktAttachment>("lstDokumente");
+                return GetPropertyValue<byte[]>("MainImageThumb");
+            }
+            set { SetPropertyValue<byte[]>("MainImageThumb", value); }
+
+
+        }
+        [XafDisplayName("Titelbild (Web)")]
+        public byte[] MainImageWeb
+        {
+            get
+            {
+
+                return GetPropertyValue<byte[]>("MainImageWeb");
+            }
+            set
+            {
+                SetPropertyValue<byte[]>("MainImageWeb", value);
+            }
+        }
+
+        [XafDisplayName("Produktdokumente")]
+        [Association("fiHerstellerProdukt-fiHerstellerProduktAttachment"), DevExpress.ExpressApp.DC.Aggregated]
+        public XPCollection<fiHerstellerProduktAttachment> lstProduktDokumente
+        {
+            get
+            {
+                return GetCollection<fiHerstellerProduktAttachment>("lstProduktDokumente");
             }
         }
 
@@ -236,33 +313,80 @@ namespace FacilityInfo.Hersteller.BusinessObjects
             }
         }
 
-        [XafDisplayName("Datenfelder")]
-        [Association("fiHerstellerProdukt-fiDatenfeldHerstellerprodukt")]
-        [DevExpress.Xpo.Aggregated]
-        public XPCollection<fiDatenfeldHerstellerprodukt> lstDatenFeldHerstellerprodukt
+
+        //Baugruppen
+        [XafDisplayName("Baugruppen")]
+        [Association("anlageAnlagenBaugruppe-fiHerstellerProdukt")]
+        public XPCollection<anlageAnlagenbaugruppe> lstAnlagenBaugruppe
+        {
+            get { return GetCollection<anlageAnlagenbaugruppe>("lstAnlagenBaugruppe"); }
+        }
+     
+
+        [Association("fiHerstellerProdukt-parameterHerstellerProduktParameter"),DevExpress.Xpo.Aggregated]
+        [XafDisplayName("Produktparameter")]
+        public XPCollection<parameterHerstellerProduktParameter> lstProduktParameter
         {
             get
             {
-                return GetCollection<fiDatenfeldHerstellerprodukt>("lstDatenFeldHerstellerprodukt");
+                return GetCollection<parameterHerstellerProduktParameter>("lstProduktParameter");
             }
         }
 
+        //Wartungspaln einbauen
+        //Wartungsplan
+        //hat Wartungspunkte und er hat mehrere Bauteile
 
-
-
+        [XafDisplayName("Wartungspläne")]
+        [Association("fiHerstellerProdukt-wartungWartungsPlanProdukt")]
+        public XPCollection<wartungWartungsPlanProdukt> lstWartungsPlan
+        {
+            get { return GetCollection<wartungWartungsPlanProdukt>("lstWartungsPlan"); }
+        }
         #endregion
 
         #region Methoden
         public override void AfterConstruction()
         {
             base.AfterConstruction();
+            artikelArtikelKatalog chosenKatalog = null;
+            boMandant chosenMandant = getCurrentMandant();
+           if(chosenMandant!=null)
+            {
+                chosenKatalog = this.Session.FindObject<artikelArtikelKatalog>(new GroupOperator(new BinaryOperator("Mandant.Oid", chosenMandant.Oid, BinaryOperatorType.Equal), new BinaryOperator("Bezeichnung", "Anlagenartikel", BinaryOperatorType.Equal)));
+                if(chosenKatalog != null)
+                {
+                    this.ArtikelKatalog = chosenKatalog;
+                }
+            }
+
            
         }
+        private boMandant getCurrentMandant()
+        {
+            boMitarbeiter curMitarbeiter = null;
+            boMandant curMandant = null;
+            PermissionPolicyUser curUser = (PermissionPolicyUser)SecuritySystem.CurrentUser;
+            //gibt es einen Mitarbeiter dazu?
+            curMitarbeiter = this.Session.FindObject<boMitarbeiter>(new BinaryOperator("Systembenutzer.Oid", curUser.Oid, BinaryOperatorType.Equal));
 
-      
+            if (curMitarbeiter != null)
+            {
+                if (curMitarbeiter.Mandant != null)
+                {
+
+
+                    curMandant = this.Session.GetObjectByKey<boMandant>(curMitarbeiter.Mandant.Oid);
+
+                }
 
 
 
-        #endregion
-    }
+            }
+            return curMandant;
+        }
+
+
+    #endregion
+}
 }

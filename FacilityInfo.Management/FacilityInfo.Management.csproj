@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FacilityInfo.Management</RootNamespace>
     <AssemblyName>FacilityInfo.Management</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -45,100 +45,107 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.DataAccess.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.ExpressApp.AuditTrail.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.AuditTrail.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Chart.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Chart.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.CloneObject.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.CloneObject.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Notifications.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Notifications.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Objects.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Objects.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.PivotChart.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.PivotChart.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.PivotGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.PivotGrid.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ReportsV2.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.ReportsV2.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Scheduler.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Scheduler.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ScriptRecorder.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.ScriptRecorder.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.StateMachine.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Security.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.StateMachine.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Validation.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Workflow.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Workflow.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v17.2">
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v19.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.PivotGrid.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v17.2.Export">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Export">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Printing.v17.2.Core">
+    <Reference Include="DevExpress.Printing.v19.2.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Data.v17.2">
+    <Reference Include="DevExpress.Data.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v17.2">
+    <Reference Include="DevExpress.ExpressApp.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v17.2">
+    <Reference Include="DevExpress.Persistent.Base.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v17.2">
+    <Reference Include="DevExpress.Persistent.BaseImpl.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Workflow.Activities.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Workflow.Activities.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v17.2">
+    <Reference Include="DevExpress.Xpo.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v17.2.Wizard, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.CodeParser.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGauges.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v17.2.Extensions, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v19.2.Extensions, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="GDS.ExpressApp.Ui.Extensions.Web, Version=18.1822.2018.13, Culture=neutral, PublicKeyToken=4f431097afd917d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDS.ExpressApp.Ui.Extensions.Web.18.1822.2018.13\lib\net452\GDS.ExpressApp.Ui.Extensions.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
       <Private>False</Private>
@@ -165,8 +172,13 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessObjects\AnAnlagenKomponente.cs" />
-    <Compile Include="BusinessObjects\AnKomponente.cs" />
+    <Compile Include="BusinessObjects\actionActionAnlage.cs" />
+    <Compile Include="BusinessObjects\actionActionBase.cs" />
+    <Compile Include="BusinessObjects\actionActionPackage.cs" />
+    <Compile Include="BusinessObjects\actionActionPosition.cs" />
+    <Compile Include="BusinessObjects\adresseTitel.cs" />
+    <Compile Include="BusinessObjects\anlageAnlagenBaugruppe.cs" />
+    <Compile Include="BusinessObjects\anlageBauGruppe.cs" />
     <Compile Include="BusinessObjects\AnKomponentenTyp.cs" />
     <Compile Include="BusinessObjects\anlagenServicePunkt.cs" />
     <Compile Include="BusinessObjects\AnPruefanschluss.cs" />
@@ -176,20 +188,16 @@
     <Compile Include="BusinessObjects\artikelArtikelBase.cs" />
     <Compile Include="BusinessObjects\artikelArtikelKatalog.cs" />
     <Compile Include="BusinessObjects\artikelServiceArtikel.cs" />
-    <Compile Include="BusinessObjects\baseParameterArt.cs" />
-    <Compile Include="BusinessObjects\baseParameterBase.cs" />
+    <Compile Include="BusinessObjects\artikelWarenGruppe.cs" />
     <Compile Include="BusinessObjects\BildKategorie.cs" />
     <Compile Include="BusinessObjects\boAbteilung.cs" />
     <Compile Include="BusinessObjects\boADRKommunikation.cs" />
     <Compile Include="BusinessObjects\boANAttachment.cs" />
-    <Compile Include="BusinessObjects\boANDatenEntry.cs" />
     <Compile Include="BusinessObjects\boAdresse.cs" />
-    <Compile Include="BusinessObjects\boANDatenItem.cs" />
     <Compile Include="BusinessObjects\boAnlage.cs" />
     <Compile Include="BusinessObjects\boAnlagenArt.cs" />
     <Compile Include="BusinessObjects\boAnlagenBild.cs" />
-    <Compile Include="BusinessObjects\boAnlagenGruppe.cs" />
-    <Compile Include="BusinessObjects\boANMassnahme.cs" />
+    <Compile Include="BusinessObjects\boAnlagenKategorie.cs" />
     <Compile Include="BusinessObjects\boAnrede.cs" />
     <Compile Include="BusinessObjects\boAnsprechPartner.cs" />
     <Compile Include="BusinessObjects\boAttachmentkategorie.cs" />
@@ -212,17 +220,13 @@
     <Compile Include="BusinessObjects\boKuendigungsGrund.cs" />
     <Compile Include="BusinessObjects\coreBusinessUnit.cs" />
     <Compile Include="BusinessObjects\coreKostenStelle.cs" />
+    <Compile Include="BusinessObjects\corePortalAccount.cs" />
     <Compile Include="BusinessObjects\Debitorenkonto.cs" />
-    <Compile Include="BusinessObjects\fiAnlagenfeld.cs" />
-    <Compile Include="BusinessObjects\fiAnlagenfeldAntwort.cs" />
+    <Compile Include="BusinessObjects\dmsAttachmentLink.cs" />
     <Compile Include="BusinessObjects\fiAnlagenGeraet.cs" />
     <Compile Include="BusinessObjects\fiAnlagenparameter.cs" />
     <Compile Include="BusinessObjects\fiBauteilkatalog.cs" />
     <Compile Include="BusinessObjects\fiBildtitel.cs" />
-    <Compile Include="BusinessObjects\fiDatenfeld.cs" />
-    <Compile Include="BusinessObjects\fiDatenfeldAntwort.cs" />
-    <Compile Include="BusinessObjects\fiDatenfeldHerstellerprodukt.cs" />
-    <Compile Include="BusinessObjects\fiDatenFeldHerstellerProduktAntwort.cs" />
     <Compile Include="BusinessObjects\fiEbene.cs" />
     <Compile Include="BusinessObjects\fiEbenenart.cs" />
     <Compile Include="BusinessObjects\fiFachbereich.cs" />
@@ -242,9 +246,6 @@
     <Compile Include="BusinessObjects\boLGAttachment.cs" />
     <Compile Include="BusinessObjects\boLGCheckEntry.cs" />
     <Compile Include="BusinessObjects\boLGCheckListe.cs" />
-    <Compile Include="BusinessObjects\boDatenItem.cs" />
-    <Compile Include="BusinessObjects\boDatenKategorie.cs" />
-    <Compile Include="BusinessObjects\boDatenValueItem.cs" />
     <Compile Include="BusinessObjects\boEinheit.cs" />
     <Compile Include="BusinessObjects\boFIObjekt.cs" />
     <Compile Include="BusinessObjects\boHausverwalter.cs" />
@@ -252,16 +253,9 @@
     <Compile Include="BusinessObjects\boKontakt.cs" />
     <Compile Include="BusinessObjects\boKostenGruppe.cs" />
     <Compile Include="BusinessObjects\boLand.cs" />
-    <Compile Include="BusinessObjects\boLGDatenEntry.cs" />
-    <Compile Include="BusinessObjects\boLGMassnahme.cs" />
     <Compile Include="BusinessObjects\boLiegenschaft.cs" />
     <Compile Include="BusinessObjects\boLiegenschaftsBild.cs" />
-    <Compile Include="BusinessObjects\boMAAttachment.cs" />
-    <Compile Include="BusinessObjects\boMADatenEntry.cs" />
-    <Compile Include="BusinessObjects\boMADatenItem.cs" />
     <Compile Include="BusinessObjects\boMandant.cs" />
-    <Compile Include="BusinessObjects\boMassnahme.cs" />
-    <Compile Include="BusinessObjects\boMassnahmenArt.cs" />
     <Compile Include="BusinessObjects\boMessItemData.cs" />
     <Compile Include="BusinessObjects\boMessitemEntry.cs" />
     <Compile Include="BusinessObjects\boMessprobe.cs" />
@@ -273,15 +267,10 @@
     <Compile Include="BusinessObjects\boPosition.cs" />
     <Compile Include="BusinessObjects\fiMesstypAttachment.cs" />
     <Compile Include="BusinessObjects\fiMessungAttachment.cs" />
-    <Compile Include="BusinessObjects\fiParameter.cs" />
-    <Compile Include="BusinessObjects\fiParametercheck.cs" />
     <Compile Include="BusinessObjects\fiProdukt.cs" />
     <Compile Include="BusinessObjects\boServiceArt.cs" />
-    <Compile Include="BusinessObjects\boTypenEntry.cs" />
     <Compile Include="BusinessObjects\boTypenliste.cs" />
     <Compile Include="BusinessObjects\fiBauteil.cs" />
-    <Compile Include="BusinessObjects\fiDatenfeldProduktgruppe.cs" />
-    <Compile Include="BusinessObjects\fiProduktparameter.cs" />
     <Compile Include="BusinessObjects\fiRaum.cs" />
     <Compile Include="BusinessObjects\fiRaumart.cs" />
     <Compile Include="BusinessObjects\fiTechnikDefinition.cs" />
@@ -291,13 +280,14 @@
     <Compile Include="BusinessObjects\importFileType.cs" />
     <Compile Include="BusinessObjects\importObjektEigenschaft.cs" />
     <Compile Include="BusinessObjects\impotImportObjekt.cs" />
-    <Compile Include="BusinessObjects\parameterParameterArt.cs" />
+    <Compile Include="BusinessObjects\parameterAnlagenParameter.cs" />
+    <Compile Include="BusinessObjects\parameterHerstellerProduktParameter.cs" />
     <Compile Include="BusinessObjects\parameterParameterDefinition.cs" />
-    <Compile Include="BusinessObjects\parameterParameterItem.cs" />
-    <Compile Include="BusinessObjects\parameterParameterRange.cs" />
+    <Compile Include="BusinessObjects\parameterAnlagenArtParam.cs" />
+    <Compile Include="BusinessObjects\parameterProduktGruppeParam.cs" />
+    <Compile Include="BusinessObjects\serviceServicePackage.cs" />
     <Compile Include="BusinessObjects\vertragServiceVertrag.cs" />
     <Compile Include="BusinessObjects\vertragVertragBase.cs" />
-    <Compile Include="BusinessObjects\serviceServiceItem.cs" />
     <Compile Include="BusinessObjects\vertragVertragsleistung.cs" />
     <Compile Include="BusinessObjects\boWartungszone.cs" />
     <Compile Include="BusinessObjects\boWatermark.cs" />
@@ -314,22 +304,15 @@
     <Compile Include="BusinessObjects\KwpWartungsAuftrag.cs" />
     <Compile Include="BusinessObjects\KwpWartungsVertrag.cs" />
     <Compile Include="BusinessObjects\LgHaustechnikKomponente.cs" />
-    <Compile Include="BusinessObjects\serviceAnlagenService.cs" />
-    <Compile Include="BusinessObjects\serviceKomponentenService.cs" />
-    <Compile Include="BusinessObjects\serviceServiceBase.cs" />
-    <Compile Include="BusinessObjects\serviceServicePaket.cs" />
-    <Compile Include="clsStatic.cs" />
-    <Compile Include="Controllers\Ctrl_Adressen_ListView.cs">
+    <Compile Include="BusinessObjects\wartungWartungsPlan.cs" />
+    <Compile Include="BusinessObjects\wartungWartungsPlanAnlagenArt.cs" />
+    <Compile Include="BusinessObjects\wartungWartungsPlanProdukt.cs" />
+    <Compile Include="BusinessObjects\wartungWartungsPosition.cs" />
+    <Compile Include="Controllers\Ctrl_ActionAnlage_DetailView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controllers\Ctrl_Adressen_ListView.Designer.cs">
-      <DependentUpon>Ctrl_Adressen_ListView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\Ctrl_Anlagen_ListView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\Ctrl_Anlagen_ListView.Designer.cs">
-      <DependentUpon>Ctrl_Anlagen_ListView.cs</DependentUpon>
+    <Compile Include="Controllers\Ctrl_ActionAnlage_DetailView.Designer.cs">
+      <DependentUpon>Ctrl_ActionAnlage_DetailView.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Ctrl_Anlage_DetailView.cs">
       <SubType>Component</SubType>
@@ -342,12 +325,6 @@
     </Compile>
     <Compile Include="Controllers\Ctrl_FremdSysSynchItem.Designer.cs">
       <DependentUpon>Ctrl_FremdSysSynchItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\Ctrl_HertellerProdukt_DetailView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\Ctrl_HertellerProdukt_DetailView.Designer.cs">
-      <DependentUpon>Ctrl_HertellerProdukt_DetailView.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Ctrl_LgHaustechnikKomponente_DetailView.cs">
       <SubType>Component</SubType>
@@ -386,15 +363,20 @@
       <DependentUpon>Ctrl_ZugangLiegenschaft_DetailView.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseUpdate\Updater.cs" />
-    <Compile Include="DomainComponents\IActive.cs" />
+    <Compile Include="BusinessObjects\docKwpVertragAttachment.cs" />
     <Compile Include="DomainComponents\Iadresse.cs" />
     <Compile Include="DomainComponents\IcheckEntry.cs" />
     <Compile Include="DomainComponents\IcheckListe.cs" />
     <Compile Include="DomainComponents\Ikommunikation.cs" />
+    <Compile Include="DomainComponents\IpictureItem.cs" />
     <Compile Include="EnumStore\dirEntryFileExtensions.cs" />
+    <Compile Include="EnumStore\enmAttatchmenttyp.cs" />
     <Compile Include="EnumStore\enmBetreuungsStatus.cs" />
     <Compile Include="EnumStore\enmFunktion.cs" />
+    <Compile Include="EnumStore\enmHorizontal.cs" />
     <Compile Include="EnumStore\enmLizenzStatus.cs" />
+    <Compile Include="EnumStore\enmPrioritaet.cs" />
+    <Compile Include="EnumStore\enmActionClassification.cs" />
     <Compile Include="EnumStore\enmStatusZugang.cs" />
     <Compile Include="EnumStore\enmAdressTyp.cs" />
     <Compile Include="EnumStore\enmAnlagenStatus.cs" />
@@ -402,14 +384,24 @@
     <Compile Include="EnumStore\enmGeschlecht.cs" />
     <Compile Include="EnumStore\enmKommunikationsArt.cs" />
     <Compile Include="EnumStore\enmKommunikationsTyp.cs" />
-    <Compile Include="EnumStore\enmMassnahmenStatus.cs" />
-    <Compile Include="EnumStore\enmMassnahmenTyp.cs" />
-    <Compile Include="EnumStore\enmServiceStatus.cs" />
+    <Compile Include="EnumStore\enmBearbeitungsStatus.cs" />
+    <Compile Include="EnumStore\enmServiceTyp.cs" />
     <Compile Include="EnumStore\enmTurnus.cs" />
+    <Compile Include="EnumStore\enmVertical.cs" />
     <Compile Include="EnumStore\enmVertragsStatus.cs" />
+    <Compile Include="EnumStore\enmWartungsStatus.cs" />
     <Compile Include="EnumStore\enmWasserbereitung.cs" />
+    <Compile Include="EnumStore\enmWorkflowStatus.cs" />
+    <Compile Include="EnumStore\enmZeitraum.cs" />
+    <Compile Include="EnumStore\enmZustand.cs" />
     <Compile Include="FiWebService.cs" />
+    <Compile Include="Helpers\BingGeoHelper.cs" />
+    <Compile Include="Helpers\GoogleGeoHelper.cs" />
+    <Compile Include="Helpers\PictureHelper.cs" />
+    <Compile Include="Helpers\serviceHelper.cs" />
+    <Compile Include="Helpers\TurnusHelper.cs" />
     <Compile Include="IFiWebService.cs" />
+    <Compile Include="Interfaces\Iactive.cs" />
     <Compile Include="Klassen\Category.cs" />
     <Compile Include="Klassen\MyLocalizedClassInfoTypeConverter.cs" />
     <Compile Include="Module.cs">
@@ -418,27 +410,13 @@
     <Compile Include="Module.Designer.cs">
       <DependentUpon>Module.cs</DependentUpon>
     </Compile>
+    <Compile Include="BusinessObjects\parameterParameterTyp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\repAnlage_Feldinfo.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\repAnlage_Feldinfo.Designer.cs">
-      <DependentUpon>repAnlage_Feldinfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\repMandant_Visitenkarte.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\repMandant_Visitenkarte.Designer.cs">
-      <DependentUpon>repMandant_Visitenkarte.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\rep_WartungsTerminKwp.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\rep_WartungsTerminKwp.Designer.cs">
-      <DependentUpon>rep_WartungsTerminKwp.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controllers\Ctrl_ActionAnlage_DetailView.resx">
+      <DependentUpon>Ctrl_ActionAnlage_DetailView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controllers\Ctrl_Anlage_DetailView.resx">
       <DependentUpon>Ctrl_Anlage_DetailView.cs</DependentUpon>
     </EmbeddedResource>
@@ -460,15 +438,6 @@
       <DependentUpon>Module.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Reports\repAnlage_Feldinfo.resx">
-      <DependentUpon>repAnlage_Feldinfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\repMandant_Visitenkarte.resx">
-      <DependentUpon>repMandant_Visitenkarte.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\rep_WartungsTerminKwp.resx">
-      <DependentUpon>rep_WartungsTerminKwp.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Adresse.cd" />
@@ -485,13 +454,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\ReadMe.txt" />
+    <None Include="packages.config" />
     <None Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FacilityInfo.GlobalObjects\FacilityInfo.GlobalObjects.csproj">
-      <Project>{cc10323d-f1aa-4e10-9900-97f9267eb1a2}</Project>
-      <Name>FacilityInfo.GlobalObjects</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\help.png">
@@ -1418,6 +1382,109 @@
     <EmbeddedResource Include="Images\arrow_refresh_16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\blogs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\blogs_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bricks_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\brick_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\brick_add_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\brick_delete_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\brick_edit_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\brick_error_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\brick_go_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\brick_link_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\building_edit_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bullet_orange_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bullet_purple_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bullet_yellow_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bookshelf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bookshelf_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Editors\ReadMe.txt" />
+    <EmbeddedResource Include="FacilityInfo_Schrift_Image_16.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bullet_blue_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bullet_go_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bullet_star_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bullet_delete_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Aktenschrank_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Aktenschrank_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\book_picture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\book_picture_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\box.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\box_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\box_down.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\box_down_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\box_closed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\box_closed_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\box_search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\box_search_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\accept.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Images\chart_bullseye.png" />
     <EmbeddedResource Include="Images\setting_tools.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1566,10 +1633,222 @@
     <EmbeddedResource Include="Images\page_white_magnify_16.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\gear_3d_2_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gear_3d_2_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\stamp_pattern.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\stamp_pattern_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\wand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\wand_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\report.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\report_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\vslider.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\vslider_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\tag_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\globe_model.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\globe_model_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\globe_network.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\globe_network_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\globe_place_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\location_pin_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\google_map_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\factory_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\interface_preferences_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\map_magnify_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\elements_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\comment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\comment_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\photos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\photos_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\file_manager.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\file_manager_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_lightning_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gearTool_1_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gearTool_1_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\geotag_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\user_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\FacilityInfo_Schrift_Image_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\FacilityInfo_Schrift_Image_600.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\FacilityInfo_Schrift_Image_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\FacilityInfo_Schrift_Image_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\FacilityInfo_Schrift_Image_64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\FacilityInfo_Schrift_Image_78.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\FacilityInfo_Schrift_Image_8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\inbox_empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\inbox_empty_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\inbox_images.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\inbox_images_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\inbox_table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\inbox_table_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\landmarks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\landmarks_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gearSettings_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gearSettings_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gearTool_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gearTool_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gears1_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gears1_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gearsGrey_16.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gearsGrey_32.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\home_page_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\helmet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\helmet_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\helmet_mine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\helmet_mine_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\progressbar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\progressbar_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\data_grid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\data_grid_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mixer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mixer_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gears_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\gears_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Images\wrench_16.png" />
     <Content Include="Images\wrench_orange_16.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reports\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

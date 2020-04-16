@@ -1,0 +1,1313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Logo="hagen_facility_rgb_Logo_16">
+  <BOModel>
+    <Class Name="FacilityInfo.Fremdsystem.BusinessObjects.KwpWartTermin">
+      <OwnMembers>
+        <Member Name="PlanStunden" DisplayFormat="{0:N2}" EditMask="N2" />
+        <Member Name="TerminUhrzeit" DisplayFormat="{0:g}" EditMask="g" />
+      </OwnMembers>
+    </Class>
+    <Class Name="FacilityInfo.Fremdsystem.BusinessObjects.KwpWartungsAuftrag">
+      <OwnMembers>
+        <Member Name="Planstunden" DisplayFormat="{0:N2}" EditMask="N2" />
+        <Member Name="TerminZeit" DisplayFormat="{0:g}" EditMask="g" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems StartupNavigationItem="boLiegenschaft_ListView">
+    <Items>
+      <Item Id="Liegenschaft" Caption="Liegenschaft" Index="0" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="Liegenschaft" ViewId="boLiegenschaft_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="ZugangModel" Caption="Zugang" Index="1" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="ZugangMobile" ViewId="ZugangLiegenschaft_Mobile_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Default" Visible="False" Index="2" />
+      <Item Id="Reports" Visible="False" Index="4" Removed="True" />
+      <Item Id="State Machine" Visible="False" Removed="True" />
+    </Items>
+  </NavigationItems>
+  <Options>
+    <LayoutManagerOptions CaptionLocation="Top" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="18.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerAspNetModule" Version="18.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="18.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemAspNetModule" Version="18.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="18.2.5.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="Adresse_LookUp_DetailView" ClassName="FacilityInfo.Adresse.BusinessObjects.boAdresse" AllowDelete="False" AllowEdit="False" AllowNew="False" Caption="" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Anrede" PropertyName="Anrede" IsNewNode="True" />
+        <PropertyEditor Id="Anzeigename" PropertyName="Anzeigename" IsNewNode="True" />
+        <PropertyEditor Id="Internet" PropertyName="Internet" IsNewNode="True" />
+        <PropertyEditor Id="Land" PropertyName="Land" IsNewNode="True" />
+        <PropertyEditor Id="Mail" PropertyName="Mail" IsNewNode="True" />
+        <PropertyEditor Id="Mobil" PropertyName="Mobil" IsNewNode="True" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
+        <PropertyEditor Id="ort" PropertyName="ort" IsNewNode="True" />
+        <PropertyEditor Id="Plz" PropertyName="Plz" IsNewNode="True" />
+        <PropertyEditor Id="StrasseNr" PropertyName="StrasseNr" IsNewNode="True" />
+        <PropertyEditor Id="Telefon1" PropertyName="Telefon1" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsCardGroup="True" IsNewNode="True">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
+            <LayoutGroup Id="boAdresse" Index="0" Direction="Vertical" ShowCaption="True" Caption="Adresse" IsNewNode="True">
+              <LayoutGroup Id="grpAnzeigename" Caption="" Direction="Horizontal" Index="1" IsNewNode="True">
+                <LayoutItem Id="Anrede" ViewItem="Anrede" Index="9" IsNewNode="True" />
+                <LayoutItem Id="Anzeigename" ViewItem="Anzeigename" Index="11" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpStrasse" Caption="" Index="2" IsNewNode="True">
+                <LayoutItem Id="StrasseNr" ViewItem="StrasseNr" Index="5" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpPlz" Caption="" Index="3" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Land" ViewItem="Land" Index="0" IsNewNode="True" />
+                <LayoutItem Id="ort" ViewItem="ort" Index="2" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpTel" Caption="" Direction="Horizontal" Index="4" IsNewNode="True">
+                <LayoutItem Id="Telefon1" ViewItem="Telefon1" Index="9" IsNewNode="True" />
+                <LayoutItem Id="Mobil" ViewItem="Mobil" Index="11" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpMail" Caption="" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Mail" ViewItem="Mail" Index="13" IsNewNode="True" />
+                <LayoutItem Id="Internet" ViewItem="Internet" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Anlage_MainUndSubAnlage_ListView" ClassName="FacilityInfo.Anlagen.BusinessObjects.boAnlage" MasterDetailMode="ListViewAndDetailView" MasterDetailView="Anlage_SubAnlagen_LookUp_DetailView" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="MainImageThumb" PropertyName="MainImageThumb" Index="-1" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="Icon" PropertyName="AnlagenArt.Icon" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="AnlagenNummer" PropertyName="AnlagenNummer" Index="1" Width="400" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+        <ColumnInfo Id="AnlagenKategorie" PropertyName="AnlagenKategorie" Index="2" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="Anlagenart" PropertyName="AnlagenArt" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Anlagengruppe" PropertyName="HaustechnikKomponente" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Baujahr" PropertyName="Baujahr" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Gebaeude" PropertyName="Gebaeude" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Ebene" PropertyName="Ebene" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="Raum" PropertyName="Raum" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Hersteller" PropertyName="Hersteller" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="Proukttyp" PropertyName="Typ" IsNewNode="True" />
+        <ColumnInfo Id="Typbezeichnung" PropertyName="Typbezeichnung" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Anlage_SubAnlagen_LookUp_DetailView" ClassName="FacilityInfo.Anlagen.BusinessObjects.boAnlage" Caption="Unteranlagen" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="AnlagenAdresse" PropertyName="AnlagenAdresse" IsNewNode="True" />
+        <PropertyEditor Id="AnlagenArt" PropertyName="AnlagenArt" IsNewNode="True" />
+        <PropertyEditor Id="Anlagenbetreuer" PropertyName="Anlagenbetreuer" IsNewNode="True" />
+        <PropertyEditor Id="Anlagencode" PropertyName="Anlagencode" IsNewNode="True" />
+        <PropertyEditor Id="AnlagenKategorie" PropertyName="AnlagenKategorie" IsNewNode="True" />
+        <PropertyEditor Id="AnlagenNummer" PropertyName="AnlagenNummer" IsNewNode="True" />
+        <PropertyEditor Id="Anlagenstatus" PropertyName="Anlagenstatus" IsNewNode="True" />
+        <PropertyEditor Id="Baujahr" PropertyName="Baujahr" IsNewNode="True" />
+        <PropertyEditor Id="Beschreibung" PropertyName="Beschreibung" IsNewNode="True" />
+        <PropertyEditor Id="Bezeichnung" PropertyName="Bezeichnung" IsNewNode="True" />
+        <PropertyEditor Id="Ebene" PropertyName="Ebene" IsNewNode="True" />
+        <PropertyEditor Id="Einbaudatum" PropertyName="Einbaudatum" IsNewNode="True" />
+        <PropertyEditor Id="FremdsystemId" PropertyName="FremdsystemId" IsNewNode="True" />
+        <PropertyEditor Id="Gebaeude" PropertyName="Gebaeude" IsNewNode="True" />
+        <PropertyEditor Id="HaustechnikKomponente" PropertyName="HaustechnikKomponente" IsNewNode="True" />
+        <PropertyEditor Id="Hausverwalter" PropertyName="Hausverwalter" IsNewNode="True" />
+        <PropertyEditor Id="Hersteller" PropertyName="Hersteller" IsNewNode="True" />
+        <PropertyEditor Id="Liegenschaft" PropertyName="Liegenschaft" IsNewNode="True" />
+        <PropertyEditor Id="lstANAttachments" PropertyName="lstANAttachments" View="boAnlage_lstANAttachments_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstAnlagenBilds" PropertyName="lstAnlagenBilds" View="boAnlage_lstAnlagenBilds_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstAnlagengeraete" PropertyName="lstAnlagengeraete" View="boAnlage_lstAnlagengeraete_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstAnlagenParameter" PropertyName="lstAnlagenParameter" View="boAnlage_lstAnlagenParameter_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstAnlagenService" PropertyName="lstAnlagenService" View="boAnlage_lstAnlagenService_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstBuildings" PropertyName="lstBuildings" View="boAnlage_lstBuildings_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstFloors" PropertyName="lstFloors" View="boAnlage_lstFloors_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstKontakte" PropertyName="lstKontakte" View="boAnlage_lstKontakte_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstMessungen" PropertyName="lstMessungen" View="boAnlage_lstMessungen_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstRooms" PropertyName="lstRooms" View="boAnlage_lstRooms_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstUnteranlagen" PropertyName="lstUnteranlagen" View="boAnlage_lstUnteranlagen_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstZugangAnlage" PropertyName="lstZugangAnlage" View="boAnlage_lstZugangAnlage_ListView" IsNewNode="True" />
+        <PropertyEditor Id="Mainimage" PropertyName="Mainimage" IsNewNode="True" />
+        <PropertyEditor Id="Mandant" PropertyName="Mandant" IsNewNode="True" />
+        <PropertyEditor Id="Matchkey" PropertyName="Matchkey" IsNewNode="True" />
+        <PropertyEditor Id="Notiz" PropertyName="Notiz" IsNewNode="True" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
+        <PropertyEditor Id="ParentAnlage" PropertyName="ParentAnlage" IsNewNode="True" />
+        <PropertyEditor Id="Raum" PropertyName="Raum" IsNewNode="True" />
+        <PropertyEditor Id="Rechnungsadresse" PropertyName="Rechnungsadresse" IsNewNode="True" />
+        <PropertyEditor Id="Seriennummer" PropertyName="Seriennummer" IsNewNode="True" />
+        <PropertyEditor Id="Typ" PropertyName="Typ" IsNewNode="True" />
+        <PropertyEditor Id="Typbezeichnung" PropertyName="Typbezeichnung" IsNewNode="True" />
+        <PropertyEditor Id="Wartungszone" PropertyName="Wartungszone" IsNewNode="True" />
+        <PropertyEditor Id="Zustand" PropertyName="Zustand" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
+          <LayoutGroup Id="lstUnteranlagen" Index="8" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="lstUnteranlagen" ViewItem="lstUnteranlagen" ShowCaption="False" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="AuthenticationStandardLogonParameters_DetailView">
+      <Items>
+        <StaticImage Id="LogonImage" ImageName="FacilityInfo_Schrift_Image_300" />
+        <StaticText Id="LogonText" Text="FacilityInfo Onlineportal" VerticalAlign="Middle" HorizontalAlign="Center" />
+      </Items>
+    </DetailView>
+    <DetailView Id="boAdresse_Lookup_DetailView" ClassName="FacilityInfo.Adresse.BusinessObjects.boAdresse" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Anrede" PropertyName="Anrede" IsNewNode="True" />
+        <PropertyEditor Id="Anzeigename" PropertyName="Anzeigename" IsNewNode="True" />
+        <PropertyEditor Id="Bundesland" PropertyName="Bundesland" IsNewNode="True" />
+        <PropertyEditor Id="Fax" PropertyName="Fax" IsNewNode="True" />
+        <PropertyEditor Id="firmenname" PropertyName="firmenname" IsNewNode="True" />
+        <PropertyEditor Id="FremdsystemCode" PropertyName="FremdsystemCode" IsNewNode="True" />
+        <PropertyEditor Id="FremdsystemId" PropertyName="FremdsystemId" IsNewNode="True" />
+        <PropertyEditor Id="FullName" PropertyName="FullName" IsNewNode="True" />
+        <PropertyEditor Id="Hauptort" PropertyName="Hauptort" IsNewNode="True" />
+        <PropertyEditor Id="hausnummer" PropertyName="hausnummer" IsNewNode="True" />
+        <PropertyEditor Id="Internet" PropertyName="Internet" IsNewNode="True" />
+        <PropertyEditor Id="Kontakt" PropertyName="Kontakt" View="boAdresse_Kontakt_ListView" IsNewNode="True" />
+        <PropertyEditor Id="KuerzelIntern" PropertyName="KuerzelIntern" IsNewNode="True" />
+        <PropertyEditor Id="Land" PropertyName="Land" IsNewNode="True" />
+        <PropertyEditor Id="latitude" PropertyName="latitude" IsNewNode="True" />
+        <PropertyEditor Id="longitude" PropertyName="longitude" IsNewNode="True" />
+        <PropertyEditor Id="lstADRKommunikation" PropertyName="lstADRKommunikation" View="boAdresse_lstADRKommunikation_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstDebitorenkonten" PropertyName="lstDebitorenkonten" View="boAdresse_lstDebitorenkonten_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstKreditorenkonten" PropertyName="lstKreditorenkonten" View="boAdresse_lstKreditorenkonten_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstLiegenschaften" PropertyName="lstLiegenschaften" View="boAdresse_lstLiegenschaften_ListView" IsNewNode="True" />
+        <PropertyEditor Id="Mail" PropertyName="Mail" IsNewNode="True" />
+        <PropertyEditor Id="Mandant" PropertyName="Mandant" IsNewNode="True" />
+        <PropertyEditor Id="Matchkey" PropertyName="Matchkey" IsNewNode="True" />
+        <PropertyEditor Id="Mobil" PropertyName="Mobil" IsNewNode="True" />
+        <PropertyEditor Id="nachname" PropertyName="nachname" IsNewNode="True" />
+        <PropertyEditor Id="Notizen" PropertyName="Notizen" IsNewNode="True" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
+        <PropertyEditor Id="ort" PropertyName="ort" IsNewNode="True" />
+        <PropertyEditor Id="Plz" PropertyName="Plz" IsNewNode="True" />
+        <PropertyEditor Id="strasse" PropertyName="strasse" IsNewNode="True" />
+        <PropertyEditor Id="StrasseNr" PropertyName="StrasseNr" IsNewNode="True" />
+        <PropertyEditor Id="Telefon1" PropertyName="Telefon1" IsNewNode="True" />
+        <PropertyEditor Id="Telefon2" PropertyName="Telefon2" IsNewNode="True" />
+        <PropertyEditor Id="Titel" PropertyName="Titel" IsNewNode="True" />
+        <PropertyEditor Id="vorname" PropertyName="vorname" IsNewNode="True" />
+        <PropertyEditor Id="Wartungszone" PropertyName="Wartungszone" IsNewNode="True" />
+        <PropertyEditor Id="Zusatz" PropertyName="Zusatz" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
+            <LayoutGroup Id="boAdresse" Index="1" Direction="Horizontal" ShowCaption="True" Caption="bo Adresse" IsNewNode="True">
+              <LayoutItem Id="Anzeigename" ViewItem="Anzeigename" Index="0" IsNewNode="True" />
+              <LayoutGroup Id="boAdresse_col1" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="Wartungszone" ViewItem="Wartungszone" Index="0" IsNewNode="True" />
+                <LayoutItem Id="Titel" ViewItem="Titel" Index="1" IsNewNode="True" />
+                <LayoutItem Id="KuerzelIntern" ViewItem="KuerzelIntern" Index="2" IsNewNode="True" />
+                <LayoutItem Id="Mandant" ViewItem="Mandant" Index="3" IsNewNode="True" />
+                <LayoutItem Id="Land" ViewItem="Land" Index="4" IsNewNode="True" />
+                <LayoutItem Id="Bundesland" ViewItem="Bundesland" Index="5" IsNewNode="True" />
+                <LayoutItem Id="Plz" ViewItem="Plz" Index="6" IsNewNode="True" />
+                <LayoutItem Id="Hauptort" ViewItem="Hauptort" Index="7" IsNewNode="True" />
+                <LayoutItem Id="Zusatz" ViewItem="Zusatz" Index="8" IsNewNode="True" />
+                <LayoutItem Id="Anrede" ViewItem="Anrede" Index="9" IsNewNode="True" />
+                <LayoutItem Id="Matchkey" ViewItem="Matchkey" Index="10" IsNewNode="True" />
+                <LayoutItem Id="FullName" ViewItem="FullName" Index="12" IsNewNode="True" />
+                <LayoutItem Id="FremdsystemId" ViewItem="FremdsystemId" Index="13" IsNewNode="True" />
+                <LayoutItem Id="FremdsystemCode" ViewItem="FremdsystemCode" Index="14" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boAdresse_col2" Index="1" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="firmenname" ViewItem="firmenname" Index="0" IsNewNode="True" />
+                <LayoutItem Id="hausnummer" ViewItem="hausnummer" Index="1" IsNewNode="True" />
+                <LayoutItem Id="nachname" ViewItem="nachname" Index="2" IsNewNode="True" />
+                <LayoutItem Id="ort" ViewItem="ort" Index="3" IsNewNode="True" />
+                <LayoutItem Id="strasse" ViewItem="strasse" Index="4" IsNewNode="True" />
+                <LayoutItem Id="StrasseNr" ViewItem="StrasseNr" Index="5" IsNewNode="True" />
+                <LayoutItem Id="vorname" ViewItem="vorname" Index="6" IsNewNode="True" />
+                <LayoutItem Id="longitude" ViewItem="longitude" Index="7" IsNewNode="True" />
+                <LayoutItem Id="latitude" ViewItem="latitude" Index="8" IsNewNode="True" />
+                <LayoutItem Id="Telefon1" ViewItem="Telefon1" Index="9" IsNewNode="True" />
+                <LayoutItem Id="Telefon2" ViewItem="Telefon2" Index="10" IsNewNode="True" />
+                <LayoutItem Id="Mobil" ViewItem="Mobil" Index="11" IsNewNode="True" />
+                <LayoutItem Id="Fax" ViewItem="Fax" Index="12" IsNewNode="True" />
+                <LayoutItem Id="Mail" ViewItem="Mail" Index="13" IsNewNode="True" />
+                <LayoutItem Id="Internet" ViewItem="Internet" Index="14" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpStreet" Caption="" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="grpPlz" Caption="" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="1" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Notizen" ViewItem="Notizen" Index="0" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="2" IsNewNode="True">
+            <LayoutGroup Id="Kontakt" Index="0" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="Kontakt" ViewItem="Kontakt" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstADRKommunikation" Index="1" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="lstADRKommunikation" ViewItem="lstADRKommunikation" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstLiegenschaften" Index="2" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="lstLiegenschaften" ViewItem="lstLiegenschaften" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstDebitorenkonten" Index="3" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="lstDebitorenkonten" ViewItem="lstDebitorenkonten" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstKreditorenkonten" Index="4" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="lstKreditorenkonten" ViewItem="lstKreditorenkonten" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstZugangsInfos" Index="5" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="lstZugangsInfos" ViewItem="lstZugangsInfos" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Items>
+        <PropertyEditor Id="AnlagenAdresse" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" Index="-1" View="Adresse_LookUp_DetailView" />
+        <PropertyEditor Id="Anlagenbetreuer" Index="-1" />
+        <PropertyEditor Id="Anlagencode" Index="-1" />
+        <PropertyEditor Id="AnlagenNummer" Index="-1" />
+        <PropertyEditor Id="Anlagenstatus" Index="-1" />
+        <PropertyEditor Id="Beschreibung" Index="-1" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Web.ASPxHtmlPropertyEditor" />
+        <PropertyEditor Id="Bezeichnung" Index="-1" />
+        <PropertyEditor Id="Einbaudatum" Index="-1" />
+        <PropertyEditor Id="FremdsystemId" Index="-1" />
+        <PropertyEditor Id="HaustechnikKomponente" Index="-1" />
+        <PropertyEditor Id="Liegenschaftsadresse" PropertyName="Liegenschaft.Liegenschaftsadresse" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" View="Adresse_LookUp_DetailView" Index="-1" IsNewNode="True" />
+        <PropertyEditor Id="lstANAttachments" Index="-1" />
+        <PropertyEditor Id="lstAnlagenBilds" Index="-1" />
+        <PropertyEditor Id="lstAnlagengeraete" Index="-1" />
+        <PropertyEditor Id="lstAnlagenParameter" Index="-1" />
+        <PropertyEditor Id="lstAnlagenService" Index="-1" />
+        <PropertyEditor Id="lstBauGruppe" Index="-1" />
+        <PropertyEditor Id="lstBuildings" Index="-1" />
+        <PropertyEditor Id="lstFloors" Index="-1" />
+        <PropertyEditor Id="lstKontakte" Index="-1" />
+        <PropertyEditor Id="lstMessungen" Index="-1" />
+        <PropertyEditor Id="lstRooms" Index="-1" />
+        <PropertyEditor Id="lstUnteranlagen" Index="-1" />
+        <PropertyEditor Id="lstZugangAnlage" Index="-1" />
+        <PropertyEditor Id="Mainimage" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" ImageEditorFixedHeight="336" Index="-1" />
+        <PropertyEditor Id="MainImageWeb" AllowEdit="False" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" ImageSizeMode="AutoSize" Index="-1" />
+        <PropertyEditor Id="Mandant" Index="-1" />
+        <PropertyEditor Id="Matchkey" Index="-1" />
+        <PropertyEditor Id="Notiz" Index="-1" />
+        <PropertyEditor Id="Oid" Index="-1" />
+        <PropertyEditor Id="Rechnungsadresse" Index="-1" />
+        <PropertyEditor Id="Seriennummer" Index="-1" />
+        <PropertyEditor Id="Typbezeichnung" Index="-1" />
+        <PropertyEditor Id="Wartungszone" Index="-1" />
+        <PropertyEditor Id="Zustand" Index="-1" />
+        <PropertyEditor Id="MainImageThumb" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" ImageEditorFixedHeight="336" Index="0" />
+        <PropertyEditor Id="AnlagenKategorie" Index="1" />
+        <PropertyEditor Id="AnlagenArt" Index="2" />
+        <PropertyEditor Id="Liegenschaft" Index="3" />
+        <PropertyEditor Id="Hausverwalter" Index="4" />
+        <PropertyEditor Id="Baujahr" Index="5" />
+        <PropertyEditor Id="Hersteller" Index="6" />
+        <PropertyEditor Id="Typ" Index="7" />
+        <PropertyEditor Id="Gebaeude" Index="8" />
+        <PropertyEditor Id="Ebene" Index="9" />
+        <PropertyEditor Id="Raum" Index="10" />
+        <PropertyEditor Id="ParentAnlage" Index="11" />
+        <PropertyEditor Id="Produktdatenblatt" PropertyName="Typ" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" View="fiherstellerProdukt_DetailView_Nested" Caption="Produktdatenblatt" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAnlage" Caption="Anlage">
+              <LayoutGroup Id="boAnlage_col1">
+                <LayoutGroup Id="grpMatchkey" Caption="" Index="0" IsNewNode="True">
+                  <LayoutItem Id="Matchkey" ViewItem="Matchkey" ShowCaption="" Index="3" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpImage" Caption="" Index="1" IsNewNode="True">
+                  <LayoutItem Id="MainImageWeb" ShowCaption="False" Index="0" ViewItem="MainImageWeb" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="Anlagenbetreuer" Removed="True" />
+                <LayoutItem Id="Anlagenstatus" Removed="True" />
+                <LayoutItem Id="Baujahr" Removed="True" />
+                <LayoutItem Id="Building" Removed="True" />
+                <LayoutItem Id="Ebene" Removed="True" />
+                <LayoutItem Id="FloorDesignation" Removed="True" />
+                <LayoutItem Id="FloorType" Removed="True" />
+                <LayoutItem Id="Gebaeude" Removed="True" />
+                <LayoutItem Id="Hausverwalter" Removed="True" />
+                <LayoutItem Id="Mandant" Removed="True" />
+                <LayoutItem Id="Notiz" Removed="True" />
+                <LayoutItem Id="Raum" Removed="True" />
+                <LayoutItem Id="Rechnungsadresse" Removed="True" />
+                <LayoutItem Id="RoomDesignation" Removed="True" />
+                <LayoutItem Id="RoomType" Removed="True" />
+                <LayoutItem Id="Seriennummer" Removed="True" />
+                <LayoutItem Id="Wartungszone" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boAnlage_col2">
+                <TabbedGroup Id="tabDetailInfos" Index="0" IsNewNode="True">
+                  <LayoutGroup Id="tabGrunddaten" Caption="Grunddaten" Index="0" Direction="Horizontal" IsNewNode="True">
+                    <LayoutGroup Id="col1" Caption="" Index="0" IsNewNode="True">
+                      <LayoutItem Id="AnlagenNummer" ViewItem="AnlagenNummer" ShowCaption="" Index="0" IsNewNode="True" />
+                      <LayoutItem Id="AnlagenArt" ViewItem="AnlagenArt" ShowCaption="" Index="1" IsNewNode="True" />
+                      <LayoutItem Id="Hersteller" ViewItem="Hersteller" ShowCaption="" Index="3" IsNewNode="True" />
+                      <LayoutItem Id="Baujahr" ViewItem="Baujahr" ShowCaption="" Index="11" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="col2" Caption="" Index="1" IsNewNode="True">
+                      <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" ShowCaption="" Index="0" IsNewNode="True" />
+                      <LayoutItem Id="AnlagenKategorie" ViewItem="AnlagenKategorie" ShowCaption="" Index="1" IsNewNode="True" />
+                      <LayoutItem Id="Typ" ViewItem="Typ" ShowCaption="" Index="2" IsNewNode="True" />
+                      <LayoutItem Id="Einbaudatum" ViewItem="Einbaudatum" ShowCaption="" Index="12" IsNewNode="True" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabAnlagenadresse" Caption="Anlagenadresse" IsNewNode="True">
+                    <LayoutItem Id="AnlagenAdresse" ViewItem="AnlagenAdresse" ShowCaption="" Index="8" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabLiegenschaft" Caption="Liegenschaft" IsNewNode="True">
+                    <LayoutItem Id="Liegenschaft" ViewItem="Liegenschaft" ShowCaption="" Index="4" IsNewNode="True" />
+                    <LayoutItem Id="Liegenschaftsadresse" ViewItem="Liegenschaftsadresse" IsNewNode="True" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutItem Id="AnlagenAdresse" Removed="True" />
+                <LayoutItem Id="AnlagenArt" Removed="True" />
+                <LayoutItem Id="Anlagencode" Removed="True" />
+                <LayoutItem Id="AnlagenKategorie" Removed="True" />
+                <LayoutItem Id="AnlagenNummer" Removed="True" />
+                <LayoutItem Id="Bezeichnung" Removed="True" />
+                <LayoutItem Id="Einbaudatum" Removed="True" />
+                <LayoutItem Id="FremdsystemId" Removed="True" />
+                <LayoutItem Id="HaustechnikKomponente" Removed="True" />
+                <LayoutItem Id="Hersteller" Removed="True" />
+                <LayoutItem Id="Liegenschaft" Removed="True" />
+                <LayoutItem Id="Matchkey" Removed="True" />
+                <LayoutItem Id="ParentAnlage" Removed="True" />
+                <LayoutItem Id="Typ" Removed="True" />
+                <LayoutItem Id="Typbezeichnung" Removed="True" />
+                <LayoutItem Id="Zustand" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstKontakte" Index="-1" Removed="True" />
+            <LayoutGroup Id="tabGebäude" Caption="Standort" Index="0" IsNewNode="True">
+              <LayoutGroup Id="grpBuilding" Caption="" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Building" ViewItem="Building" ShowCaption="" Index="0" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpFloor" Caption="" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="FloorType" ViewItem="FloorType" ShowCaption="" Index="0" IsNewNode="True" />
+                <LayoutItem Id="FloorDesignation" ViewItem="FloorDesignation" ShowCaption="" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpRoom" Caption="" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="RoomType" ViewItem="RoomType" ShowCaption="" Index="0" IsNewNode="True" />
+                <LayoutItem Id="RoomDesignation" ViewItem="RoomDesignation" ShowCaption="" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="lstAnlagenParameter" Index="1" Removed="True" />
+            <LayoutGroup Id="lstBauGruppe" Index="1" Removed="True" />
+            <LayoutGroup Id="tabBEschreibung" Caption="Beschreibung" Index="1" IsNewNode="True">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstAnlagenBilds" Index="2" Removed="True" />
+            <LayoutGroup Id="Produktdatenblatt" Caption="Produktdatenblatt" Index="2" IsNewNode="True">
+              <LayoutItem Id="Produktdatenblatt" ViewItem="Produktdatenblatt" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstAnlagenService" Index="3" />
+            <LayoutGroup Id="lstZugangAnlage" Index="3" Removed="True" />
+            <LayoutGroup Id="Mainimage" Index="3" Removed="True" />
+            <LayoutGroup Id="MainImageThumb" Index="4" Removed="True">
+              <LayoutItem Id="MainImageThumb" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstANAttachments" Index="5" Removed="True" />
+            <LayoutGroup Id="lstMessungen" Index="6" Removed="True" />
+            <LayoutGroup Id="lstAnlagengeraete" Index="8" Removed="True" />
+            <LayoutGroup Id="lstUnteranlagen" Index="9" Removed="True" />
+            <LayoutGroup Id="MainImageWeb" Removed="True" />
+          </TabbedGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boAnlage_ListView" DataAccessMode="Server" PagerPosition="TopAndBottom" IsAdaptive="True">
+      <Columns>
+        <ColumnInfo Id="AnlagenAdresse" Index="-1" />
+        <ColumnInfo Id="Hausbetreuer" PropertyName="Liegenschaft.Hausbetreuer" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Hausverwalter" Index="-1" Caption="Hausverwalter" />
+        <ColumnInfo Id="Thumbnail" PropertyName="MainImageThumb" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Anlagennummer" PropertyName="AnlagenNummer" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Matchkey" Index="1" Removed="True" />
+        <ColumnInfo Id="Anlagencode" PropertyName="Anlagencode" Index="2" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="AnlagenNummer" Index="2" Removed="True" />
+        <ColumnInfo Id="Anlagenstatus" Index="2" Removed="True" />
+        <ColumnInfo Id="Hersteller" Index="3" />
+        <ColumnInfo Id="Notiz" Index="3" Removed="True" />
+        <ColumnInfo Id="Seriennummer" Index="4" Removed="True" />
+        <ColumnInfo Id="Typ" Index="4" />
+        <ColumnInfo Id="Bezeichnung" PropertyName="Bezeichnung" Index="5" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="AnlagenArt" Index="6" />
+        <ColumnInfo Id="Liegenschaft" Index="7" />
+        <ColumnInfo Id="Anlagengruppe" PropertyName="HaustechnikKomponente" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Mandant" Index="8" Removed="True" />
+        <ColumnInfo Id="HvKuerzel" PropertyName="Hausverwalter.Kuerzel" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="Anlagenbetreuer" Index="10" Removed="True" />
+        <ColumnInfo Id="HbKuerzel" PropertyName="Liegenschaft.Hausbetreuer.Kuerzel" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="AnlagenKategorie" Index="11" />
+        <ColumnInfo Id="Rechnungsadresse" Index="11" Removed="True" />
+        <ColumnInfo Id="Baujahr" Index="12" />
+        <ColumnInfo Id="Einbaudatum" Index="13" Removed="True" />
+        <ColumnInfo Id="Gebaeude" Index="13" />
+        <ColumnInfo Id="Ebene" Index="14" />
+        <ColumnInfo Id="Typbezeichnung" Index="14" Removed="True" />
+        <ColumnInfo Id="Raum" Index="15" />
+        <ColumnInfo Id="ParentAnlage" Index="16" />
+        <ColumnInfo Id="Zustand" Index="17" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Index="22" Removed="True" />
+        <ColumnInfo Id="HaustechnikKomponente" Index="27" Removed="True" />
+        <ColumnInfo Id="Beschreibung" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="Wartungszone" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boAnlage_lstUnteranlagen_ListView">
+      <Columns>
+        <ColumnInfo Id="AnlagenAdresse" Index="-1" />
+        <ColumnInfo Id="AnlagenArt" Index="-1" />
+        <ColumnInfo Id="Anlagenbetreuer" Index="-1" />
+        <ColumnInfo Id="Anlagencode" Index="-1" />
+        <ColumnInfo Id="AnlagenKategorie" Index="-1" />
+        <ColumnInfo Id="Baujahr" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="-1" />
+        <ColumnInfo Id="Einbaudatum" Index="-1" />
+        <ColumnInfo Id="FremdsystemId" Index="-1" />
+        <ColumnInfo Id="HaustechnikKomponente" Index="-1" />
+        <ColumnInfo Id="Hausverwalter" Index="-1" />
+        <ColumnInfo Id="Hersteller" Index="-1" />
+        <ColumnInfo Id="Liegenschaft" Index="-1" />
+        <ColumnInfo Id="Matchkey" Index="-1" />
+        <ColumnInfo Id="Notiz" Index="-1" />
+        <ColumnInfo Id="ParentAnlage" Index="-1" />
+        <ColumnInfo Id="Rechnungsadresse" Index="-1" />
+        <ColumnInfo Id="Seriennummer" Index="-1" />
+        <ColumnInfo Id="Typ" Index="-1" />
+        <ColumnInfo Id="Typbezeichnung" Index="-1" />
+        <ColumnInfo Id="Wartungszone" Index="-1" />
+        <ColumnInfo Id="Zustand" Index="-1" />
+        <ColumnInfo Id="Vorschaubild" PropertyName="MainImageThumb" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="AnlagenNummer" Index="1" />
+        <ColumnInfo Id="Anlagenstatus" Index="2" />
+        <ColumnInfo Id="Gebaeude" Index="3" />
+        <ColumnInfo Id="Ebene" Index="4" />
+        <ColumnInfo Id="Raum" Index="5" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_Anlagen_ListView">
+      <Columns>
+        <ColumnInfo Id="Matchkey" PropertyName="Matchkey" Index="1" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="Anlagenstatus" Index="2" />
+        <ColumnInfo Id="AnlagenArt" Index="3" />
+        <ColumnInfo Id="AnlagenKategorie" Index="4" />
+        <ColumnInfo Id="Baujahr" Index="5" />
+        <ColumnInfo Id="Gebaeude" Index="6" />
+        <ColumnInfo Id="Ebene" Index="7" />
+        <ColumnInfo Id="Raum" Index="8" />
+        <ColumnInfo Id="Einbaudatum" Index="9" Removed="True" />
+        <ColumnInfo Id="Typbezeichnung" Index="10" Removed="True" />
+        <ColumnInfo Id="Typ" Index="11" />
+        <ColumnInfo Id="Hersteller" Index="12" />
+        <ColumnInfo Id="Zustand" Index="13" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Index="14" Removed="True" />
+        <ColumnInfo Id="AnlagenAdresse" Index="15" Removed="True" />
+        <ColumnInfo Id="Anlagencode" Index="16" Removed="True" />
+        <ColumnInfo Id="Bezeichnung" Index="17" Removed="True" />
+        <ColumnInfo Id="ParentAnlage" Index="18" GroupIndex="0" />
+        <ColumnInfo Id="HaustechnikKomponente" Index="19" />
+        <ColumnInfo Id="Anlagenbetreuer" Removed="True" />
+        <ColumnInfo Id="Beschreibung" Removed="True" />
+        <ColumnInfo Id="Hausverwalter" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+        <ColumnInfo Id="Notiz" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="Rechnungsadresse" Removed="True" />
+        <ColumnInfo Id="Seriennummer" Removed="True" />
+        <ColumnInfo Id="Wartungszone" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Items>
+        <PropertyEditor Id="Anlagen" View="Anlage_MainUndSubAnlage_ListView" />
+        <PropertyEditor Id="Beschreibung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Web.ASPxHtmlPropertyEditor" />
+        <PropertyEditor Id="HausbetreuerAdresse" PropertyName="Hausbetreuer.Adresse" Caption="Adresse Hausbetereuer " PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" View="Adresse_LookUp_DetailView" IsNewNode="True" />
+        <PropertyEditor Id="Hausverwalter" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" />
+        <PropertyEditor Id="HausverwalterAdresse" PropertyName="Hausverwalter.Adresse" Caption="Adresse Hausverwalter" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" View="Adresse_LookUp_DetailView" IsNewNode="True" />
+        <PropertyEditor Id="Liegenschaftsadresse" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" AllowEdit="False" ImmediatePostData="False" View="Adresse_LookUp_DetailView" />
+        <PropertyEditor Id="lstHauptanlagen" View="Anlage_MainUndSubAnlage_ListView" />
+        <PropertyEditor Id="MainImage" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" ImageEditorFixedHeight="336" ImageEditorMode="PictureEdit" />
+        <PropertyEditor Id="MainImageThumb" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" ImageEditorFixedHeight="336" />
+        <PropertyEditor Id="MainImageWeb" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" AllowEdit="False" ImageSizeMode="AutoSize" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft" Caption="Liegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col1" Direction="Horizontal">
+                <LayoutGroup Id="grpMainImage" Caption="" Index="1" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="MainImageWeb" ShowCaption="False" ViewItem="MainImageWeb" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="WartungsStatus" Index="1" Removed="True" />
+                <LayoutItem Id="TrinkwasserPruefung" Index="2" Removed="True" />
+                <LayoutItem Id="StatusHauptzugang" Index="3" Removed="True" />
+                <LayoutItem Id="Kuerzel" Index="4" Removed="True" />
+                <LayoutItem Id="HauptZuganng" Index="5" Removed="True" />
+                <LayoutItem Id="DebitorenKonto" Index="6" Removed="True" />
+                <LayoutItem Id="HausverwlaterSelekt" Index="7" Removed="True" />
+                <LayoutItem Id="Betreuungsstatus" Index="8" Removed="True" />
+                <LayoutItem Id="FremdsystemId" Index="9" Removed="True" />
+                <LayoutItem Id="Liegenschaftsnummer" Index="10" Removed="True" />
+                <LayoutItem Id="Notiz" Index="11" Removed="True" />
+                <LayoutItem Id="Warmwasserbereitung" Index="12" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <LayoutItem Id="Bezeichnung" Removed="True" />
+                <LayoutItem Id="Hausbetreuer" Removed="True" />
+                <LayoutItem Id="Hausverwalter" Removed="True" />
+                <LayoutItem Id="Heizungsbereitung" Removed="True" />
+                <LayoutItem Id="LiegenschaftOnline" Removed="True" />
+                <LayoutItem Id="Liegenschaftsadresse" Removed="True" />
+                <LayoutItem Id="Mandant" Removed="True" />
+                <LayoutItem Id="ObjektNummer" Removed="True" />
+                <LayoutItem Id="RisikoGruppe" Removed="True" />
+                <TabbedGroup Id="tabDetailInfos" IsNewNode="True">
+                  <LayoutGroup Id="tabGrunddaten" Caption="Grunddaten" Index="0" Direction="Horizontal" IsNewNode="True">
+                    <LayoutGroup Id="col1" Caption="" Direction="Vertical" IsNewNode="True">
+                      <LayoutItem Id="ObjektNummer" ViewItem="ObjektNummer" ShowCaption="" Index="0" IsNewNode="True" />
+                      <LayoutItem Id="Wartungszone" ViewItem="Wartungszone" ShowCaption="" Index="1" IsNewNode="True" />
+                      <LayoutItem Id="Wohneinheiten" ViewItem="Wohneinheiten" ShowCaption="" Index="2" IsNewNode="True" />
+                      <LayoutItem Id="WartungsStatus" ViewItem="WartungsStatus" ShowCaption="" Index="3" IsNewNode="True" />
+                      <LayoutItem Id="TrinkwasserPruefung" Index="4" ViewItem="TrinkwasserPruefung" ShowCaption="" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="col2" Caption="" IsNewNode="True">
+                      <LayoutItem Id="Liegenschaftsnummer" Index="0" ViewItem="Liegenschaftsnummer" ShowCaption="" IsNewNode="True" />
+                      <LayoutItem Id="Betreuungsstatus" Index="1" ViewItem="Betreuungsstatus" ShowCaption="" IsNewNode="True" />
+                      <LayoutItem Id="RisikoGruppe" ViewItem="RisikoGruppe" ShowCaption="" Index="2" IsNewNode="True" />
+                      <LayoutItem Id="Heizungsbereitung" ViewItem="Heizungsbereitung" ShowCaption="" Index="3" IsNewNode="True" />
+                      <LayoutItem Id="Warmwasserbereitung" Index="9" ViewItem="Warmwasserbereitung" ShowCaption="" IsNewNode="True" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabLiegenschaftsAdresse" Caption="Liegenschaftsadresse" Index="1" IsNewNode="True">
+                    <LayoutItem Id="Liegenschaftsadresse" ViewItem="Liegenschaftsadresse" ShowCaption="False" Index="8" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabHausverwaltung" Caption="Hausverwaltung" Index="2" ShowCaption="True" IsNewNode="True">
+                    <LayoutItem Id="Hausverwalter" ShowCaption="False" Index="9" ViewItem="HausverwalterAdresse" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabHausbetreuer" Caption="Hausbetreuer" Index="3" ShowCaption="True" IsNewNode="True">
+                    <LayoutItem Id="Hausbetreuer" ShowCaption="False" Index="2" ViewItem="HausbetreuerAdresse" IsNewNode="True" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutItem Id="Wartungszone" Removed="True" />
+                <LayoutItem Id="Wohneinheiten" Removed="True" />
+                <LayoutItem Id="Zustand" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstZugangLiegenschaft" Index="0" />
+            <LayoutGroup Id="lstGebaeude" Index="1" ShowCaption="True" IsNewNode="True" Removed="True">
+              <LayoutItem Id="lstGebaeude" ViewItem="lstGebaeude" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstHaustechnikKomponenten" Index="2" Caption="Anlagengruppen" Removed="True" />
+            <LayoutGroup Id="Anlagen" Index="3" Removed="True" />
+            <LayoutGroup Id="AnlagenUndSysteme" Caption="Anlagen und Systeme" Index="3" IsNewNode="True">
+              <LayoutItem Id="Anlagen" ViewItem="lstHauptanlagen" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstHauptanlagen" Index="3" Removed="True" />
+            <LayoutGroup Id="lstKwpWartungsVertraege" Caption="Wartungsverträge" Index="4" IsNewNode="True">
+              <LayoutItem Id="KwpVertrag" ViewItem="lstKwpVertrag" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstWartungsTermine" Caption="Wartungstermine" Index="6" IsNewNode="True">
+              <LayoutItem Id="KwpWartungsTermine" ViewItem="lstKwpWartungsTermine" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Beschreibung" Caption="Beschreibung" Index="7" IsNewNode="True">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="LiegenschaftsBilder" Removed="True" />
+            <LayoutGroup Id="lstAnsprechpartner" Removed="True" />
+            <LayoutGroup Id="lstKommunikation" Removed="True" />
+            <LayoutGroup Id="lstKwpAnlagen" Removed="True" />
+            <LayoutGroup Id="lstKwpVertrag" Removed="True" />
+            <LayoutGroup Id="lstKwpWartungsTermine" Removed="True" />
+            <LayoutGroup Id="lstLGAttachments" Removed="True" />
+            <LayoutGroup Id="lstLGCheckListes" Removed="True" />
+            <LayoutGroup Id="lstServiceBase" Removed="True" />
+            <LayoutGroup Id="MainImage" Removed="True" />
+            <LayoutGroup Id="MainImageThumb" Removed="True" />
+            <LayoutGroup Id="MainImageWeb" Removed="True" />
+          </TabbedGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boLiegenschaft_ListView" DataAccessMode="Client" AllowNew="False" AllowUnlink="False" AllowDelete="False" DetailRowMode="DetailView" PagerPosition="TopAndBottom" IsAdaptive="True">
+      <Columns>
+        <ColumnInfo Id="Betreuungsstatus" PropertyName="Betreuungsstatus" Index="-1" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="Heizungsbereitung" Index="-1" />
+        <ColumnInfo Id="RisikoGruppe" Index="-1" />
+        <ColumnInfo Id="Trinkwasserpruefung" PropertyName="TrinkwasserPruefung" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Warmwasserbereitung" Index="-1" />
+        <ColumnInfo Id="Wartungsstatus" PropertyName="WartungsStatus" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Wartungszone" Index="-1" />
+        <ColumnInfo Id="Thumbnail" PropertyName="MainImageThumb" Index="0" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" ImageEditorFixedWidth="64" IsNewNode="True" />
+        <ColumnInfo Id="ObjektNummer" Index="1" />
+        <ColumnInfo Id="Bezeichnung" Index="2" />
+        <ColumnInfo Id="WartungsStatus" Index="2" Removed="True" />
+        <ColumnInfo Id="Kuerzel" Index="3" Removed="True" />
+        <ColumnInfo Id="Wohneinheiten" Index="3" />
+        <ColumnInfo Id="DebitorenKonto" Index="4" Removed="True" />
+        <ColumnInfo Id="Hausverwalter" Index="4" />
+        <ColumnInfo Id="HausverwlaterSelekt" Index="5" Removed="True" />
+        <ColumnInfo Id="KuerzelHausverwalter" PropertyName="Hausverwalter.Kuerzel" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Hausbetreuer" Index="6" />
+        <ColumnInfo Id="FremdsystemId" Index="7" Removed="True" />
+        <ColumnInfo Id="KuerzelHausbetreuer" PropertyName="Hausbetreuer.Kuerzel" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="LiegenschaftOnline" Index="8" />
+        <ColumnInfo Id="Liegenschaftsnummer" Index="8" Removed="True" />
+        <ColumnInfo Id="Zustand" Index="8" Removed="True" />
+        <ColumnInfo Id="Notiz" Index="9" Removed="True" />
+        <ColumnInfo Id="Liegenschaftsadresse" Index="10" Removed="True" />
+        <ColumnInfo Id="Mandant" Index="12" Removed="True" />
+        <ColumnInfo Id="Beschreibung" Removed="True" />
+        <ColumnInfo Id="HauptZuganng" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="StatusHauptzugang" Removed="True" />
+        <ColumnInfo Id="TrinkwasserPruefung" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstGebaeude_ListView">
+      <Columns>
+        <ColumnInfo Id="Liegenschaft" Index="-1" />
+        <ColumnInfo Id="Mandant" Index="-1" />
+        <ColumnInfo Id="MainImageThumb" PropertyName="MainImageThumb" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Bezeichnung" Index="1" />
+        <ColumnInfo Id="Bauteilnummer" Index="2" />
+        <ColumnInfo Id="Adresse" Index="3" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstHauptanlagen_ListView">
+      <Columns>
+        <ColumnInfo Id="AnlagenAdresse" Index="-1" />
+        <ColumnInfo Id="AnlagenArt" Index="-1" />
+        <ColumnInfo Id="Anlagenbetreuer" Index="-1" />
+        <ColumnInfo Id="Anlagencode" Index="-1" />
+        <ColumnInfo Id="AnlagenKategorie" Index="-1" />
+        <ColumnInfo Id="Baujahr" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="-1" />
+        <ColumnInfo Id="Einbaudatum" Index="-1" />
+        <ColumnInfo Id="FremdsystemId" Index="-1" />
+        <ColumnInfo Id="HaustechnikKomponente" Index="-1" />
+        <ColumnInfo Id="Hausverwalter" Index="-1" />
+        <ColumnInfo Id="Hersteller" Index="-1" />
+        <ColumnInfo Id="Liegenschaft" Index="-1" />
+        <ColumnInfo Id="Mandant" Index="-1" />
+        <ColumnInfo Id="Matchkey" Index="-1" />
+        <ColumnInfo Id="Notiz" Index="-1" />
+        <ColumnInfo Id="ParentAnlage" Index="-1" />
+        <ColumnInfo Id="Rechnungsadresse" Index="-1" />
+        <ColumnInfo Id="Seriennummer" Index="-1" />
+        <ColumnInfo Id="Typ" Index="-1" />
+        <ColumnInfo Id="Typbezeichnung" Index="-1" />
+        <ColumnInfo Id="Wartungszone" Index="-1" />
+        <ColumnInfo Id="Zustand" Index="-1" />
+        <ColumnInfo Id="Vorschaubild" PropertyName="MainImageThumb" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="AnlagenNummer" Index="1" />
+        <ColumnInfo Id="Anlagenstatus" Index="2" />
+        <ColumnInfo Id="Gebaeude" Index="3" />
+        <ColumnInfo Id="Ebene" Index="4" />
+        <ColumnInfo Id="Raum" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstHaustechnikKomponenten_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" AllowEdit="False" AutoExpandAllGroups="False" MasterDetailMode="ListViewAndDetailView" AllowUnlink="False" DetailViewID="LGHaustechnikKomponente_Lookup_DetailView">
+      <Columns>
+        <ColumnInfo Id="BasisAnlage" Removed="True" />
+        <ColumnInfo Id="Beschreibung" Removed="True" />
+        <ColumnInfo Id="Bezeichnung" Removed="True" />
+        <ColumnInfo Id="Ebene" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Gebaeude" Removed="True" />
+        <ColumnInfo Id="Hausverwalter" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Removed="True" />
+        <ColumnInfo Id="LinkKeyFremdsystem" Removed="True" />
+        <ColumnInfo Id="Notiz" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="Raum" Removed="True" />
+        <ColumnInfo Id="Technikeinheit" Removed="True" />
+        <ColumnInfo Id="VertragsStatus" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstKwpAnlagen_ListView">
+      <Columns>
+        <ColumnInfo Id="AnlagenAdresse" Index="1" Removed="True" />
+        <ColumnInfo Id="Bezeichnung" Index="1" />
+        <ColumnInfo Id="WartungsVertrag" Index="2" />
+        <ColumnInfo Id="BrennstoffArt" Index="3" />
+        <ColumnInfo Id="Hausverwalter" Index="4" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Index="4" Removed="True" />
+        <ColumnInfo Id="HausBetreuer" Index="5" Removed="True" />
+        <ColumnInfo Id="KwpSelekt" Index="5" />
+        <ColumnInfo Id="AnlagenOrt" Index="6" />
+        <ColumnInfo Id="Monteur" Index="7" />
+        <ColumnInfo Id="Bemerkungen" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstKwpVertrag_ListView">
+      <Columns>
+        <ColumnInfo Id="Brennstoffart" PropertyName="WartungsAnlage.BrennstoffArt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Liegenschaft" Index="-1" />
+        <ColumnInfo Id="WartungsAnlage" Index="1" />
+        <ColumnInfo Id="Bezeichnung" Index="2" />
+        <ColumnInfo Id="VertragsStatus" Index="3" />
+        <ColumnInfo Id="VertragsBeginn" Index="4" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="KuendigungsDatum" Removed="True" />
+        <ColumnInfo Id="KuendigungsGrund" Removed="True" />
+        <ColumnInfo Id="LinkKeyLiegenschaft" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+        <ColumnInfo Id="VertragsDatum" Removed="True" />
+        <ColumnInfo Id="VertragsEnde" Removed="True" />
+        <ColumnInfo Id="VertragZurueck" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstKwpWartungsTermine_ListView">
+      <Columns>
+        <ColumnInfo Id="Brennstoffart" PropertyName="KwpAnlage.BrennstoffArt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="HauptMonteuer" Index="-1" />
+        <ColumnInfo Id="Laufendenummer" Index="-1" />
+        <ColumnInfo Id="Liegenschaft" Index="-1" />
+        <ColumnInfo Id="KwpAnlage" Index="0" />
+        <ColumnInfo Id="WartungsVertrag" Index="1" />
+        <ColumnInfo Id="InfoTextAnlage" Index="2" />
+        <ColumnInfo Id="PlanStunden" Index="3" />
+        <ColumnInfo Id="WartungsJahr" Index="4" />
+        <ColumnInfo Id="MonatKw" Index="5" />
+        <ColumnInfo Id="TerminDatum" Index="6" />
+        <ColumnInfo Id="TerminUhrzeit" Index="7" />
+        <ColumnInfo Id="Intervall" Index="8" Removed="True" />
+        <ColumnInfo Id="Monteur" Index="8" />
+        <ColumnInfo Id="IntervallArt" Index="9" Removed="True" />
+        <ColumnInfo Id="Turnus" Index="10" Removed="True" />
+        <ColumnInfo Id="AnlagenNummer" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstZugangLiegenschaft_ListView">
+      <Columns>
+        <ColumnInfo Id="Matchkey" Index="-1" />
+        <ColumnInfo Id="HauptZugang" Index="1" />
+        <ColumnInfo Id="ZugangKategorie" Index="2" />
+        <ColumnInfo Id="Bemerkung" Removed="True" />
+        <ColumnInfo Id="Hausverwalter" Removed="True" />
+        <ColumnInfo Id="KeyCodeIntern" Removed="True" />
+        <ColumnInfo Id="KeyList" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Removed="True" />
+        <ColumnInfo Id="Notiz" PropertyName="Notiz" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="Schluesselliste" PropertyName="KeyList" IsNewNode="True" />
+        <ColumnInfo Id="SchluesselNummer" PropertyName="KeyCodeIntern" IsNewNode="True" />
+        <ColumnInfo Id="Status" PropertyName="Status" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="ZugangAdresse" PropertyName="ZugangAdresse" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="ZugangBezeichnung" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fiBauteil_DetailView">
+      <Items>
+        <PropertyEditor Id="Bild" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" />
+      </Items>
+    </DetailView>
+    <DetailView Id="fiHerstellerProdukt_DetailView">
+      <Items>
+        <PropertyEditor Id="MainImageThumb" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" />
+        <PropertyEditor Id="MainImageWeb" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" />
+        <PropertyEditor Id="Produktbild" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" />
+      </Items>
+    </DetailView>
+    <DetailView Id="fiherstellerProdukt_DetailView_Nested" ClassName="FacilityInfo.Hersteller.BusinessObjects.fiHerstellerProdukt" AllowDelete="False" AllowEdit="True" AllowNew="False" CustomizationEnabled="False" DefaultFocusedItem="Produktgruppe" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Bauteile" PropertyName="lstBauteile" IsNewNode="True" />
+        <PropertyEditor Id="Beschreibung" PropertyName="Beschreibung" IsNewNode="True" />
+        <PropertyEditor Id="Bezeichnung" PropertyName="Bezeichnung" IsNewNode="True" />
+        <PropertyEditor Id="Hersteller" PropertyName="Hersteller" IsNewNode="True" />
+        <PropertyEditor Id="MainImageWeb" PropertyName="MainImageWeb" PropertyEditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxImagePropertyEditor" Caption="Produktbild" IsNewNode="True" />
+        <PropertyEditor Id="Modellbezeichnung" PropertyName="Modellbezeichnung" IsNewNode="True" />
+        <PropertyEditor Id="Produktdokumente" PropertyName="lstProduktDokumente" IsNewNode="True" />
+        <PropertyEditor Id="Produktgruppe" PropertyName="Produktgruppe" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
+          <TabbedGroup Id="tabDetails" IsNewNode="True">
+            <LayoutGroup Id="tabProdukt" Caption="Produkt" Index="0" IsNewNode="True">
+              <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutGroup Id="fiHerstellerProdukt" Index="0" Direction="Horizontal" ShowCaption="True" Caption="Produktblatt" IsNewNode="True">
+                  <LayoutGroup Id="fiHerstellerProdukt_col1" Index="0" ShowCaption="False" IsNewNode="True">
+                    <LayoutItem Id="Produktbild" Index="1" ViewItem="MainImageWeb" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="fiHerstellerProdukt_col2" Index="1" ShowCaption="False" IsNewNode="True">
+                    <LayoutItem Id="viewItemBezeichnung" ViewItem="Bezeichnung" Index="0" IsNewNode="True" />
+                    <LayoutItem Id="Produktgruppe" ViewItem="Produktgruppe" Index="1" IsNewNode="True" />
+                    <LayoutItem Id="Modellbezeichnung" ViewItem="Modellbezeichnung" IsNewNode="True" />
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="tabDokumente" Caption="Dokumente" Index="1" IsNewNode="True">
+              <LayoutItem Id="lstDokumente" Index="0" ViewItem="Produktdokumente" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" Index="2" IsNewNode="True">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstBauteile" Caption="Bauteile" IsNewNode="True">
+              <LayoutItem Id="lstBauteile" ViewItem="Bauteile" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiZugangKategorie_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiZugangKategorie">
+              <LayoutItem Id="Bezeichnung" Index="0" Removed="True" />
+              <LayoutGroup Id="grpKategorie" Caption="" Index="0" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Bezeichnung" Index="0" ViewItem="Bezeichnung" ShowCaption="" IsNewNode="True" />
+                <LayoutItem Id="ParentItem" Index="2" ViewItem="ParentItem" ShowCaption="" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpSort" Caption="" Index="1" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="DefaultStatus" Index="2" ViewItem="DefaultStatus" ShowCaption="" IsNewNode="True" />
+                <LayoutItem Id="Sortindex" ViewItem="Sortindex" ShowCaption="" Index="3" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="DefaultStatus" Index="2" Removed="True" />
+              <LayoutItem Id="ParentItem" Index="2" Removed="True" />
+              <LayoutItem Id="Sortindex" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiZugangLiegenschaft_DetailView">
+      <Items>
+        <PropertyEditor Id="Bemerkung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Web.ASPxHtmlPropertyEditor" />
+        <PropertyEditor Id="HausbetreuerAdresse" PropertyName="Liegenschaft.Hausbetreuer.Adresse" Caption="Adresse Hausbetreuer" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" View="Adresse_LookUp_DetailView" IsNewNode="True" />
+        <PropertyEditor Id="Hausverwalter" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" PropertyName="Hausverwalter.Adresse" Caption="Adresse Hausbetreuer" View="Adresse_LookUp_DetailView" />
+        <PropertyEditor Id="ZugangKontakt" PropertyName="Kontakt" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" View="Kontakt_LookUp_DetailView" AllowEdit="False" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiZugangLiegenschaft" Caption="Zugang (Liegenschaft)">
+              <LayoutGroup Id="fiZugangLiegenschaft_col1" Index="0">
+                <LayoutItem Id="Liegenschaft" Index="1" />
+                <LayoutItem Id="Hausverwalter" Index="2" Removed="True" />
+                <LayoutItem Id="KeyCodeIntern" ViewItem="KeyCodeIntern" ShowCaption="" Index="2" IsNewNode="True" />
+                <LayoutGroup Id="grpKategorie" Caption="" Direction="Horizontal" Index="3" IsNewNode="True">
+                  <LayoutItem Id="ZugangKategorie" ViewItem="ZugangKategorie" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="SubKategorie" ViewItem="SubKategorie" ShowCaption="" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpValue" Caption="" Index="4" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="Wert" ViewItem="Wert" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="Ort" ViewItem="Ort" ShowCaption="" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpStatus" Caption="" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="Status" ViewItem="Status" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="HauptZugang" ViewItem="HauptZugang" ShowCaption="" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="fiZugangLiegenschaft_col2" Index="2">
+                <LayoutItem Id="HauptZugang" Removed="True" />
+                <LayoutItem Id="Kontakt" Removed="True" />
+                <TabbedGroup Id="tabAdressen" IsNewNode="True">
+                  <LayoutGroup Id="tabHausverwalter" Caption="Hausverwalter" Index="0" IsNewNode="True">
+                    <LayoutItem Id="Hausverwalter" ViewItem="Hausverwalter" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabHausbetreuer" Caption="Hausbetreuer" IsNewNode="True">
+                    <LayoutItem Id="HausbetreuerAdresse" ViewItem="HausbetreuerAdresse" IsNewNode="True" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutItem Id="ZugangAdresse" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="fiZugang" Removed="True">
+              <LayoutGroup Id="fiZugang_col1">
+                <LayoutItem Id="KeyCodeIntern" Removed="True" />
+                <LayoutItem Id="Ort" Removed="True" />
+                <LayoutItem Id="Status" Removed="True" />
+                <LayoutItem Id="ZugangKategorie" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="fiZugang_col2">
+                <LayoutItem Id="Notiz" ViewItem="Notiz" ShowCaption="" Index="0" IsNewNode="True" />
+                <LayoutItem Id="SubKategorie" Removed="True" />
+                <LayoutItem Id="Wert" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Bemerkung" Removed="True" />
+            <LayoutItem Id="KeyList" Removed="True" />
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="tabInfoData" IsNewNode="True">
+            <LayoutGroup Id="tabKontakt" Caption="Kontakt" Direction="Horizontal" Index="0" IsNewNode="True">
+              <LayoutGroup Id="col1" Caption="" IsNewNode="True">
+                <LayoutGroup Id="grpAdresse" Caption="" Index="0" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="ZugangAdresse" ViewItem="ZugangAdresse" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="Kontakt" ViewItem="Kontakt" ShowCaption="" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="ZugangKontakt" ViewItem="ZugangKontakt" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="col2" Caption="" IsNewNode="True">
+                <LayoutItem Id="Notitz" ViewItem="Notiz" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="KeyList" Caption="Schlüsselbund" Index="1" IsNewNode="True">
+              <LayoutItem Id="KeyList" ViewItem="KeyList" ShowCaption="" Index="1" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Bemerkung" Caption="Bemerkung" IsNewNode="True">
+              <LayoutItem Id="Bemerkung" ViewItem="Bemerkung" ShowCaption="" Index="2" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fiZugangLiegenschaft_ListView">
+      <Columns>
+        <ColumnInfo Id="Hausbetreuer" PropertyName="Liegenschaft.Hausbetreuer" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Hausverwalter" Index="-1" Caption="Hausverwalter" />
+        <ColumnInfo Id="KeyCodeIntern" Index="-1" />
+        <ColumnInfo Id="KeyList" Index="-1" />
+        <ColumnInfo Id="Kontakt" Index="-1" />
+        <ColumnInfo Id="Matchkey" Index="-1" />
+        <ColumnInfo Id="Status" Index="0" />
+        <ColumnInfo Id="HauptZugang" Index="1" />
+        <ColumnInfo Id="Liegenschaft" Index="2" />
+        <ColumnInfo Id="HvKuerzel" PropertyName="Liegenschaft.Hausverwalter.Kuerzel" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="HbKuerzel" PropertyName="Liegenschaft.Hausbetreuer.Kuerzel" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="ZugangKategorie" Index="5" />
+        <ColumnInfo Id="SubKategorie" Index="6" />
+        <ColumnInfo Id="Bemerkung" Index="8" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="ZugangAdresse" Removed="True" />
+        <ColumnInfo Id="ZugangBezeichnung" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Kontakt_LookUp_DetailView" ClassName="FacilityInfo.Adresse.BusinessObjects.boKontakt" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Abteilung" PropertyName="Abteilung" IsNewNode="True" />
+        <PropertyEditor Id="Anrede" PropertyName="Anrede" IsNewNode="True" />
+        <PropertyEditor Id="Fax" PropertyName="Fax" IsNewNode="True" />
+        <PropertyEditor Id="Geburtsdatum" PropertyName="Geburtsdatum" IsNewNode="True" />
+        <PropertyEditor Id="Internet" PropertyName="Internet" IsNewNode="True" />
+        <PropertyEditor Id="lstKontaktKommunikation" PropertyName="lstKontaktKommunikation" View="boKontakt_lstKontaktKommunikation_ListView" IsNewNode="True" />
+        <PropertyEditor Id="Mail" PropertyName="Mail" IsNewNode="True" />
+        <PropertyEditor Id="Mandant" PropertyName="Mandant" IsNewNode="True" />
+        <PropertyEditor Id="Matchkey" PropertyName="Matchkey" IsNewNode="True" />
+        <PropertyEditor Id="Mobil" PropertyName="Mobil" IsNewNode="True" />
+        <PropertyEditor Id="Nachname" PropertyName="Nachname" IsNewNode="True" />
+        <PropertyEditor Id="Notiz" PropertyName="Notiz" IsNewNode="True" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
+        <PropertyEditor Id="Position" PropertyName="Position" IsNewNode="True" />
+        <PropertyEditor Id="Telefon1" PropertyName="Telefon1" IsNewNode="True" />
+        <PropertyEditor Id="Telefon2" PropertyName="Telefon2" IsNewNode="True" />
+        <PropertyEditor Id="Titel" PropertyName="Titel" IsNewNode="True" />
+        <PropertyEditor Id="Vorname" PropertyName="Vorname" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
+            <LayoutGroup Id="boKontakt" Index="1" Direction="Vertical" ShowCaption="True" Caption="Kontakt" IsNewNode="True">
+              <LayoutGroup Id="grpAnrede" Caption="" Direction="Horizontal" Index="0" IsNewNode="True">
+                <LayoutItem Id="Titel" ViewItem="Titel" Index="0" IsNewNode="True" />
+                <LayoutItem Id="Anrede" ViewItem="Anrede" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpName" Caption="" Direction="Horizontal" Index="1" IsNewNode="True">
+                <LayoutItem Id="Vorname" ViewItem="Vorname" Index="4" IsNewNode="True" />
+                <LayoutItem Id="Nachname" ViewItem="Nachname" Index="5" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpTelefon" Caption="" Index="2" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Telefon1" ViewItem="Telefon1" Index="2" IsNewNode="True" />
+                <LayoutItem Id="Mobil" ViewItem="Mobil" Index="4" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpMail" Caption="" Index="3" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="Mail" ViewItem="Mail" Index="5" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="grpAbteilung" Caption="" Direction="Horizontal" Index="4" IsNewNode="True">
+                <LayoutItem Id="Abteilung" ViewItem="Abteilung" Index="0" IsNewNode="True" />
+                <LayoutItem Id="Position" ViewItem="Position" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="KwpWartTermin_ListView">
+      <Columns>
+        <ColumnInfo Id="HauptMonteuer" Index="-1" Removed="True" />
+        <ColumnInfo Id="Intervall" Index="-1" />
+        <ColumnInfo Id="IntervallArt" Index="-1" />
+        <ColumnInfo Id="Laufendenummer" Index="-1" />
+        <ColumnInfo Id="Turnus" Index="-1" />
+        <ColumnInfo Id="KwpAnlage" Index="0" />
+        <ColumnInfo Id="BrennstoffArt" PropertyName="KwpAnlage.BrennstoffArt" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="WartungsVertrag" Index="2" />
+        <ColumnInfo Id="InfoTextAnlage" Index="3" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Index="3" />
+        <ColumnInfo Id="Hausverwalter" PropertyName="Liegenschaft.Hausverwalter" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Mandant" Index="4" Removed="True" />
+        <ColumnInfo Id="HvKuerzel" PropertyName="Liegenschaft.Hausverwalter.Kuerzel" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="WartungsJahr" Index="6" />
+        <ColumnInfo Id="MonatKw" Index="7" />
+        <ColumnInfo Id="TerminDatum" Index="12" />
+        <ColumnInfo Id="TerminUhrzeit" Index="13" />
+        <ColumnInfo Id="Monteur" Index="14" Removed="True" />
+        <ColumnInfo Id="AnlagenNummer" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Hausbetreuer" PropertyName="Liegenschaft.Hausbetreuer" IsNewNode="True" />
+        <ColumnInfo Id="HbKuerzel" PropertyName="Liegenschaft.Hausbetreuer.Kuerzel" IsNewNode="True" />
+        <ColumnInfo Id="InfoText" Removed="True" />
+        <ColumnInfo Id="PlanStunden" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="KwpWartungsAnlage_ListView">
+      <Columns>
+        <ColumnInfo Id="Hausbetreuer" PropertyName="Liegenschaft.Hausbetreuer" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="HbKuerzel" PropertyName="HausBetreuer.Kuerzel" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="HvKuerzel" PropertyName="Liegenschaft.Hausverwalter.Kuerzel" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="BrennstoffArt" Index="1" />
+        <ColumnInfo Id="KwpSelekt" Index="2" />
+        <ColumnInfo Id="Liegenschaft" Index="3" />
+        <ColumnInfo Id="Hausverwalter" PropertyName="Liegenschaft.Hausverwalter" Index="4" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="WartungsVertrag" Index="5" />
+        <ColumnInfo Id="AnlagenAdresse" Removed="True" />
+        <ColumnInfo Id="Bemerkungen" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="HausBetreuer" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+        <ColumnInfo Id="Monteur" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="KwpWartungsAuftrag_ListView">
+      <Columns>
+        <ColumnInfo Id="HauptMonteuer" Index="-1" />
+        <ColumnInfo Id="HvKuerzel" PropertyName="KwpAnlage.Liegenschaft.Hausverwalter.Kuerzel" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="KwpAnlagenNummer" Index="-1" />
+        <ColumnInfo Id="AuftragsnummerKwp" Index="0" />
+        <ColumnInfo Id="Betreff" Index="1" />
+        <ColumnInfo Id="KwpAnlage" Index="2" />
+        <ColumnInfo Id="Anlagenart" PropertyName="KwpAnlage.BrennstoffArt" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Liegenschaft" PropertyName="KwpAnlage.Liegenschaft" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Hausverwalter" PropertyName="KwpAnlage.Liegenschaft.Hausverwalter" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="TerminDatum" Index="6" />
+        <ColumnInfo Id="TerminZeit" Index="7" />
+        <ColumnInfo Id="Planstunden" Index="8" />
+        <ColumnInfo Id="Monteuer" Index="9" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="KwpWartungsVertrag_DetailView">
+      <Items>
+        <PropertyEditor Id="lstAttachments" AllowEdit="False" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartungsVertrag">
+              <LayoutGroup Id="KwpWartungsVertrag_col1">
+                <LayoutGroup Id="grpBezeichnung" Caption="" Index="0" IsNewNode="True">
+                  <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" ShowCaption="" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpAnlage" Caption="" Direction="Horizontal" Index="1" IsNewNode="True">
+                  <LayoutItem Id="VertragsNummer" ViewItem="VertragsNummer" ShowCaption="" Index="3" IsNewNode="True" />
+                  <LayoutItem Id="WartungsAnlage" ViewItem="WartungsAnlage" ShowCaption="" Index="6" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpStatus" Caption="" Index="2" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="VertragZurueck" Index="0" ViewItem="VertragZurueck" ShowCaption="" IsNewNode="True" />
+                  <LayoutItem Id="VertragsStatus" Index="1" ViewItem="VertragsStatus" ShowCaption="" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="VertragsStatus" Index="2" Removed="True" />
+                <LayoutItem Id="contractAttached" Index="3" Removed="True" />
+                <LayoutGroup Id="grpLiegenschaft" Caption="" Index="3" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="Liegenschaft" ViewItem="Liegenschaft" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="contractAttached" Index="1" ViewItem="contractAttached" ShowCaption="" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="KuendigungsDatum" Index="4" Removed="True" />
+                <LayoutItem Id="KuendigungsGrund" Index="5" Removed="True" />
+                <LayoutItem Id="VertragsEnde" Index="6" Removed="True" />
+                <LayoutItem Id="VertragZurueck" Index="6" Removed="True" />
+                <LayoutItem Id="Mandant" Index="7" Removed="True" />
+                <LayoutItem Id="VertragsBeginn" Index="7" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="KwpWartungsVertrag_col2">
+                <LayoutItem Id="Bezeichnung" Removed="True" />
+                <LayoutItem Id="FremdsystemId" Removed="True" />
+                <LayoutItem Id="Liegenschaft" Removed="True" />
+                <LayoutItem Id="LinkKeyLiegenschaft" Removed="True" />
+                <TabbedGroup Id="tabDetails" IsNewNode="True">
+                  <LayoutGroup Id="Laufzeit" Caption="Laufzeit" Index="0" IsNewNode="True">
+                    <LayoutItem Id="VertragsDatum" ViewItem="VertragsDatum" ShowCaption="" Index="0" IsNewNode="True" />
+                    <LayoutItem Id="VertragsBeginn" Index="1" ViewItem="VertragsBeginn" ShowCaption="" IsNewNode="True" />
+                    <LayoutItem Id="VertragsEnde" Index="2" ViewItem="VertragsEnde" ShowCaption="" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="Kuendigung" Caption="Kündigung" IsNewNode="True">
+                    <LayoutItem Id="KuendigungsDatum" Index="4" ViewItem="KuendigungsDatum" ShowCaption="" IsNewNode="True" />
+                    <LayoutItem Id="KuendigungsGrund" Index="5" ViewItem="KuendigungsGrund" ShowCaption="" IsNewNode="True" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutItem Id="VertragsDatum" Removed="True" />
+                <LayoutItem Id="VertragsNummer" Removed="True" />
+                <LayoutItem Id="WartungsAnlage" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstAttachments_Group" Removed="True">
+            <LayoutItem Id="lstAttachments" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Vertragstext" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="tabInfos" IsNewNode="True">
+            <LayoutGroup Id="lstAttachments" Caption="Dokumente" IsNewNode="True">
+              <LayoutItem Id="lstAttachments" ViewItem="lstAttachments" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="KwpWartungsVertrag_ListView">
+      <Columns>
+        <ColumnInfo Id="VertragsBeginn" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="1" />
+        <ColumnInfo Id="WartungsAnlage" Index="2" />
+        <ColumnInfo Id="Brennstoffart" PropertyName="WartungsAnlage.BrennstoffArt" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Liegenschaft" Index="4" />
+        <ColumnInfo Id="KuendigungsDatum" Index="5" Removed="True" />
+        <ColumnInfo Id="LgHausverwalter" PropertyName="Liegenschaft.Hausverwalter" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="HvKuerzel" PropertyName="Liegenschaft.Hausverwalter.Kuerzel" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="KuendigungsGrund" Index="6" Removed="True" />
+        <ColumnInfo Id="VertragsStatus" Index="7" />
+        <ColumnInfo Id="Mandant" Index="8" Removed="True" />
+        <ColumnInfo Id="VertragZurueck" Index="8" />
+        <ColumnInfo Id="VertragsEnde" Index="9" Removed="True" />
+        <ColumnInfo Id="VertragsDatum" Index="10" />
+        <ColumnInfo Id="LinkKeyLiegenschaft" Index="12" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Hausbetreuer" PropertyName="Liegenschaft.Hausbetreuer" IsNewNode="True" />
+        <ColumnInfo Id="HbKuerzel" PropertyName="Liegenschaft.Hausbetreuer.Kuerzel" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="LGHaustechnikKomponente_Lookup_DetailView" ClassName="FacilityInfo.Anlagen.BusinessObjects.LgHaustechnikKomponente" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="lstAnlagen" PropertyName="lstAnlagen" View="LgHaustechnikKomponente_lstAnlagen_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstHauptAnlagen" PropertyName="lstHauptAnlagen" View="LgHaustechnikKomponente_lstHauptAnlagen_ListView" IsNewNode="True" />
+        <PropertyEditor Id="lstServices" PropertyName="lstServices" View="LgHaustechnikKomponente_lstServices_ListView" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
+          <TabbedGroup Id="Tabs" Index="2" IsNewNode="True">
+            <LayoutGroup Id="lstAnlagen" Index="0" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="lstAnlagen" ViewItem="lstAnlagen" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstHauptAnlagen" Index="1" ShowCaption="True" Caption="Hauptanlagen" IsNewNode="True">
+              <LayoutItem Id="lstHauptAnlagen" ViewItem="lstHauptAnlagen" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstServices" Index="2" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="lstServices" ViewItem="lstServices" ShowCaption="False" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="LgHaustechnikKomponente_lstAnlagen_ListView">
+      <Columns>
+        <ColumnInfo Id="AnlagenAdresse" Index="-1" />
+        <ColumnInfo Id="AnlagenArt" Index="-1" />
+        <ColumnInfo Id="Anlagenbetreuer" Index="-1" />
+        <ColumnInfo Id="Anlagencode" Index="-1" />
+        <ColumnInfo Id="AnlagenKategorie" Index="-1" />
+        <ColumnInfo Id="Baujahr" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="-1" />
+        <ColumnInfo Id="Einbaudatum" Index="-1" />
+        <ColumnInfo Id="FremdsystemId" Index="-1" />
+        <ColumnInfo Id="HaustechnikKomponente" Index="-1" />
+        <ColumnInfo Id="Hausverwalter" Index="-1" />
+        <ColumnInfo Id="Hersteller" Index="-1" />
+        <ColumnInfo Id="Liegenschaft" Index="-1" />
+        <ColumnInfo Id="Mandant" Index="-1" />
+        <ColumnInfo Id="Matchkey" Index="-1" />
+        <ColumnInfo Id="Notiz" Index="-1" />
+        <ColumnInfo Id="ParentAnlage" Index="-1" />
+        <ColumnInfo Id="Rechnungsadresse" Index="-1" />
+        <ColumnInfo Id="Seriennummer" Index="-1" />
+        <ColumnInfo Id="Typ" Index="-1" />
+        <ColumnInfo Id="Typbezeichnung" Index="-1" />
+        <ColumnInfo Id="Wartungszone" Index="-1" />
+        <ColumnInfo Id="Zustand" Index="-1" />
+        <ColumnInfo Id="MainImageThumb" PropertyName="MainImageThumb" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="AnlagenNummer" Index="1" />
+        <ColumnInfo Id="Anlagenstatus" Index="2" />
+        <ColumnInfo Id="Gebaeude" Index="3" />
+        <ColumnInfo Id="Ebene" Index="4" />
+        <ColumnInfo Id="Raum" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="LgHaustechnikKomponente_lstHauptAnlagen_ListView">
+      <Columns>
+        <ColumnInfo Id="AnlagenAdresse" Index="-1" />
+        <ColumnInfo Id="AnlagenArt" Index="-1" />
+        <ColumnInfo Id="Anlagenbetreuer" Index="-1" />
+        <ColumnInfo Id="Anlagencode" Index="-1" />
+        <ColumnInfo Id="AnlagenKategorie" Index="-1" />
+        <ColumnInfo Id="Baujahr" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="-1" />
+        <ColumnInfo Id="Einbaudatum" Index="-1" />
+        <ColumnInfo Id="FremdsystemId" Index="-1" />
+        <ColumnInfo Id="HaustechnikKomponente" Index="-1" />
+        <ColumnInfo Id="Hausverwalter" Index="-1" />
+        <ColumnInfo Id="Hersteller" Index="-1" />
+        <ColumnInfo Id="Liegenschaft" Index="-1" />
+        <ColumnInfo Id="Mandant" Index="-1" />
+        <ColumnInfo Id="Matchkey" Index="-1" />
+        <ColumnInfo Id="Notiz" Index="-1" />
+        <ColumnInfo Id="ParentAnlage" Index="-1" />
+        <ColumnInfo Id="Rechnungsadresse" Index="-1" />
+        <ColumnInfo Id="Seriennummer" Index="-1" />
+        <ColumnInfo Id="Typ" Index="-1" />
+        <ColumnInfo Id="Typbezeichnung" Index="-1" />
+        <ColumnInfo Id="Wartungszone" Index="-1" />
+        <ColumnInfo Id="Zustand" Index="-1" />
+        <ColumnInfo Id="MainImageThumb" PropertyName="MainImageThumb" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="AnlagenNummer" Index="1" />
+        <ColumnInfo Id="Anlagenstatus" Index="2" />
+        <ColumnInfo Id="Gebaeude" Index="3" />
+        <ColumnInfo Id="Ebene" Index="4" />
+        <ColumnInfo Id="Raum" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="ZugangLiegenschaft_Mobile_ListView" ClassName="FacilityInfo.Management.BusinessObjects.fiZugangLiegenschaft" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Matchkey" PropertyName="Matchkey" Index="0" Width="400" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+        <ColumnInfo Id="Liegenschaft" PropertyName="Liegenschaft" Index="2" Width="70" IsNewNode="True" />
+        <ColumnInfo Id="HauptZugang" PropertyName="HauptZugang" Index="3" Width="50" IsNewNode="True" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

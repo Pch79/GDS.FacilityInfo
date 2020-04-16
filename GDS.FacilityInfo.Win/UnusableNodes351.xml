@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="serviceAnlagenService_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Anlage" PropertyName="Anlage" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="serviceServiceBase">
+              <LayoutGroup Id="serviceServiceBase_col1">
+                <LayoutGroup Id="grpAnlage" Caption="" Direction="Horizontal" Index="0">
+                  <LayoutItem Id="Liegenschaft" Index="3" ViewItem="Liegenschaft" ShowCaption="" />
+                  <LayoutItem Id="Anlage" ViewItem="Anlage" />
+                </LayoutGroup>
+                <LayoutItem Id="Betreff" ViewItem="Betreff" ShowCaption="" Index="1" />
+                <LayoutGroup Id="grpArt" Caption="" Direction="Horizontal" Index="2">
+                  <LayoutItem Id="ServiceArt" ViewItem="ServiceArt" ShowCaption="" Index="0" />
+                  <LayoutItem Id="Prioritaet" ViewItem="Prioritaet" ShowCaption="" Index="5" />
+                </LayoutGroup>
+                <LayoutItem Id="Liegenschaft" Index="3" Removed="True" />
+                <LayoutItem Id="DatumFaellig" Index="4" Removed="True" />
+                <LayoutGroup Id="grpVertrag" Caption="" Direction="Horizontal">
+                  <LayoutItem Id="ServicePaket" ViewItem="ServicePaket" ShowCaption="" Index="1" />
+                  <LayoutItem Id="ServiceTyp" ViewItem="ServiceTyp" ShowCaption="" Index="5" />
+                </LayoutGroup>
+                <LayoutItem Id="Prioritaet" Removed="True" />
+                <LayoutItem Id="ServiceArt" Removed="True" />
+                <LayoutItem Id="ServiceTyp" Removed="True" />
+                <LayoutItem Id="Turnus" Removed="True" />
+                <LayoutItem Id="TurnusValue" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="serviceServiceBase_col2">
+                <LayoutItem Id="Betreff" Removed="True" />
+                <LayoutItem Id="DatumGeplant" Removed="True" />
+                <LayoutItem Id="DatumReal" Removed="True" />
+                <LayoutItem Id="MonteurDurchfuehrung" Removed="True" />
+                <LayoutItem Id="MonteurGeplant" Removed="True" />
+                <LayoutItem Id="ServicePaket" Removed="True" />
+                <LayoutItem Id="Status" Removed="True" />
+                <TabbedGroup Id="tabDetailInfo">
+                  <LayoutGroup Id="tabZeitplanung" Caption="Zeitplanung" Index="0">
+                    <LayoutGroup Id="grpStatus" Caption="" Direction="Horizontal" Index="0">
+                      <LayoutItem Id="DatumFaellig" Index="0" ViewItem="DatumFaellig" ShowCaption="" />
+                      <LayoutItem Id="Status" ViewItem="Status" ShowCaption="" Index="1" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpPlan" Caption="" Direction="Horizontal" Index="1">
+                      <LayoutItem Id="DatumGeplant" ViewItem="DatumGeplant" ShowCaption="" Index="5" />
+                      <LayoutItem Id="DatumReal" ViewItem="DatumReal" ShowCaption="" Index="6" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpTurnus" Caption="" Index="2" Direction="Horizontal">
+                      <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="1" />
+                      <LayoutItem Id="TurnusValue" ViewItem="TurnusValue" ShowCaption="" Index="2" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabMonteur" Caption="Monteurplanung">
+                    <LayoutItem Id="MonteurVerantwortlich" Index="0" ViewItem="MonteurVerantwortlich" ShowCaption="" />
+                    <LayoutItem Id="MonteurGeplant" Index="1" ViewItem="MonteurGeplant" ShowCaption="" />
+                    <LayoutItem Id="MonteurDurchfuehrung" ViewItem="MonteurDurchfuehrung" ShowCaption="" Index="2" />
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="tabFurtherData">
+            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="4" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="serviceKomponentenService_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="HtKomponenteLstAnlagen" PropertyName="HaustechnikKomponente.lstAnlagen" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Main" Index="0" ShowCaption="False">
+            <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False">
+              <LayoutGroup Id="serviceServiceBase" Index="1" Direction="Horizontal" ShowCaption="True" Caption="service Service Base">
+                <LayoutGroup Id="serviceServiceBase_col1" Index="0" ShowCaption="False">
+                  <LayoutGroup Id="grpAnlage" Caption="" Direction="Horizontal" Index="0">
+                    <LayoutItem Id="Liegenschaft" Index="0" ViewItem="Liegenschaft" ShowCaption="" />
+                    <LayoutItem Id="HaustechnikKomponente" ViewItem="HaustechnikKomponente" ShowCaption="" Index="1" />
+                  </LayoutGroup>
+                  <LayoutItem Id="Betreff" ViewItem="Betreff" ShowCaption="" Index="1" />
+                  <LayoutGroup Id="grpArt" Caption="" Direction="Horizontal" Index="2">
+                    <LayoutItem Id="ServiceArt" ViewItem="ServiceArt" ShowCaption="" Index="0" />
+                    <LayoutItem Id="Prioritaet" ViewItem="Prioritaet" ShowCaption="" Index="5" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="grpVertrag" Caption="" Direction="Horizontal">
+                    <LayoutItem Id="ServicePaket" ViewItem="ServicePaket" ShowCaption="" Index="1" />
+                    <LayoutItem Id="ServiceTyp" ViewItem="ServiceTyp" ShowCaption="" Index="5" />
+                  </LayoutGroup>
+                </LayoutGroup>
+                <LayoutGroup Id="serviceServiceBase_col2" Index="1" ShowCaption="False">
+                  <TabbedGroup Id="tabDetailInfo">
+                    <LayoutGroup Id="tabZeitplanung" Caption="Zeitplanung" Index="0">
+                      <LayoutGroup Id="grpStatus" Caption="" Direction="Horizontal" Index="0">
+                        <LayoutItem Id="DatumFaellig" Index="0" ViewItem="DatumFaellig" ShowCaption="" />
+                        <LayoutItem Id="Status" ViewItem="Status" ShowCaption="" Index="1" />
+                      </LayoutGroup>
+                      <LayoutGroup Id="grpPlan" Caption="" Direction="Horizontal" Index="1">
+                        <LayoutItem Id="DatumGeplant" ViewItem="DatumGeplant" ShowCaption="" Index="5" />
+                        <LayoutItem Id="DatumReal" ViewItem="DatumReal" ShowCaption="" Index="6" />
+                      </LayoutGroup>
+                      <LayoutGroup Id="grpTurnus" Caption="" Index="2" Direction="Horizontal">
+                        <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="1" />
+                        <LayoutItem Id="TurnusValue" ViewItem="TurnusValue" ShowCaption="" Index="2" />
+                      </LayoutGroup>
+                    </LayoutGroup>
+                    <LayoutGroup Id="tabMonteur" Caption="Monteurplanung">
+                      <LayoutItem Id="MonteurVerantwortlich" Index="0" ViewItem="MonteurVerantwortlich" ShowCaption="" />
+                      <LayoutItem Id="MonteurGeplant" Index="1" ViewItem="MonteurGeplant" ShowCaption="" />
+                      <LayoutItem Id="MonteurDurchfuehrung" ViewItem="MonteurDurchfuehrung" ShowCaption="" Index="2" />
+                    </LayoutGroup>
+                  </TabbedGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <TabbedGroup Id="tabFurtherData">
+              <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" Index="0">
+                <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="4" />
+              </LayoutGroup>
+              <LayoutGroup Id="tabAnlagen" Caption="Anlagen">
+                <LayoutItem Id="HtKomponenteAnlagen" ViewItem="HtKomponenteLstAnlagen" />
+              </LayoutGroup>
+            </TabbedGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Removed="True">
+            <LayoutGroup Id="serviceKomponentenService" Removed="True">
+              <LayoutItem Id="HaustechnikKomponente" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="LGHaustechnikKomponente_Lookup_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="lstServices" PropertyName="lstServices" View="LgHaustechnikKomponente_lstServices_ListView" />
+      </Items>
+    </DetailView>
+    <ListView Id="KwpWartTermin_Planing_ListView" PreviewColumnName="Liegenschaft" />
+    <DetailView Id="Hausverwalter_Lookup_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Adresse" View="boAdresse_LookupDetailView" />
+      </Items>
+    </DetailView>
+    <DetailView Id="Anlage_SubAnlagen_LookUp_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="lstAnlagenService" PropertyName="lstAnlagenService" View="boAnlage_lstAnlagenService_ListView" />
+      </Items>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstAnlagenService" Index="6" ImageName="setting_tools_16" TextAlignMode="AlignWithChildren" RelativeSize="100" Caption="Service und Wartung">
+              <LayoutItem Id="lstAnlagenService" TextAlignMode="AutoSize" RelativeSize="100" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstServiceBase" Caption="Service und Wartung" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiZugang_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiZugang">
+              <TabbedGroup Id="tabInfo">
+                <LayoutGroup Id="tabKontakt">
+                  <LayoutItem Id="Kontakt" ViewItem="Kontakt" />
+                </LayoutGroup>
+              </TabbedGroup>
+              <LayoutGroup Id="fiZugang_col1">
+                <LayoutGroup Id="grpMatchkey">
+                  <LayoutItem Id="Matchkey" ViewItem="Matchkey" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartTermin_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartTermin">
+              <LayoutGroup Id="KwpWartTermin_col1">
+                <LayoutGroup Id="grpBezug">
+                  <LayoutItem Id="KwpAnlage" ViewItem="KwpAnlage" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="LgHaustechnikKomponente_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="tabInfos">
+            <LayoutGroup Id="lstServices">
+              <LayoutItem Id="lstServices" ViewItem="lstServices" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="wartungWartungsPosition_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="tabDetails">
+            <LayoutGroup Id="tabErsatzteile">
+              <LayoutItem Id="lstWartungsBauteile" ViewItem="lstWartungsBauteile" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <BOModel Id="BOModel">
+    <Class Name="FacilityInfo.Service.BusinessObjects.serviceServiceItem" DefaultListViewAllowEdit="True" />
+  </BOModel>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Wartungswesen">
+        <Items Id="Items">
+          <Item Id="Wartung" ViewId="wartungWartung_ListView" />
+        </Items>
+      </Item>
+      <Item Id="Parkplatz">
+        <Items Id="Items">
+          <Item Id="navItemDatenfelder">
+            <Items Id="Items">
+              <Item Id="Antwortkatalog" ViewId="fiDatenfeldAntwort_ListView" />
+              <Item Id="navItemDatenfeld" ViewId="fiDatenfeld_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemDatenFeldProdukte">
+            <Items Id="Items">
+              <Item Id="Datenfeld (Produktgruppe)" ViewId="fiDatenfeldProduktgruppe_ListView" />
+              <Item Id="Antwortkatalog (Herstellerprodukt)" ViewId="fiDatenFeldHerstellerProduktAntwort_ListView" />
+              <Item Id="Produktdatenfeld" ViewId="fiDatenfeldHerstellerprodukt_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Developement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemServiceSettings">
+            <Items Id="Items">
+              <Item Id="ServiceItem" ViewId="serviceServiceItem_ListView" />
+              <Item Id="servicepaket" ViewId="serviceServicePaket_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemMassnahmen">
+            <Items Id="Items">
+              <Item Id="boMassnahmenArt_ListView" ViewId="boMassnahmenArt_ListView" />
+              <Item Id="navItemANMassnahme" ViewId="boANMassnahme_ListView" />
+              <Item Id="navitemLGMAssnahme" ViewId="boLGMassnahme_ListView" />
+              <Item Id="boMassnahme_ListView" ViewId="boMassnahme_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Settings">
+        <Items Id="Items">
+          <Item Id="Settings_Anlagen">
+            <Items Id="Items">
+              <Item Id="navitemKomponenten" ViewId="AnKomponente_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="navItemService">
+        <Items Id="Items">
+          <Item Id="FacilityInfo">
+            <Items Id="Items">
+              <Item Id="@8272c66c-1ef9-4899-b3c8-aa97244e357d" ViewId="serviceServicePaket_ListView" />
+              <Item Id="@2b90d283-5026-4ccd-857b-73ffbc075e36" ViewId="serviceServiceItem_ListView" />
+              <Item Id="@131144ee-b62f-4b2e-bc34-e3c36519bca6" ViewId="serviceKomponentenService_ListView" />
+              <Item Id="@8688d90c-bdad-4dad-a0fc-30bc89acbf59" ViewId="serviceAnlagenService_ListView" />
+              <Item Id="Servicebase" ViewId="serviceServiceBase_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="navItemAnlagen">
+        <Items Id="Items">
+          <Item Id="navItemAnlagenkomponenten" ViewId="AnAnlagenKomponente_ListView" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <CreatableItems Id="CreatableItems">
+    <CreatableItem ClassName="FacilityInfo.Service.BusinessObjects.serviceAnlagenService" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Service.BusinessObjects.serviceKomponentenService" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Service.BusinessObjects.serviceServiceBase" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Service.BusinessObjects.serviceServiceItem" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Service.BusinessObjects.serviceServicePaket" Index="-1" Removed="True" />
+  </CreatableItems>
+</Application>

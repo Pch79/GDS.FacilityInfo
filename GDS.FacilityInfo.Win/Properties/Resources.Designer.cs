@@ -19,7 +19,7 @@ namespace GDS.FacilityInfo.Win.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -63,9 +63,29 @@ namespace GDS.FacilityInfo.Win.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
         /// </summary>
-        internal static System.Drawing.Icon FI_Icon {
+        internal static System.Drawing.Icon FacilityInfo_Schrift_Image_16 {
             get {
-                object obj = ResourceManager.GetObject("FI_Icon", resourceCulture);
+                object obj = ResourceManager.GetObject("FacilityInfo_Schrift_Image_16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        /// </summary>
+        internal static System.Drawing.Icon hagen_facility_rgb_Logo_16 {
+            get {
+                object obj = ResourceManager.GetObject("hagen_facility_rgb_Logo_16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        /// </summary>
+        internal static System.Drawing.Icon hagen_facility_rgb_Logo_32 {
+            get {
+                object obj = ResourceManager.GetObject("hagen_facility_rgb_Logo_32", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

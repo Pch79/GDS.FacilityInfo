@@ -13,22 +13,28 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Base.BusinessObjects;
 using DevExpress.ExpressApp.Utils;
+using FacilityInfo.Management.Klassen;
 
 namespace FacilityInfo.Parameter.BusinessObjects
 {
     [DefaultClassOptions]
     [XafDisplayName("Parameterdefinition")]
     [XafDefaultProperty("Bezeichnung")]
+    [ImageName("bricks_16")]
     public class parameterParameterDefinition : BaseObject
     {
         private String _bezeichnung;
         private String _kuerzel;
         private boEinheit _einheit;
-
+        private System.String _paramKey;
+        private System.Int32 _sortIndex;
+        private parameterParameterTyp _parameterTyp;
         //das sollte ein .Net typ sein INT oder String
 
 
         private System.Type _valueType;
+     
+
 
         public parameterParameterDefinition(Session session)
             : base(session)
@@ -39,7 +45,43 @@ namespace FacilityInfo.Parameter.BusinessObjects
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
+
+        #region Rules
+      
+
+        #endregion
+
         #region Properties
+        [XafDisplayName("SortIndex")]
+        public System.Int32 SortIndex
+        {
+            get
+            {
+                return _sortIndex;
+            }
+            set
+            {
+                SetPropertyValue("SortIndex", ref _sortIndex, value);
+            }
+        }
+
+        [RuleUniqueValue("ParamKey = '@ParamKey'", DefaultContexts.Save, "Key darf nicht doppelt vergeben werden", InvertResult = false)]
+
+        [XafDisplayName("Key")]
+        [RuleRequiredField]
+        public System.String ParamKey
+        {
+            get
+            {
+                return _paramKey;
+            }
+            set
+            {
+               
+                SetPropertyValue("ParamKey", ref _paramKey, value);
+
+            }
+        }
         [XafDisplayName("Bezeichnung")]
         public String Bezeichnung
         {
@@ -77,29 +119,27 @@ namespace FacilityInfo.Parameter.BusinessObjects
             }
         }
 
-
-
-        /*
-        [XafDisplayName("Value")]
-        public String Value
+        [XafDisplayName("Parametertyp")]
+        [Association("parameterParameterDefinition-parameterParameterTyp")]
+        public parameterParameterTyp ParameterTyp
         {
             get
             {
-                return _value;
+                return _parameterTyp;
             }
             set
             {
-                SetPropertyValue("Value", ref _value, value);
+                SetPropertyValue("ParameterTyp", ref _parameterTyp, value);
             }
         }
+
+        
+     
       
        
         [XafDisplayName("Valuetype")]
-       // [ValueConverter(typeof(TypeToStringConverter))]
-       // [TypeConverter(typeof(LocalizedClassInfoTypeConverter))]
-
-
-      
+        [ValueConverter(typeof(TypeToStringConverter))]
+        [TypeConverter(typeof(MyLocalizedClassInfoTypeConverter))]
         public Type ValueType
         {
             get
@@ -112,10 +152,7 @@ namespace FacilityInfo.Parameter.BusinessObjects
                 SetPropertyValue("ValueType", ref _valueType, value);
             }
         }
-          */
-
-
-
+         
         #endregion
     }
 }

@@ -14,22 +14,25 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Building.BusinessObjects;
-using FacilityInfo.Service.BusinessObjects;
+
 using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
 using DevExpress.Persistent.Base.General;
 using DevExpress.ExpressApp.Utils;
 using FacilityInfo.Management.Klassen;
+using FacilityInfo.Fremdsystem.BusinessObjects;
+using FacilityInfo.Action.BusinessObjects;
 
 namespace FacilityInfo.Anlagen.BusinessObjects
 {
     [DefaultClassOptions]
-    [XafDisplayName("Anlagensystem")]
+    [XafDisplayName("Anlagengruppe")]
     [XafDefaultProperty("Systembezeichnung")]
     [ImageName("control_panel_16")]
     public class LgHaustechnikKomponente : BaseObject//,ITreeNode, ITreeNodeImageProvider
     {
         private System.String _bezeichnung;
+        private String _bezeichnungIntern;
         private boLiegenschaft _liegenschaft;
         private System.String _beschreibung;
         private String _notiz;
@@ -40,15 +43,24 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         private fiEbene _ebene;
         private fiRaum _raum;
 
+        //einfache Standortimplementierung
+
+        private fiGebaeude _building;
+        private fiRaumart _roomType;
+        private String _roomDesignation;
+
+        private String _floorDesignation;
+        private fiEbenenart _floorType;
+
         //Kopplung an KWP
         private String _fremdsystemId;
+        private KwpWartungsAnlage _kwpAnlage;
         //hier beim KWP die Anlagenart also das Feld Brennstoffart
         private fiLinkKeyHtKomponente _linkKeyFremdsystem;
         //hier den Vertragsstatus noch berücksichtigen
         private enmVertragsStatus _vertragsStatus;
 
         //Das anlagensystem ist die Anlagenart aus dem KWP
-
 
         //kann auch noch einen Ansprechpartner anfügen
         //private System.String _notfallnummer;
@@ -61,6 +73,16 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         {
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+        }
+
+        protected override void OnDeleting()
+        {
+            base.OnDeleting();
+            //hier die Anlagen gleich mitlöschen
+            if(this.lstAnlagen != null)
+            {
+                this.Session.Delete(this.lstAnlagen);
+            }
         }
 
         protected override void OnLoaded()
@@ -78,6 +100,13 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                     }
                 }
             }
+        }
+
+        protected override void OnDeleted()
+        {
+            base.OnDeleted();
+            //alle angehängten Anlagena uch löschen
+            this.Session.Delete(this.lstAnlagen);
         }
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
@@ -108,12 +137,34 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                                 this.LinkKeyFremdsystem = null;
                             }
 
+                            //die Bezeichnung standardisieren   
+                            //wenn ich eine LG-Nummer habe dann diese mit angeben
+                            //Hier würd eigentlich der Acode reichen sind hja Fachleute
+                            var acode = string.Empty;
 
+                                acode = ((fiTechnikeinheit)newValue).Basisanlage.Ansprechcode;
+                            var lgNumber = string.Empty;
+                            if (this.Liegenschaft != null)
+                            {
+                                lgNumber = (this.Liegenschaft.Liegenschaftsnummer != null)?this.Liegenschaft.Liegenschaftsnummer:"n.A";
+                            }
+                            else
+                            {
+                                lgNumber = "n.A";
+                            }
+
+                            this.BezeichnungIntern = string.Format("{0}-{1}", acode, lgNumber);
+
+
+
+                            //this.Bezeichnung = ((fiTechnikeinheit)newValue).Basisanlage.Ansprechcode;
                         }
                         else
                         {
                             this.LinkKeyFremdsystem = null;
                         }
+
+                        setDefaultBezeichnung();
                     }
 
                    
@@ -156,11 +207,13 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
                                 }
                             }
+                           
                         }
+                        setDefaultBezeichnung();
                     }
                     break;
-                //Raum
-                case "Ebene":
+                //Ebenenart und Ebnenname
+                case "FloorType":
                     if (!this.Session.IsObjectToDelete(this))
                     {
                         if (newValue != null)
@@ -170,16 +223,14 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                             {
                                 foreach (boAnlage item in this.lstAnlagen)
                                 {
-                                    item.Ebene = this.Session.GetObjectByKey<fiEbene>(((fiEbene)newValue).Oid);
+                                    item.FloorType = this.Session.GetObjectByKey<fiEbenenart>(((fiEbenenart)newValue).Oid);
 
                                 }
                             }
                         }
                     }
                     break;
-
-                //Raum
-                case "Raum":
+                case "FloorDesignation":
                     if (!this.Session.IsObjectToDelete(this))
                     {
                         if (newValue != null)
@@ -189,63 +240,134 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                             {
                                 foreach (boAnlage item in this.lstAnlagen)
                                 {
-                                    item.Raum = this.Session.GetObjectByKey<fiRaum>(((fiRaum)newValue).Oid);
+                                    item.FloorDesignation = newValue.ToString();
 
                                 }
                             }
                         }
                     }
-                    break;                   
+
+                    break;
+
+                //Raumart und Raumname
+
+                case "RoomType":
+                    if (!this.Session.IsObjectToDelete(this))
+                    {
+                        if (newValue != null)
+                        {
+                            //die bezeichnung in die Anlagen übernehmen
+                            if (this.lstAnlagen != null)
+                            {
+                                foreach (boAnlage item in this.lstAnlagen)
+                                {
+                                    item.RoomType = this.Session.GetObjectByKey<fiRaumart>(((fiRaumart)newValue).Oid);
+
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "RoomDesignation":
+                    if (!this.Session.IsObjectToDelete(this))
+                    {
+                        if (newValue != null)
+                        {
+                            //die bezeichnung in die Anlagen übernehmen
+                            if (this.lstAnlagen != null)
+                            {
+                                foreach (boAnlage item in this.lstAnlagen)
+                                {
+                                    item.RoomDesignation = this.RoomDesignation.ToString();
+
+                                }
+                            }
+                        }
+                    }
+                    break;
             }
         }
-        /*
 
-        #region iTreeNode
-        ITreeNode ITreeNode.Parent
+        public void setDefaultBezeichnung()
         {
-            get
-            {
-                return null;
-            }
-        }
-        string ITreeNode.Name
-        {
-            get
-            {
-                return Systembezeichnung;
-            }
-        }
+                var system = string.Empty;
+                var building = string.Empty;
+            var lgNumber = string.Empty;
+            var retVal = string.Empty;
 
-        IBindingList ITreeNode.Children
-        {
-            get
+            system = this.Technikeinheit.Basisanlage.Ansprechcode;
+            lgNumber = this.Liegenschaft.Liegenschaftsnummer;
+                 
+                building = (this.Gebaeude != null) ? this.Gebaeude.Bezeichnung : string.Empty;
+            if(building==string.Empty)
             {
-                return lstHauptAnlagen;
-            }
-        }
-
-
-        #endregion
-        #region iTreeImageProvider
-        public System.Drawing.Image GetImage(out string imageName)
-        {
-            if (lstAnlagen != null && lstAnlagen.Count > 0)
-            {
-                imageName = "control_panel_branding_16";
-
+                retVal = String.Format("{0}-{1}",
+                system, lgNumber) ;
+               
             }
             else
             {
-                imageName = "control_panel_16";
-
+                retVal = string.Format("{0}-{1}-{2}", system,lgNumber, building);
             }
-            return ImageLoader.Instance.GetImageInfo(imageName).Image;
+            this.BezeichnungIntern = retVal;
+            this.Save();
         }
-        #endregion
-        */
+
+
         #region Properties
 
+        #region einfache Standortimplementierung
+        [XafDisplayName("Gebäude")]
+        [DataSourceCriteria("[Liegenschaft.Oid]= '@this.Liegenschaft.Oid'")]
+        public fiGebaeude Building
+        {
+            get { return _building; }
+            set { SetPropertyValue("Building", ref _building, value); }
+        }
+        [XafDisplayName("Raumbezeichnung")]
+        public String RoomDesignation
+        {
+            get { return _roomDesignation; }
+            set { SetPropertyValue("RoomDesignation", ref _roomDesignation, value); }
+        }
 
+        [XafDisplayName("Raumart")]
+        public fiRaumart RoomType
+        {
+            get { return _roomType; }
+            set { SetPropertyValue("RoomType", ref _roomType, value); }
+        }
+
+        [XafDisplayName("Ebenenbezeichnung")]
+        public String FloorDesignation
+        {
+            get { return _floorDesignation; }
+            set { SetPropertyValue("FloorDesignation", ref _floorDesignation, value); }
+        }
+
+        [XafDisplayName("Ebenenart")]
+        public fiEbenenart FloorType
+        {
+            get { return _floorType; }
+            set { SetPropertyValue("FloorType", ref _floorType, value); }
+        }
+        #endregion
+
+
+        [XafDisplayName("BezeichnungIntern")]
+            public String BezeichnungIntern
+        {
+            get { return _bezeichnungIntern; }
+            set { SetPropertyValue("BezeichnungIntern", ref _bezeichnungIntern, value); }
+        }
+        
+
+            [XafDisplayName("KWP-Anlage")]
+            public KwpWartungsAnlage KwpAnlage
+        {
+            get { return _kwpAnlage;}
+            set { SetPropertyValue("KwpAnlage", ref _kwpAnlage, value); }
+        }
                 [XafDisplayName("Husverwalter")]
         public boHausverwalter Hausverwalter
         {
@@ -341,7 +463,10 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
         [XafDisplayName("Gebäude")]
-        [DataSourceCriteria("Liegenschaft.Oid='@this.Liegenschaft.Oid'")]
+        //[DataSourceProperty("lstBuildings")]
+        [DataSourceCriteria("[Liegenschaft.Oid]= '@this.Liegenschaft.Oid'")]
+        [ImmediatePostData(true)]
+
         public fiGebaeude Gebaeude
         {
             get
@@ -354,7 +479,9 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
         [XafDisplayName("Ebene")]
-        [DataSourceCriteria("Gebaeude.Oid='@this.Gebaeude.Oid'")]
+        [DataSourceCriteria("[Gebaeude.Oid]= '@this.Gebaeude.Oid'")]
+ 
+        [ImmediatePostData(true)]
         public fiEbene Ebene
         {
             get
@@ -367,7 +494,8 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
         [XafDisplayName("Raum")]
-        [DataSourceCriteria("Gebaeude.Oid='@this.Gebaeude.Oid'")]
+        [DataSourceCriteria("Gebaeude.Oid = '@this.Gebaeude.Oid'")]
+        [ImmediatePostData(true)]
         public fiRaum Raum
         {
             get
@@ -379,6 +507,69 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("Raum", ref _raum, value);
             }
         }
+
+        #region Filterproperties
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public List<fiGebaeude> lstBuildings
+        {
+            get
+            {
+                return lstAvailableBuildings();
+            }
+        }
+
+        public List<fiGebaeude> lstAvailableBuildings()
+        {
+            List<fiGebaeude> lstRetVal = new List<fiGebaeude>();
+            lstRetVal.AddRange(this.Liegenschaft.lstGebaeude);
+            return lstRetVal;
+        }
+
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public List<fiEbene> lstFloors
+        {
+            get
+            {
+                return lstAvailableEbenen();
+            }
+        }
+
+        public List<fiEbene> lstAvailableEbenen()
+        {
+            List<fiEbene> lstRetVal = new List<fiEbene>();
+            if (this.Gebaeude != null)
+            {
+                lstRetVal.AddRange(this.Gebaeude.lstEbenen);
+            }
+            return lstRetVal;
+        }
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public List<fiRaum> lstRooms
+        {
+            get
+            {
+                return lstAvailableRooms();
+            }
+        }
+
+        public List<fiRaum> lstAvailableRooms()
+        {
+            List<fiRaum> lstRetVal = new List<fiRaum>();
+            if (this.Ebene != null)
+            {
+                lstRetVal.AddRange(this.Ebene.lstRaeume);
+            }
+            return lstRetVal;
+        }
+
+        #endregion
+
 
         [XafDisplayName("Technikeinheit")]
         [ImmediatePostData(true)]
@@ -473,6 +664,32 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 
             }
         }
+
+        //die Maßnahmen der Anlagen anzeigen
+        [XafDisplayName("Maßnahmen")]
+        public List<actionActionAnlage> lstActionAnlage
+        {
+            get
+            {
+                List<actionActionAnlage> lstRetVal = new List<actionActionAnlage>();
+                if(this.lstAnlagen != null)
+                {
+                    boAnlage workingAnlage;
+                    for(int i=0;i<this.lstAnlagen.Count;i++)
+                    {
+                        workingAnlage = (boAnlage)this.lstAnlagen[i];
+                        if(workingAnlage.lstActionAnlage!= null)
+                        {
+                            lstRetVal.AddRange(workingAnlage.lstActionAnlage);
+                        }
+
+                    }
+                }
+                return lstRetVal;
+               // XPCollection<actionActionAnlage> lstRetVal = new XPCollection<actionActionAnlage>(this.Session,new BinaryOperator(""))
+            }
+        }
+        /*
         [XafDisplayName("Servces")]
         [Association("LgHaustechnikKomponente-serviceKomponentenService")]
         public XPCollection<serviceKomponentenService> lstServices
@@ -482,6 +699,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 return GetCollection<serviceKomponentenService>("lstServices");
             }
         }
+        */
         #endregion
     }
 }

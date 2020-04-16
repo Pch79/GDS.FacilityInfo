@@ -1,0 +1,172 @@
+﻿textarea { resize:both !important;}
+.textarea {
+    resize: both !important;
+}
+.alert {
+    padding: 15px;
+    background-color: #ff9800;
+    color: white;
+    margin-bottom: 10px;
+    margin-right: 22px;
+    margin-left: 6px;
+    border-radius: 5px;
+    border: solid 1px #ff9800;
+    text-align: center;
+}
+.GroupHeader {
+    background-color: #57637c !important;
+    border-bottom: solid 1px #57637c;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-right: 0px !important;
+
+}
+.dxnb-header {
+    background-color: #57637c !important;
+    color: #ffffff !important;
+    font-weight: 600;
+
+}
+
+.dxnb-headerCollapsed {
+    color: #ffffff !important;
+}
+
+.dxtc-activeTab {
+    background-color: #a8b3bf !important;
+    border: solid 50px #57637c !important;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+
+
+.dxtvControl_XafTheme .dxtv-ndSel {
+    background-color: #4b4e53 !important;
+    color: #ffffff !important;
+}
+.Label {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+.CardGroupBase {
+    border: none !important;
+   
+}
+.CardGroupContent {
+    padding: 10px !important;
+    border: solid 1px #57637c;
+    -webkit-border-bottom-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    
+}
+
+/*Menüzeile bei eingebetteten Listen*/
+.nf_Menu {
+    color: #000000 !important;
+    background-color: #efefef !important;
+    border: solid 1px #a8b3bf;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.dxnb-gr{
+    color:#ffffff !important;
+}
+
+/*Navigation-Header*/
+.dxnb-headerCollapsed {
+    background-color: #57637c !important;
+    color: #ffffff !important;
+}
+
+
+
+.LayoutTabContainer .nf_rightMenu_AC {
+    padding: 0px !important;
+    color: #ffffff !important;
+}
+.LayoutTabbedGroupContainer {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+    color: #ffffff !important;
+}
+
+.sizeLimit {
+    max-width: 2500px !important;
+}
+.xafFooter {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    background-color: #4b4e53;
+    color: #ffffff;
+}
+table{border-collapse: unset !important;}
+/*Bezeichnung der Properties*/
+.Caption {
+    padding-bottom: 0px !important;
+    font-weight: 600;
+    
+    color: #000000;
+}
+
+.LayoutTabContainer {
+    padding: 8px !important;
+ 
+}.paddings {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}body {
+    margin: 0;
+}
+.mainDiv {
+    background-color: #ffffff !important;
+}
+
+h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+h2 { font-size: 18px !important;
+
+}
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0
+}
+code, kbd, pre, samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+a {
+    color: #428bca;
+    text-decoration: none
+}
+    a:hover, a:focus {
+        color: #2a6496;
+        text-decoration: underline
+    }
+
+    a:focus {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px
+    }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit
+}
+.pull-right {
+    float: right !important
+}
+
+.pull-left {
+    float: left !important
+}

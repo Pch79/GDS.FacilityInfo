@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="AnAnlagenKomponente_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Anlage" PropertyName="Anlage" AllowEdit="False" />
+        <PropertyEditor Id="Anlagenart" PropertyName="Anlage.AnlagenArt" AllowEdit="False" />
+        <PropertyEditor Id="Hersteller" Caption="Hersteller (Komponente)" />
+        <PropertyEditor Id="Liegenschaft" PropertyName="Anlage.Liegenschaft" AllowEdit="False" />
+        <PropertyEditor Id="lstPruefpunkte" PropertyName="Komponente.lstPruefpunkte" AllowEdit="False" />
+        <PropertyEditor Id="Notizen" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="AnAnlagenKomponente" Caption="Anlagenkomponente" Direction="Horizontal">
+              <LayoutGroup Id="col1" Caption="Komponentendaten" Index="0" Direction="Vertical" ShowCaption="True" ImageName="plugin_16">
+                <LayoutItem Id="Komponente" Index="0" ViewItem="Komponente" ShowCaption="" />
+                <LayoutItem Id="Bezeichnung" Index="1" ViewItem="Bezeichnung" ShowCaption="" />
+                <LayoutItem Id="Hersteller" Index="3" ViewItem="Hersteller" ShowCaption="" />
+                <LayoutItem Id="Equipmentcode" Index="4" ViewItem="Equipmentcode" ShowCaption="" />
+              </LayoutGroup>
+              <LayoutItem Id="Bezeichnung" Removed="True" />
+              <LayoutGroup Id="col2" Caption="Anlagendaten" Direction="Vertical" ShowCaption="True" ImageName="centos">
+                <LayoutItem Id="Anlage" ViewItem="Anlage" Index="0" />
+                <LayoutItem Id="Anlagengruppe" ViewItem="Anlagengruppe" Index="1" />
+                <LayoutItem Id="Anlagenart" ViewItem="Anlagenart" Index="2" />
+                <LayoutItem Id="Liegenschaft" ViewItem="Liegenschaft" />
+              </LayoutGroup>
+              <LayoutItem Id="Equipmentcode" Removed="True" />
+              <LayoutItem Id="Hersteller" Removed="True" />
+              <LayoutItem Id="Komponente" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Notizen" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="tabInfos">
+            <LayoutGroup Id="tabNotiz" Caption="Notiz" ImageName="note_16">
+              <LayoutItem Id="Notizen" ViewItem="Notizen" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabPruefpunkte" Caption="Prüfpunkte" ImageName="zoom_16">
+              <LayoutItem Id="lstPruefpunkte" ViewItem="lstPruefpunkte" ShowCaption="False" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="AnAnlagenKomponente_ListView" IsGroupPanelVisible="True" ShowAutoFilterRow="True">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Anlage" GroupIndex="0" />
+      </Columns>
+    </ListView>
+    <DetailView Id="AnKomponente_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Beschreibung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Direction="Horizontal">
+            <LayoutGroup Id="col1" Caption="" Index="0">
+              <LayoutItem Id="Komponententyp" ViewItem="Komponententyp" ShowCaption="" Index="0" />
+              <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" ShowCaption="" Index="1" />
+              <LayoutItem Id="Messpunkt" ViewItem="Messpunkt" ShowCaption="" Index="2" />
+              <TabbedGroup Id="tabInfos">
+                <LayoutGroup Id="tabBeschreibung" Caption="Bescheibung">
+                  <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="AnKomponente" Index="1" Removed="True">
+              <LayoutItem Id="Bezeichnung" Removed="True" />
+              <LayoutItem Id="Komponententyp" Removed="True" />
+              <LayoutItem Id="Messpunkt" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="col2" Caption="Prüfpunkte" ShowCaption="True">
+              <LayoutItem Id="lstPruefpunkte" ViewItem="lstPruefpunkte" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstPruefpunkte_Group" Removed="True">
+            <LayoutItem Id="lstPruefpunkte" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="AnKomponente_ListView" IsGroupPanelVisible="True" ShowAutoFilterRow="True" NewItemRowPosition="Top" AllowEdit="True">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Komponententyp" GroupIndex="0" />
+      </Columns>
+    </ListView>
+    <ListView Id="boAnlage_lstAnlagenkomponenten_ListView" AllowDelete="True" AllowEdit="True" AllowLink="False" AllowNew="False" AllowUnlink="False" />
+    <ListView Id="KwpWartTermin_Planing_ListView" PreviewColumnName="Liegenschaft" />
+    <DetailView Id="Hausverwalter_Lookup_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Adresse" View="boAdresse_LookupDetailView" />
+      </Items>
+    </DetailView>
+    <DetailView Id="Anlage_SubAnlagen_LookUp_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="lstAnlagenkomponenten" PropertyName="lstAnlagenkomponenten" View="boAnlage_lstAnlagenkomponenten_ListView" />
+      </Items>
+    </DetailView>
+    <DetailView Id="AnAnlagenKompoonente_DetailView_Nested" ClassName="FacilityInfo.Anlagen.BusinessObjects.AnAnlagenKomponente">
+      <Items Id="Items">
+        <PropertyEditor Id="Bezeichnung" PropertyName="Bezeichnung" />
+        <PropertyEditor Id="Equipmentcode" PropertyName="Equipmentcode" />
+        <PropertyEditor Id="Hersteller" PropertyName="Hersteller" />
+        <PropertyEditor Id="Komponente" PropertyName="Komponente" />
+        <PropertyEditor Id="Notizen" PropertyName="Notizen" />
+        <PropertyEditor Id="Prüfpunkte" PropertyName="Komponente.lstPruefpunkte" View="Pruefpunkt_ListView_Nested" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False">
+            <LayoutGroup Id="viewitemPrüfpunkte" Caption="Prüfpunkte" ImageName="zoom_16" ShowCaption="True">
+              <LayoutItem Id="viiewitemPrüfpunkte" ViewItem="Prüfpunkte" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="AnAnlagenKomponente_ListView_Nested" ClassName="FacilityInfo.Anlagen.BusinessObjects.AnAnlagenKomponente" MasterDetailMode="ListViewAndDetailView" DetailViewID="AnAnlagenKomponente_DetailView" MasterDetailView="AnAnlagenKompoonente_DetailView_Nested">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Bezeichnung" PropertyName="Bezeichnung" Index="0" Width="400" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="Komponente" PropertyName="Komponente" Index="1" Width="70" />
+      </Columns>
+    </ListView>
+    <ListView Id="AnPruefPunkt_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Anlagenkomponente" GroupIndex="0" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boAnlage_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="lstAnlagenkomponenten" AllowEdit="False" View="AnAnlagenKomponente_ListView_Nested" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstAnlagenkomponenten">
+              <LayoutItem Id="lstAnlagenkomponenten" ViewItem="lstAnlagenkomponenten" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabprodukt">
+              <LayoutItem Id="Herstellerprodukt" ViewItem="Herstellerprodukt" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlagenArt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="tabFurtherData">
+            <LayoutGroup Id="tabKomponenten">
+              <LayoutItem Id="lstKomponenten" ViewItem="lstKomponenten" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Dokumenete">
+              <LayoutGroup Id="lstAttachment">
+                <LayoutItem Id="lstAttachment" ViewItem="lstAttachment" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartTermin_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartTermin">
+              <LayoutGroup Id="KwpWartTermin_col1">
+                <LayoutGroup Id="grpBezug">
+                  <LayoutItem Id="KwpAnlage" ViewItem="KwpAnlage" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Parkplatz">
+        <Items Id="Items">
+          <Item Id="navItemDatenfelder">
+            <Items Id="Items">
+              <Item Id="Antwortkatalog" ViewId="fiDatenfeldAntwort_ListView" />
+              <Item Id="navItemDatenfeld" ViewId="fiDatenfeld_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemDatenFeldProdukte">
+            <Items Id="Items">
+              <Item Id="Datenfeld (Produktgruppe)" ViewId="fiDatenfeldProduktgruppe_ListView" />
+              <Item Id="Antwortkatalog (Herstellerprodukt)" ViewId="fiDatenFeldHerstellerProduktAntwort_ListView" />
+              <Item Id="Produktdatenfeld" ViewId="fiDatenfeldHerstellerprodukt_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Developement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemMassnahmen">
+            <Items Id="Items">
+              <Item Id="boMassnahmenArt_ListView" ViewId="boMassnahmenArt_ListView" />
+              <Item Id="navItemANMassnahme" ViewId="boANMassnahme_ListView" />
+              <Item Id="navitemLGMAssnahme" ViewId="boLGMassnahme_ListView" />
+              <Item Id="boMassnahme_ListView" ViewId="boMassnahme_ListView" />
+            </Items>
+          </Item>
+          <Item Id="Dokumentverwaltung">
+            <Items Id="Items">
+              <Item Id="boMAAttachment_ListView" ViewId="boMAAttachment_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Settings">
+        <Items Id="Items">
+          <Item Id="Settings_Anlagen">
+            <Items Id="Items">
+              <Item Id="navitemKomponenten" ViewId="AnKomponente_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="navItemAnlagen">
+        <Items Id="Items">
+          <Item Id="navItemAnlagenkomponenten" ViewId="AnAnlagenKomponente_ListView">
+            <Items Id="Items">
+              <Item Id="navitemKomponenten" ViewId="AnKomponente_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <CreatableItems Id="CreatableItems">
+    <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.AnAnlagenKomponente" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.AnKomponente" Index="-1" Removed="True" />
+  </CreatableItems>
+</Application>

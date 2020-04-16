@@ -18,7 +18,7 @@ namespace FacilityInfo.Hersteller.BusinessObjects
     [DefaultClassOptions]
     [XafDisplayName("Hersteller")]
     [Serializable]
-    [ImageName("factory")]
+    [ImageName("factory_16")]
     [XafDefaultProperty("Bezeichnung")]
     [RuleObjectExists(DefaultContexts.Save,"Bezeichnung = '@Bezeichnung'",InvertResult =true)]
     public class boHersteller : BaseObject
@@ -94,7 +94,7 @@ namespace FacilityInfo.Hersteller.BusinessObjects
                 SetPropertyValue("Notiz", ref _notiz, value);
             }
         }
-        [XafDisplayName("Bezeichnung")]
+        [XafDisplayName("Name")]
         public System.String Bezeichnung
         {
             get
@@ -108,7 +108,7 @@ namespace FacilityInfo.Hersteller.BusinessObjects
         }
       
         [XafDisplayName("Firmenlogo")]
-        [ImageEditor]
+      //  [ImageEditor]
         public byte[] Firmenlogo
         {
             get
@@ -146,21 +146,10 @@ namespace FacilityInfo.Hersteller.BusinessObjects
             }
         }
 
-        //Dokumente die als Objektkey das Hersteller 
-        [XafDisplayName("Dokumente (Alle)")]
-        public XPCollection<boAttachment> lstDokumente
-        {
-            get
-            {
-                
-                XPCollection<boAttachment> lstRetVal = new XPCollection<boAttachment>(this.Session, new BinaryOperator("Objektkey", this.Oid.ToString(), BinaryOperatorType.Equal));
-                return lstRetVal;
-            }
-        }
-
+    
         [XafDisplayName("Herstellerdokumente")]
-        [Association("boHersteller-fiHerstellerProdukt")]
-        [DevExpress.Xpo.Aggregated]
+        [Association("boHersteller-fiHerstellerAttachment"), DevExpress.ExpressApp.DC.Aggregated]
+   
         public XPCollection<fiHerstellerAttachment> lstHerstellerdokumente
         {
             get
@@ -169,17 +158,7 @@ namespace FacilityInfo.Hersteller.BusinessObjects
             }
         }
 
-        //Dokumente die in den Produkten verzeichner sind anzeigen
-        /*
-        public XPCollection<boAttachment> lstDokumente
-        {
-            get
-            {
-             
-            }
-        }
-        */
-
+        
 
         #endregion
     }

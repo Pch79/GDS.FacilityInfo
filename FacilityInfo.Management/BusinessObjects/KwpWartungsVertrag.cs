@@ -15,6 +15,9 @@ using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
+using FacilityInfo.Management.DomainComponents;
+using FacilityInfo.DMS;
+using FacilityInfo.DMS.BusinessObjects;
 
 namespace FacilityInfo.Fremdsystem.BusinessObjects
 {
@@ -38,6 +41,10 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
         private KwpWartungsAnlage _kwpAnlage;
         private DateTime _kuendigungsDatum;
         private String _KuendigungsGrund;
+        private enmVertragsStatus _vertrasgsStatus;
+
+        //Anlagen hinzufügen
+
         
 
 
@@ -58,8 +65,43 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
             
+
+
         }
 
+        public void Activate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeActivate()
+        {
+            throw new NotImplementedException();
+        }
+
+        [XafDisplayName("VertrtragsStatus")]
+        public enmVertragsStatus VertragsStatus
+        {
+            get { return _vertrasgsStatus; }
+            set { SetPropertyValue("VertragsStatus", ref _vertrasgsStatus, value); }
+        }
+
+        [XafDisplayName("Dokument vorhanden")]
+        [ImagesForBoolValues("Action_Grant","Action_Deny")]
+        [CaptionsForBoolValues("ja","nein")]
+        public Boolean contractAttached
+        {
+            get
+            {
+                Boolean retVal = false;
+                if (this.lstAttachments != null)
+                {
+                    retVal = (this.lstAttachments.Count > 0) ? true : false;
+                }
+                return retVal;
+            }
+        }
+        /*
         [XafDisplayName("Vertragsstatus")]
         public enmVertragsStatus VertragsStatus
         {
@@ -72,24 +114,31 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
                     {
                         retVal = enmVertragsStatus.gekündigt;
                     }
-                    else
-                    {
-                    if (this.VertragZurueck)
-                    {
-                        retVal = enmVertragsStatus.aktiv;
-                    }
-                    else
-                    {
-                        retVal = enmVertragsStatus.akquise;
-                    }
-                    }
-                
-                
 
+                    else
+                    {
+                     if (this.VertragZurueck)
+                      {
+                         retVal = enmVertragsStatus.aktiv;
+                      }
+                        else
+                      {
+                        retVal = enmVertragsStatus.akquise;
+                      }
+                    }
                 return retVal;
             }
             
         }
+        */
+
+        [XafDisplayName("Dokumente")]
+        [Association("KwpWartungsVertrag-docKwpVertragAttachment")]
+        public XPCollection<docKwpVertragAttachment> lstAttachments
+        {
+            get { return GetCollection<docKwpVertragAttachment>("lstAttachments"); }
+        }
+
         [XafDisplayName("Kündigungsdatum")]
         public DateTime KuendigungsDatum
         {
@@ -102,6 +151,8 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
                 SetPropertyValue("KuendigungsDatum", ref _kuendigungsDatum, value);
             }
         }
+
+
         [XafDisplayName("Kündigungsgrund")]
         public String KuendigungsGrund
         {
@@ -266,5 +317,8 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
                 SetPropertyValue("WartungsAnlage", ref _kwpAnlage, value);
           }
         }
+
+      
+
     }
 }

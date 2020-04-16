@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-using FacilityInfo.Service.BusinessObjects;
+
 
 namespace FacilityInfo.Vertrag.BusinessObjects
 {
@@ -45,6 +45,7 @@ namespace FacilityInfo.Vertrag.BusinessObjects
                 SetPropertyValue("FremdsystemId", ref _FrmdsystemId, value);
             }
         }
+        /*
         [XafDisplayName("Servicepakete")]
         public XPCollection<serviceServicePaket> lstServicePakete
         {
@@ -53,6 +54,7 @@ namespace FacilityInfo.Vertrag.BusinessObjects
                 return GetCollection<serviceServicePaket>("lstServicePakete");
             }
         }
+        */
         #endregion
     }
 }

@@ -1,8 +1,9 @@
-﻿using FacilityInfo.GlobalObjects;
-using FacilityInfo.Management;
+﻿using FacilityInfo.Management;
 
-namespace GDS.FacilityInfo.Win {
-    partial class FacilityInfoWindowsFormsApplication {
+namespace GDS.FacilityInfo.Win
+{
+    partial class FacilityInfoWindowsFormsApplication
+    {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -12,8 +13,10 @@ namespace GDS.FacilityInfo.Win {
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if(disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -25,10 +28,10 @@ namespace GDS.FacilityInfo.Win {
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.module1 = new DevExpress.ExpressApp.SystemModule.SystemModule();
             this.module2 = new DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule();
-            this.module3 = new GDS.FacilityInfo.Module.FacilityInfoModule();
             this.module4 = new GDS.FacilityInfo.Module.Win.FacilityInfoWindowsFormsModule();
             this.securityModule1 = new DevExpress.ExpressApp.Security.SecurityModule();
             this.securityStrategyComplex1 = new DevExpress.ExpressApp.Security.SecurityStrategyComplex();
@@ -62,12 +65,13 @@ namespace GDS.FacilityInfo.Win {
             this.workflowModule = new DevExpress.ExpressApp.Workflow.WorkflowModule();
             this.workflowWindowsFormsModule = new DevExpress.ExpressApp.Workflow.Win.WorkflowWindowsFormsModule();
             this.dashboardsModule1 = new DevExpress.ExpressApp.Dashboards.DashboardsModule();
-            this.managementModule2 = new ManagementModule();
-            this.globalObjectsModule2 = new GlobalObjectsModule();
+            this.facilityInfoModule1 = new GDS.FacilityInfo.Module.FacilityInfoModule();
+            this.managementModule3 = new ManagementModule();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // securityStrategyComplex1
             // 
+            this.securityStrategyComplex1.AllowAnonymousAccess = false;
             this.securityStrategyComplex1.Authentication = this.authenticationStandard1;
             this.securityStrategyComplex1.RoleType = typeof(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole);
             this.securityStrategyComplex1.UsePermissionRequestProcessor = false;
@@ -80,6 +84,10 @@ namespace GDS.FacilityInfo.Win {
             // auditTrailModule
             // 
             this.auditTrailModule.AuditDataItemPersistentType = typeof(DevExpress.Persistent.BaseImpl.AuditDataItemPersistent);
+            // 
+            // cloneObjectModule
+            // 
+            this.cloneObjectModule.ClonerType = null;
             // 
             // notificationsModule
             // 
@@ -146,9 +154,6 @@ namespace GDS.FacilityInfo.Win {
             this.Modules.Add(this.viewVariantsModule);
             this.Modules.Add(this.workflowModule);
             this.Modules.Add(this.dashboardsModule1);
-            this.Modules.Add(this.managementModule2);
-            this.Modules.Add(this.globalObjectsModule2);
-            this.Modules.Add(this.module3);
             this.Modules.Add(this.chartWindowsFormsModule);
             this.Modules.Add(this.fileAttachmentsWindowsFormsModule);
             this.Modules.Add(this.htmlPropertyEditorWindowsFormsModule);
@@ -161,8 +166,10 @@ namespace GDS.FacilityInfo.Win {
             this.Modules.Add(this.treeListEditorsWindowsFormsModule);
             this.Modules.Add(this.validationWindowsFormsModule);
             this.Modules.Add(this.workflowWindowsFormsModule);
-            this.Modules.Add(this.module4);
             this.Modules.Add(this.securityModule1);
+            this.Modules.Add(this.managementModule3);
+            this.Modules.Add(this.facilityInfoModule1);
+            this.Modules.Add(this.module4);
             this.Security = this.securityStrategyComplex1;
             this.Title = global::GDS.FacilityInfo.Win.Properties.Settings.Default.FacilityInfo;
             this.UseOldTemplates = false;
@@ -210,10 +217,11 @@ namespace GDS.FacilityInfo.Win {
         private DevExpress.ExpressApp.Workflow.WorkflowModule workflowModule;
         private DevExpress.ExpressApp.Workflow.Win.WorkflowWindowsFormsModule workflowWindowsFormsModule;
         private ManagementModule managementModule1;
-        private GlobalObjectsModule globalObjectsModule1;
+
         private DevExpress.ExpressApp.Dashboards.DashboardsModule dashboardsModule1;
         private ManagementModule managementModule2;
-        private GlobalObjectsModule globalObjectsModule2;
-        //private Bms.Forst.ForstModule forstModule1;
+        private Module.FacilityInfoModule facilityInfoModule1;
+        private ManagementModule managementModule3;
+
     }
 }

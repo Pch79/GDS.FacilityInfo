@@ -132,9 +132,8 @@ namespace FacilityInfo.Building.BusinessObjects
             }
         }
 
-        [XafDisplayName("Räume")]
-       
-        [Association("fiEbene-fiRaum")]
+        [XafDisplayName("Räume")]      
+        [Association("fiEbene-fiRaum"), DevExpress.ExpressApp.DC.Aggregated]
         public XPCollection<fiRaum> lstRaeume
         {
             get

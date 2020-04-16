@@ -31,8 +31,9 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
-
+        /*
         [ImageEditor(DetailViewImageEditorFixedHeight = 180, DetailViewImageEditorFixedWidth = 180, ImageSizeMode = ImageSizeMode.Zoom, ListViewImageEditorCustomHeight = 30, ListViewImageEditorMode = ImageEditorMode.PictureEdit)]
+        */
         [XafDisplayName("Symbol")]
         public byte[] Symbol
         {

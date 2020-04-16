@@ -17,12 +17,15 @@ namespace FacilityInfo.Artikelverwaltung.BusinessObjects
 {
     [DefaultClassOptions]
     [XafDisplayName("Artikelkatalog")]
+    [XafDefaultProperty("MatchKey")]
+    [ImageName("book_picture_16")]
     public class artikelArtikelKatalog : BaseObject
     {
         private String _bezeichnung;
         private String _beschreibung;
         private Boolean _aktiv;
         private boMandant _mandant;
+        
 
         // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
         public artikelArtikelKatalog(Session session)
@@ -35,6 +38,20 @@ namespace FacilityInfo.Artikelverwaltung.BusinessObjects
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
         #region Properties
+        [XafDisplayName("Matchkey")]
+        public String MatchKey
+        {
+            get
+            {
+                var retVal = string.Empty;
+                var mandant = string.Empty;
+                var bezeichnung = string.Empty;
+                mandant = (this.Mandant!=null)?this.Mandant.Mandantenkennung:"N/A";
+                bezeichnung = (this.Bezeichnung != null)?this.Bezeichnung:"N/A";
+                retVal = String.Format("{0}-{1}", mandant, bezeichnung);
+                return retVal;
+            }
+        }
         [XafDisplayName("Mandant")]
         public boMandant Mandant
         {

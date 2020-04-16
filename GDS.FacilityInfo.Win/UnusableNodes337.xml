@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="KwpWartTermin_Planing_ListView" PreviewColumnName="Liegenschaft" />
+    <DetailView Id="Hausverwalter_Lookup_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Adresse" View="boAdresse_LookupDetailView" />
+      </Items>
+    </DetailView>
+    <DetailView Id="LgHaustechnikKomponente_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAdresse_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boANAttachment_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAttachment">
+              <LayoutGroup Id="boAttachment_col1">
+                <LayoutItem Id="Typ" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Index="3" ShowCaption="False" Removed="True">
+            <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" Index="0" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAnlage">
+              <LayoutGroup Id="boAnlage_col2">
+                <LayoutItem Id="Typ" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlagenArt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAttachment_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" ShowCaption="False" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAttachment">
+              <LayoutGroup Id="boAttachment_col1">
+                <LayoutItem Id="Typ" Index="0" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAttachmentBibliothek_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boHersteller_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boKontakt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boKontakt">
+              <LayoutGroup Id="boKontakt_col1">
+                <LayoutItem Id="Geburtsdatum" Index="3" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLGAttachment_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAttachment">
+              <LayoutGroup Id="boAttachment_col1">
+                <LayoutItem Id="Typ" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <LayoutItem Id="Heizungsbereitung" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMesstyp_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessung_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boWartungszone_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="coreBusinessUnit_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="docKwpVertragAttachment_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiBauteil_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiBauteil">
+              <LayoutItem Id="Bauteilkatalog" Removed="True" />
+              <LayoutItem Id="Bauteilkennung" Removed="True" />
+              <LayoutItem Id="Hersteller" Removed="True" />
+              <LayoutItem Id="herstellernummer" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiGebaeude_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiHerstellerAttachment_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAttachment">
+              <LayoutGroup Id="boAttachment_col1">
+                <LayoutItem Id="Typ" ViewItem="Typ" ShowCaption="" Index="0" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiHerstellerProdukt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiHerstellerProduktAttachment_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAttachment">
+              <LayoutGroup Id="boAttachment_col1">
+                <LayoutItem Id="Typ" Index="2" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiHerstellerProduktgruppe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiKontaktAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiKontaktAnlage">
+              <LayoutItem Id="Anlage" Removed="True" />
+              <LayoutItem Id="Fachbereich" Removed="True" />
+              <LayoutItem Id="Funktion" Removed="True" />
+              <LayoutItem Id="Kontakt" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiKontaktLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiKontaktLiegenschaft">
+              <LayoutItem Id="Fachbereich" Removed="True" />
+              <LayoutItem Id="Funktion" Removed="True" />
+              <LayoutItem Id="Kontakt" Removed="True" />
+              <LayoutItem Id="Liegenschaft" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiLeistungskatalog_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiProdukt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiRisikoGruppe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiRisikoGruppe">
+              <LayoutItem Id="Matchkey" Index="1" Removed="True" />
+              <LayoutItem Id="Sortindex" Index="2" Removed="True" />
+              <LayoutItem Id="Kuerzel" Index="3" Removed="True" />
+              <LayoutItem Id="Bezeichnung" Index="4" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiTechnikeinheit_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiZugang_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiZugang">
+              <TabbedGroup Id="tabInfo">
+                <LayoutGroup Id="tabKontakt">
+                  <LayoutItem Id="Kontakt" ViewItem="Kontakt" />
+                </LayoutGroup>
+              </TabbedGroup>
+              <LayoutGroup Id="fiZugang_col1">
+                <LayoutGroup Id="grpMatchkey">
+                  <LayoutItem Id="Matchkey" ViewItem="Matchkey" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiZugangKategorie_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiZugangKategorie">
+              <LayoutItem Id="DefaultStatus" Index="1" Removed="True" />
+              <LayoutItem Id="Sortindex" Index="2" Removed="True" />
+              <LayoutItem Id="Bezeichnung" Removed="True" />
+              <LayoutItem Id="ParentItem" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiZugangLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Index="1" ShowCaption="False" Removed="True">
+            <LayoutItem Id="Bemerkung" ViewItem="Bemerkung" Index="2" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartTermin_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="InfoText" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartungsAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="AnlagenOrt" Removed="True" />
+            <LayoutItem Id="Bezeichnung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartungsAnlage">
+              <LayoutGroup Id="KwpWartungsAnlage_col2">
+                <LayoutItem Id="HausBetreuer" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartungsVertrag_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Vertragstext" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="serviceAnlagenService_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="serviceKomponentenService_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="wartungWartungsBauteil_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="wartungWartungsBauteil">
+              <LayoutGroup Id="wartungWartungsBauteil_col1">
+                <LayoutItem Id="Notitz" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="wartungWartungsPlan_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="wartungWartungsPosition_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Notizen" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Wartungswesen">
+        <Items Id="Items">
+          <Item Id="Wartung" ViewId="wartungWartung_ListView" />
+        </Items>
+      </Item>
+      <Item Id="Parkplatz">
+        <Items Id="Items">
+          <Item Id="navItemDatenfelder">
+            <Items Id="Items">
+              <Item Id="Antwortkatalog" ViewId="fiDatenfeldAntwort_ListView" />
+              <Item Id="navItemDatenfeld" ViewId="fiDatenfeld_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemDatenFeldProdukte">
+            <Items Id="Items">
+              <Item Id="Datenfeld (Produktgruppe)" ViewId="fiDatenfeldProduktgruppe_ListView" />
+              <Item Id="Antwortkatalog (Herstellerprodukt)" ViewId="fiDatenFeldHerstellerProduktAntwort_ListView" />
+              <Item Id="Produktdatenfeld" ViewId="fiDatenfeldHerstellerprodukt_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Developement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemMassnahmen">
+            <Items Id="Items">
+              <Item Id="boMassnahmenArt_ListView" ViewId="boMassnahmenArt_ListView" />
+              <Item Id="navItemANMassnahme" ViewId="boANMassnahme_ListView" />
+              <Item Id="navitemLGMAssnahme" ViewId="boLGMassnahme_ListView" />
+              <Item Id="boMassnahme_ListView" ViewId="boMassnahme_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Settings">
+        <Items Id="Items">
+          <Item Id="Settings_Anlagen">
+            <Items Id="Items">
+              <Item Id="navitemKomponenten" ViewId="AnKomponente_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="navItemAnlagen">
+        <Items Id="Items">
+          <Item Id="navItemAnlagenkomponenten" ViewId="AnAnlagenKomponente_ListView" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

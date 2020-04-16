@@ -25,7 +25,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         private AnPruefPunktTyp _pruefpunkttyp;
         //Prüfanschluss
         private AnPruefanschluss _pruefanschluss;
-        private AnKomponente _anlagenkomponente;
+      //  private AnKomponente _anlagenkomponente;
         
 
 
@@ -56,7 +56,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 return retVal;
             }
         }
-
+        /*
         [XafDisplayName("Anlagenkomponente")]
         [Association("AnPruefPunkt-AnKomponente")]
         public AnKomponente Anlagenkomponente
@@ -70,6 +70,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("Anlagenkomponente", ref _anlagenkomponente, value);
             }
         }
+        */
         [XafDisplayName("Bezeichnung")]
         public System.String Bezeichnung
         {

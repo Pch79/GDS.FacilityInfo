@@ -29,7 +29,19 @@ namespace GDS.FacilityInfo.Win
                 e.Languages.Add(userLanguageName);
             }
         }
-        private void FacilityInfoWindowsFormsApplication_DatabaseVersionMismatch(object sender, DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs e)
+
+        public override bool ShowDetailViewFrom(Frame sourceFrame)
+        {
+            if (sourceFrame != null && sourceFrame.View is ListView)
+            {
+                if (sourceFrame.View.Id == "Anlage_MainUndSubAnlage_ListView")
+                {
+                    return true;
+                }
+            }
+            return base.ShowDetailViewFrom(sourceFrame);
+        }
+            private void FacilityInfoWindowsFormsApplication_DatabaseVersionMismatch(object sender, DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs e)
         {
 #if EASYTEST
             e.Updater.Update();

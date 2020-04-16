@@ -17,12 +17,19 @@ using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.BusinessManagement.BusinessObjects;
 using FacilityInfo.Anlagen.BusinessObjects;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
+using FacilityInfo.DMS.BusinessObjects;
+using DevExpress.Persistent.BaseImpl;
 
 namespace FacilityInfo.KwpSynch
 {
     class Program
     {
         public static System.String logDirectory = string.Empty;
+        public static string kwpContractFolder = string.Empty;
+        public static string liegenschaftImageFolder = string.Empty;
+        public static string anlagenImageFolder = string.Empty;
+        public static string importRootFolder = string.Empty;
+        public static List<FileInfo> lstImportFiles = new List<FileInfo>();
         public static System.String currentLogFile = string.Empty;
         public static CultureInfo currentCulture = new CultureInfo("de-DE");
         public static string Mandant = string.Empty;
@@ -51,7 +58,13 @@ namespace FacilityInfo.KwpSynch
             //writeToLogSimpel(String.Format("Option: {0}", args[0].ToString()));
             if (args.Length > 0)
             {
-
+                //den Import der Wartungsverträge anstossen
+                if(args[0]=="Import_KwpContract")
+                {
+                    //ImportRootFolder\KwpContract
+                    readImportFolder("KwpContract");
+                    processKwpContracts();
+                }
                 if (args[0] == "Sync_Adresse")
                 {
                     //3. Hausverwalter Sync                   
@@ -113,6 +126,7 @@ namespace FacilityInfo.KwpSynch
                     readKwpData("WartAnlagen");
                     processKwpWartAnlagen();
                 }
+
                 if(args[0] =="Sync_Brennstoffart")
                 {
                     readKwpData("qry_BrennstoffArt");
@@ -142,15 +156,27 @@ namespace FacilityInfo.KwpSynch
                     Maintain("Betreuungsstatus");
                 }
 
+
+                if(args[0] =="Maintain_WartungsAnlagen")
+                {
+                    readKwpData("WartAnlagen");
+                    Maintain("WartungsAnlagen");
+                }
+
+                if (args[0] == "Maintain_WartungsTermine")
+                {
+                    readKwpData("qry_WartTermine");
+                    Maintain("WartungsTermine");
+                }
+
                 #endregion
             }
-            else {
+
+            else 
+            {
                 readKwpData("qry_Liegenschaften");
                 processLiegenschaften();
             }
-         
-
-
         }
 
         private static void checkSystemUser(string userName)
@@ -173,10 +199,218 @@ namespace FacilityInfo.KwpSynch
 
         }
 
+
+        //Funktion um den Ordern für die Wartungsverträge auszulesen
+        private static void readImportFolder(string path)
+        {
+            //die Liste erst löschen
+            lstImportFiles.Clear();
+            //1. Den Pfad zusammensetzen
+            var workingPath = string.Empty;
+            workingPath = string.Format("{0}\\{1}", importRootFolder, path);
+            Console.WriteLine(workingPath);
+            DirectoryInfo di = new DirectoryInfo(workingPath);
+            if(di.Exists)
+            {
+                FileInfo[] fileList = di.GetFiles("*.pdf");
+                foreach (FileInfo item in fileList)
+                {
+                    lstImportFiles.Add(item);
+                }
+            }
+        }
+
+        //das Log-File anpassen um eventuell den Fehler zu finden
+        public static void processKwpContracts()
+        {
+            //jetzt die Liste der Import-Files durchgehen und die Dateibenennung zerlegen
+            FileInfo workingFile;
+            var fileName = string.Empty;
+            string[] splitResult;
+            char splitSign = '@';
+            var anlagenNummer = string.Empty;
+            var resultFileName = string.Empty;
+            KwpWartungsVertrag workingKwpContract;
+            KwpWartungsAnlage workingKwpAnlage;
+            string targetFile = string.Empty;
+            Session curContractSession = HauptsystemHelper.GetNewSession();
+            bool fileOk = false;
+            string targetDirectory = string.Empty;
+          //  UnitOfWork uowContract = new UnitOfWork(curContractSession.DataLayer);
+            curContractSession.BeginTransaction();
+            if (lstImportFiles != null)
+            {
+                for(int i=0;i<lstImportFiles.Count;i++)
+                {
+                    workingFile = lstImportFiles[i];
+                    //jetzt die Numme extrahieren und dann den Vertrag finden
+                    //Bsp für Filename:1@W@AN14-0078@R@W@010@Rueckspuelfilter und  Druckminderer 
+                    fileName = workingFile.Name;
+                    Console.WriteLine(fileName);
+                    splitResult = fileName.Split(splitSign);
+                    anlagenNummer = splitResult[2];
+                    resultFileName = String.Format("{0}_{1}", splitResult[2], splitResult[6]);
+                    //jetzt die Anlage bzw den Vertrag mit der Anlage suchen und
+                    Console.WriteLine(anlagenNummer);
+                    //der vertrag hat die Anlagennummer
+                    workingKwpContract = curContractSession.FindObject<KwpWartungsVertrag>(new BinaryOperator("FremdsystemId", anlagenNummer, BinaryOperatorType.Equal));
+                    //Dokumentkategorie -> KWP Wartungsvertrag
+                    boAttachmentkategorie chosenKategorie = curContractSession.FindObject<boAttachmentkategorie>(new BinaryOperator("Key", "KwpContract", BinaryOperatorType.Equal));
+                    //hat der Vertrag schon ein Vertragsdokument
+
+                    //wenn scheon eine Datei da ist diese löschen und mit der neuen ersetzen
+                    docKwpVertragAttachment existingAttachment = curContractSession.FindObject<docKwpVertragAttachment>(new BinaryOperator("KwpAnlage.Anlagennummer", anlagenNummer, BinaryOperatorType.Equal));
+                    if(existingAttachment != null)
+                    {
+                       
+                        curContractSession.Delete(existingAttachment);
+                       // curContractSession.CommitTransaction();
+                    }
+                    
+                    //das file ok??
+
+                    if(workingKwpContract != null)
+                    {
+                        
+                        docKwpVertragAttachment workingAttachment = new docKwpVertragAttachment(curContractSession);
+                        workingAttachment.Kategorie = chosenKategorie;
+
+                        workingAttachment.KwpVertrag = workingKwpContract;
+
+                        using (FileStream fs = workingFile.Open(FileMode.Open))
+                        {
+
+                            Console.WriteLine(resultFileName);
+
+
+
+                            if (workingAttachment != null)
+                            {
+                                if (workingAttachment.File == null)
+                                {
+                                    workingAttachment.File = new FileData(curContractSession);
+                                }
+                                workingAttachment.File.LoadFromStream(resultFileName, fs);
+                                fileOk = true;
+                            }
+                        }
+                        //dann das Teil in den done Ordner kopioeren
+
+                           
+                        
+                        workingAttachment.Save();
+                        
+                        workingKwpContract.Save();
+                        
+                        //das File dann in den done-Ordner verscheiben
+
+                    }
+                    else
+                    {
+                        fileOk = false;
+                    }
+
+                    if(fileOk)
+                    {
+                         targetDirectory = String.Format("{0}{1}", workingFile.DirectoryName, "\\done");
+                        //ins Done -Verzeichnis
+
+                       
+                    }
+                    else
+                    {
+                        targetDirectory = String.Format("{0}{1}", workingFile.DirectoryName, "\\error");
+                    }
+
+                    //ins Done -Verzeichnis
+                    DirectoryInfo di = new DirectoryInfo(targetDirectory);
+                    if(!di.Exists)
+                    {
+                        di.Create();
+                    }
+                    Console.WriteLine(targetDirectory);
+                    targetFile = string.Format("{0}\\{1}", targetDirectory, workingFile.Name);
+                    FileInfo targetFileInfo = new FileInfo(targetFile);
+                    if (targetFileInfo.Exists)
+                    {
+                        targetFileInfo.Delete();
+                    }
+                    workingFile.MoveTo(targetFile);
+                 }
+            }
+            
+            curContractSession.CommitTransaction();
+        }
         private static void Maintain(string targetItem)
         {
           switch(targetItem)
           {
+
+                case "WartungsTermine":
+                    Session curTerminSession = HauptsystemHelper.GetNewSession();
+                    UnitOfWork uowTermine = new UnitOfWork(curTerminSession.DataLayer);
+                    using (uowTermine)
+                    {
+                        List<String> lstTerminKeysToDelete = new List<string>();
+                        List<String> lstFremdsystemIds = new List<string>();
+                        List<String> lstKwpTerminKeys = new List<string>();
+                        XPCollection<KwpWartTermin> lstKwpWarttermineFi = new XPCollection<KwpWartTermin>(uowTermine);
+                        lstKwpWarttermineFi.Load();
+                        lstFremdsystemIds = lstKwpWarttermineFi.Select(t => t.FremdsystemId).ToList();
+                        //die Diffenrenzliste erstellen
+                        lstKwpTerminKeys = lstKwpWartTermine.Select(t => t.TerminKey).ToList();
+
+                        lstTerminKeysToDelete = (lstFremdsystemIds.Except(lstKwpTerminKeys)).ToList();
+                        writeToLog("Termine löschen");
+                        writeToLogSimpel("Anzahl Termine KWP: " + lstKwpWartTermine.Count.ToString());
+                        writeToLogSimpel("Anzahl Termine FI: " + lstKwpWarttermineFi.Count.ToString());
+                        writeToLogSimpel("Anzahl zu löschender termine: " + lstTerminKeysToDelete.Count.ToString());
+                        for (int i =0;i<lstTerminKeysToDelete.Count;i++)
+                        {
+                            writeToLogSimpel("termin löschen: "+lstTerminKeysToDelete[i]);
+                            deleteKwpWartTermin(lstTerminKeysToDelete[i]);
+                        }
+                    }
+                        break;
+
+
+                case "WartungsAnlagen":
+                    Session curAnlagenSession = HauptsystemHelper.GetNewSession();
+                    UnitOfWork uowAnlage = new UnitOfWork(curAnlagenSession.DataLayer);
+                    using (uowAnlage)
+                    {
+                        List<String> lstAnlagenNummernToDelete = new List<string>();
+                        //Liste mit FremdsystemIds 
+                        List<String> lstFremdsystemIds = new List<string>();
+                        XPCollection<KwpWartungsAnlage> lstKwpAnlagenFi = new XPCollection<KwpWartungsAnlage>(uowAnlage);
+                        lstKwpAnlagenFi.Load();
+                        lstFremdsystemIds = lstKwpAnlagenFi.Select(t => t.FremdsystemId).ToList();
+
+                        //Liste mit KWPAnlagennummern
+
+                        List<String> lstKwpAnlagenNummern = new List<string>();
+                        lstKwpAnlagenNummern = lstKwpWartAnlagen.Select(t => t.AnlagenNr).ToList();
+
+                        //Liste der Anlagen aus der Fi erstellen
+                        lstAnlagenNummernToDelete = (lstFremdsystemIds.Except(lstKwpAnlagenNummern)).ToList();
+                        
+                        writeToLog("Anlagen zum löschen "+lstAnlagenNummernToDelete.Count.ToString());
+                        writeToLog("AnlagenFi; " + lstFremdsystemIds.Count.ToString());
+                        writeToLog("AnlagenKWP: " + lstKwpAnlagenNummern.Count.ToString());
+                        
+                        for(int i=0;i<lstAnlagenNummernToDelete.Count;i++)
+                        {
+                              
+                            writeToLogSimpel(lstAnlagenNummernToDelete[i]);
+                            //TODO Aufruf der Löschfunktion 
+                            deleteAnlage(lstAnlagenNummernToDelete[i]);
+                        }
+                        
+
+                        
+                        
+                    }
+                        break;
                 case "Hausverwalter":
                     Session curSession = HauptsystemHelper.GetNewSession();
                     UnitOfWork uow = new UnitOfWork(curSession.DataLayer);
@@ -198,6 +432,7 @@ namespace FacilityInfo.KwpSynch
                                    
                                     curHausverwalter.Save();
                                 }
+                                /*
                                 if (curHausverwalter.Systembenutzer == null)
                                 {
                                     //feststellen ob für den Hausverawlater in dem Mandanten ein Account besteht
@@ -227,6 +462,7 @@ namespace FacilityInfo.KwpSynch
                                    
                                     curHausverwalter.Save();
                                 }
+                                */
 
                                 //curHausverwalter.KwpCode = curHausverwalter.Adresse.
                             }
@@ -369,6 +605,10 @@ namespace FacilityInfo.KwpSynch
         /// </summary>
         private static void initAppSettings()
         {
+
+            //den Import-Pfad setzen
+            var importSetting = ConfigurationManager.AppSettings.Get("ImportRootFolder").ToString();
+            importRootFolder = importSetting;
             //Settings für die Log-Datei
             Console.WriteLine("Initalisierung");
             var workingDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -551,7 +791,7 @@ namespace FacilityInfo.KwpSynch
                 boMandant curMandant = curSession.FindObject<boMandant>(new BinaryOperator("Mandantenkennung", Mandant, BinaryOperatorType.Equal));
                 if (curMandant != null)
                 {
-                    writeToLogSimpel(String.Format("Hausverwlater für den Mandanten: {0} schreiben", curMandant.Mandantenname));
+                    writeToLogSimpel(String.Format("Hausverwalter für den Mandanten: {0} schreiben", curMandant.Mandantenname));
                     if (lstKwpWartTermine != null)
                     {
                         //alle durchgehen und feststellen welche es in der Fi noch nicht gibt
@@ -591,12 +831,15 @@ namespace FacilityInfo.KwpSynch
             UnitOfWork uow = new UnitOfWork(curSession.DataLayer);
             boMandant workingMandant = uow.GetObjectByKey<boMandant>(curMandant.Oid);
             KwpWartungsAnlage workingAnlage = null;
+         
             writeToLogSimpel("Ausführung Wartugnsverträge" + workingMandant.Mandantenkennung);
             using (uow)
             {
                 if (curTermin.AnlagenNr != null)
                 {
                     workingAnlage = uow.FindObject<KwpWartungsAnlage>(new BinaryOperator("FremdsystemId", curTermin.AnlagenNr, BinaryOperatorType.Equal));
+                  
+
                 }
                 
                 // writeToLogSimpel("Liegenschaft " + workingLiegenschaft.FremdsystemID);
@@ -618,10 +861,36 @@ namespace FacilityInfo.KwpSynch
                     curWartungsTermin.TerminUhrzeit = curTermin.TerminUhrzeit;
                     curWartungsTermin.PlanStunden = curTermin.PlanStunden;
                 curWartungsTermin.KwpAnlage = (workingAnlage != null) ? workingAnlage : null;
-                    curWartungsTermin.Save();       
+              
+                    curWartungsTermin.Save();    
+                if(workingAnlage != null)
+                {
+                    workingAnlage.lstWartungsTermine.Add(curWartungsTermin);
+                }
                                     
                
                 uow.CommitChanges();
+            }
+
+        }
+
+        public static void deleteKwpWartTermin(string kwpTerminKey)
+        {
+            Session curSession = HauptsystemHelper.GetNewSession();
+            UnitOfWork uow = new UnitOfWork(curSession.DataLayer);
+            KwpWartTermin workingTermin;
+            
+            using (uow)
+            {
+                workingTermin = uow.FindObject<KwpWartTermin>(new BinaryOperator("FremdsystemId", kwpTerminKey, BinaryOperatorType.Equal));
+                if (workingTermin != null)
+                {
+
+                    uow.Delete(workingTermin);
+                    uow.CommitChanges();
+                }
+                //1. Anlage löschen
+
             }
 
         }
@@ -633,6 +902,7 @@ namespace FacilityInfo.KwpSynch
             UnitOfWork uow = new UnitOfWork(curSession.DataLayer);
             KwpWartTermin workingTermin = uow.GetObjectByKey<KwpWartTermin>(curKwpWartTermin.Oid);
             KwpWartungsAnlage workingAnlage = null;
+            KwpWartungsVertrag workingVertrag = null;
             //wenn sich Änderungen ergeben haben dann diese abspeichern
             writeToLogSimpel(String.Format("KwpVertrag für den Mandanten: {0} updaten", curMandant.Mandantenname));
             using (uow)
@@ -641,6 +911,10 @@ namespace FacilityInfo.KwpSynch
                 if (curTermin.AnlagenNr != null)
                 {
                     workingAnlage = uow.FindObject<KwpWartungsAnlage>(new BinaryOperator("FremdsystemId", curTermin.AnlagenNr, BinaryOperatorType.Equal));
+                    if (workingAnlage != null)
+                    {
+                        workingVertrag = (workingAnlage.WartungsVertrag != null) ? workingAnlage.WartungsVertrag : null;
+                    }
                 }
 
                 if(workingAnlage != null)
@@ -658,6 +932,7 @@ namespace FacilityInfo.KwpSynch
                         workingTermin.Save();
                    }
                 }
+               
 
                 if (workingTermin.InfoText != curTermin.InfoText)
                 {
@@ -727,8 +1002,6 @@ namespace FacilityInfo.KwpSynch
         }
         #endregion
 
-
-
         #region WartAnlagen
         private static void processKwpWartAnlagen()
         {
@@ -736,6 +1009,8 @@ namespace FacilityInfo.KwpSynch
             using (curSession)
             {
                 //erst mal den Mandanten finden  
+                
+                //beide gleiche Oid
 
                 boMandant curMandant = curSession.FindObject<boMandant>(new BinaryOperator("Mandantenkennung", Mandant, BinaryOperatorType.Equal));
                 if (curMandant != null)
@@ -836,6 +1111,7 @@ namespace FacilityInfo.KwpSynch
 
                     curWartungsAnlage.Mandant = workingMandant;
                 //hier kann ich den Vertrag auch gleich suchen
+              
                      curWartungsAnlage.WartungsVertrag = (workingKwpVertrag != null) ? workingKwpVertrag : null;
                     writeToLogSimpel(curWartungsAnlage.FremdsystemId);
                     curWartungsAnlage.Save();
@@ -883,6 +1159,7 @@ namespace FacilityInfo.KwpSynch
                     workingAnlage.Save();
                 }
 
+                //Brennstoffart == Anlagenart
                 if (workingAnlage.BrennstoffArt != curAnlage.Brennstoffart)
                 {
                     workingAnlage.BrennstoffArt = curAnlage.Brennstoffart;
@@ -991,6 +1268,30 @@ namespace FacilityInfo.KwpSynch
                 
 
                 uow.CommitChanges();
+            }
+        }
+
+        public static void deleteAnlage(string anlagenNummerKwp)
+        {
+            Session curSession = HauptsystemHelper.GetNewSession();
+            UnitOfWork uow = new UnitOfWork(curSession.DataLayer);
+            KwpWartungsAnlage workingAnlage;
+            KwpWartungsVertrag workingVertrag;
+            using (uow)
+            {
+                workingAnlage = uow.FindObject<KwpWartungsAnlage>(new BinaryOperator("FremdsystemId", anlagenNummerKwp, BinaryOperatorType.Equal));
+                if(workingAnlage != null)
+                {
+                    workingVertrag = uow.FindObject<KwpWartungsVertrag>(new BinaryOperator("WartungsAnlage.FremdsystemId", anlagenNummerKwp, BinaryOperatorType.Equal));
+                    if (workingVertrag != null)
+                    {
+                        uow.Delete(workingVertrag);
+                    }
+                        uow.Delete(workingAnlage);
+                    uow.CommitChanges();
+                }
+                //1. Anlage löschen
+                
             }
         }
         #endregion
@@ -1160,8 +1461,11 @@ namespace FacilityInfo.KwpSynch
         #region Wartungsvertrag - getestet
         private static void processKwpVertraege()
         {
+            //was ist mit den Verträgen die es im KWP nicht mehr gibt
+
             Session curSession = HauptsystemHelper.GetNewSession();
             using (curSession)
+
             {
                 //erst mal den Mandanten finden  
 
@@ -1191,6 +1495,7 @@ namespace FacilityInfo.KwpSynch
                             }
                             else {
                                 updateKwpVertrag(item,curKwpVertrag);
+                                
                             }
 
                         }
@@ -1198,7 +1503,11 @@ namespace FacilityInfo.KwpSynch
 
                 }
             }
+
+            //jetzt muss ich die Verträge löschen die nicht mehr im KWP sind
         }
+
+        
 
         public static void createKwpVertrag(clsKwpWartVertrag curKwpVertrag)
         {
@@ -1239,6 +1548,11 @@ namespace FacilityInfo.KwpSynch
                     curWartungsVertrag.KuendigungsGrund = curKwpVertrag.KuendigungsGrund;
                     writeToLogSimpel(curWartungsVertrag.FremdsystemId);
                     curWartungsVertrag.Save();
+                    //hier den Status setzen
+
+                    curWartungsVertrag.VertragsStatus = getStatus(curWartungsVertrag);
+                    curWartungsVertrag.Save();
+                 
                 }
                 else
                 {
@@ -1255,15 +1569,37 @@ namespace FacilityInfo.KwpSynch
             UnitOfWork uow = new UnitOfWork(curSession.DataLayer);
             KwpWartungsVertrag workingVertrag = uow.GetObjectByKey<KwpWartungsVertrag>(curKwpWartungsVertrag.Oid);
             KwpWartungsAnlage workingWartungsAnlage = null;
+            boLiegenschaft workingLiegenschaft = null;
             //wenn sich Änderungen ergeben haben dann diese abspeichern
             writeToLogSimpel(String.Format("KwpVertrag für den Mandanten: {0} updaten", curMandant.Mandantenname));
             using (uow)
             {
                 workingWartungsAnlage = uow.FindObject<KwpWartungsAnlage>(new BinaryOperator("Anlagennummer", curKwpVertrag.AnlagenNr, BinaryOperatorType.Equal));
 
+                workingLiegenschaft = uow.FindObject<boLiegenschaft>(new BinaryOperator("FremdsystemId", curKwpVertrag.AnlagenAdr, BinaryOperatorType.Equal));
 
-                if(workingWartungsAnlage != null)
+                //es kann sich auch die Liegenschaft ändern
+                if (workingVertrag.Liegenschaft != null)
                 {
+                    if(workingLiegenschaft != null)
+                    {
+                        if(workingVertrag.Liegenschaft.Oid != workingLiegenschaft.Oid)
+                        {
+                            workingVertrag.Liegenschaft = workingLiegenschaft;
+                            workingVertrag.Save();
+                        }
+                    }
+                }
+                else
+                {
+
+                    workingVertrag.Liegenschaft = workingLiegenschaft;
+                    workingVertrag.Save();
+
+                }
+                if (workingWartungsAnlage != null)
+                {
+                    
                     if (workingVertrag.WartungsAnlage != null)
                     {
                         //dann prüfen 
@@ -1307,6 +1643,8 @@ namespace FacilityInfo.KwpSynch
                 {
                     workingVertrag.VertragZurueck = curKwpVertrag.ContractBack;
                     workingVertrag.Save();
+                    
+                    //hier die Termine löschen
                 }
 
                 //Kündigung
@@ -1321,10 +1659,64 @@ namespace FacilityInfo.KwpSynch
                     workingVertrag.KuendigungsGrund = curKwpVertrag.KuendigungsGrund;
                     workingVertrag.Save();
                 }
-                
+                workingVertrag.VertragsStatus = getStatus(workingVertrag);
+                workingVertrag.Save();
+             
                 uow.CommitChanges();
+                if (workingVertrag.VertragZurueck == false)
+                {
+                    deleteTermine(workingVertrag);
+                }
             }
         }
+        private static void deleteTermine(KwpWartungsVertrag curVertrag)
+        {
+            //die Anlage dazu
+            KwpWartungsAnlage workingAnlage = null;
+            Session curSession = HauptsystemHelper.GetNewSession();
+            UnitOfWork uow = new UnitOfWork(curSession.DataLayer);
+            workingAnlage = uow.GetObjectByKey<KwpWartungsAnlage>(curVertrag.WartungsAnlage.Oid);
+            if(workingAnlage != null)
+            {
+                uow.Delete(workingAnlage.lstWartungsTermine);
+                uow.CommitChanges();
+            }
+            workingAnlage.Save();
+            uow.CommitChanges();
+
+        }
+        private static Management.EnumStore.enmVertragsStatus getStatus(KwpWartungsVertrag workingVertrag)
+        {
+
+            Management.EnumStore.enmVertragsStatus retVal = Management.EnumStore.enmVertragsStatus.none;
+            //wenn K
+            if (workingVertrag.KuendigungsDatum != null && workingVertrag.KuendigungsDatum != DateTime.MinValue)
+            {
+                if (workingVertrag.KuendigungsDatum > DateTime.Now)
+                {
+                    retVal = Management.EnumStore.enmVertragsStatus.gekündigt;
+                }
+                else
+                {
+                    retVal = Management.EnumStore.enmVertragsStatus.beendet;
+                }
+            }
+            else
+            {
+                if (workingVertrag.VertragZurueck)
+                {
+                    retVal = Management.EnumStore.enmVertragsStatus.aktiv;
+                }
+                else
+                {
+                    retVal = Management.EnumStore.enmVertragsStatus.akquise;
+                }
+            }
+
+            return retVal;
+
+        }
+
         #endregion
 
         #region Liegenschaften
@@ -1376,26 +1768,21 @@ namespace FacilityInfo.KwpSynch
 
                             //den Kunden noch prüfen
 
-
-                            if (curKunde != null)
+                            if (goOn)
                             {
-                                if (goOn)
+                                if (curKunde != null)
                                 {
-                                    goOn = true;
+                                    if (goOn)
+                                    {
+                                        goOn = true;
+                                    }
+                                }
+                                else
+                                {
+                                    goOn = false;
                                 }
                             }
-                            else {
-                                goOn = false;
-                            }
-                            //was ist wenn der MAndant anders ist
-
-
-
-
-                            //wenn der Kunde null ist gibts ein Problem
-
-                            //Liegenschaft anhand der FremdsystemID finden oder nahand des Namens
-                            //writeToLogSimpel(String.Format("nach der Suche: {0}",));
+                      
 
                             if (goOn)
                             {
@@ -1404,16 +1791,16 @@ namespace FacilityInfo.KwpSynch
                                     //die Update-Funktion aufrufen
                                     updateLiegenschaft(curLiegenschaft, curKunde, item);
                                 }
-                                else {
+                                else 
+                                {
                                     createLiegenschaft(curKunde, item);
                                 }
                             }
                         }
                     }
                 }
-            }
-                               
-                }
+            }                      
+         }
                 
         
         
@@ -1425,15 +1812,7 @@ namespace FacilityInfo.KwpSynch
             Debitorenkonto curKunde = uow.GetObjectByKey<Debitorenkonto>(workingKunde.Oid);
             using (uow)
             {
-                /*
-                if (curLiegenschaft.Wohneinheiten != adressItem.Wohneinheiten)
-                {
-                    curLiegenschaft.Wohneinheiten = adressItem.Wohneinheiten;
-                    writeToLogSimpel(String.Format("Wohneinheiten:Liegenschaft {0} oldValue {1} newValue {2}", curLiegenschaft.Bezeichnung, curLiegenschaft.Wohneinheiten, adressItem.Wohneinheiten));
-                    curLiegenschaft.Save();
-                }
-                */
-
+                
                 if (adressItem.Objektnummer != null)
                 {
                     if (curLiegenschaft.ObjektNummer != adressItem.Objektnummer)
@@ -1457,23 +1836,26 @@ namespace FacilityInfo.KwpSynch
                     curLiegenschaft.Save();
                     curLiegenschaft.Liegenschaftsadresse = uow.GetObjectByKey<boAdresse>(curKunde.Adresse.Oid);
                     curLiegenschaft.Save();
-
                 }
-
+                 
                 else 
                 {
                   if(curLiegenschaft.DebitorenKonto.Oid != curKunde.Oid)
                   {
                         curLiegenschaft.DebitorenKonto = curKunde;
-                        curLiegenschaft.Save();
-                      
-                    }
+                        curLiegenschaft.Save();   
+                  }
                     curLiegenschaft.Liegenschaftsadresse = uow.GetObjectByKey<boAdresse>(curKunde.Adresse.Oid);
                     curLiegenschaft.Save();
                 }
                 //die Adresse aus dem Debitorenkonto nehmen
                 
-
+                if(curLiegenschaft.Liegenschaftsnummer == null)
+                {
+                    curLiegenschaft.createNumber();
+                    writeToLog(string.Format("Liegenschaftsnummer generiert: {0} {1}", curLiegenschaft.Liegenschaftsnummer, curLiegenschaft.Bezeichnung));
+                   
+                }
                
                 curLiegenschaft.HausverwlaterSelekt = adressItem.strSelekt2;
                 curLiegenschaft.Save();
@@ -1490,31 +1872,33 @@ namespace FacilityInfo.KwpSynch
             Debitorenkonto workingDebitorenkonto = uow.GetObjectByKey<Debitorenkonto>(curKunde.Oid);
             //die Kundenadresse anlegen falls noch nicht vorhanden
 
-
-          
-            using (uow)
+            if (workingMandant != null)
             {
-                //die Adressdaten laden
-                writeToLogStart(String.Format("Neuanlage:Liegenschaft {0} ", adressItem.AdrNrGes));
-                boLiegenschaft curLiegenschaft = new boLiegenschaft(uow);
-                curLiegenschaft.Mandant = workingMandant;
-                curLiegenschaft.FremdsystemId = adressItem.AdrNrGes;
-                curLiegenschaft.Bezeichnung = adressItem.Name1;
-                writeToLogSimpel(String.Format("Neuanlage:Liegenschaft {0} Bezeichnung {1}", adressItem.AdrNrGes, curLiegenschaft.Bezeichnung));
-                //curLiegenschaft.Wohneinheiten = adressItem.Wohneinheiten;
-               // writeToLogSimpel(String.Format("Neuanlage:Liegenschaft {0} Wohneinheiten {1}", adressItem.AdrNrGes, curLiegenschaft.Wohneinheiten));
-                curLiegenschaft.ObjektNummer = adressItem.Objektnummer;
-                writeToLogSimpel(String.Format("Neuanlage:Liegenschaft {0} Objektnummer {1}", adressItem.AdrNrGes, curLiegenschaft.ObjektNummer));
-           
-                curLiegenschaft.HausverwlaterSelekt = adressItem.strSelekt2;
-                curLiegenschaft.DebitorenKonto = workingDebitorenkonto;
-                curLiegenschaft.Liegenschaftsadresse = uow.GetObjectByKey<boAdresse>(workingDebitorenkonto.Adresse.Oid);
 
-                curLiegenschaft.Save();
+                using (uow)
+                {
+                    //die Adressdaten laden
+                    writeToLogStart(String.Format("Neuanlage:Liegenschaft {0} ", adressItem.AdrNrGes));
+                    boLiegenschaft curLiegenschaft = new boLiegenschaft(uow);
+                    curLiegenschaft.Mandant = workingMandant;
+                    curLiegenschaft.FremdsystemId = adressItem.AdrNrGes;
+                    curLiegenschaft.Bezeichnung = adressItem.Name1;
+                    writeToLogSimpel(String.Format("Neuanlage:Liegenschaft {0} Bezeichnung {1}", adressItem.AdrNrGes, curLiegenschaft.Bezeichnung));
+                    //curLiegenschaft.Wohneinheiten = adressItem.Wohneinheiten;
+                    // writeToLogSimpel(String.Format("Neuanlage:Liegenschaft {0} Wohneinheiten {1}", adressItem.AdrNrGes, curLiegenschaft.Wohneinheiten));
+                    curLiegenschaft.ObjektNummer = adressItem.Objektnummer;
+                    writeToLogSimpel(String.Format("Neuanlage:Liegenschaft {0} Objektnummer {1}", adressItem.AdrNrGes, curLiegenschaft.ObjektNummer));
 
-                writeToLogSimpel(String.Format("Neuanlage:Liegenschaft {0} HausverwlaterSelekt {1}", adressItem.strSelekt2, curLiegenschaft.HausverwlaterSelekt));
-           
-                uow.CommitChanges();
+                    curLiegenschaft.HausverwlaterSelekt = adressItem.strSelekt2;
+                    curLiegenschaft.DebitorenKonto = workingDebitorenkonto;
+                    curLiegenschaft.Liegenschaftsadresse = uow.GetObjectByKey<boAdresse>(workingDebitorenkonto.Adresse.Oid);
+
+                    curLiegenschaft.Save();
+
+                    writeToLogSimpel(String.Format("Neuanlage:Liegenschaft {0} HausverwlaterSelekt {1}", adressItem.strSelekt2, curLiegenschaft.HausverwlaterSelekt));
+
+                    uow.CommitChanges();
+                }
             }
         }
         #endregion
@@ -2215,7 +2599,7 @@ namespace FacilityInfo.KwpSynch
                         {
                             SelectStatementResultRow row = adressResult.ResultSet[0].Rows[r];
                             //die Liste befüllen
-                            clsKwpAdresse curAdresse = new clsKwpAdresse();
+                            clsKwpAdresse curAdresse = new clsKwpAdresse();                          
                             curAdresse.AdrNrGes = (row.Values[0] != null) ? row.Values[0].ToString() : string.Empty;
                             curAdresse.Name1 = (row.Values[1] != null) ? row.Values[1].ToString() : string.Empty;
                             curAdresse.AdrNrA = (row.Values[2] != null) ? row.Values[2].ToString() : string.Empty;

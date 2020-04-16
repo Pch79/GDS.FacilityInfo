@@ -44,10 +44,10 @@ namespace FacilityInfo.Management.Controllers
                 if (curLiegenschaft.lstHaustechnikKomponenten != null)
                 {
                     createMenue(this.doAddHaustechnikKomponente);
+                    createMenue(this.doDeleteAnlagenGruppe);
                 }
             }
             createMenue(this.doAddAnlage);
-
         }
 
         private void createMenue(SingleChoiceAction action)
@@ -60,10 +60,27 @@ namespace FacilityInfo.Management.Controllers
             IList<LgHaustechnikKomponente> lstLgKomponenten = null;
             if (curLiegenschaft != null)
             {
-                lstLgKomponenten = curLiegenschaft.lstHaustechnikKomponenten;
+                if (curLiegenschaft.lstHaustechnikKomponenten != null)
+                {
+                    lstLgKomponenten = curLiegenschaft.lstHaustechnikKomponenten;
+                }
             }
             switch (action.Id)
             {
+                case ("doDeleteAnlagenGruppe"):
+                    doDeleteAnlagenGruppe.Items.Clear();
+                    foreach(LgHaustechnikKomponente item in curLiegenschaft.lstHaustechnikKomponenten)
+                    {
+                        ChoiceActionItem curActionItem = new ChoiceActionItem();
+                        
+                        curActionItem.Caption = (item.Bezeichnung!=null)?item.Bezeichnung:item.BezeichnungIntern;
+                        curActionItem.Data = item;
+                        doDeleteAnlagenGruppe.Items.Add(curActionItem);
+                        
+
+                    }
+                    break;
+                    //ANlagengruppe hinzufügen
                 case ("doAddHaustechnikKomponente"):
                     #region Technikeinheiten
                     
@@ -94,6 +111,7 @@ namespace FacilityInfo.Management.Controllers
                 case ("doAddAnlage"):
                     //this.doAddAnlage.Items.Add(new ChoiceActionItem("-Komponenten-", null));
                     doAddAnlage.Items.Clear();
+                    
                     if (lstLgKomponenten != null)
                     {
                         foreach (LgHaustechnikKomponente htEntry in lstLgKomponenten)
@@ -143,36 +161,42 @@ namespace FacilityInfo.Management.Controllers
                     else
                     {
 
-                        //hier die Gruppen einbauen
-                        ChoiceActionItem mainItemAnlagenArten = new ChoiceActionItem(curLiegenschaft.Oid.ToString(), "-Anlagenarten-", curLiegenschaft);
-                        mainItemAnlagenArten.ImageName = "gear_in_16";
-                        mainItemAnlagenArten.BeginGroup = true;
-
-                        IList<boAnlagenGruppe> lstAnlagenGruppen = os.GetObjects<boAnlagenGruppe>(new BinaryOperator("Aktiv", true, BinaryOperatorType.Equal));
-                        //für jede Gruppe ein MainItem erstellen und dann die Arten dazu durchparsen
-
-                        foreach (boAnlagenGruppe anlGruppe in lstAnlagenGruppen)
+                        try
                         {
-                            ChoiceActionItem groupItem = new ChoiceActionItem(anlGruppe.Oid.ToString(), anlGruppe.Bezeichnung, curLiegenschaft);
-                            groupItem.ImageName = "interface_preferences";
-                            if (anlGruppe.lstAnlagenarten != null)
-                            {
-                                foreach (boAnlagenArt anlagenArt in anlGruppe.lstAnlagenarten)
-                                {
-                                    ChoiceActionItem curAnlagenItem = new ChoiceActionItem(anlagenArt.Oid.ToString(), anlagenArt.Bezeichnung, anlagenArt);
-                                    curAnlagenItem.ImageName = "gear_in_16";
+                            //hier die Gruppen einbauen
+                            ChoiceActionItem mainItemAnlagenArten = new ChoiceActionItem(curLiegenschaft.Oid.ToString(), "-Anlagenarten-", curLiegenschaft);
+                            mainItemAnlagenArten.ImageName = "gear_in_16";
+                            mainItemAnlagenArten.BeginGroup = true;
 
-                                    groupItem.Items.Add(curAnlagenItem);
+                            IList<boAnlagenKategorie> lstAnlagenGruppen = os.GetObjects<boAnlagenKategorie>(new BinaryOperator("Aktiv", true, BinaryOperatorType.Equal));
+                            //für jede Gruppe ein MainItem erstellen und dann die Arten dazu durchparsen
+
+                            foreach (boAnlagenKategorie anlGruppe in lstAnlagenGruppen)
+                            {
+                                ChoiceActionItem groupItem = new ChoiceActionItem(anlGruppe.Oid.ToString(), anlGruppe.Bezeichnung, curLiegenschaft);
+                                groupItem.ImageName = "interface_preferences";
+                                if (anlGruppe.lstAnlagenarten != null)
+                                {
+                                    foreach (boAnlagenArt anlagenArt in anlGruppe.lstAnlagenarten)
+                                    {
+                                        ChoiceActionItem curAnlagenItem = new ChoiceActionItem(anlagenArt.Oid.ToString(), anlagenArt.Bezeichnung, anlagenArt);
+                                        curAnlagenItem.ImageName = "gear_in_16";
+
+                                        groupItem.Items.Add(curAnlagenItem);
+                                    }
                                 }
+                                mainItemAnlagenArten.Items.Add(groupItem);
+
                             }
-                            mainItemAnlagenArten.Items.Add(groupItem);
+                            //
+
+                            this.doAddAnlage.Items.Add(mainItemAnlagenArten);
+                            #endregion
+                        }
+                        catch
+                        {
 
                         }
-                        //
-
-                        this.doAddAnlage.Items.Add(mainItemAnlagenArten);
-                        #endregion
-
                     }
 
                     break;
@@ -189,7 +213,8 @@ namespace FacilityInfo.Management.Controllers
             base.OnDeactivated();
         }
 
-        #region Haustechnikkomponente hinzufügen
+        #region Anlagengruppe hinzufügen
+
         private void doAddHaustechnikKomponente_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
             //die Haustechnikkomponente muss ja auch noch in die Liegenschaft integriert werden
@@ -208,14 +233,18 @@ namespace FacilityInfo.Management.Controllers
                 fiTechnikeinheit chosenUnit = (fiTechnikeinheit)e.SelectedChoiceActionItem.Data;
                 fiTechnikeinheit workingUnit = workingOs.GetObjectByKey<fiTechnikeinheit>(chosenUnit.Oid);
                 message = chosenUnit.SystemBezeichnung;
+
+                //wird aktuell nicht benötigt
                 //prüfen ob die Maximalanzahl überschritten wurde
-                fiTechnikDefinition relatedDefinition = workingOs.FindObject<fiTechnikDefinition>(new GroupOperator(new BinaryOperator("FiObjekt.Objekttyp", curLiegenschaft.GetType(), BinaryOperatorType.Equal), new BinaryOperator("Anlagenart.Oid", chosenUnit.Basisanlage.Oid, BinaryOperatorType.Equal)));
+               // fiTechnikDefinition relatedDefinition = workingOs.FindObject<fiTechnikDefinition>(new GroupOperator(new //BinaryOperator("FiObjekt.Objekttyp", curLiegenschaft.GetType(), BinaryOperatorType.Equal), new BinaryOperator("Anlagenart.Oid", chosenUnit.Basisanlage.Oid, BinaryOperatorType.Equal)));
+
                 LgHaustechnikKomponente addedKomponente = workingOs.CreateObject<LgHaustechnikKomponente>();
+
                 addedKomponente.Liegenschaft = curLiegenschaft;
 
                 addedKomponente.Technikeinheit = workingUnit;
                 //jetzt das Detailview dazu öffnen und die Werte anschreiben
-               
+                addedKomponente.Save();
 
                 //hier brauch ich ein Popup das mir die Einstellung aufmacht, um die Bezeichnung zu setzen
 
@@ -243,9 +272,11 @@ namespace FacilityInfo.Management.Controllers
                             addedKomponente.Save();
                         }
                     }
+                   
                 DetailView dv = Application.CreateDetailView(workingOs, addedKomponente, true);
                 e.ShowViewParameters.CreatedView = dv;            
-                }          
+                }
+            refreshDetailView();
            // createMenue(doAddAnlage);
             }
         
@@ -260,6 +291,7 @@ namespace FacilityInfo.Management.Controllers
             boLiegenschaft curLiegenschaft = os.GetObjectByKey<boLiegenschaft>(((boLiegenschaft)curView.CurrentObject).Oid);
             //allgemein -> Auswahl der Parameter und dann DetailView öffnen
             ChoiceActionItem currentSelection = e.SelectedChoiceActionItem;
+            boAnlage mainUnit;
             if(currentSelection.ParentItem != null)
             {
                 boAnlage result = null;
@@ -268,11 +300,22 @@ namespace FacilityInfo.Management.Controllers
             {
                 //1. Anlage zu einer bestehenden Komponente hinzufügen
                 LgHaustechnikKomponente curKomponente = os.GetObjectByKey<LgHaustechnikKomponente>(((LgHaustechnikKomponente)currentSelection.ParentItem.Data).Oid);
-                //welche Anlagenart?
-                result = os.CreateObject<boAnlage>();
-                result.Liegenschaft = curLiegenschaft;
-                result.HaustechnikKomponente = curKomponente;
+                    if (curKomponente != null)
+                    {
+                        //gibt es eine Hauptanlage?
+                        mainUnit = curKomponente.lstAnlagen.Where(t => t.ParentAnlage == null).FirstOrDefault();
+                        if (mainUnit != null)
+                        {
+                            //welche Anlagenart?
+                            result = os.CreateObject<boAnlage>();
+                            result.Liegenschaft = curLiegenschaft;
+                            result.HaustechnikKomponente = curKomponente;
+                            result.ParentAnlage = os.GetObjectByKey<boAnlage>(mainUnit.Oid);
+                        }
+                        //die Hauptanlage der Komponente finden
+                   
                 result.AnlagenArt = selectedArt;
+                    }
             }
 
             //2. Anlage zur Liegenschaft hinzufügen
@@ -282,9 +325,9 @@ namespace FacilityInfo.Management.Controllers
             {
                 result = os.CreateObject<boAnlage>();
                 result.Liegenschaft = curLiegenschaft;
-                    if (currentSelection.Data.GetType() == typeof(boAnlagenGruppe))
+                    if (currentSelection.Data.GetType() == typeof(boAnlagenKategorie))
                     {
-                        result.AnlagenGruppe = os.GetObjectByKey<boAnlagenGruppe>(((boAnlagenGruppe)currentSelection.Data).Oid);
+                        result.AnlagenKategorie = os.GetObjectByKey<boAnlagenKategorie>(((boAnlagenKategorie)currentSelection.Data).Oid);
                     }
                     else
                     {
@@ -303,56 +346,7 @@ namespace FacilityInfo.Management.Controllers
         }
         #endregion
 
-        private void doDeleteHtKomponente_Execute(object sender, PopupWindowShowActionExecuteEventArgs e)
-        {
-            IObjectSpace workingOs = Application.CreateObjectSpace();
-            DetailView curView = (DetailView)View;
-            boLiegenschaft curLiegenschaft = workingOs.GetObjectByKey<boLiegenschaft>(((boLiegenschaft)curView.CurrentObject).Oid);
-            List<LgHaustechnikKomponente> lstItemsToDelete = new List<LgHaustechnikKomponente>();
-            if (e.PopupWindowViewSelectedObjects.Count > 0)
-            {
-                //die gewähleten HT-Komponenten durchgehen  und einzeln löschen
-                
-                for(int i=0;i< e.PopupWindowViewSelectedObjects.Count;i++)
-                {
-                    LgHaustechnikKomponente curKomponente = workingOs.GetObjectByKey<LgHaustechnikKomponente>(((LgHaustechnikKomponente)e.PopupWindowViewSelectedObjects[i]).Oid);
-                    deleteHtKomponente(curKomponente, workingOs);
-
-                }
-                workingOs.CommitChanges();
-            }
-            refreshDetailView();
-        }
-
-        private void deleteHtKomponente(LgHaustechnikKomponente curKomponente,IObjectSpace workingOs)
-        {
-          //1. alle Anlagen löschen
-          if(curKomponente.lstAnlagen != null)
-          {
-                workingOs.Delete(curKomponente.lstAnlagen);
-          }
-            workingOs.Delete(curKomponente);
-        }
-        private void doDeleteHtKomponente_CustomizePopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e)
-        {
-            IObjectSpace workingOs = Application.CreateObjectSpace();
-            DetailView curDetailView = (DetailView)View;
-            boLiegenschaft curLiegenschaft = (boLiegenschaft)curDetailView.CurrentObject;
-            //die CollectionSource erstellen
-
-            CollectionSource myColSource = new CollectionSource(workingOs, typeof(LgHaustechnikKomponente));
-
-            myColSource.Criteria["curKomponenten"] = new BinaryOperator("Liegenschaft.Oid", curLiegenschaft.Oid, BinaryOperatorType.Equal);
-
-            string viewId = "boLiegenschaft_lstHaustechnikKomponenten_ListView"; 
-            ListView result = Application.CreateListView(viewId, myColSource, false);
-
-            result.Model.AllowNew = false;
-            result.Caption = "Anlagensysteme löschen";
-            result.Model.ImageName = "cross_shield";
-            e.View = result;
-        }
-
+        
         private void refreshDetailView()
         {
             DetailView curView = (DetailView)View;
@@ -366,8 +360,27 @@ namespace FacilityInfo.Management.Controllers
             this.View.ObjectSpace.ReloadObject(curLiegenschaft);
             this.View.ObjectSpace.Refresh();
             curView.Refresh();
-            createMenue(this.doAddAnlage);          
+            createMenue(this.doAddAnlage);
+            createMenue(this.doAddHaustechnikKomponente);
+            createMenue(this.doDeleteAnlagenGruppe);
         }
 
+        private void doDeleteAnlagenGruppe_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
+        {
+            IObjectSpace workingOs = Application.CreateObjectSpace();
+            ChoiceActionItem chosenOption = e.SelectedChoiceActionItem;
+            LgHaustechnikKomponente chosenKomponente;
+            
+            if(chosenOption.Data != null)
+            {
+                //hier ist die Technikeinheit drin
+
+                chosenKomponente = workingOs.GetObjectByKey<LgHaustechnikKomponente>(((LgHaustechnikKomponente)chosenOption.Data).Oid);
+                workingOs.Delete(chosenKomponente);
+                workingOs.CommitChanges();
+                refreshDetailView();
+            }
+
+        }
     }
 }

@@ -39,7 +39,7 @@ namespace FacilityInfo.Vertrag.BusinessObjects
         #region
 
         [XafDisplayName("Produktbild")]
-        [ImageEditor]
+       // [ImageEditor]
         public byte[] Produktbild
         {
             get

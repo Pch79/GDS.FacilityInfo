@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boANDatenItem_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="DatenItem" ImmediatePostData="True" />
+        <PropertyEditor Id="itmEintragswerte" PropertyName="DatenItem.lstDatenValueItems" AllowEdit="False" />
+        <PropertyEditor Id="lstAnlagenArt" AllowEdit="False" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="lstAnlagenArt_Group" Removed="True" />
+          <TabbedGroup Id="tabInfo" Caption="InfoTab">
+            <LayoutGroup Id="viewItemEintragswerte" Caption="Eintragswerte" Index="0">
+              <LayoutItem Id="viewItemEintragswerte" ViewItem="itmEintragswerte" ShowCaption="False" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstAnlagenArt_Group" Index="1" Direction="Horizontal" ShowCaption="True">
+              <LayoutItem Id="lstAnlagenArt" ViewItem="lstAnlagenArt" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boANDatenItem_ListView">
+      <Sorting Id="Sorting">
+        <SortProperty Id="indexsorter" PropertyName="Sortindex" Index="0" />
+      </Sorting>
+    </ListView>
+    <ListView Id="boAnlage_lstANDatenfelder_ListView" AllowDelete="False" AllowEdit="True" AutoExpandAllGroups="True">
+      <Columns Id="Columns">
+        <ColumnInfo Id="EintragswertSecure" Index="-1" />
+        <ColumnInfo Id="colKategorie" PropertyName="Datenfeld.DatenItem_Kategorie" Index="0" GroupIndex="-1" />
+        <ColumnInfo Id="Datenfeld" Index="1" PropertyName="Datenfeld" />
+        <ColumnInfo Id="EintragswertValueItem" Index="2" />
+        <ColumnInfo Id="EintragswertKurz" Index="3" />
+      </Columns>
+    </ListView>
+    <ListView Id="boAnlagenArt_lstDatenFelder_ListView">
+      <Sorting Id="Sorting">
+        <SortProperty Id="IndexSorter" PropertyName="Sortindex" />
+      </Sorting>
+    </ListView>
+    <DetailView Id="boDatenItem_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="itmKategorie" PropertyName="DatenItem_Kategorie" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boDatenItem">
+              <LayoutItem Id="Matchkey" ViewItem="Matchkey" />
+              <LayoutItem Id="DatenItem_Bezeichnung" ViewItem="DatenItem_Bezeichnung" Index="2" CaptionLocation="Top" Removed="True" />
+              <LayoutItem Id="DatenItem_Einheit" ViewItem="DatenItem_Einheit" Index="3" CaptionLocation="Top" Removed="True" />
+              <LayoutItem Id="DatenItem_Kategorie" Removed="True" />
+              <LayoutGroup Id="grpData" Caption="grpData" Direction="Horizontal">
+                <LayoutItem Id="viewItemKategorie" ViewItem="itmKategorie" Index="1" CaptionLocation="Top" />
+                <LayoutItem Id="DatenItem_Bezeichnung" Index="2" ViewItem="DatenItem_Bezeichnung" ShowCaption="" CaptionLocation="Top" />
+                <LayoutItem Id="DatenItem_Einheit" Index="3" ViewItem="DatenItem_Einheit" ShowCaption="" CaptionLocation="Top" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstDatenValueItems" Index="0">
+              <LayoutItem Id="lstDatenValueItems" ViewItem="lstDatenValueItems" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstFIObjekte" Index="1">
+              <LayoutItem Id="lstFIObjekte" ViewItem="lstFIObjekte" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boLiegenschaft_lstObjektDaten_ListView" AllowEdit="True" AllowDelete="False" AllowLink="False" AllowNew="False" AutoExpandAllGroups="True" FreezeColumnIndices="True" IsFooterVisible="False" IsGroupPanelVisible="False">
+      <Columns Id="Columns">
+        <ColumnInfo Id="EintragswertLang" Index="-1" />
+        <ColumnInfo Id="Liegenschaft" Index="-1" />
+        <ColumnInfo Id="Datenfeld" Index="0" />
+        <ColumnInfo Id="itmkategorie" PropertyName="Datenfeld.DatenItem_Kategorie" Index="1" GroupIndex="1" />
+        <ColumnInfo Id="EintragswertValueItem" Index="2" />
+        <ColumnInfo Id="EintragswertKurz" Index="3" />
+        <ColumnInfo Id="EintragswertSecure" Index="4" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstObjektDaten" Index="3" TextAlignMode="AlignWithChildren" RelativeSize="100" Removed="True">
+              <LayoutItem Id="lstObjektDaten" TextAlignMode="AutoSize" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup Id="Dokumenete">
+              <LayoutGroup Id="lstAttachment">
+                <LayoutItem Id="lstAttachment" ViewItem="lstAttachment" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="KwpDaten">
+              <TabbedGroup Id="tabKwpData">
+                <LayoutGroup Id="lstKwpTermine">
+                  <LayoutItem Id="lstKwpTermine" ViewItem="lstKwpTermine" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boHausverwalter_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boHausverwalter">
+              <LayoutGroup Id="boHausverwalter_col1">
+                <LayoutItem Id="Matchkey" Index="0" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstANDatenfelder" Index="2" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlagenArt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="tabFurtherData">
+            <LayoutGroup Id="lstDatenFelder_Group">
+              <LayoutItem Id="lstDatenFelder" ViewItem="lstDatenFelder" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartTermin_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartTermin">
+              <LayoutGroup Id="KwpWartTermin_col1">
+                <LayoutGroup Id="grpBezug">
+                  <LayoutItem Id="KwpAnlage" ViewItem="KwpAnlage" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <BOModel Id="BOModel">
+    <Class Name="FacilityInfo.GlobalObjects.BusinessObjects.boDatenItem" ImageName="BO_Unknown" />
+    <Class Name="FacilityInfo.GlobalObjects.BusinessObjects.boDatenKategorie" ImageName="BO_Unknown" />
+    <Class Name="FacilityInfo.Management.BusinessObjects.boDatenValueItem" DefaultListViewAllowEdit="True" DefaultListViewNewItemRowPosition="Top" ImageName="BO_Unknown" />
+  </BOModel>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Parkplatz">
+        <Items Id="Items">
+          <Item Id="navItemDatenfelder">
+            <Items Id="Items">
+              <Item Id="Antwortkatalog" ViewId="fiDatenfeldAntwort_ListView" />
+              <Item Id="navItemDatenfeld" ViewId="fiDatenfeld_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemDatenFeldProdukte">
+            <Items Id="Items">
+              <Item Id="Datenfeld (Produktgruppe)" ViewId="fiDatenfeldProduktgruppe_ListView" />
+              <Item Id="Antwortkatalog (Herstellerprodukt)" ViewId="fiDatenFeldHerstellerProduktAntwort_ListView" />
+              <Item Id="Produktdatenfeld" ViewId="fiDatenfeldHerstellerprodukt_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Developement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemMassnahmen">
+            <Items Id="Items">
+              <Item Id="boMassnahmenArt_ListView" ViewId="boMassnahmenArt_ListView" />
+              <Item Id="navItemANMassnahme" ViewId="boANMassnahme_ListView" />
+              <Item Id="navitemLGMAssnahme" ViewId="boLGMassnahme_ListView" />
+              <Item Id="boMassnahme_ListView" ViewId="boMassnahme_ListView" />
+            </Items>
+          </Item>
+          <Item Id="Dokumentverwaltung">
+            <Items Id="Items">
+              <Item Id="boMAAttachment_ListView" ViewId="boMAAttachment_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <CreatableItems Id="CreatableItems">
+    <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.boANDatenEntry" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.boANDatenItem" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.GlobalObjects.BusinessObjects.boDatenItem" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.GlobalObjects.BusinessObjects.boDatenKategorie" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boDatenValueItem" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boLGDatenEntry" Index="-1" Removed="True" />
+  </CreatableItems>
+</Application>

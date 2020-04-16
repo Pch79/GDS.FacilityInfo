@@ -28,6 +28,9 @@ namespace FacilityInfo.Management.BusinessObjects
         private Int32 _sortIndex;
         private enmStatusZugang _defaultStatus;
 
+        //parent-kategorie einrichten
+        private fiZugangKategorie _parentItem;
+
         public fiZugangKategorie(Session session)
             : base(session)
         {
@@ -37,6 +40,13 @@ namespace FacilityInfo.Management.BusinessObjects
             base.AfterConstruction();
         }
         #region Properties
+        [XafDisplayName("Übergeordnete Kategorie")]
+        public fiZugangKategorie ParentItem
+        {
+            get { return _parentItem; }
+            set { SetPropertyValue("ParentItem", ref _parentItem, value); }
+        }
+
          [XafDisplayName("Defaultstatus")]
          public enmStatusZugang DefaultStatus
         {
@@ -84,6 +94,16 @@ namespace FacilityInfo.Management.BusinessObjects
             set
             {
                 SetPropertyValue("Sortindex", ref _sortIndex, value);
+            }
+        }
+
+        [XafDisplayName("Unterkategorien")]
+        public XPCollection<fiZugangKategorie> lstSubCategories
+        {
+            get
+            {
+                XPCollection<fiZugangKategorie> lstRetVal = new XPCollection<fiZugangKategorie>(this.Session, new BinaryOperator("ParentItem.Oid",this.Oid,BinaryOperatorType.Equal));
+                return lstRetVal;
             }
         }
         #endregion

@@ -1,35 +1,35 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
+﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
-using System.ComponentModel;
 using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
-using DevExpress.Persistent.Base;
-using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
+using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using DevExpress.Persistent.Validation;
-using FacilityInfo.Management.BusinessObjects;
-using FacilityInfo.GlobalObjects.EnumStore;
-using FacilityInfo.GlobalObjects.BusinessObjects;
-using System.Drawing;
-using FacilityInfo.GlobalObjects.Helpers;
-using FacilityInfo.Hersteller.BusinessObjects;
-using FacilityInfo.DMS.BusinessObjects;
-using FacilityInfo.Liegenschaft.BusinessObjects;
-using FacilityInfo.Building.BusinessObjects;
-using FacilityInfo.Messung.BusinessObjects;
+using DevExpress.Xpo;
+using FacilityInfo.Action.BusinessObjects;
 using FacilityInfo.Adresse.BusinessObjects;
-using FacilityInfo.Management;
-using FacilityInfo.Datenfeld.BusinessObjects;
-using FacilityInfo.Core.BusinessObjects;
-using FacilityInfo.Service.BusinessObjects;
-using FacilityInfo.Management.EnumStore;
-using DevExpress.Persistent.Base.General;
-using DevExpress.ExpressApp.Utils;
+using FacilityInfo.Artikelverwaltung.BusinessObjects;
 using FacilityInfo.Bildverarbeitung.BusinessObjects;
+using FacilityInfo.Building.BusinessObjects;
+using FacilityInfo.Core.BusinessObjects;
+
+using FacilityInfo.DMS.BusinessObjects;
+using FacilityInfo.Hersteller.BusinessObjects;
+using FacilityInfo.Liegenschaft.BusinessObjects;
+using FacilityInfo.Management;
+using FacilityInfo.Management.BusinessObjects;
+using FacilityInfo.Management.EnumStore;
+using FacilityInfo.Management.Helpers;
+using FacilityInfo.Messung.BusinessObjects;
+using FacilityInfo.Parameter.BusinessObjects;
+
+using FacilityInfo.Wartung.BusinessObjects;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
 
 namespace FacilityInfo.Anlagen.BusinessObjects
 {
@@ -37,11 +37,11 @@ namespace FacilityInfo.Anlagen.BusinessObjects
     [XafDisplayName("Anlage")]
     [ImageName("centos_16")]
     [XafDefaultProperty("AnlagenNummer")]
-   
+
     public class boAnlage : BaseObject //,ITreeNode,ITreeNodeImageProvider
     {
 
-       
+
         private System.String _bezeichnung;
         private System.String _anlagennummer;
         private System.String _anlagencode;
@@ -53,8 +53,11 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         private boMandant _mandant;
         private boAnlage _parentAnlage;
         private System.String _fremdsystemId;
-        private boAnlagenGruppe _anlagenGruppe;
+
+        //Klassifizeirung der Anlage
+        private boAnlagenKategorie _anlagenKategorie;
         private boAnlagenArt _anlagenArt;
+
         private boLiegenschaft _liegenschaft;
         //Zustand und Status
         private enmAnlagenStatus _anlagenstatus;
@@ -71,406 +74,666 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
         private LgHaustechnikKomponente _lghaustechnikkomponente;
 
+
         //Standort
         private fiGebaeude _gebaeude;
         private fiEbene _ebene;
         private fiRaum _raum;
 
-        
+        //einfache Standortimplementierung
+
+        private fiGebaeude _building;
+        private fiRaumart _roomType;
+        private String _roomDesignation;
+
+        private String _floorDesignation;
+        private fiEbenenart _floorType;
 
 
 
-        private System.String curMandantID = string.Empty;
+
+
+        //private System.String curMandantID = string.Empty;
         public boAnlage(Session session)
             : base(session)
         {
-            curMandantID = clsStatic.loggedOnMandantOid;
+           
         }
-        
-      
+
+
 
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-           curMandantID =  clsStatic.loggedOnMandantOid;
+           
             this.Anlagenstatus = enmAnlagenStatus.Aktiv;
 
+            this.Mandant = getMandantByUser(SecuritySystem.CurrentUserName);
+            createAnlagenCode();
+            //TODO: MAndantenzuordnung umbauen - > Erstellung des Anlagencodes hängt daran !!!!!
+            /*
+            curMandantID = clsStatic.loggedOnMandantOid;
+            this.Mandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
+
+            createAnlagenCode();
+            */
+
         }
-       
-     
+        public boMandant getMandantByUser(string userName)
+        {
+            boMandant retVal = null;
+            PermissionPolicyUser curUser = this.Session.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", userName, BinaryOperatorType.Equal));
+
+            corePortalAccount curPortalAccount = this.Session.FindObject<corePortalAccount>(new BinaryOperator("SystemBenutzer.Oid", curUser.Oid, BinaryOperatorType.Equal));
+            if (curPortalAccount != null)
+            {
+                //den hausverwalter rausfinden
+                boHausverwalter curHausverwalter = this.Session.FindObject<boHausverwalter>(new BinaryOperator("Oid", curPortalAccount.HausVerwalter.Oid, BinaryOperatorType.Equal));
+                retVal = curHausverwalter.Mandant;
+            }
+
+            boMitarbeiter curMitarbeiter = this.Session.FindObject<boMitarbeiter>(new BinaryOperator("Systembenutzer.Oid", curUser.Oid, BinaryOperatorType.Equal));
+
+            if (curMitarbeiter != null)
+            {
+                retVal = curMitarbeiter.Mandant;
+            }
+
+            if (retVal == null)
+            {
+                boMandant curMandant = this.Session.FindObject<boMandant>(new BinaryOperator("IsDefault", "true", BinaryOperatorType.Equal));
+                retVal = curMandant;
+            }
+
+
+            return retVal;
+        }
+
+        public void checkAnlagenActions()
+        {
+            //TODO die benötigten Maßnahmen laden;
+            //Maßnahmen der Anlagenart
+            wartungWartungsPlanAnlagenArt curWartungAnlage;
+            wartungWartungsPlanProdukt curWartungProdukt;
+            actionActionAnlage curActionAnlage;
+            wartungWartungsPosition curWartungsPosition;
+            actionActionPosition curActionPosition;
+            if(this.AnlagenArt.lstWartungsPlan != null)
+            {
+                for(int i=0;i<this.AnlagenArt.lstWartungsPlan.Count;i++)
+                {
+                    curWartungAnlage = (wartungWartungsPlanAnlagenArt)this.AnlagenArt.lstWartungsPlan[i];
+                    //gibt es hierzu eine Action?? 
+                    //wenn nicht muss diese angelegt werden
+                    curActionAnlage = this.lstActionAnlage.Where(t => t.WartungsPlan.Oid == curWartungAnlage.Oid).FirstOrDefault();
+                    if(curActionAnlage == null)
+                    {
+                        //create
+                        curActionAnlage = new actionActionAnlage(this.Session);
+                        curActionAnlage.Anlage = this;
+                        curActionAnlage.WartungsPlan = this.Session.GetObjectByKey<wartungWartungsPlanAnlagenArt>(curWartungAnlage.Oid);
+                        curActionAnlage.Liegenschaft = this.Session.GetObjectByKey<boLiegenschaft>(this.Liegenschaft.Oid);
+                        curActionAnlage.AnzahlTechniker = curWartungAnlage.AnzahlTechniker;
+                        curActionAnlage.Beschreibung = curWartungAnlage.Beschreibung;
+                        curActionAnlage.Bezeichnung = curWartungAnlage.Bezeichnung;
+                        curActionAnlage.ActionClassification = enmActionClassification.Wartung;
+                        curActionAnlage.Prioritaet = enmPrioritaet.normal;
+                        curActionAnlage.Status = enmBearbeitungsStatus.neu;
+                        curActionAnlage.Turnus = curWartungAnlage.Turnus;
+                        curActionAnlage.TurnusValue = curWartungAnlage.TurnusValue;
+                        curActionAnlage.Save();
+                       
+                     
+                        if(curWartungAnlage.lstWartungPosition != null)
+                        {
+                            for(int j=0;j<curWartungAnlage.lstWartungPosition.Count;j++)
+                            {
+                                curWartungsPosition = (wartungWartungsPosition)curWartungAnlage.lstWartungPosition[j];
+                                if(curWartungsPosition != null)
+                                {
+                                    curActionPosition = new actionActionPosition(this.Session);
+                                    curActionPosition.ActionBase = curActionAnlage;
+                                    curActionPosition.WartungsPosition = this.Session.GetObjectByKey<wartungWartungsPosition>(curWartungsPosition.Oid);
+                                    curActionPosition.PositionsNummer = curWartungsPosition.PositionsNummer;
+                                    curActionPosition.PosLangText = curWartungsPosition.PosLangText;
+                                    curActionPosition.PosText = curWartungsPosition.PosText;
+                                    curActionPosition.SortIndex = curWartungsPosition.SortIndex;
+                                    curActionPosition.ZeitVorgabe = curWartungsPosition.ZeitVorgabe;
+                                    curActionPosition.AnzahlTechniker = curWartungsPosition.AnzahlTechniker;
+                                    curActionPosition.ArbeitsAnweisung = curWartungsPosition.ArbeitsAnweisung;
+                                    if(curWartungsPosition.Artikel != null)
+                                    {
+                                        curActionPosition.Artikel = this.Session.GetObjectByKey<artikelArtikelBase>(curWartungsPosition.Artikel.Oid);
+                                        curActionPosition.ArtikelMenge = curWartungsPosition.ArtikelMenge;
+                                    }
+                                    if(curWartungsPosition.Bauteil != null)
+                                    {
+                                        curActionPosition.Bauteil = this.Session.GetObjectByKey<fiBauteil>(curWartungsPosition.Bauteil.Oid);
+                                        curActionPosition.BauteilAnzahl = curWartungsPosition.BauteilAnzahl;
+                                    }
+                                    curActionPosition.Beschreibung = curWartungsPosition.Beschreibung;
+                                    curActionPosition.Notizen = curWartungsPosition.Notizen;
+                                    curActionPosition.Save();
+                                   
+                                }
+                            }
+                        }
+                        
+                    }
+                    this.Session.CommitTransaction();
+                }
+            }
+
+         
+           
+           
+        }
+
+        public void checkProduktActions()
+        {
+            //TODO die benötigten Maßnahmen laden;
+            //Maßnahmen der Anlagenart
             
+            wartungWartungsPlanProdukt curWartungProdukt;
+            actionActionAnlage curActionAnlage;
+            wartungWartungsPosition curWartungsPosition;
+            actionActionPosition curActionPosition;
+
+            //hab ich einen Hersteller??
+            if (this.Typ != null)
+            {
+                if (this.Typ.lstWartungsPlan != null)
+                {
+                    for (int i = 0; i < this.Typ.lstWartungsPlan.Count; i++)
+                    {
+                        curWartungProdukt = (wartungWartungsPlanProdukt)this.Typ.lstWartungsPlan[i];
+                        //gibt es hierzu eine Action?? 
+                        //wenn nicht muss diese angelegt werden
+                        curActionAnlage = this.lstActionAnlage.Where(t => t.WartungsPlan.Oid == curWartungProdukt.Oid).FirstOrDefault();
+                        if (curActionAnlage == null)
+                        {
+                            //create
+                            curActionAnlage = new actionActionAnlage(this.Session);
+                            curActionAnlage.Anlage = this;
+                            curActionAnlage.WartungsPlan = this.Session.GetObjectByKey<wartungWartungsPlanProdukt>(curWartungProdukt.Oid);
+                            curActionAnlage.Liegenschaft = this.Session.GetObjectByKey<boLiegenschaft>(this.Liegenschaft.Oid);
+                            curActionAnlage.AnzahlTechniker = curWartungProdukt.AnzahlTechniker;
+                            curActionAnlage.Beschreibung = curWartungProdukt.Beschreibung;
+                            curActionAnlage.Bezeichnung = curWartungProdukt.Bezeichnung;
+                            curActionAnlage.ActionClassification = enmActionClassification.Wartung;
+                            curActionAnlage.Prioritaet = enmPrioritaet.normal;
+                            curActionAnlage.Status = enmBearbeitungsStatus.neu;
+                            curActionAnlage.Turnus = curWartungProdukt.Turnus;
+                            curActionAnlage.TurnusValue = curWartungProdukt.TurnusValue;
+                            curActionAnlage.Save();
+
+                            //TODO: die Positionen noch verarbeiten
+                            if (curWartungProdukt.lstWartungPosition != null)
+                            {
+                                for (int j = 0; j < curWartungProdukt.lstWartungPosition.Count; j++)
+                                {
+                                    curWartungsPosition = (wartungWartungsPosition)curWartungProdukt.lstWartungPosition[j];
+                                    if (curWartungsPosition != null)
+                                    {
+                                        curActionPosition = new actionActionPosition(this.Session);
+                                        curActionPosition.ActionBase = curActionAnlage;
+                                        curActionPosition.WartungsPosition = this.Session.GetObjectByKey<wartungWartungsPosition>(curWartungsPosition.Oid);
+                                        curActionPosition.PositionsNummer = curWartungsPosition.PositionsNummer;
+                                        curActionPosition.PosLangText = curWartungsPosition.PosLangText;
+                                        curActionPosition.PosText = curWartungsPosition.PosText;
+                                        curActionPosition.SortIndex = curWartungsPosition.SortIndex;
+                                        curActionPosition.ZeitVorgabe = curWartungsPosition.ZeitVorgabe;
+                                        curActionPosition.AnzahlTechniker = curWartungsPosition.AnzahlTechniker;
+                                        curActionPosition.ArbeitsAnweisung = curWartungsPosition.ArbeitsAnweisung;
+                                        if (curWartungsPosition.Artikel != null)
+                                        {
+                                            curActionPosition.Artikel = this.Session.GetObjectByKey<artikelArtikelBase>(curWartungsPosition.Artikel.Oid);
+                                            curActionPosition.ArtikelMenge = curWartungsPosition.ArtikelMenge;
+                                        }
+                                        if (curWartungsPosition.Bauteil != null)
+                                        {
+                                            curActionPosition.Bauteil = this.Session.GetObjectByKey<fiBauteil>(curWartungsPosition.Bauteil.Oid);
+                                            curActionPosition.BauteilAnzahl = curWartungsPosition.BauteilAnzahl;
+                                        }
+                                        curActionPosition.Beschreibung = curWartungsPosition.Beschreibung;
+                                        curActionPosition.Notizen = curWartungsPosition.Notizen;
+                                        curActionPosition.Save();
+
+                                    }
+                                }
+                            }
+
+                        }
+                       // this.Session.CommitTransaction();
+                    }
+                }
+            }
+        }
+
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
             base.OnChanged(propertyName, oldValue, newValue);
-            
-                    //wenn es sich 
-                    switch (propertyName)
+            if (!this.Session.IsObjectToDelete(this))
             {
-                case "Liegenschaft":
+                //wenn es sich 
+                switch (propertyName)
+                {
+                    case "Liegenschaft":
 
-                    if(this.Rechnungsadresse == null)
-                    {
-                        if(newValue != null)
+                        boLiegenschaft workingLg = null;
+                        if (newValue != null)
                         {
-                            
-                            setRechnungsAdresse(((boLiegenschaft)newValue).Liegenschaftsadresse);
+                           workingLg = ((boLiegenschaft)newValue);
                         }
-                    }
-
-                    if(this.AnlagenAdresse == null)
-                    {
-                        if(newValue != null)
+                        if (this.Rechnungsadresse == null)
                         {
-                            setAnlagenAdresse(((boLiegenschaft)newValue).Liegenschaftsadresse);
-                        }
-                    }
-
-                    //TODO: hier auch den Mandanten noch prüfen
-
-                    break;
-
-                case "AnlagenArt":
-                    if (newValue != null)
-                    {
-                        this.AnlagenGruppe = ((boAnlagenArt)newValue).AnlagenGruppe;
-                        boMandant curMandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
-
-                        this.AnlagenNummer = createNumber(curMandant);
-                    }
-                    break;
-               
-                case "Hersteller":
-                    this.Typ = null;
-                    break;
-
-                //wenn sich der Typ ändert dann die Felder anschreiben
-                case "Typ":
-                    //die Felder anschreiben
-                    this.Session.Delete(this.lstAnlagenfelder);
-                    if (newValue != null)
-                    {
-                        fiHerstellerProdukt curProdukt = (fiHerstellerProdukt)newValue;
-                        generateAnlagenfields(curProdukt);
-                        /*
-                        if(curProdukt.lstDatenFeldHerstellerprodukt != null)
-                        {
-                            //Anlagenfelder
-                            foreach(fiDatenfeldHerstellerprodukt item in curProdukt.lstDatenFeldHerstellerprodukt)
+                            if (newValue != null)
                             {
-                                fiAnlagenfeld curAnlagenfeld = this.Session.FindObject<fiAnlagenfeld>(new GroupOperator(new BinaryOperator("Anlage.Oid", this.Oid, BinaryOperatorType.Equal), new BinaryOperator("DatenfeldHerstellerprodukt.Oid", item.Oid, BinaryOperatorType.Equal)));
-                                if (curAnlagenfeld == null)
+
+                                setRechnungsAdresse(((boLiegenschaft)newValue).Liegenschaftsadresse);
+                            }
+                        }
+
+                        if (this.AnlagenAdresse == null)
+                        {
+                            if (newValue != null)
+                            {
+                                setAnlagenAdresse(((boLiegenschaft)newValue).Liegenschaftsadresse);
+                            }
+                        }
+
+                        //TODO: hier auch den Mandanten noch prüfen
+                     
+                        if(workingLg != null)
+
+                        {
+                            this.Mandant = Session.GetObjectByKey<boMandant>(workingLg.Mandant.Oid);
+                            this.Save();
+                        }                       
+                        break;
+                    case "AnlagenArt":
+                
+                        deleteAnlagenparameter();
+
+                        //die parameter löschen
+
+                        if (newValue != null)
+                        {
+                            boAnlagenArt curAnlagenArt = (boAnlagenArt)newValue;
+                            this.AnlagenKategorie = ((boAnlagenArt)newValue).AnlagenKategorie;
+                            this.AnlagenNummer = completeNumber();
+                                                    
+
+                            //die Anlagenparameter schreiben
+                            generateAnlagenparameter((boAnlagenArt)newValue);
+                            //wenn sich die Anlagenart ändert ändert sich dann auch der Anlagentyp???
+                            // completeNumber();
+                            //auch hier die Wartungen noch schreiben
+                            List<actionActionAnlage> lstActionsToDelete = this.lstActionAnlage.Where(t => t.WartungsPlan.GetType() == typeof(wartungWartungsPlanAnlagenArt)).ToList();
+                           
+                            if (lstActionsToDelete != null)
+                            {
+                                this.Session.Delete(lstActionsToDelete);
+                                this.Save();
+                                this.Session.CommitTransaction();
+                            }
+
+
+                            checkAnlagenActions();
+                        }
+                        break;
+
+                    case "Hersteller":
+                       
+                        this.Typ = null;
+                       // GetAvailableProducts();
+                        break;
+
+                    //wenn sich der Typ ändert dann die Felder anschreiben
+                    case "Typ":
+                        if (!this.Session.IsObjectsSaving)
+                        {
+                            var lstResult = this.lstAnlagenParameter.Where(t => t.OriginType == typeof(parameterHerstellerProduktParameter)).ToList().FirstOrDefault();
+                        if (lstResult != null)
+                        {
+                            this.Session.Delete(lstResult);
+                            this.Save();
+                            this.Session.CommitTransaction();
+                        }
+
+
+
+                        if (newValue != null)
+                        {
+                            fiHerstellerProdukt curProdukt = (fiHerstellerProdukt)newValue;
+                                if (curProdukt.Hersteller != null)
                                 {
-                                    curAnlagenfeld = new fiAnlagenfeld(this.Session);
-                                     fiDatenfeldHerstellerprodukt curField = this.Session.GetObjectByKey<fiDatenfeldHerstellerprodukt>(item.Oid);
-                                    curAnlagenfeld.DatenfeldHerstellerprodukt = curField;
-                                    if(curField.DatenfeldAntwort != null)
-                                    {
-                                        fiDatenfeldAntwort curAntwort = this.Session.GetObjectByKey<fiDatenfeldAntwort>(curField.DatenfeldAntwort.Oid);
-                                        curAnlagenfeld.DatenfeldAntwort = curAntwort;
-                                    }
+                                    this.Hersteller = this.Session.GetObjectByKey<boHersteller>(curProdukt.Hersteller.Oid);
+                                }
+                            generateAnlagenparameter(curProdukt);
 
-                                    //die Antwort holen
-                                    //gibt es in dem gefunden Feld eine Antwortvorbelegung?
+                                //die Maßnahmen updaten
+                                //alle Maßnahmen aus der vorigen Zuorndung löschen
 
-                                    
-                                    
-                                    
-                                   
-                                    curAnlagenfeld.Save();
-                                    this.lstAnlagenfelder.Add(curAnlagenfeld); 
+                                List<actionActionAnlage> lstActionsToDelete = this.lstActionAnlage.Where(t => t.WartungsPlan.GetType() == typeof(wartungWartungsPlanProdukt)).ToList();
+                                if (lstActionsToDelete != null)
+                                        {
+                                            this.Session.Delete(lstActionsToDelete);
+                                            this.Save();
+                                            this.Session.CommitTransaction();
+                                        }
+                                
+                                
+                                checkProduktActions();
+                        }
+                            this.Session.CommitTransaction();
+                        
+
+                        
+                }
+                break;
+                    case "Mainimage":
+                        if (!this.IsLoading)
+                        {
+                            if (newValue != null)
+                            {
+                                setMainThumbnail();
+                                //hier kan ich auch gleich die Web-Implementierung erstellen
+                                setMainImageWeb();
+                            }
+                            if (newValue == null)
+                            {
+                                this.MainImageThumb = null;
+                                this.MainImageWeb = null;
+                            }
+                        }
+                        break;
+                    case "Mandant":
+                        //wenn sich der Mandant ändert muss die Anlagennummer neu vergeben werden
+                        if(newValue != null)
+                        {
+                            if (!this.IsLoading)
+                            {
+                                if (!this.Session.IsNewObject(this))
+                                {
+                                    createAnlagenCode();
                                 }
                             }
-                        } 
-                        */                      
-                    }
-                    else
-                    {
-                        this.Session.Delete(this.lstAnlagenfelder);
-                    }
-                    break;
+                            }
+                        break;
+                    
+                }
+            }         
+        }
+
+      
+
+        public void deleteAnlagenparameter()
+        {
+            if (this.lstAnlagenParameter != null)
+            {
+                this.Session.Delete(this.lstAnlagenParameter);
+                this.Save();
+               // this.Session.CommitTransaction();
             }
         }
 
-        public void renewAntwort()
+        public void generateAnlagenparameter(boAnlagenArt curAnlagenArt)
         {
-            //Prüfen ob die Antworten sich geändert haben
+            
+            if(curAnlagenArt.lstParameterItem!= null && curAnlagenArt.lstParameterItem.Count >0)
+            { 
+                for(int i=0;i<curAnlagenArt.lstParameterItem.Count;i++)
+                {
+                    parameterAnlagenArtParam paramToAdd = this.Session.GetObjectByKey<parameterAnlagenArtParam>(curAnlagenArt.lstParameterItem[i].Oid);
 
+                    if (this.lstAnlagenParameter.Where(t => t.ParameterItem.ParamKey == paramToAdd.ParameterDefinition.ParamKey).Count() <= 0)
+                    {
+                        parameterAnlagenParameter curParam = new parameterAnlagenParameter(this.Session);
+                        curParam.OriginType = paramToAdd.GetType();
+                        curParam.ParameterItem = paramToAdd.ParameterDefinition;
+                        curParam.DefaultValue = paramToAdd.DefaultValue;
+                        curParam.Value = paramToAdd.DefaultValue;
+                        curParam.Save();
+                        this.lstAnlagenParameter.Add(curParam);
+                        this.Save();
+                        //this.Session.CommitTransaction();
+                        //TODO hier die Verbindung zu den Herstellerprodukten schaffen
+                   }
+                    }
+            }
         }
 
 
-        public void generateAnlagenfields(fiHerstellerProdukt curProdukt)
+        
+
+        public void generateAnlagenparameter(fiHerstellerProdukt curAnlagenTyp)
         {
-            if (curProdukt.lstDatenFeldHerstellerprodukt != null)
+
+            if (curAnlagenTyp.lstProduktParameter != null && curAnlagenTyp.lstProduktParameter.Count > 0)
             {
-                //Anlagenfelder
-                foreach (fiDatenfeldHerstellerprodukt item in curProdukt.lstDatenFeldHerstellerprodukt)
+                for (int i = 0; i < curAnlagenTyp.lstProduktParameter.Count; i++)
                 {
-                    fiAnlagenfeld curAnlagenfeld = this.Session.FindObject<fiAnlagenfeld>(new GroupOperator(new BinaryOperator("Anlage.Oid", this.Oid, BinaryOperatorType.Equal), new BinaryOperator("DatenfeldHerstellerprodukt.Oid", item.Oid, BinaryOperatorType.Equal)));
-                    fiDatenfeldHerstellerprodukt curField = this.Session.GetObjectByKey<fiDatenfeldHerstellerprodukt>(item.Oid);
-                    if (curAnlagenfeld == null)
+                    parameterHerstellerProduktParameter paramToAdd = this.Session.GetObjectByKey<parameterHerstellerProduktParameter>(curAnlagenTyp.lstProduktParameter[i].Oid);
+
+                    if (this.lstAnlagenParameter.Where(t => t.ParameterItem.ParamKey == paramToAdd.ParameterItem.ParamKey).Count() <= 0)
                     {
-                        curAnlagenfeld = new fiAnlagenfeld(this.Session);
-                    }
-                        //fiDatenfeldHerstellerprodukt curField = this.Session.GetObjectByKey<fiDatenfeldHerstellerprodukt>(item.Oid);
-                        curAnlagenfeld.DatenfeldHerstellerprodukt = curField;
+                        parameterAnlagenParameter curParam = new parameterAnlagenParameter(this.Session);
 
-                        if (curAnlagenfeld.DatenfeldAntwort == null)
-                        {
-                            if (curField.DatenfeldAntwort != null)
-                            {
-                                fiDatenfeldAntwort curAntwort = this.Session.GetObjectByKey<fiDatenfeldAntwort>(curField.DatenfeldAntwort.Oid);
-                                //was mach ich mit dem Antworteintrag??
-                                curAnlagenfeld.DatenfeldAntwort = curAntwort;
-                            }
-                        }
-
-
-                        curAnlagenfeld.Save();
-                        this.lstAnlagenfelder.Add(curAnlagenfeld);
+                  
+                        curParam.OriginType = paramToAdd.GetType();
+                        curParam.ParameterItem = paramToAdd.ParameterItem;
+                        curParam.DefaultValue = paramToAdd.DefaultValue;
+                        curParam.Value = paramToAdd.DefaultValue;
+                        curParam.MaxAllowedValue = paramToAdd.MaxAllowedValue;
+                        curParam.MinAllowedValue = paramToAdd.MinAllowedValue;
+                        curParam.Save();
+                        this.lstAnlagenParameter.Add(curParam);
+                        this.Save();
+                       // this.Session.CommitTransaction();
+                        //TODO hier die Verbindung zu den Herstellerprodukten schaffenö
                     }
                 }
             }
+        }
+
+        
+      
+
+
+        public void createAnlagenGruppe()
+    {
+        if (this.HaustechnikKomponente == null)
+        {
+            if (this.Liegenschaft != null)
+            {
+                boLiegenschaft workingLiegenschaft = this.Session.GetObjectByKey<boLiegenschaft>(this.Liegenschaft.Oid);
+                boAnlagenArt curAnlagenArt = this.Session.GetObjectByKey<boAnlagenArt>(this.AnlagenArt.Oid);
+                fiTechnikeinheit workingUnit;
+                XPCollection<fiTechnikeinheit> lstTechnikUnits = new XPCollection<fiTechnikeinheit>(this.Session, new BinaryOperator("Basisanlage.Oid", curAnlagenArt.Oid, BinaryOperatorType.Equal));
+                workingUnit = lstTechnikUnits.FirstOrDefault();
+                if (workingUnit != null)
+                {
+                    LgHaustechnikKomponente workingAnlagenGruppe = new LgHaustechnikKomponente(this.Session);
+
+                    workingAnlagenGruppe.Liegenschaft = workingLiegenschaft;
+                    workingAnlagenGruppe.Technikeinheit = this.Session.GetObjectByKey<fiTechnikeinheit>(workingUnit.Oid);
+                    workingAnlagenGruppe.lstAnlagen.Add(this);
+                    workingAnlagenGruppe.lstAnlagen.AddRange(this.lstUnteranlagen);
+                    workingAnlagenGruppe.Gebaeude = (this.Gebaeude != null) ? this.Session.GetObjectByKey<fiGebaeude>(this.Gebaeude.Oid) : null;
+                    workingAnlagenGruppe.Ebene = (this.Ebene != null) ? this.Session.GetObjectByKey<fiEbene>(this.Ebene.Oid) : null;
+                    workingAnlagenGruppe.Raum = (this.Raum != null) ? this.Session.GetObjectByKey<fiRaum>(this.Raum.Oid) : null;
+                    workingAnlagenGruppe.Notiz = "automatisch generiert";
+                    workingAnlagenGruppe.Save();
+                }
+            }
+            this.Session.CommitTransaction();
+        }
+    }
+
+      
         protected override void OnLoading()
         {
             base.OnLoading();
-           
-
         }
 
 
         protected override void OnLoaded()
         {
             base.OnLoaded();
-            /*
-                if (this.Liegenschaft != null)
+
+           
+           
+            if(this.Anlagencode == null || this.Anlagencode== string.Empty)
+            {
+                if(this.Mandant != null)
                 {
-                    this.Mandant = (this.Liegenschaft.Mandant != null) ? this.Session.GetObjectByKey<boMandant>(this.Liegenschaft.Mandant.Oid) : null;
-                    if(this.Mandant != null)
+                    createAnlagenCode();
+                }
+                else
+                {
+                    this.Mandant = getMandantByUser(SecuritySystem.CurrentUserName);
+                    createAnlagenCode();
+                }
+            }
+
+            if (this.AnlagenNummer == null || this.AnlagenNummer == string.Empty)
+            {
+                this.AnlagenNummer = completeNumber();
+                this.Save();
+               // Session.CommitTransaction();
+            }
+          if(this.Liegenschaft == null)
+            {
+                //gibt es eine parent-Anlage??
+                if(this.ParentAnlage != null)
+                {
+                    if(this.ParentAnlage.Liegenschaft != null)
                     {
+                        this.Liegenschaft = this.Session.GetObjectByKey<boLiegenschaft>(this.ParentAnlage.Liegenschaft.Oid);
                         this.Save();
                     }
                 }
-
-            */
-            /*
-            #region Anlagennummer
-            if (this.AnlagenNummer != null)
-            {
-                if (this.AnlagenNummer.Contains("N/A"))
-                {
-                    //dann prüfen obs einen Acode gibt
-                    if (this.AnlagenArt.Ansprechcode != null)
-                    {
-                        this.AnlagenNummer = this.AnlagenNummer.Replace("N/A", this.AnlagenArt.Ansprechcode);
-                    }
-                }
             }
-
-            else
-            {
-                //
-                boMandant curMandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
-
-                this.AnlagenNummer = createNumber(curMandant);
-            }
-            #endregion
-            */
-            /*
-            #region Anlagencode
-
-            if(this.Anlagencode != null)
-            {
-                if (this.Anlagencode.Contains("N/A"))
-                {
-                    //dann prüfen obs einen Acode gibt
-                    if (this.AnlagenArt.Ansprechcode != null)
-                    {
-                        this.Anlagencode = this.Anlagencode.Replace("N/A", this.AnlagenArt.Ansprechcode);
-                    }
-                }
-
-            }
-            #endregion
-            */
-            #region Anlagenfelder
-            /*
-            if(this.Typ != null)
-            {
-                fiHerstellerProdukt curProdukt = this.Session.GetObjectByKey<fiHerstellerProdukt>(this.Typ.Oid);
-                generateAnlagenfields(curProdukt);
-            }
-            */
-
-            #endregion
-
-            //this.Session.CommitTransaction();
-           
         }
 
-        //wenn die Nummer "N/A" enthält dann 
-        private System.String doRecode()
-        {
-            var retVal = string.Empty;
-            if(this.AnlagenNummer != null && this.AnlagenNummer.Contains("N/A"))
-            {
-                //dann das NA durch den Acode ersetzen
-                if(this.AnlagenArt.Ansprechcode != null)
-                {
-                    retVal = this.AnlagenNummer.Replace("N/A", this.AnlagenArt.Ansprechcode);
-                }
-            }
-            return retVal;
-        }
-
+     
 
         protected override void OnSaved()
         {
             base.OnSaved();
-        }
-
-        private void generateAnlagencode()
-        {
-            var acode = string.Empty;
-            acode = this.AnlagenArt.Ansprechcode;
-        }
-
-        private void saveImageCopy()
-        {
-            Bitmap addedImage = PictureHelper.byteArrayToBitmap(this.Mainimage);
-
-
-            Bitmap copy = new Bitmap(addedImage.Width, addedImage.Height);
-
-            using (Graphics gr = Graphics.FromImage(copy))
+            if(this.FloorType != null && (this.FloorDesignation == null || this.FloorDesignation == string.Empty))
             {
-                Rectangle myRec = new Rectangle(0, 0, copy.Width, copy.Height);
-                gr.DrawImage(addedImage, myRec, myRec, GraphicsUnit.Pixel);
+                this.FloorDesignation = (this.FloorType.Kuerzel != null)?this.FloorType.Kuerzel:"n.a.";
             }
-            this.MainImageOriginal = PictureHelper.imageToByteArray(copy);
-        }
-
-        private void setWatermark()
-        {
-            // und dann die Watermark setzen
-            if (this.Mandant != null)
+            if (this.RoomType != null && (this.RoomDesignation == null || this.RoomDesignation == string.Empty))
             {
-                //das Wasserzeichen für den Mandanten suchen
-                boWatermark curWatermark = this.Session.GetObjectByKey<boWatermark>(this.Mandant.Wasserzeichen.Oid);
-                if (curWatermark != null)
-                {
-                    //die Einstellungen auslesen
-                    //1. Wo wird Positioniert
-                    //das Bild an sich
-                    System.Drawing.Image curWaterMarkImage = PictureHelper.byteArrayToImage(curWatermark.Wasserzeichen);
-                    System.Drawing.Image curMainImage = PictureHelper.byteArrayToImage(this.MainImageOriginal);
-                    this.Mainimage = PictureHelper.imageToByteArray(PictureHelper.SetWaterMark(curMainImage, curWaterMarkImage, curWatermark.Vertical, curWatermark.Horizontal, curWatermark.Breite, curWatermark.Hoehe));
-                }
-                //this.Liegenschaft.Mandant.Watermark
-                //this.Bild = PictureHelper.SetWaterMark(this.Bild, this.Liegenschaft.Mandant.Watermark);
+                this.RoomDesignation = (this.RoomType.Kuerzel != null)?this.RoomType.Kuerzel:"n.a.";
             }
+
+        }
+
+        protected override void OnSaving()
+        {
+            base.OnSaving();
+            
         }
 
 
-
-        private System.String  createNumber(boMandant selectedMandant)
+        public void createAnlagenCode()
         {
             Type curType = this.GetType();
-           
-            var nummer = this.Session.FindObject<boNummernkreis>(new GroupOperator(new BinaryOperator("Objekt", curType, BinaryOperatorType.Equal), new BinaryOperator("Mandant.Oid", selectedMandant.Oid, BinaryOperatorType.Equal),
-                     new BinaryOperator("GueltigAb", DateTime.Now, BinaryOperatorType.LessOrEqual),
-                     new BinaryOperator("GueltigBis", DateTime.Now, BinaryOperatorType.GreaterOrEqual)));
-            var retVal = string.Empty;
-
-
-
-            //dann noch den Acode dazuholen
-            var acode = string.Empty;
-            if(this.AnlagenArt != null)
+            boMandant curMandant;
+            //die Anlage sollte einemMandanten zugeweisen werden
+            if (this.Mandant != null)
             {
-                if (this.AnlagenArt.Ansprechcode != null)
+                curMandant = this.Session.GetObjectByKey<boMandant>(this.Mandant.Oid);
+
+                
+                var nummer = this.Session.FindObject<boNummernkreis>(new GroupOperator(new BinaryOperator("Objekt", curType, BinaryOperatorType.Equal), new BinaryOperator("Mandant.Oid", curMandant.Oid, BinaryOperatorType.Equal),
+                         new BinaryOperator("GueltigAb", DateTime.Now, BinaryOperatorType.LessOrEqual),
+                         new BinaryOperator("GueltigBis", DateTime.Now, BinaryOperatorType.GreaterOrEqual)));
+                var retVal = string.Empty;
+
+
+
+                //dann noch den Acode dazuholen
+
+                if (nummer != null)
                 {
-                    acode = this.AnlagenArt.Ansprechcode;
+                    //jetzt das Teil zusammenbauen
+                    if (nummer.Suffix != null && nummer.Suffix != string.Empty)
+                    {
+                        retVal = string.Format("{0}{1}{2}", nummer.Praefix, nummer.FortlaufendeNummer, nummer.Suffix);
+                    }
+                    else
+                    {
+                        retVal = string.Format("{0}{1}", nummer.Praefix, nummer.FortlaufendeNummer, nummer.Suffix);
+
+                    }
+                    //retVal = nummer.NextNumber;
+                    nummer.FortlaufendeNummer = nummer.FortlaufendeNummer + 1;
+                    nummer.Save();
                 }
-               else
+                this.Anlagencode = retVal;
+               
+                //this.AnlagenNummer = retVal;
+              
+                this.Save();
+                //wenn ich eine ANlagenart habe gleich die Nummer generieren
+                if (this.AnlagenArt != null)
                 {
-                    acode = "N/A";
+                  this.AnlagenNummer =   completeNumber();
+                    this.Save();
+                    //this.Session.CommitTransaction();
                 }
+                //this.DebitKreditNr = retVal;
             }
-            if (nummer != null)
+           
+          //this.Session.CommitTransaction();
+           
+        }
+
+        public String completeNumber()
+        {
+            //die bestehende nummer um den Anlagencode ergänzen
+            var Ansprechcode = string.Empty;
+            var retVal = string.Empty;
+            if (this.Anlagencode!= null)
             {
-                //jetzt das Teil zusammenbauen
-                 retVal = string.Format("{0}{1}-{2}{3}", nummer.Praefix, acode, nummer.FortlaufendeNummer, nummer.Suffix);
-                createCode(acode, nummer.FortlaufendeNummer);
-                //retVal = nummer.NextNumber;
-                nummer.FortlaufendeNummer = nummer.FortlaufendeNummer + 1;
-                nummer.Save();
+                if (this.Anlagencode != string.Empty)
+                {
+                    String[] splitResult = this.Anlagencode.Split('-');
+                    if (splitResult != null)
+                    {
+                        //jetzt den Avcode aus der Anlagenart holen
+                        if (this.AnlagenArt != null)
+                        {
+                            if (this.AnlagenArt.Ansprechcode != null)
+                            {
+                                Ansprechcode = this.AnlagenArt.Ansprechcode.PadRight(4, ' ');
+                                retVal = string.Format("{0}-{1}-{2}", splitResult[0], Ansprechcode, splitResult[1]);
+                                
+                              
+                            }
+                        }
+                    }
+                }
+            
             }
             return retVal;
-        }
-
-        private void createCode(string acode,System.Int32 nummer)
-        {
-            var retVal = string.Empty;
-            //Acode(4-Stellig)+Nummer
-            var Ansprechcode = string.Empty;
-            var Nummer = string.Empty;
-            Ansprechcode = acode.PadRight(4, ' ');
-            Nummer = nummer.ToString();
-            retVal = string.Format("{0}-{1}", Ansprechcode, Nummer);
-            this.Anlagencode = retVal;
-            
+           
         }
 
 
 
 
 
-      
+
+
+    
        
- /*
-
-            #region ITReeNode
-            IBindingList ITreeNode.Children
-        {
-            get
-            {
-                return lstUnteranlagen;
-            }
-        }
-        String ITreeNode.Name
-        {
-            get
-            {
-                return AnlagenNummer;
-            }
-        }
-
-        ITreeNode ITreeNode.Parent
-        {
-            get
-            {
-                return ParentAnlage;
-            }
-        }
-        #endregion
-        #region iTreeImageProvider
-        public System.Drawing.Image GetImage(out string imageName)
-        {
-            if(lstUnteranlagen != null && lstUnteranlagen.Count>0)
-            {
-                imageName = "BO_Category";
-            
-            }
-            else
-            {
-                imageName = "centos_16";
-
-            }
-            return ImageLoader.Instance.GetImageInfo(imageName).Image;
-        }
-        #endregion
-        */
         private void setRechnungsAdresse(boAdresse curAdresse)
         {
             this.Rechnungsadresse = curAdresse;
@@ -481,6 +744,52 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             this.AnlagenAdresse = curAdresse;
         }
 
+        #region einfache Standortimplementierung
+        [XafDisplayName("Gebäude")]
+        [DataSourceProperty("lstBuildings")]
+        public fiGebaeude Building
+        {
+            get { return _building; }
+            set { SetPropertyValue("Building", ref _building, value); }
+        }
+        [XafDisplayName("Raumbezeichnung")]
+        public String RoomDesignation
+        {
+            get { return _roomDesignation; }
+            set { SetPropertyValue("RoomDesignation", ref _roomDesignation, value); }
+        }
+        [XafDisplayName("Raumart")]
+       
+        public fiRaumart RoomType
+        {
+            get { return _roomType; }
+            set { SetPropertyValue("RoomType", ref _roomType, value); }
+        }
+
+        [XafDisplayName("Ebenenbezeichnung")]
+        public String FloorDesignation
+        {
+            get { return _floorDesignation; }
+            set { SetPropertyValue("FloorDesignation", ref _floorDesignation, value); }
+        }
+        [XafDisplayName("Ebenenart")]
+      
+        public fiEbenenart FloorType
+        {
+            get { return _floorType; }
+            set { SetPropertyValue("FloorType", ref _floorType, value); }
+        }
+        #endregion
+
+        [XafDisplayName("Anlagenparameter")]
+        [Association("boAnlage-parameterAnlagenParameter"),DevExpress.Xpo.Aggregated]
+        public XPCollection<parameterAnlagenParameter> lstAnlagenParameter
+        {
+            get
+            {
+                return GetCollection<parameterAnlagenParameter>("lstAnlagenParameter"); 
+            }
+        }
 
         [XafDisplayName("Anlagenstatus")]
         public enmAnlagenStatus Anlagenstatus
@@ -521,7 +830,8 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
         [XafDisplayName("Gebäude")]
-        [DataSourceCriteria("Liegenschaft.Oid='@this.Liegenschaft.Oid'")]
+        [DataSourceProperty("lstBuildings")]
+        [ImmediatePostData(true)]
         public fiGebaeude Gebaeude
         {
             get
@@ -533,8 +843,73 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("Gebaeude", ref _gebaeude, value);
             }
         }
+
+        #region Filterproperties
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public List<fiGebaeude> lstBuildings
+        {
+            get
+            {
+                return lstAvailableBuildings();
+            }
+        }
+        
+        public List<fiGebaeude> lstAvailableBuildings()
+        {
+           List<fiGebaeude> lstRetVal = new List<fiGebaeude>();
+            lstRetVal.AddRange(this.Liegenschaft.lstGebaeude);
+            return lstRetVal;
+        }
+
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public List<fiEbene> lstFloors
+        {
+            get
+            {
+                return lstAvailableEbenen();
+            }
+        }
+
+        public List<fiEbene> lstAvailableEbenen()
+        {
+            List<fiEbene> lstRetVal = new List<fiEbene>();
+            if (this.Gebaeude != null)
+            {
+                lstRetVal.AddRange(this.Gebaeude.lstEbenen);
+            }
+            return lstRetVal;
+        }
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [VisibleInLookupListView(false)]
+        public List<fiRaum> lstRooms
+        {
+            get
+            {
+                return lstAvailableRooms();
+            }
+        }
+
+        public List<fiRaum> lstAvailableRooms()
+        {
+            List<fiRaum> lstRetVal = new List<fiRaum>();
+            if (this.Gebaeude != null)
+            {
+                lstRetVal.AddRange(this.Gebaeude.lstRaeume);
+            }
+            return lstRetVal;
+        }
+
+        #endregion
+
         [XafDisplayName("Ebene")]
-        [DataSourceCriteria("Gebaeude.Oid='@this.Gebaeude.Oid'")]
+        //[DataSourceCriteria("Gebaeude.Oid='@this.Gebaeude.Oid'")]
+        [DataSourceProperty("lstFloors")]
+        [ImmediatePostData(true)]
         public fiEbene Ebene
         {
             get
@@ -547,7 +922,9 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
         [XafDisplayName("Raum")]
-        [DataSourceCriteria("Ebene.Oid='@this.Ebene.Oid'")]
+        //[DataSourceCriteria("Ebene.Oid='@this.Ebene.Oid'")]
+        [DataSourceProperty("lstRooms")]
+        [ImmediatePostData(true)]
         public fiRaum Raum
         {
             get
@@ -572,69 +949,61 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 return GetCollection<fiZugangAnlage>("lstZugangAnlage");
             }
         }
-        [XafDisplayName("Datenfelder")]
-        [Association("boAnlage-boANDatenEntry"), DevExpress.Xpo.Aggregated]
-        public XPCollection<boANDatenEntry> lstANDatenfelder
-        {
-            get
-            {
-                return GetCollection<boANDatenEntry>("lstANDatenfelder");
-            }
-        }
-        [XafDisplayName("Maßnahmen")]
-        [Association("boAnlage-boANMassnahme")]
-        public XPCollection<boANMassnahme> lstAnMassnahmen
-        {
-            get
-            {
-               return GetCollection<boANMassnahme>("lstAnMassnahmen");
-            }
-        }
 
-        [XafDisplayName("Originalbild")]
-        [VisibleInDetailView(true)]
-        [VisibleInListView(false)]
-        [ReadOnly(true)]
-        [ImageEditor]
-        [Delayed(true)]
 
-        public byte[] MainImageOriginal
-        {
-            get
-            {
-                return GetDelayedPropertyValue<byte[]>("MainImageOriginal");
-            }
-            set
-            {
-                SetDelayedPropertyValue<byte[]>("MainImageOriginal", value);
-            }
-        }
+        /*
+   
+
+
+      [XafDisplayName("Originalbild")]
+      [VisibleInDetailView(false)]
+      [VisibleInListView(false)]
+      [ReadOnly(true)]
+      [ImageEditor]
+      [Delayed(true)]
+
+
+      public byte[] MainImageOriginal
+      {
+          get
+          {
+              return GetDelayedPropertyValue<byte[]>("MainImageOriginal");
+          }
+          set
+          {
+              SetDelayedPropertyValue<byte[]>("MainImageOriginal", value);
+          }
+      }
+      */
 
 
 
 
-        
+
         [XafDisplayName("Wartungszone")]
+       // [Delayed(true)]
         public boWartungszone Wartungszone
         {
             get
             {
-                boWartungszone retVal;
-                if (this.AnlagenAdresse != null && this.Liegenschaft != null)
-                {
-                    if (this.AnlagenAdresse.getWartungszone(this.Liegenschaft.Mandant) != null)
+                boWartungszone retVal = null;
+                
+                    if (this.AnlagenAdresse != null && this.Liegenschaft != null)
                     {
-                        retVal = this.AnlagenAdresse.getWartungszone(this.Liegenschaft.Mandant);
+                        if (this.AnlagenAdresse.getWartungszone(this.Liegenschaft.Mandant) != null)
+                        {
+                            retVal = this.AnlagenAdresse.getWartungszone(this.Liegenschaft.Mandant);
+                        }
+                        else
+                        {
+                            retVal = null;
+                        }
                     }
                     else
                     {
                         retVal = null;
                     }
-                }
-                else
-                {
-                    retVal = null;
-                }
+                
                 return retVal;
             }
 
@@ -654,9 +1023,9 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
-    
 
-    [XafDisplayName("Husverwalter")]
+
+        [XafDisplayName("Husverwalter")]
         public boHausverwalter Hausverwalter
         {
             get
@@ -704,9 +1073,8 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
         [XafDisplayName("Baujahr")]
-
         [ModelDefault("DisplayFormat", "0:D0")]
-        //[ModelDefault("EditMask", "d")]
+     
         public System.Int32 Baujahr
         {
             get
@@ -746,8 +1114,10 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
-        [XafDisplayName("Typ")]
-        [DataSourceCriteria("Hersteller.Oid='@this.Hersteller.Oid'")]
+        [XafDisplayName("Produkttyp")]
+        [DataSourceProperty("AvailableProducts")]
+      
+        
         [ImmediatePostData]
         public fiHerstellerProdukt Typ
         {
@@ -761,7 +1131,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
         [XafDisplayName("Hersteller")]
-        [ImmediatePostData(true)]
+        [ImmediatePostData]
         public boHersteller Hersteller
         {
             get
@@ -771,27 +1141,45 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             set
             {
                 SetPropertyValue("Hersteller", ref _hersteller, value);
+                RefreshAvailableProducts();
             }
         }
-        
-        [XafDisplayName("Herstellerprodukt")]
-        public fiHerstellerProdukt Herstellerprodukt
+
+       private XPCollection<fiHerstellerProdukt> _availableProducts;
+        [Browsable(false)]
+        public XPCollection<fiHerstellerProdukt> AvailableProducts
         {
             get
             {
-                fiHerstellerProdukt curProdukt;
-                if(this.Typ != null)
+               if(_availableProducts == null)
                 {
-                    curProdukt = this.Session.GetObjectByKey<fiHerstellerProdukt>(this.Typ.Oid);
+                    _availableProducts = new XPCollection<fiHerstellerProdukt>(this.Session);
+                    
+                    RefreshAvailableProducts();
                 }
-                else
-                {
-                    curProdukt = null;
-                }
-                return curProdukt;
+                return _availableProducts;
             }
         }
-        
+
+        private void RefreshAvailableProducts()
+        {
+            if(_availableProducts == null)
+            {
+                return;
+            }
+            if(this.Hersteller != null)
+            {
+                _availableProducts.Criteria = new BinaryOperator("Hersteller.Oid", this.Hersteller.Oid, BinaryOperatorType.Equal);
+            }
+            else
+            {
+                _availableProducts.Criteria = new BinaryOperator(1, 1, BinaryOperatorType.Equal);
+            }
+            
+          
+        }
+
+
 
         [XafDisplayName("Zustand")]
         public enmZustand Zustand
@@ -813,18 +1201,18 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 var retVal = string.Empty;
                 var nummer = string.Empty;
                 var bezeichnung = string.Empty;
-                nummer = (this.AnlagenNummer!= null)?this.AnlagenNummer:"N/A";
-                bezeichnung = (this.Bezeichnung != null)?this.Bezeichnung:"N/A";
+                nummer = (this.AnlagenNummer != null) ? this.AnlagenNummer : "N/A";
+                bezeichnung = (this.Bezeichnung != null) ? this.Bezeichnung : "N/A";
                 retVal = String.Format("{0} - {1}", nummer, bezeichnung);
                 return retVal;
-                
+
             }
         }
 
 
         [XafDisplayName("Liegenschaft")]
         [Association("boLiegenschaft-boAnlage")]
-        [DataSourceCriteria("Mandant.Oid = '@this.curMandantID'")]
+       // [DataSourceCriteria("Mandant.Oid = '@this.curMandantID'")]
         [RuleRequiredField]
         public boLiegenschaft Liegenschaft
         {
@@ -840,7 +1228,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
         [XafDisplayName("Anlagenbilder")]
         [Association("boAnlage-boAnlagenBild"), DevExpress.Xpo.Aggregated]
-        [Delayed(true)]
+  
         public XPCollection<boAnlagenBild> lstAnlagenBilds
         {
             get
@@ -853,6 +1241,8 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         [RuleRequiredField]
         [ImmediatePostData(true)]
         [Association("boAnlage-boAnlagenArt")]
+        //TODO Anlagenkategorie 
+        //[DataSourceCriteria("AnlagenKategorie.Oid = '@this.AnlagenKategorie.Oid'")]
         public boAnlagenArt AnlagenArt
         {
             get
@@ -865,22 +1255,23 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
-        [XafDisplayName("Anlagengruppe")]
+        [XafDisplayName("Anlagenkategorie")]
         [ReadOnly(true)]
         [ImmediatePostData(true)]
-        [Association("boAnlage-boAnlagenGruppe")]
-        public boAnlagenGruppe AnlagenGruppe
+        [Association("boAnlage-boAnlagenKategorie")]
+        public boAnlagenKategorie AnlagenKategorie
         {
             get
             {
-                return _anlagenGruppe;
+                return _anlagenKategorie;
             }
             set
             {
-                SetPropertyValue("AnlagenGruppe", ref _anlagenGruppe, value);
+                SetPropertyValue("AnlagenKategorie", ref _anlagenKategorie, value);
             }
         }
 
+        
         [XafDisplayName("Fremdsystem ID")]
         public System.String FremdsystemId
         {
@@ -894,26 +1285,81 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
-
-      
-
+        /*
         [ImageEditor(DetailViewImageEditorFixedHeight = 240, DetailViewImageEditorFixedWidth = 240, DetailViewImageEditorMode = ImageEditorMode.PictureEdit, ImageSizeMode = ImageSizeMode.Zoom, ListViewImageEditorCustomHeight = 30, ListViewImageEditorMode = ImageEditorMode.PictureEdit)]
         [XafDisplayName("Titelbild")]
-       
+        [Delayed(true)]
+        */
+        [Delayed(true)]
         public byte[] Mainimage
         {
             get
             {
                 //return GetPropertyValue<byte[]>("Mainimage");
-                return GetPropertyValue<byte[]>("Mainimage");
+                return GetDelayedPropertyValue<byte[]>("Mainimage");
             }
             set
             {
-                SetPropertyValue<byte[]>("Mainimage", value);
+                SetDelayedPropertyValue<byte[]>("Mainimage", value);
+            }
+        }
+        /*
+        [ImageEditor(DetailViewImageEditorFixedHeight = 240, DetailViewImageEditorFixedWidth = 240, DetailViewImageEditorMode = ImageEditorMode.PictureEdit, ImageSizeMode = ImageSizeMode.Zoom, ListViewImageEditorCustomHeight = 30, ListViewImageEditorMode = ImageEditorMode.PictureEdit)]
+        */
+        [XafDisplayName("Vorschaubild")]
+        public byte[] MainImageThumb
+        {
+            get
+            {
+                return GetPropertyValue<byte[]>("MainImageThumb");
+            }
+            set { SetPropertyValue<byte[]>("MainImageThumb",value); }
+
+
+        }
+        [XafDisplayName("Titelbild (Web)")]
+        public byte[] MainImageWeb
+        {
+            get
+            {
+
+                return GetPropertyValue<byte[]>("MainImageWeb");
+            }
+            set
+            {
+                SetPropertyValue<byte[]>("MainImageWeb", value);
             }
         }
 
-        
+        //[Action(Caption = "Thumbnail erstellen")]
+        //TODO: Den Funktionsaufruf in einen Controller packen (Web und Desktop)
+        public void makeMainThumbnail()
+        {
+            setMainThumbnail();
+            setMainImageWeb();
+        }
+        public void setMainThumbnail()
+        {
+            if (this.Mainimage != null)
+            {
+                this.MainImageThumb = PictureHelper.getThumbnailByteArray(this.Mainimage);
+                this.Save();
+                this.Session.CommitTransaction();
+            }
+        }
+
+        public void setMainImageWeb()
+        {
+            if (this.Mainimage != null)
+            {
+                Image workingImage = PictureHelper.ImageFromByteArray(this.Mainimage);
+                this.MainImageWeb = PictureHelper.ResizePicByWidth(workingImage, 400);
+                this.Save();
+                this.Session.CommitTransaction();
+            }
+        }
+
+
         [XafDisplayName("Beschreibung")]
         [Size(-1)]
         public System.String Beschreibung
@@ -929,7 +1375,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
         [XafDisplayName("Anlagenadresse")]
-       
+
         public boAdresse AnlagenAdresse
         {
             get
@@ -956,11 +1402,11 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
-      
-       
+
+
 
         [XafDisplayName("Anlagennummer")]
-        
+
         public System.String AnlagenNummer
         {
             get
@@ -973,8 +1419,8 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
+
         [XafDisplayName("Bezeichnung")]
-        
         public System.String Bezeichnung
         {
             get
@@ -988,7 +1434,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
         [XafDisplayName("Dateien und Dokumente")]
-        [Association("boAnlage-boANAttachment"),DevExpress.Xpo.Aggregated]
+        [Association("boAnlage-boANAttachment"), DevExpress.Xpo.Aggregated]
         public XPCollection<boANAttachment> lstANAttachments
         {
             get
@@ -998,7 +1444,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
         [XafDisplayName("Messungen")]
-        [Association("boAnlage-boMessung"),DevExpress.Xpo.Aggregated]
+        [Association("boAnlage-boMessung"), DevExpress.Xpo.Aggregated]
         public XPCollection<boMessung> lstMessungen
         {
             get
@@ -1007,18 +1453,17 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
-        [XafDisplayName("Service")]
-
-        [Association("boAnlage-serviceAnlagenService")]
-        [DevExpress.Xpo.Aggregated]
-      
-        public XPCollection<serviceAnlagenService> lstAnlagenService
+        //Maßnahmen
+        [XafDisplayName("Maßnahmen")]
+        [Association("boAnlage-actionActionAnlage")]
+        public XPCollection<actionActionAnlage> lstActionAnlage
         {
-            get
-            {
-                return GetCollection<serviceAnlagenService>("lstAnlagenService");
-            }
+            get { return GetCollection<actionActionAnlage>("lstActionAnlage"); }
         }
+
+
+      
+
 
         [XafDisplayName("Geräte")]
         [Association("boAnlage-fiAnlagengeraet")]
@@ -1031,17 +1476,19 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
-        [XafDisplayName("Komponenten")]
-        [Association("boAnlage-AnAnlagenKomponente")]
+        
+
+        [XafDisplayName("Baugruppen")]
+        [Association("boAnlage-anlageAnlagenbaugruppe")]
         [DevExpress.Xpo.Aggregated]
-        public XPCollection<AnAnlagenKomponente> lstAnlagenkomponenten
+        public XPCollection<anlageAnlagenbaugruppe> lstBauGruppe
         {
             get
             {
-                return GetCollection<AnAnlagenKomponente>("lstAnlagenkomponenten");
+                return GetCollection<anlageAnlagenbaugruppe>("lstBauGruppe");
             }
         }
-
+        
         //TODO: hier kann ich sicher noch was optimieren
 
         [XafDisplayName("Hauptanlage")]
@@ -1065,20 +1512,12 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         {
             get
             {
-                return GetCollection<boAnlage>("lstUnteranlagen");              
+                return GetCollection<boAnlage>("lstUnteranlagen");
             }
         }
 
-        [Association("boAnlage-fiAnlagenfeld")]
-        [XafDisplayName("Anlagenfelder")]
-        public XPCollection<fiAnlagenfeld> lstAnlagenfelder
-        {
-            get
-            {
-                return GetCollection<fiAnlagenfeld>("lstAnlagenfelder");
-            }
-        }
-        [XafDisplayName("Haustechnikkomponente")]
+      
+        [XafDisplayName("Anlagengruppe")]
         [Association("LgHaustechnikKomponente-boAnlage")]
         [DataSourceCriteria("Liegenschaft.Oid ='@this.Liegenschaft.Oid' AND Oid != '@this.Oid'")]
         public LgHaustechnikKomponente HaustechnikKomponente

@@ -16,7 +16,7 @@ namespace FacilityInfo.Management.BusinessObjects
 {
     [DefaultClassOptions]
     [XafDisplayName("Land")]
-    [ImageName("globe_place")]
+    [ImageName("globe_place_16")]
     [XafDefaultProperty("IsoKennzeichen")]
     
     public class boLand : BaseObject
@@ -59,7 +59,9 @@ namespace FacilityInfo.Management.BusinessObjects
         }
 
         [XafDisplayName("Flagge")]
+        /*
         [ImageEditor(ListViewImageEditorMode =ImageEditorMode.PictureEdit,ImageSizeMode =ImageSizeMode.Zoom,ListViewImageEditorCustomHeight =60,DetailViewImageEditorFixedWidth =90,DetailViewImageEditorFixedHeight =90)]
+        */
         public byte[] Flag
         {
             get

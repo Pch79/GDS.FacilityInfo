@@ -23,6 +23,7 @@ namespace FacilityInfo.Building.BusinessObjects
         private System.String _bezeichnung;
         private System.String _beschreibung;
         private System.String _kuerzel;
+        private Int32 _defaultSortPosition;
         public fiEbenenart(Session session)
             : base(session)
         {
@@ -31,6 +32,12 @@ namespace FacilityInfo.Building.BusinessObjects
         {
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+        }
+        [XafDisplayName("Sortposition (default)")]
+        public Int32 DefaultSortPosition
+        {
+            get { return _defaultSortPosition; }
+            set { SetPropertyValue("DefaultSortPosition", ref _defaultSortPosition, value); }
         }
         [XafDisplayName("Kürzel")]
         public System.String Kuerzel
@@ -69,7 +76,9 @@ namespace FacilityInfo.Building.BusinessObjects
                 SetPropertyValue("Beschreibung", ref _beschreibung, value);
             }
         }
+        /*
         [ImageEditor(DetailViewImageEditorFixedHeight =120,DetailViewImageEditorMode =ImageEditorMode.PictureEdit,ListViewImageEditorCustomHeight =40,ListViewImageEditorMode=ImageEditorMode.PictureEdit,ImageSizeMode =ImageSizeMode.StretchImage)]
+        */
         [XafDisplayName("Symbol")]
         public byte[] Symbol
         {

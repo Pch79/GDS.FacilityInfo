@@ -13,11 +13,13 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.Liegenschaft.BusinessObjects;
+using FacilityInfo.Core.BusinessObjects;
 
 namespace FacilityInfo.DMS.BusinessObjects
 {
     [DefaultClassOptions]
-    [XafDisplayName("Anlage (Liegenschaft)")]
+    [XafDisplayName("Liegenschaftsdokument")]
+    [ImageName("inbox_table_16")]
     public class boLGAttachment : boAttachment
     {
         private boLiegenschaft _liegenschaft;
@@ -28,10 +30,41 @@ namespace FacilityInfo.DMS.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            //die Bibkiothek zuordnen
+            boAttachmentBibliothek chosenLibary;
+            chosenLibary = this.Session.FindObject<boAttachmentBibliothek>(new BinaryOperator("Key", "LgDoc", BinaryOperatorType.Equal));
+            if(chosenLibary != null)
+            {
+                this.Bibliothek = chosenLibary;
+            }
         }
 
-       [XafDisplayName("Liegenschaft")]
+        protected override void OnChanged(string propertyName, object oldValue, object newValue)
+        {
+            base.OnChanged(propertyName, oldValue, newValue);
+            if(!this.Session.IsObjectToDelete(this))
+            {
+                switch(propertyName)
+                {
+                    case "Liegenschaft":
+                        if (newValue != null)
+                        {
+                            boLiegenschaft chosenLg = (boLiegenschaft)newValue;
+                            this.Liegenschaft = this.Session.GetObjectByKey<boLiegenschaft>(chosenLg.Oid);
+                            this.Betreff = chosenLg.Bezeichnung;
+                            this.Mandant = this.Session.GetObjectByKey<boMandant>(this.Liegenschaft.Mandant.Oid);
+                        }
+                        else
+                        {
+                            this.Liegenschaft = null;
+                            this.Betreff = null;
+                        }
+                        break;
+                }
+            }
+        }
+
+        [XafDisplayName("Liegenschaft")]
        [Association("boLiegenschaft-boLGAttachment")]
        public boLiegenschaft Liegenschaft
         {

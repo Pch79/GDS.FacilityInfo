@@ -22,6 +22,8 @@ using FacilityInfo.BusinessManagement.BusinessObjects;
 using System.IO;
 using FacilityInfo.Management;
 using System.Configuration;
+using FacilityInfo.Artikelverwaltung.BusinessObjects;
+using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 
 namespace FacilityInfo.Core.BusinessObjects
 {
@@ -51,9 +53,9 @@ namespace FacilityInfo.Core.BusinessObjects
         private fremdSysFremdsystem _fremdsystem;
         private DirectoryInfo _homeDirectory;
         private String _homePath;
-
+       
      
- private Boolean _isDefault;
+         private Boolean _isDefault;
      
 
 
@@ -68,7 +70,6 @@ namespace FacilityInfo.Core.BusinessObjects
             base.AfterConstruction();
          
         }
-
         protected override void OnLoaded()
         {
             base.OnLoaded();
@@ -78,9 +79,34 @@ namespace FacilityInfo.Core.BusinessObjects
             this.HomePath = curPath;
             this.Save();
             */
+
+            //Artikelkataloge defineiren
+            //1. Standard
+            if (checkArtikelkatalog("Standard") == null)
+            {
+                createArtikelkatalog("Standard");
+            }
+            //2. Anlagenartikel
+
+            if (checkArtikelkatalog("Anlagenartikel") == null)
+            {
+                createArtikelkatalog("Anlagenartikel");
+            }
         }
 
-
+       private artikelArtikelKatalog checkArtikelkatalog(string bezeichnung)
+        {
+            artikelArtikelKatalog retVal = this.Session.FindObject<artikelArtikelKatalog>(new GroupOperator(new BinaryOperator("Mandant.Oid", this.Oid, BinaryOperatorType.Equal), new BinaryOperator("Bezeichnung", bezeichnung, BinaryOperatorType.Equal)));
+            return retVal;
+        }
+        private void createArtikelkatalog(string bezeichnung)
+        {
+            artikelArtikelKatalog AnlagenArtikelKatalog = new artikelArtikelKatalog(this.Session);
+            AnlagenArtikelKatalog.Bezeichnung = bezeichnung;
+            AnlagenArtikelKatalog.Mandant = this;
+            AnlagenArtikelKatalog.Save();
+            this.Session.CommitTransaction();
+        }
         protected override void OnSaved()
         {
             base.OnSaved();
@@ -103,7 +129,8 @@ namespace FacilityInfo.Core.BusinessObjects
             DirectoryInfo austauschDir = null;
             DirectoryInfo bilderDir = null;
             DirectoryInfo dokumenteDir = null;
-            var homeDir = clsStatic.AppHomeDirectory;
+            //TODO: Das Home-verzeichnis der Anwendung in der App-Config anlgen
+            var homeDir = "C:\\Temp";
             var curPath = string.Format("{0}\\{1}", homeDir, this.Mandantenkennung);
 
             curDi = new DirectoryInfo(curPath);
@@ -231,7 +258,10 @@ namespace FacilityInfo.Core.BusinessObjects
             set
             {
                 String result = value;
-                result = result.ToUpper().Trim();
+                if (result != null)
+                {
+                    result = result.ToUpper().Trim();
+                }
                 SetPropertyValue("Mandantenkennung", ref _mandantenkennung, result);
             }
         }
@@ -249,7 +279,7 @@ namespace FacilityInfo.Core.BusinessObjects
             }
         }
         [XafDisplayName("Bildplatzhalter")]
-        [ImageEditor]
+
         public byte[] Bildplatzhalter
         {
             get
@@ -364,18 +394,35 @@ namespace FacilityInfo.Core.BusinessObjects
             }
         }
 
+        [XafDisplayName("Standardmandant")]
+        [CaptionsForBoolValues("Ja", "Nein")]
+        [ImagesForBoolValues("Action_Grant", "Action_Deny")]
+        public System.Boolean IsDefault
+        {
+            get
+            {
+                return _isDefault;
+            }
+            set
+            {
+                SetPropertyValue("IsDefault", ref _isDefault, value);
+            }
+        }
+        /*
         [ImageEditor(DetailViewImageEditorFixedHeight = 240, DetailViewImageEditorFixedWidth = 240, DetailViewImageEditorMode = ImageEditorMode.PictureEdit, ImageSizeMode = ImageSizeMode.Zoom, ListViewImageEditorCustomHeight = 30, ListViewImageEditorMode = ImageEditorMode.PictureEdit)]
         [XafDisplayName("Firmenlogo")]
-       // [Delayed("Logo")]
+        */
+        // [Delayed("Logo")]
+        [XafDisplayName("Firmenlogo")]
         public byte[] Logo
         {
             get
             {
-                return GetDelayedPropertyValue<byte[]>("Logo");
+                return GetPropertyValue<byte[]>("Logo");
             }
             set
             {
-                SetDelayedPropertyValue<byte[]>("Logo", value);
+                SetPropertyValue<byte[]>("Logo", value);
             }
         }
 
@@ -482,7 +529,7 @@ namespace FacilityInfo.Core.BusinessObjects
         }
 
         //Die Mitarbeiter
-        /*
+        
         [XafDisplayName("Mitarbeiter")]
         [Association("boMandant-boMitarbeiter"), DevExpress.ExpressApp.DC.Aggregated]
         public XPCollection<boMitarbeiter> lstMitarbeiter
@@ -492,7 +539,7 @@ namespace FacilityInfo.Core.BusinessObjects
                 return GetCollection<boMitarbeiter>("lstMitarbeiter");
             }
         }
-        */
+        
         [XafDisplayName("Geschäftsbereiche")]
         [Association("boMandant-coreBusinessUnit"),DevExpress.Xpo.Aggregated]
         public XPCollection<coreBusinessUnit> lstBusinessUnits
@@ -544,6 +591,8 @@ namespace FacilityInfo.Core.BusinessObjects
                 return GetCollection<Kreditorenkonto>("lstKreditorenkonten");
             }
         }
+
       
+
     }
 }

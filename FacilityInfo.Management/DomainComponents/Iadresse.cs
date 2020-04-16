@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DevExpress.ExpressApp.DC;
+using FacilityInfo.Adresse.BusinessObjects;
+using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DevExpress.ExpressApp.DC;
-using DevExpress.Persistent.Base;
-using DevExpress.Persistent.Validation;
-using FacilityInfo.Adresse.BusinessObjects;
-using FacilityInfo.GlobalObjects.Helpers;
-using FacilityInfo.Management.BusinessObjects;
 
 namespace FacilityInfo.Management.DomainComponents
 {
@@ -30,7 +23,7 @@ namespace FacilityInfo.Management.DomainComponents
         [ReadOnly(true)]
         string latitude { get; set; }
         
-        string internet { get; set; }
+
      
         
         //hier kann ich das ganze Locationgedönse einbauen

@@ -42,19 +42,20 @@ namespace FacilityInfo.Core.BusinessObjects
             this.Aktiv = true;
         }
         #region Properties
-
+        /*
         [ImageEditor(DetailViewImageEditorFixedHeight = 240, DetailViewImageEditorFixedWidth = 240, DetailViewImageEditorMode = ImageEditorMode.PictureEdit, ImageSizeMode = ImageSizeMode.Zoom, ListViewImageEditorCustomHeight = 30, ListViewImageEditorMode = ImageEditorMode.PictureEdit)]
+        */
         [XafDisplayName("Firmenlogo")]
-        [Delayed]
+     
         public byte[] Logo
         {
             get
             {
-                return GetDelayedPropertyValue<byte[]>("Logo");
+                return GetPropertyValue<byte[]>("Logo");
             }
             set
             {
-                SetDelayedPropertyValue<byte[]>("Logo", value);
+                SetPropertyValue<byte[]>("Logo", value);
             }
         }
 

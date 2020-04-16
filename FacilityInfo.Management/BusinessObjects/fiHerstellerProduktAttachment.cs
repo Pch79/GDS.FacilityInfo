@@ -17,11 +17,12 @@ using FacilityInfo.Hersteller.BusinessObjects;
 namespace FacilityInfo.DMS.BusinessObjects
 {
     [DefaultClassOptions]
-    [XafDisplayName("Produktattachment")]
+    [XafDisplayName("Produktdokument")]
         
     public class fiHerstellerProduktAttachment : boAttachment
     {
-        //private fiHerstellerProdukt _herstellerprodukt;
+        private fiHerstellerProdukt _herstellerProdukt;
+        private boHersteller _hersteller;
         public fiHerstellerProduktAttachment(Session session)
             : base(session)
         {
@@ -29,7 +30,19 @@ namespace FacilityInfo.DMS.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            //hier auch wieder die Bibliothek zuordnen
+                //prodDoc
+                boAttachmentBibliothek chosenLibary = this.Session.FindObject<boAttachmentBibliothek>(new BinaryOperator("Key", "prodDoc", BinaryOperatorType.Equal));
+                if(chosenLibary != null)
+                {
+                    this.Bibliothek = chosenLibary;
+                }
+                //wenn das Produkt da ist
+               if(this.HerstellerProdukt != null)
+            {
+
+            }
+
         }
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
@@ -37,42 +50,44 @@ namespace FacilityInfo.DMS.BusinessObjects
             base.OnChanged(propertyName, oldValue, newValue);
             switch (propertyName)
             {
-                case "Produkt":
+                case "HerstellerProdukt":
                     if (newValue != null)
                     {
-                        /*
-                        fiHerstellerProdukt selectedProdukt = this.Session.GetObjectByKey<fiHerstellerProdukt>(this.Produkt.Oid);
-                        this.Parentkey = selectedProdukt.Oid.ToString();
-                        this.Objektkey = selectedProdukt.Hersteller.Oid.ToString();
-                        */
+                        fiHerstellerProdukt curProduct = (fiHerstellerProdukt)newValue;
+                        boHersteller curHersteller = this.Session.GetObjectByKey<boHersteller>(curProduct.Hersteller.Oid);                        
+                        this.Betreff = curProduct.Bezeichnung;
+                        this.HerstellerProdukt = this.Session.GetObjectByKey<fiHerstellerProdukt>(curProduct.Oid);
+                        this.Hersteller = curHersteller;
+                      
 
+                    }
+                    else
+                    {
+                        this.Betreff = null;
+                        this.Hersteller = null;
+                        this.HerstellerProdukt = null;
                     }
                     break;
             }
         }
-        [XafDisplayName("Produkte")]
-        [Association("fiHerstellerProdukt-fiHerstellerProduktAttachment")]
-        public XPCollection<fiHerstellerProdukt> lstHerstellerprodukte
-        {
-            get
-            {
-                return GetCollection<fiHerstellerProdukt>("lstHerstellerprodukte");
-            }
-        }
-        /*
+
         [XafDisplayName("Produkt")]
         [Association("fiHerstellerProdukt-fiHerstellerProduktAttachment")]
-        public fiHerstellerProdukt  Produkt
+        public fiHerstellerProdukt HerstellerProdukt
         {
             get
             {
-                return _herstellerprodukt;
+                return _herstellerProdukt;
             }
-            set
-            {
-                SetPropertyValue("Produkt", ref _herstellerprodukt, value);
-            }
+            set { SetPropertyValue("HerstellerProdukt", ref _herstellerProdukt, value); }
         }
-        */
+
+        [XafDisplayName("Hersteller")]
+        public boHersteller Hersteller
+        {
+            get { return _hersteller; }
+            set { SetPropertyValue("Hersteller", ref _hersteller, value); }
+        }
+       
     }
 }

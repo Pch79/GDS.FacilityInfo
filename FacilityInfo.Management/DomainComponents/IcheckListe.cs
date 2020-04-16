@@ -21,7 +21,7 @@ namespace FacilityInfo.Management.DomainComponents
         [ReadOnly(true)]
         PermissionPolicyUser ersteller { get; set; }
 
-        enmMassnahmenStatus status { get; set; }
+        enmBearbeitungsStatus status { get; set; }
 
         [ReadOnly(true)]
         string bezeichnung { get; set; }

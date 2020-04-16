@@ -12,7 +12,7 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Management.DomainComponents;
-using FacilityInfo.GlobalObjects.Helpers;
+
 using FacilityInfo.Management.EnumStore;
 
 using FacilityInfo.Management.BusinessObjects;
@@ -21,15 +21,17 @@ using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.BusinessManagement.BusinessObjects;
 using FacilityInfo.Management;
+using FacilityInfo.Management.Helpers;
+
 
 namespace FacilityInfo.Adresse.BusinessObjects
 {
     [DefaultClassOptions]
     [Serializable]
-    [XafDefaultProperty("Matchkey")]
+    [XafDefaultProperty("Anzeigename")]
     [ImageName("BO_Address")]
     [XafDisplayName("Adresse")]
-    public class boAdresse : BaseObject, Iadresse
+    public class boAdresse : BaseObject, Iadresse, Ikommunikation
     {
         #region Fields
         private System.String _fremdsystemId;
@@ -45,18 +47,26 @@ namespace FacilityInfo.Adresse.BusinessObjects
         private System.String _zusatz;
 
         private boOrt _ort;
-        private boOrt _hauptort;
         private System.String _latitude;
         private System.String _longitude;
         private boAnrede _anrede;
-        private System.String _internet;
+
 
 
         private System.String _notizen;
         private boMandant _mandant;
 
         private System.String curMandantID;
+        private adresseTitel _titel;
 
+        private String _kuerzel;
+
+        private String _telefon1;
+        private String _telefon2;
+        private String _fax;
+        private String _mobil;
+        private String _mail;
+        private String _internet;
 
 
         #endregion
@@ -66,9 +76,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
         {
         }
 
-
-
-
+      
 
 
         #region Wartungszone
@@ -110,6 +118,12 @@ namespace FacilityInfo.Adresse.BusinessObjects
 
 
         #region Properties
+        [XafDisplayName("Titel")]
+        public adresseTitel Titel
+        {
+            get { return _titel; }
+            set { SetPropertyValue("Titel", ref _titel, value); }
+        }
 
         [XafDisplayName("Kürzel (Intern)")]
         public String KuerzelIntern
@@ -125,7 +139,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
         }
         [XafDisplayName("Mandant")]
         [ImmediatePostData(true)]
-        [RuleRequiredField]
+        //[RuleRequiredField]
         public boMandant Mandant
         {
             get
@@ -230,31 +244,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
             }
         }
         
-        /*
-        [XafDisplayName("Adresstyp")]
-        public enmAdressTyp AdressTyp
-        {
-            get
-            {
-                Type curType = this.GetType();
-                if (curType == typeof(boAdresse))
-                    return enmAdressTyp.Adresse;
-
-                if (curType == typeof(boLieferant))
-                    return enmAdressTyp.Lieferant;
-
-                if (curType == typeof(boMitarbeiter))
-                    return enmAdressTyp.Mitarbeiter;
-
-                if (curType == typeof(boKunde))
-                    return enmAdressTyp.Kunde;
-              
-
-                return enmAdressTyp.Sonstige;
-            }
-        }
-        */
-    
+       
         [XafDisplayName("Notizen")]
         [Size(-1)]
         public System.String Notizen
@@ -280,6 +270,8 @@ namespace FacilityInfo.Adresse.BusinessObjects
                 SetPropertyValue("Anrede", ref _anrede, value);
             }
         }
+
+        
         [XafDisplayName("Matchkey")]
         public System.String Matchkey
         {
@@ -296,12 +288,39 @@ namespace FacilityInfo.Adresse.BusinessObjects
                 {
                     bezeichnung = string.Format("{0} - {1}", this.vorname, this.nachname);
                 }
-                ort = (this.ort != null) ? this.ort.Matchkey : "N/A";
 
-                retVal = String.Format("{0} ({1})", bezeichnung, ort);
+                ort = (this.ort != null) ? this.ort.Name : string.Empty;
+
+                retVal = String.Format("{0} ({1})", bezeichnung,ort);
                 return retVal;
             }
         }
+        
+
+        [XafDisplayName("Anzeigename")]
+        public String Anzeigename
+        {
+            get
+            {
+                var retVal = string.Empty;
+                var bezeichnung = string.Empty;
+                var ort = string.Empty;
+                if (this.firmenname != null)
+                {
+                    bezeichnung = this.firmenname;
+                }
+                else
+                {
+                    bezeichnung = string.Format("{0} {1}", this.vorname, this.nachname);
+                }
+
+               
+
+                retVal = String.Format("{0}", bezeichnung);
+                return retVal;
+            }
+        }
+
 
         public String FullName
         {
@@ -408,6 +427,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
         }
 
         [XafDisplayName("Ort")]
+        [ImmediatePostData(true)]
         public boOrt ort
         {
             get
@@ -499,28 +519,32 @@ namespace FacilityInfo.Adresse.BusinessObjects
             }
         }
 
-        public string internet
-        {
-            get
-            {
-                return _internet;
-            }
-
-            set
-            {
-                SetPropertyValue("Internet", ref _internet, value);
-            }
-        }
+        
         #endregion
 
         #region Methoden
         public override void AfterConstruction()
         {
             base.AfterConstruction();
+            //TODO: MAndantenzuordnung umbauen
+            /*
             curMandantID = clsStatic.loggedOnMandantOid;
             //hier gleich den Mandanten setzen
             this.Mandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
+            */
         }
+
+      
+
+        protected override void OnLoaded()
+        {
+            base.OnLoaded();
+
+                   // GetGeocode(this); 
+              
+        }
+
+    
         public static void GetGeocode(Iadresse item)
         {
             var requestString = string.Empty;
@@ -559,31 +583,82 @@ namespace FacilityInfo.Adresse.BusinessObjects
             }
         }
 
+
         protected override void OnSaved()
         {
             base.OnSaved();
+            //handelt es sich uim einen Privatkontakt?
+            //Kontakt erstellen????
+           
+        }
+          
+               
+    public void createKontakt()
+    {
+
+        boKontakt workingKontakt = null;
+        if (this.Kontakt != null)
+        {
+            workingKontakt = this.Kontakt.Where(t => t.Vorname == this.vorname && t.Nachname == this.nachname).FirstOrDefault();
+        }
+        if(this.vorname != null && this.nachname!=null)
+            { 
+        if (workingKontakt == null)
+        {
+            workingKontakt = new boKontakt(this.Session);
+            workingKontakt.Anrede = (this.Anrede != null) ? this.Session.GetObjectByKey<boAnrede>(this.Anrede.Oid) : null;
+            workingKontakt.Titel = (this.Titel != null) ? this.Session.GetObjectByKey<adresseTitel>(this.Titel.Oid) : null;
+            workingKontakt.Nachname = this.nachname;
+            workingKontakt.Vorname = this.vorname;
             
+
+            this.Kontakt.Add(workingKontakt);
+                workingKontakt.Save();
+
+                if (this.firmenname != null)
+                {
+
+                    resetNameFields();
+                }
+                
+            }
+            }
+        }
+
+        public void resetNameFields()
+        {
+            this.nachname = null;
+            this.vorname = null;
+
+            boAnrede workingAnrede = this.Session.FindObject<boAnrede>(new BinaryOperator("Text", "Firma", BinaryOperatorType.Equal));
+            if (workingAnrede != null)
+            {
+                this.Anrede = workingAnrede;
+            }
+            else
+            {
+                this.Anrede = null;
+            }
         }
 
         protected override void OnSaving()
         {
             base.OnSaving();
-            if (this._latitude == null || this._longitude == null)
-            {
+           
                 GetGeocode(this);
-            }
+            
+            //Vorname und Nachname mit übergeben
+            //if(this.vorname != null && this.nachname != null)
+            createKontakt();
         }
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
             base.OnChanged(propertyName, oldValue, newValue);
-            switch(propertyName)
-            {
-               
-            }
+            
         }
 
-
+        #endregion
         [Association("boAdresse-boLiegenschaft"), DevExpress.ExpressApp.DC.Aggregated]
         [XafDisplayName("Liegenschaften")]
        
@@ -615,15 +690,49 @@ namespace FacilityInfo.Adresse.BusinessObjects
                 return GetCollection<Kreditorenkonto>("lstKreditorenkonten");
             }
         }
+       
 
-        [XafDisplayName("Zugangsinformationen")]
-        [Association("boAdresse-fiZugang")]
-        public XPCollection<fiZugang> lstZugangsInfos
+
+        #region iKommunikation
+        [XafDisplayName("Telefon")]
+        public string Telefon1 {
+            get { return _telefon1; }
+            set { SetPropertyValue("Telefon1", ref _telefon1, value); }
+                }
+        [XafDisplayName("Telefon2")]
+        public string Telefon2
         {
-            get
-            {
-                return GetCollection<fiZugang>("lstZugangsInfos");
+            get { return _telefon2; }
+            set { SetPropertyValue("Telefon2", ref _telefon2, value); }
+        
+
+        }
+        [XafDisplayName("Mobil")]
+        public string Mobil
+        { get { return _mobil; }
+            set { SetPropertyValue("Mobil", ref _mobil, value); }
             }
+
+
+        [XafDisplayName("Fax")]
+        public string Fax
+        {
+            get { return _fax; }
+            set { SetPropertyValue("Fax", ref _fax, value); }
+            }
+
+
+        [XafDisplayName("Mail")]
+        public string Mail
+        {
+            get { return _mail; }
+            set { SetPropertyValue("Mail", ref _mail, value); }
+        }
+        [XafDisplayName("Internet")]
+        public String Internet
+        {
+            get { return _internet; }
+            set { SetPropertyValue("Internet", ref _internet, value); }
         }
 
         #endregion

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
+﻿using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
-using FacilityInfo.GlobalObjects.EnumStore;
+using DevExpress.Xpo;
 using FacilityInfo.Management.EnumStore;
+using System;
+using System.ComponentModel;
+using System.Linq;
 
 namespace FacilityInfo.Adresse.BusinessObjects
 {
@@ -52,6 +45,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
                     var memInfo = type.GetMember(this.Kontaktart.ToString());
                     var attributes = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
                 var description = ((DescriptionAttribute)attributes[0]).Description;
+                
                 retVal = string.Format("{0} {1}", description, this.Kontakttyp.ToString());
                 
                 return retVal;

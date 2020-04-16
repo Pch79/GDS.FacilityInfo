@@ -12,8 +12,9 @@ namespace FacilityInfo.Management
     public static class clsStatic
     {
         public static System.String loggedOnMandantOid;
-        public static boMandant loggedOnMandant;
-        public static boHausverwalter loggedOnHausverwalter;
+
+        public static String loggedOnHausVerwalterOid;
+        public static bool adminLoggedOn;
         public static String AppHomeDirectory;
         public static String AppName;
     }

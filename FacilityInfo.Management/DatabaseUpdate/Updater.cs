@@ -2,20 +2,15 @@
 using System.Linq;
 using DevExpress.ExpressApp;
 using DevExpress.Data.Filtering;
-using DevExpress.Persistent.Base;
 using DevExpress.ExpressApp.Updating;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp.Xpo;
-using DevExpress.Persistent.BaseImpl;
 using System.Collections;
 using FacilityInfo.Management.BusinessObjects;
-using FacilityInfo.Vertrag.BusinessObjects;
 using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Building.BusinessObjects;
-using FacilityInfo.Core.BusinessObjects;
-using FacilityInfo.Base.BusinessObjects;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Import.BusinessObjects;
+using FacilityInfo.Parameter.BusinessObjects;
+
 
 namespace FacilityInfo.Management.DatabaseUpdate {
     // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppUpdatingModuleUpdatertopic.aspx
@@ -159,10 +154,11 @@ namespace FacilityInfo.Management.DatabaseUpdate {
             //die Ebebnenarten anlegen
             Hashtable lstEbnen = new Hashtable();
             lstEbnen.Add("UG", "Untergeschoss");
-            lstEbnen.Add("EG", "Erdegeschoss");
+            lstEbnen.Add("EG", "Erdgeschoss");
             lstEbnen.Add("OG", "Obergeschoss");
             lstEbnen.Add("ZG", "Zwischengeschoss");
             lstEbnen.Add("DG", "Dachgeschoss");
+            lstEbnen.Add("KG", "Kellergeschoss");
             foreach (DictionaryEntry item in lstEbnen)
             {
                 fiEbenenart curEbenenart = ObjectSpace.FindObject<fiEbenenart>(new BinaryOperator("Bezeichnung", item.Value.ToString(), BinaryOperatorType.Equal));
@@ -196,21 +192,21 @@ namespace FacilityInfo.Management.DatabaseUpdate {
             }
 
             //die Ruamarten anlegen
-            Hashtable lstParameterArten = new Hashtable();
-            lstParameterArten.Add("EP", "Einstellparameter");
-            lstRaumarten.Add("SP", "Sollparameter");
-            lstRaumarten.Add("PP", "Prüfparameter");
+            Hashtable lstParameterTyp = new Hashtable();
+            lstParameterTyp.Add("EP", "Einstellparameter");
+            lstParameterTyp.Add("SP", "Sollparameter");
+            lstParameterTyp.Add("PP", "Prüfparameter");
             
 
-            foreach (DictionaryEntry item in lstParameterArten)
+            foreach (DictionaryEntry item in lstParameterTyp)
             {
-                baseParameterArt curParamArt = ObjectSpace.FindObject<baseParameterArt>(new BinaryOperator("Code", item.Key.ToString(), BinaryOperatorType.Equal));
-                if (curParamArt == null)
+                parameterParameterTyp curParamTyp = ObjectSpace.FindObject<parameterParameterTyp>(new BinaryOperator("Code", item.Key.ToString(), BinaryOperatorType.Equal));
+                if (curParamTyp == null)
                 {
-                    curParamArt = ObjectSpace.CreateObject<baseParameterArt>();
-                    curParamArt.Code = item.Key.ToString();
-                    curParamArt.Bezeichnung = item.Value.ToString();
-                    curParamArt.Save();
+                    curParamTyp = ObjectSpace.CreateObject<parameterParameterTyp>();
+                    curParamTyp.Code = item.Key.ToString();
+                    curParamTyp.Bezeichnung = item.Value.ToString();
+                    curParamTyp.Save();
                 }
             }
 

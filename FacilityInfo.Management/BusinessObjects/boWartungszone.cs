@@ -20,7 +20,7 @@ namespace FacilityInfo.Management.BusinessObjects
     [XafDisplayName("Wartungszone")]
     [Serializable]
     [XafDefaultProperty("Bezeichnung")]
-    [ImageName("map_magnify")]
+    [ImageName("map_magnify_16")]
     public class boWartungszone : BaseObject
     {
         private System.String _bezeichnung;

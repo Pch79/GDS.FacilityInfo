@@ -253,7 +253,7 @@ namespace FacilityInfo.Import
                         pattern = curDocumentTyp.FileType.Extension;
                     }
 
-
+                    //hier sollt eich keine Fileinfo sondern ein dummes string array mit den Pfadnamen generiern
                     foreach (FileInfo item in di.GetFiles())
                     {
                             lstFileInfo.Add(item);

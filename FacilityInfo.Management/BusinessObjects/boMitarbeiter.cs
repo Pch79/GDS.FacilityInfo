@@ -29,7 +29,7 @@ namespace FacilityInfo.Management.BusinessObjects
     {
         private System.Boolean _externerMitarbeiter;
         private System.String _kuerzel;
-        //private boMandant _mandant;
+        private boMandant _mandant;
         private boAdresse _adresse;
         private System.String _personalnummer;
         private System.String _fremdsystemID;
@@ -157,21 +157,18 @@ namespace FacilityInfo.Management.BusinessObjects
             }
         }
 
-        //der Mandant resultiert aus dem Geschäftsbereich
+
 
         [XafDisplayName("Mandant")]
-        
+        [Association("boMandant-boMitarbeiter"), DevExpress.ExpressApp.DC.Aggregated]
+
         public boMandant Mandant
         {
             get
             {
-                boMandant retVal = null;
-                if(this.BusinessUnit != null)
-                {
-                    retVal = this.BusinessUnit.Mandant;
-                }
-                return retVal;
+                return _mandant;
             }
+            set { SetPropertyValue("Mandant", ref _mandant, value); }
             
         }
         

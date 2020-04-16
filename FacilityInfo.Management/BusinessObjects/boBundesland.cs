@@ -19,7 +19,7 @@ namespace FacilityInfo.Management.BusinessObjects
   [XafDisplayName("Bundesland")]
   [Serializable]
   [XafDefaultProperty("Matchkey")]
-  [ImageName("location_pin")]
+  [ImageName("location_pin_16")]
     public class boBundesland : BaseObject
     {
         private  boLand _land;

@@ -1,21 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
+﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
-using FacilityInfo.Anlagen.BusinessObjects;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
-using FacilityInfo.GlobalObjects.EnumStore;
-using FacilityInfo.Management.BusinessObjects;
+using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
+using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects;
+using FacilityInfo.Management.EnumStore;
+using System;
+using System.ComponentModel;
+using System.Linq;
 
 namespace FacilityInfo.Messung.BusinessObjects
 {

@@ -14,6 +14,9 @@ namespace FacilityInfo.Management.EnumStore
         [XafDisplayName("Aktiv")]
         [ImageName("accept_16")]
         Aktiv=0,
+        [XafDisplayName("Betriebsbereit")]
+        [ImageName("accept_16")]
+        Betriebsbereit = 1,
         [XafDisplayName("Wartung")]
         [ImageName("wrench_orange_16")]
         Wartung = 2,

@@ -18,7 +18,7 @@ using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.ExpressApp.Xpo;
 using FacilityInfo.Management.DomainComponents;
 using DevExpress.ExpressApp.ReportsV2;
-using FacilityInfo.Management.Reports;
+//using FacilityInfo.Management.Reports;
 using FacilityInfo.Fremdsystem.BusinessObjects;
 
 namespace GDS.FacilityInfo.Module {
@@ -29,6 +29,7 @@ namespace GDS.FacilityInfo.Module {
 			BaseObject.OidInitializationMode = OidInitializationMode.AfterConstruction;
             
         }
+        /*
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
             ModuleUpdater updater = new DatabaseUpdate.Updater(objectSpace, versionFromDB);
             PredefinedReportsUpdater predefinedReportsUpdater =
@@ -38,6 +39,7 @@ namespace GDS.FacilityInfo.Module {
             "Wartungstermin_V2 (KWP)", typeof(KwpWartTermin));
             return new ModuleUpdater[] { updater };
         }
+        */
         public override void Setup(XafApplication application) {
             base.Setup(application);
             // Manage various aspects of the application UI and behavior at the module level.

@@ -12,16 +12,14 @@ namespace FacilityInfo.Management.EnumStore
     {
 
         [ImageName("")]
-        [DisplayName("none")]
+        [DisplayName("ohne")]
         none = 0,
 
         [ImageName("")]
         [DisplayName("Monate")]
-        monate = 1,
+        Monate = 1,
 
-        [ImageName("")]
-        [DisplayName("Kalenderwochen")]
-        Kalenderwochen = 2,
+      
 
         [ImageName("")]
         [DisplayName("Tage")]
@@ -33,12 +31,15 @@ namespace FacilityInfo.Management.EnumStore
 
         [ImageName("")]
         [DisplayName("Stunden")]
-        Stunden = 5
+        Stunden = 5,
+            [ImageName("")]
+        [DisplayName("Betriebsstunden")]
+        Betriebsstunden = 6
 
-       
 
-       
 
-        
+
+
+
     }
 }

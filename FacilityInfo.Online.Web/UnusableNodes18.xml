@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boLiegenschaft">
+              <LayoutGroup Id="boLiegenschaft_col1">
+                <LayoutItem Id="WartungsStatus" Index="1" Removed="True" />
+                <LayoutItem Id="TrinkwasserPruefung" Index="2" Removed="True" />
+                <LayoutItem Id="StatusHauptzugang" Index="3" Removed="True" />
+                <LayoutItem Id="Kuerzel" Index="4" Removed="True" />
+                <LayoutItem Id="HauptZuganng" Index="5" Removed="True" />
+                <LayoutItem Id="DebitorenKonto" Index="6" Removed="True" />
+                <LayoutItem Id="HausverwlaterSelekt" Index="7" Removed="True" />
+                <LayoutItem Id="Betreuungsstatus" Index="8" Removed="True" />
+                <LayoutItem Id="FremdsystemId" Index="9" Removed="True" />
+                <LayoutItem Id="Liegenschaftsnummer" Index="10" Removed="True" />
+                <LayoutItem Id="Notiz" Index="11" Removed="True" />
+                <LayoutItem Id="Warmwasserbereitung" Index="12" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boLiegenschaft_col2">
+                <LayoutItem Id="Bezeichnung" Removed="True" />
+                <LayoutItem Id="Hausbetreuer" Removed="True" />
+                <LayoutItem Id="Hausverwalter" Removed="True" />
+                <LayoutItem Id="Heizungsbereitung" Removed="True" />
+                <LayoutItem Id="LiegenschaftOnline" Removed="True" />
+                <LayoutItem Id="Liegenschaftsadresse" Removed="True" />
+                <LayoutItem Id="Mandant" Removed="True" />
+                <LayoutItem Id="ObjektNummer" Removed="True" />
+                <LayoutItem Id="RisikoGruppe" Removed="True" />
+                <LayoutItem Id="Wartungszone" Removed="True" />
+                <LayoutItem Id="Wohneinheiten" Removed="True" />
+                <LayoutItem Id="Zustand" Removed="True" />
+                <TabbedGroup Id="tabDetailInfos">
+                  <LayoutGroup Id="tabHausverwaltung">
+                    <LayoutItem Id="Hausverwalter" ViewItem="HausverWalter_Adresse" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabHausbetreuer">
+                    <LayoutItem Id="Hausbetreuer" ViewItem="Hausbetreuer_Adresse" />
+                  </LayoutGroup>
+                </TabbedGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Anlagen" Index="3" Removed="True" />
+            <LayoutGroup Id="lstHauptanlagen" Index="3" Removed="True" />
+            <LayoutGroup Id="LiegenschaftsBilder" Removed="True" />
+            <LayoutGroup Id="lstAnsprechpartner" Removed="True" />
+            <LayoutGroup Id="lstKommunikation" Removed="True" />
+            <LayoutGroup Id="lstKwpAnlagen" Removed="True" />
+            <LayoutGroup Id="lstKwpVertrag" Removed="True" />
+            <LayoutGroup Id="lstKwpWartungsTermine" Removed="True" />
+            <LayoutGroup Id="lstLGAttachments" Removed="True" />
+            <LayoutGroup Id="lstLGCheckListes" Removed="True" />
+            <LayoutGroup Id="lstServiceBase" Removed="True" />
+            <LayoutGroup Id="MainImage" Removed="True" />
+            <LayoutGroup Id="MainImageThumb" Removed="True" />
+            <LayoutGroup Id="MainImageWeb" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boLiegenschaft_lstZugangLiegenschaft_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Bemerkung" Removed="True" />
+        <ColumnInfo Id="Hausverwalter" Removed="True" />
+        <ColumnInfo Id="KeyCodeIntern" Removed="True" />
+        <ColumnInfo Id="KeyList" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="ZugangBezeichnung" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boAdresse_Lookup_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstZugangsInfos">
+              <LayoutItem Id="lstZugangsInfos" ViewItem="lstZugangsInfos" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boAnlage">
+              <LayoutGroup Id="boAnlage_col1">
+                <LayoutItem Id="Anlagenbetreuer" Removed="True" />
+                <LayoutItem Id="Anlagenstatus" Removed="True" />
+                <LayoutItem Id="Baujahr" Removed="True" />
+                <LayoutItem Id="Ebene" Removed="True" />
+                <LayoutItem Id="Einbaudatum" Removed="True" />
+                <LayoutItem Id="Gebaeude" Removed="True" />
+                <LayoutItem Id="Hausverwalter" Removed="True" />
+                <LayoutItem Id="Mandant" Removed="True" />
+                <LayoutItem Id="Notiz" Removed="True" />
+                <LayoutItem Id="Raum" Removed="True" />
+                <LayoutItem Id="Rechnungsadresse" Removed="True" />
+                <LayoutItem Id="Seriennummer" Removed="True" />
+                <LayoutItem Id="Typbezeichnung" Removed="True" />
+                <LayoutItem Id="Wartungszone" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="boAnlage_col2">
+                <LayoutItem Id="AnlagenAdresse" Removed="True" />
+                <LayoutItem Id="AnlagenArt" Removed="True" />
+                <LayoutItem Id="Anlagencode" Removed="True" />
+                <LayoutItem Id="AnlagenKategorie" Removed="True" />
+                <LayoutItem Id="AnlagenNummer" Removed="True" />
+                <LayoutItem Id="Bezeichnung" Removed="True" />
+                <LayoutItem Id="FremdsystemId" Removed="True" />
+                <LayoutItem Id="HaustechnikKomponente" Removed="True" />
+                <LayoutItem Id="Hersteller" Removed="True" />
+                <LayoutItem Id="Liegenschaft" Removed="True" />
+                <LayoutItem Id="Matchkey" Removed="True" />
+                <LayoutItem Id="ParentAnlage" Removed="True" />
+                <LayoutItem Id="Typ" Removed="True" />
+                <LayoutItem Id="Zustand" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstAnlagenParameter" Index="1" Removed="True" />
+            <LayoutGroup Id="lstAnlagenBilds" Index="2" Removed="True" />
+            <LayoutGroup Id="lstZugangAnlage" Index="3" Removed="True" />
+            <LayoutGroup Id="Mainimage" Index="3" Removed="True" />
+            <LayoutGroup Id="MainImageThumb" Index="4" Removed="True">
+              <LayoutItem Id="MainImageThumb" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstANAttachments" Index="5" Removed="True" />
+            <LayoutGroup Id="lstMessungen" Index="6" Removed="True" />
+            <LayoutGroup Id="lstAnlagengeraete" Index="8" Removed="True" />
+            <LayoutGroup Id="lstUnteranlagen" Index="9" Removed="True" />
+            <LayoutGroup Id="MainImageWeb" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="boAnlage_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Matchkey" Index="1" Removed="True" />
+        <ColumnInfo Id="AnlagenNummer" Index="2" Removed="True" />
+        <ColumnInfo Id="Anlagenstatus" Index="2" Removed="True" />
+        <ColumnInfo Id="Notiz" Index="3" Removed="True" />
+        <ColumnInfo Id="Seriennummer" Index="4" Removed="True" />
+        <ColumnInfo Id="Mandant" Index="8" Removed="True" />
+        <ColumnInfo Id="Anlagenbetreuer" Index="10" Removed="True" />
+        <ColumnInfo Id="Rechnungsadresse" Index="11" Removed="True" />
+        <ColumnInfo Id="Bezeichnung" Index="13" Removed="True" />
+        <ColumnInfo Id="Einbaudatum" Index="13" Removed="True" />
+        <ColumnInfo Id="Typbezeichnung" Index="14" Removed="True" />
+        <ColumnInfo Id="Zustand" Index="17" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Index="22" Removed="True" />
+        <ColumnInfo Id="Anlagencode" Index="24" Removed="True" />
+        <ColumnInfo Id="HaustechnikKomponente" Index="27" Removed="True" />
+        <ColumnInfo Id="Beschreibung" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="Wartungszone" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_Anlagen_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Einbaudatum" Index="9" Removed="True" />
+        <ColumnInfo Id="Typbezeichnung" Index="10" Removed="True" />
+        <ColumnInfo Id="Zustand" Index="13" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Index="14" Removed="True" />
+        <ColumnInfo Id="AnlagenAdresse" Index="15" Removed="True" />
+        <ColumnInfo Id="Anlagencode" Index="16" Removed="True" />
+        <ColumnInfo Id="Bezeichnung" Index="17" Removed="True" />
+        <ColumnInfo Id="Anlagenbetreuer" Removed="True" />
+        <ColumnInfo Id="Beschreibung" Removed="True" />
+        <ColumnInfo Id="Hausverwalter" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+        <ColumnInfo Id="Notiz" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="Rechnungsadresse" Removed="True" />
+        <ColumnInfo Id="Seriennummer" Removed="True" />
+        <ColumnInfo Id="Wartungszone" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="WartungsStatus" Index="2" Removed="True" />
+        <ColumnInfo Id="Kuerzel" Index="3" Removed="True" />
+        <ColumnInfo Id="DebitorenKonto" Index="4" Removed="True" />
+        <ColumnInfo Id="HausverwlaterSelekt" Index="5" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Index="7" Removed="True" />
+        <ColumnInfo Id="Liegenschaftsnummer" Index="8" Removed="True" />
+        <ColumnInfo Id="Zustand" Index="8" Removed="True" />
+        <ColumnInfo Id="Notiz" Index="9" Removed="True" />
+        <ColumnInfo Id="Liegenschaftsadresse" Index="10" Removed="True" />
+        <ColumnInfo Id="Mandant" Index="12" Removed="True" />
+        <ColumnInfo Id="Beschreibung" Removed="True" />
+        <ColumnInfo Id="HauptZuganng" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="StatusHauptzugang" Removed="True" />
+        <ColumnInfo Id="TrinkwasserPruefung" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstHaustechnikKomponenten_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Bezeichnung" Index="0" />
+        <ColumnInfo Id="Hausverwalter" Index="4" Removed="True" />
+        <ColumnInfo Id="LinkKeyFremdsystem" Index="5" Removed="True" />
+        <ColumnInfo Id="BasisAnlage" Index="6" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Index="7" Removed="True" />
+        <ColumnInfo Id="VertragsStatus" Index="8" />
+        <ColumnInfo Id="Gebaeude" Index="9" />
+        <ColumnInfo Id="Ebene" Index="10" />
+        <ColumnInfo Id="Raum" Index="11" />
+        <ColumnInfo Id="Technikeinheit" Index="12" Removed="True" />
+        <ColumnInfo Id="Beschreibung" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Removed="True" />
+        <ColumnInfo Id="Notiz" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstKwpAnlagen_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="AnlagenAdresse" Index="1" Removed="True" />
+        <ColumnInfo Id="Hausverwalter" Index="4" Removed="True" />
+        <ColumnInfo Id="Liegenschaft" Index="4" Removed="True" />
+        <ColumnInfo Id="HausBetreuer" Index="5" Removed="True" />
+        <ColumnInfo Id="Bemerkungen" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstKwpVertrag_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="KuendigungsDatum" Removed="True" />
+        <ColumnInfo Id="KuendigungsGrund" Removed="True" />
+        <ColumnInfo Id="LinkKeyLiegenschaft" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+        <ColumnInfo Id="VertragsDatum" Removed="True" />
+        <ColumnInfo Id="VertragsEnde" Removed="True" />
+        <ColumnInfo Id="VertragZurueck" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="boLiegenschaft_lstKwpWartungsTermine_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Intervall" Index="8" Removed="True" />
+        <ColumnInfo Id="IntervallArt" Index="9" Removed="True" />
+        <ColumnInfo Id="Turnus" Index="10" Removed="True" />
+        <ColumnInfo Id="AnlagenNummer" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="fiZugangKategorie_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiZugangKategorie">
+              <LayoutItem Id="Bezeichnung" Index="0" Removed="True" />
+              <LayoutItem Id="DefaultStatus" Index="2" Removed="True" />
+              <LayoutItem Id="ParentItem" Index="2" Removed="True" />
+              <LayoutItem Id="Sortindex" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiZugangLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Bemerkung" Removed="True" />
+            <LayoutItem Id="KeyList" Removed="True" />
+            <LayoutItem Id="Notiz" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiZugang" Removed="True">
+              <LayoutGroup Id="fiZugang_col1">
+                <LayoutItem Id="KeyCodeIntern" Removed="True" />
+                <LayoutItem Id="Ort" Removed="True" />
+                <LayoutItem Id="Status" Removed="True" />
+                <LayoutItem Id="ZugangKategorie" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="fiZugang_col2">
+                <LayoutItem Id="Notiz" ViewItem="Notiz" ShowCaption="" Index="0" />
+                <LayoutItem Id="SubKategorie" Removed="True" />
+                <LayoutItem Id="Wert" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="fiZugangLiegenschaft">
+              <LayoutGroup Id="fiZugangLiegenschaft_col1">
+                <LayoutItem Id="Hausverwalter" Index="2" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="fiZugangLiegenschaft_col2">
+                <LayoutItem Id="HauptZugang" Removed="True" />
+                <LayoutItem Id="Kontakt" Removed="True" />
+                <LayoutItem Id="ZugangAdresse" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="fiZugangLiegenschaft_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Bemerkung" Index="8" Removed="True" />
+        <ColumnInfo Id="Oid" Removed="True" />
+        <ColumnInfo Id="ZugangAdresse" Removed="True" />
+        <ColumnInfo Id="ZugangBezeichnung" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="KwpWartTermin_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="HauptMonteuer" Index="-1" Removed="True" />
+        <ColumnInfo Id="InfoTextAnlage" Index="3" Removed="True" />
+        <ColumnInfo Id="Mandant" Index="4" Removed="True" />
+        <ColumnInfo Id="Monteur" Index="14" Removed="True" />
+        <ColumnInfo Id="AnlagenNummer" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="InfoText" Removed="True" />
+        <ColumnInfo Id="PlanStunden" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="KwpWartungsAnlage_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="AnlagenAdresse" Removed="True" />
+        <ColumnInfo Id="Bemerkungen" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="HausBetreuer" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+        <ColumnInfo Id="Monteur" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="KwpWartungsAuftrag_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+        <ColumnInfo Id="Mandant" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="KwpWartungsVertrag_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="KuendigungsDatum" Index="5" Removed="True" />
+        <ColumnInfo Id="KuendigungsGrund" Index="6" Removed="True" />
+        <ColumnInfo Id="Mandant" Index="8" Removed="True" />
+        <ColumnInfo Id="VertragsEnde" Index="9" Removed="True" />
+        <ColumnInfo Id="LinkKeyLiegenschaft" Index="12" Removed="True" />
+        <ColumnInfo Id="FremdsystemId" Removed="True" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

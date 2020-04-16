@@ -14,13 +14,15 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Anlagen.BusinessObjects;
 using DevExpress.Persistent.Base.General;
 using FacilityInfo.Core.BusinessObjects;
+using DevExpress.Persistent.BaseImpl.PermissionPolicy;
+using FacilityInfo.Liegenschaft.BusinessObjects;
 
 namespace FacilityInfo.Management.BusinessObjects
 {
     [DefaultClassOptions]
-    [XafDisplayName("Anlagensystem")]
-    [XafDefaultProperty("Bezeichnung")]
-    [ImageName("user_r2d2")]
+    [XafDisplayName("Technikeinheit")]
+    [XafDefaultProperty("Benennung")]
+    [ImageName("user_r2d2_16")]
     public class fiTechnikeinheit : BaseObject//,ITreeNode
     {
     //Systembezeichung leiet sich von der Technikeinh
@@ -32,7 +34,8 @@ namespace FacilityInfo.Management.BusinessObjects
         private fiLinkKeyHtKomponente _defaultLinkKey;
         private boAnlagenArt _category;
         private boMandant _mandant;
-        
+        private System.String curMandantID;
+
         public fiTechnikeinheit(Session session)
             : base(session)
         {
@@ -43,7 +46,44 @@ namespace FacilityInfo.Management.BusinessObjects
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
             this.Aktiv = true;
+            this.Mandant = getMandantByUser(SecuritySystem.CurrentUserName);
+            //TODO: MAndantenzuordnung umbauen
+            /*
+            curMandantID = clsStatic.loggedOnMandantOid;
+            this.Mandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
+            */
         }
+
+        public boMandant getMandantByUser(string userName)
+        {
+            boMandant retVal = null;
+            PermissionPolicyUser curUser = this.Session.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", userName, BinaryOperatorType.Equal));
+
+            corePortalAccount curPortalAccount = this.Session.FindObject<corePortalAccount>(new BinaryOperator("SystemBenutzer.Oid", curUser.Oid, BinaryOperatorType.Equal));
+            if (curPortalAccount != null)
+            {
+                //den hausverwalter rausfinden
+                boHausverwalter curHausverwalter = this.Session.FindObject<boHausverwalter>(new BinaryOperator("Oid", curPortalAccount.HausVerwalter.Oid, BinaryOperatorType.Equal));
+                retVal = curHausverwalter.Mandant;
+            }
+
+            boMitarbeiter curMitarbeiter = this.Session.FindObject<boMitarbeiter>(new BinaryOperator("Systembenutzer.Oid", curUser.Oid, BinaryOperatorType.Equal));
+
+            if (curMitarbeiter != null)
+            {
+                retVal = curMitarbeiter.Mandant;
+            }
+
+            if (retVal == null)
+            {
+                boMandant curMandant = this.Session.FindObject<boMandant>(new BinaryOperator("IsDefault", "true", BinaryOperatorType.Equal));
+                retVal = curMandant;
+            }
+
+
+            return retVal;
+        }
+
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
             base.OnChanged(propertyName, oldValue, newValue);
@@ -78,6 +118,10 @@ namespace FacilityInfo.Management.BusinessObjects
         {
             base.OnSaved();
             this.Category = this.Basisanlage;
+            if(this.SystemBezeichnung == null)
+            {
+                this.SystemBezeichnung = (this.Basisanlage != null) ? this.Basisanlage.Bezeichnung : null; 
+            }
         }
 
         protected override void OnLoaded()
@@ -122,7 +166,7 @@ namespace FacilityInfo.Management.BusinessObjects
         #endregion
        */
       
-
+         [ReadOnly(true)]
         public boAnlagenArt Category
         {
             get
@@ -205,7 +249,7 @@ namespace FacilityInfo.Management.BusinessObjects
                 SetPropertyValue("SystemBezeichnung", ref _systembezeichnung, value);
             }
         }
-        [XafDisplayName("Bezeichnung")]
+        [XafDisplayName("Benennung")]
         //ist ja eigentlich die Anlagenart
         public System.String Bezeichnung
         {

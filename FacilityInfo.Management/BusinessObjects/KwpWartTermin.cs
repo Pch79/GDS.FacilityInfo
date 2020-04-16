@@ -1,4 +1,5 @@
-﻿using DevExpress.ExpressApp.DC;
+﻿using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
@@ -36,6 +37,8 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
         private Decimal _planStunden;
         private boMandant _mandant;
         private KwpWartungsAnlage _kwpAnlage;
+   
+     
 
         // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
         public KwpWartTermin(Session session)
@@ -48,7 +51,8 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
         #region Properties
-
+      
+       
         [XafDisplayName("Infotext")]
         public String InfoTextAnlage
         {
@@ -82,6 +86,7 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
         }
 
         [XafDisplayName("Kwp-Anlage")]
+        [Association("KwpWarttermin-KwpWartungsAnlage")]
         public KwpWartungsAnlage KwpAnlage
         {
             get
@@ -93,6 +98,22 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
                 SetPropertyValue("KwpAnlage", ref _kwpAnlage, value);
             }
         }
+
+        //hier kann ich gleich den vertag auch ausgeben
+        public KwpWartungsVertrag WartungsVertrag
+        {
+            get
+            {
+                KwpWartungsVertrag retVal = null;
+                if(this.KwpAnlage != null)
+                {
+                    retVal = (this.KwpAnlage.WartungsVertrag != null) ? this.KwpAnlage.WartungsVertrag : null;
+                }
+                return retVal;
+
+            }
+        }
+
         [XafDisplayName("Mandant")]
         public boMandant Mandant
         {
@@ -281,7 +302,22 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
             }
         }
 
-        //
+        // weitere ermine in der Liegenschaft
+        [XafDisplayName("weitere Termine")]
+        public XPCollection<KwpWartTermin> lstFurtherDates
+        {
+            get
+            {
+
+                XPCollection<KwpWartTermin> lstResult = new XPCollection<KwpWartTermin>(this.Session, new GroupOperator(new BinaryOperator("Liegenschaft.Oid", this.Liegenschaft.Oid, BinaryOperatorType.Equal), new BinaryOperator("FremdsystemId", this.FremdsystemId, BinaryOperatorType.NotEqual)));
+                    
+                return lstResult;
+                
+            }
+        }
+
+
+
         #endregion
     }
 }

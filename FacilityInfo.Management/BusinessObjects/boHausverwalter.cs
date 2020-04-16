@@ -1,25 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
+﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
-using FacilityInfo.Management.DomainComponents;
-using DevExpress.ExpressApp.Security.Strategy;
-using FacilityInfo.GlobalObjects.EnumStore;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
-using FacilityInfo.Liegenschaft.BusinessObjects;
+using DevExpress.Xpo;
 using FacilityInfo.Adresse.BusinessObjects;
+using FacilityInfo.Anlagen.BusinessObjects;
+using FacilityInfo.Core.BusinessObjects;
+using FacilityInfo.Management;
 using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
-using FacilityInfo.Anlagen.BusinessObjects;
+using System;
+using System.Linq;
 
 namespace FacilityInfo.Liegenschaft.BusinessObjects
 {
@@ -38,13 +30,21 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         private System.String _hausverwalterSelekt2;
         private System.String _fremdsystemId;
         private System.String _kwpCode;
+        private System.String _kuerzel;
         
-
-
 
         public boHausverwalter(Session session)
             : base(session)
         {
+        }
+
+        protected override void OnLoaded()
+        {
+            base.OnLoaded();
+            if (this.Adresse == null)
+            {
+                this.Adresse = new boAdresse(this.Session);
+            }
         }
 
         #region Methoden
@@ -93,7 +93,15 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
 
         }
         #endregion
+
+
         #region Properties
+        [XafDisplayName("HV-Kürzel")]
+        public System.String Kuerzel
+        {
+            get { return _kuerzel; }
+            set { SetPropertyValue("Kuerzel", ref _kuerzel, value); }
+        }
         [XafDisplayName("KwpCode")]
         public System.String KwpCode
         {
@@ -147,7 +155,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             {
                 var retVal = string.Empty;
                 var adresse = string.Empty;
-                adresse = (this.Adresse!= null)?this.Adresse.Matchkey:"N/A";
+                adresse = (this.Adresse!= null)?this.Adresse.Anzeigename:"N/A";
                 retVal = String.Format("{0}", adresse);
                 return retVal;
             }
@@ -163,7 +171,6 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             set
             {
                 SetPropertyValue("Lizenzstatus", ref _lizenzstatus, value);
-
             }
         }
         
@@ -193,7 +200,10 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             }
         }
 
+      
+
         [XafDisplayName("Mandant")]
+      
         [Association("boMandant-boHausverwalter")]
         public boMandant Mandant
         {
@@ -213,6 +223,18 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             get
             {
                 return GetCollection<boLiegenschaft>("Liegenschaften");
+            }
+        }
+
+        //Benutzer
+        [XafDisplayName("Benutzer")]
+        [Association("boHausVerwalter-corePortalAccount")]
+
+        public XPCollection<corePortalAccount> lstBenutzer
+        {
+            get
+            {
+                return GetCollection<corePortalAccount>("lstBenutzer");
             }
         }
 
@@ -245,9 +267,15 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
         {
             base.AfterConstruction();
             this.Lizenzstatus = enmLizenzStatus.inaktiv;
-                
-        }
-        
-        
+            //TODO: MAndantenzuordnung umbauen
+            /*
+            string curMandantID = clsStatic.loggedOnMandantOid;
+            this.Mandant = this.Session.FindObject<boMandant>(new BinaryOperator("Oid", curMandantID, BinaryOperatorType.Equal));
+            */
+            if (this.Adresse == null)
+            {
+                this.Adresse = new boAdresse(this.Session);
+            }
+        } 
     }
 }

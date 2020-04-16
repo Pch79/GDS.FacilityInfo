@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="boAnlage_lstAnlagenfelder_ListView" AllowEdit="True" />
+    <ListView Id="fiAnlagenfeld_LookupListView" AllowDelete="False" AllowEdit="True" />
+    <ListView Id="fiDatenfeld_ListView" AllowEdit="True" IsGroupPanelVisible="True" NewItemRowPosition="Top" />
+    <ListView Id="fiDatenfeld_lstDatenfeldAntworten_ListView" AllowEdit="True" IsFooterVisible="True" NewItemRowPosition="Top" IsGroupPanelVisible="True" ShowAutoFilterRow="True" ShowFindPanel="True" />
+    <ListView Id="fiDatenfeldAntwort_ListView" AllowEdit="True" NewItemRowPosition="Top" />
+    <ListView Id="fiDatenfeldAntwort_LookupListView" AllowEdit="True" NewItemRowPosition="Top" />
+    <ListView Id="fiDatenfeldHerstellerprodukt_LookupListView" AllowEdit="True" NewItemRowPosition="Top" />
+    <ListView Id="fiDatenFeldHerstellerProduktAntwort_ListView" AllowEdit="True" />
+    <ListView Id="fiDatenFeldHerstellerProduktAntwort_LookupListView" AllowEdit="True" />
+    <ListView Id="fiDatenfeldProduktgruppe_LookupListView" AllowEdit="True" />
+    <ListView Id="fiDatenfeldProduktgruppe_lstHerstellerproduktgruppen_ListView" AllowDelete="False" AllowEdit="True" NewItemRowPosition="Top" />
+    <ListView Id="fiHerstellerProdukt_lstDatenFeldHerstellerprodukt_ListView" AllowEdit="True" AllowLink="True" AllowNew="True" AllowUnlink="False" NewItemRowPosition="Top" AllowDelete="False">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Herstellerprodukt" AllowEdit="False" />
+        <ColumnInfo Id="DatenfeldProduktgruppe" AllowEdit="False" />
+        <ColumnInfo Id="DatenfeldAntwort" View="fiDatenfeldAntwort_ListView" />
+      </Columns>
+    </ListView>
+    <ListView Id="fiHerstellerProduktgruppe_lstDatenfeldProduktgruppe_ListView" AllowEdit="True" NewItemRowPosition="Top">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Datenfeld" Index="0" />
+        <ColumnInfo Id="Sortindex" Index="1" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstAnlagenfelder" Index="4" ImageName="google_webmaster_tools_16" TextAlignMode="AlignWithChildren" RelativeSize="100">
+              <LayoutItem Id="lstAnlagenfelder" TextAlignMode="AutoSize" RelativeSize="100" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Dokumenete">
+              <LayoutGroup Id="lstAttachment">
+                <LayoutItem Id="lstAttachment" ViewItem="lstAttachment" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="KwpDaten">
+              <TabbedGroup Id="tabKwpData">
+                <LayoutGroup Id="lstKwpTermine">
+                  <LayoutItem Id="lstKwpTermine" ViewItem="lstKwpTermine" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMassnahme_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMassnahme">
+              <LayoutGroup Id="boMassnahme_col1">
+                <LayoutItem Id="viewItemIcon" ViewItem="itemIcon" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiHerstellerProdukt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstDatenFeldHerstellerprodukt" Index="4" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartTermin_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartTermin">
+              <LayoutGroup Id="KwpWartTermin_col1">
+                <LayoutGroup Id="grpBezug">
+                  <LayoutItem Id="KwpAnlage" ViewItem="KwpAnlage" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <BOModel Id="BOModel">
+    <Class Name="FacilityInfo.Datenfeld.BusinessObjects.fiAnlagenfeld" ImageName="google_webmaster_tools" />
+    <Class Name="FacilityInfo.Datenfeld.BusinessObjects.fiDatenfeld" ImageName="bricks" />
+    <Class Name="FacilityInfo.Datenfeld.BusinessObjects.fiDatenfeldAntwort" ImageName="brick_link" />
+    <Class Name="FacilityInfo.Datenfeld.BusinessObjects.fiDatenfeldHerstellerprodukt" ImageName="brick_edit" />
+    <Class Name="FacilityInfo.Datenfeld.BusinessObjects.fiDatenfeldProduktgruppe" ImageName="brick" />
+  </BOModel>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Parkplatz">
+        <Items Id="Items">
+          <Item Id="navItemDatenfelder">
+            <Items Id="Items">
+              <Item Id="Antwortkatalog" ViewId="fiDatenfeldAntwort_ListView" />
+              <Item Id="navItemDatenfeld" ViewId="fiDatenfeld_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemDatenFeldProdukte">
+            <Items Id="Items">
+              <Item Id="Datenfeld (Produktgruppe)" ViewId="fiDatenfeldProduktgruppe_ListView" />
+              <Item Id="Antwortkatalog (Herstellerprodukt)" ViewId="fiDatenFeldHerstellerProduktAntwort_ListView" />
+              <Item Id="Produktdatenfeld" ViewId="fiDatenfeldHerstellerprodukt_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Developement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <CreatableItems Id="CreatableItems">
+    <CreatableItem ClassName="FacilityInfo.Datenfeld.BusinessObjects.fiAnlagenfeld" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Datenfeld.BusinessObjects.fiDatenfeld" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Datenfeld.BusinessObjects.fiDatenfeldAntwort" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Datenfeld.BusinessObjects.fiDatenfeldHerstellerprodukt" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Datenfeld.BusinessObjects.fiDatenFeldHerstellerProduktAntwort" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Datenfeld.BusinessObjects.fiDatenfeldProduktgruppe" Index="-1" Removed="True" />
+    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.fiAnlagenfeldAntwort" Index="-1" Removed="True" />
+  </CreatableItems>
+</Application>

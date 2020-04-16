@@ -18,12 +18,14 @@ namespace FacilityInfo.Management.Klassen
         public override void AddCustomItems(List<Type> list)
         {
             //list.Add(typeof(MyType));
-           // list.AddRange(GetTypes());
+            // list.AddRange(GetTypes());
+            list.Clear();
             list.Add(typeof(String));
             list.Add(typeof(Int32));
             list.Add(typeof(Int16));
             list.Add(typeof(Decimal));
             list.Add(typeof(Double));
+            list.Add(typeof(float));
 
             list.Sort(this);
             base.AddCustomItems(list);

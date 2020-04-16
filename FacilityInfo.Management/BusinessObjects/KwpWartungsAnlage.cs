@@ -19,7 +19,7 @@ using FacilityInfo.Adresse.BusinessObjects;
 namespace FacilityInfo.Fremdsystem.BusinessObjects
 {
     [DefaultClassOptions]
-    [XafDisplayName("WartungsAnlage")]
+    [XafDisplayName("Wartungsanlage")]
     [XafDefaultProperty("Anlagennummer")]
     [ImageName("mail_server_setting_16")]
     public class KwpWartungsAnlage : BaseObject
@@ -68,7 +68,7 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
                 return _anlagenNummer;
           }
           set {
-                SetPropertyValue("AnlagenNummer", ref _anlagenNummer, value);
+                SetPropertyValue("Anlagennummer", ref _anlagenNummer, value);
           }
         }
        [XafDisplayName("Liegenschaft")]
@@ -171,7 +171,7 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
                 SetPropertyValue("Monteuer", ref _monteuer, value);
         }
         }
-        [XafDisplayName("Brennstoffart")]
+        [XafDisplayName("Anlagenart (KWP)")]
         public String BrennstoffArt
         {
         get
@@ -231,13 +231,17 @@ namespace FacilityInfo.Fremdsystem.BusinessObjects
         }
         //Anlage hat termine
         [XafDisplayName("Wartungstermine")]
+        [Association("KwpWarttermin-KwpWartungsAnlage"), DevExpress.Xpo.Aggregated]
 
-        public XPCollection<KwpWartTermin> lstWartungsTermin
+        public XPCollection<KwpWartTermin> lstWartungsTermine
         {
             get
             {
+                return GetCollection<KwpWartTermin>("lstWartungsTermine");
+                /*
                 XPCollection<KwpWartTermin> lstRetVal = new XPCollection<KwpWartTermin>(this.Session, new BinaryOperator("AnlagenNummer", this.Anlagennummer, BinaryOperatorType.Equal));
                 return lstRetVal;
+                */
             }
         }
         #endregion

@@ -27,7 +27,12 @@ namespace FacilityInfo.DMS.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            //prodDoc
+            boAttachmentBibliothek chosenLibary = this.Session.FindObject<boAttachmentBibliothek>(new BinaryOperator("Key", "manufacturerDoc", BinaryOperatorType.Equal));
+            if (chosenLibary != null)
+            {
+                this.Bibliothek = chosenLibary;
+            }
         }
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
@@ -41,18 +46,21 @@ namespace FacilityInfo.DMS.BusinessObjects
                     if(newValue != null)
                     {
                         boHersteller selectedHersteller = (boHersteller)newValue;
-                        this.Objektkey = selectedHersteller.Oid.ToString();
+                        this.Hersteller = this.Session.GetObjectByKey<boHersteller>(selectedHersteller.Oid);
+                        this.Betreff = selectedHersteller.Bezeichnung;
+                       
                     }
                     else
                     {
-                        this.Objektkey = string.Empty;
+                        this.Hersteller = null;
+                        this.Betreff = null;
                     }
                     break;
             }
         }
         #region Properties
         [XafDisplayName("Hersteller")]
-        [Association("boHersteller-fiHerstellerProdukt")]
+        [Association("boHersteller-fiHerstellerAttachment")]
         public boHersteller Hersteller
         {
             get

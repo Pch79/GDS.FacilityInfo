@@ -12,7 +12,7 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.ExpressApp.Utils;
-using FacilityInfo.GlobalObjects.BusinessObjects;
+
 using FacilityInfo.Core.BusinessObjects;
 
 namespace FacilityInfo.Management.BusinessObjects
@@ -93,6 +93,7 @@ namespace FacilityInfo.Management.BusinessObjects
                 SetPropertyValue("Bezeichnung", ref _bezeichnung, value);
             }
         }
+        /*
         [XafDisplayName("Datenfelder")]
         [Association("boFIObjekt-boDatenItem"), DevExpress.ExpressApp.DC.Aggregated]
         public XPCollection<boDatenItem> lstDatenFelder
@@ -102,7 +103,7 @@ namespace FacilityInfo.Management.BusinessObjects
                 return GetCollection<boDatenItem>("lstDatenFelder");
             }
         }
-
+        */
         [XafDisplayName("Checklisten")]
         [Association("boFIObjekt-boCheckliste"), DevExpress.ExpressApp.DC.Aggregated]
         public XPCollection<boCheckliste> lstCheckListen

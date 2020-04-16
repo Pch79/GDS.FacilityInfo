@@ -15,6 +15,7 @@ namespace FacilityInfo.KwpSynch
 
         public String AnlagenOrt { get; set; }
         public String Monteur { get; set; }
+        //Brennstoffart == Anlagenart
         public String Brennstoffart { get; set; }
         public String InfoText { get; set; }
         public String Bemerkungen { get; set; }

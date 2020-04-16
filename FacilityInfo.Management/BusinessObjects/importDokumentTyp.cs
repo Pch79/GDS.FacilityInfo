@@ -1,20 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
+﻿using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
 using FacilityInfo.Core.BusinessObjects;
-using FacilityInfo.Management;
+using System;
 using System.IO;
-using System.Collections;
 
 namespace FacilityInfo.Import.BusinessObjects
 {
@@ -28,8 +19,8 @@ namespace FacilityInfo.Import.BusinessObjects
         private bool _aktiv;
         private String _kuerzel;
         private boMandant _mandant;
-        private String _ordnername;
-        private String _passwort;
+        private string _ordnername;
+        private string _passwort;
         private importFileType _fileTyp;
 
         public importDokumentTyp(Session session)
@@ -41,7 +32,7 @@ namespace FacilityInfo.Import.BusinessObjects
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
 
-            this.Mandant = this.Session.GetObjectByKey<boMandant>(clsStatic.loggedOnMandant.Oid);
+            //this.Mandant = this.Session.GetObjectByKey<boMandant>(clsStatic.loggedOnMandantOid);
         }
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
@@ -51,20 +42,20 @@ namespace FacilityInfo.Import.BusinessObjects
             DirectoryInfo oldDi = null;
             DirectoryInfo newDi = null;
 
-            if(!this.Session.IsObjectToDelete(this))
+            if (!this.Session.IsObjectToDelete(this))
             {
-                if(!this.Session.IsObjectToSave(this))
+                if (!this.Session.IsObjectToSave(this))
                 {
                     //
                     switch (propertyName)
                     {
                         case "Ordnername":
-                            if(oldValue != null)
+                            if (oldValue != null)
                             {
                                 oldDi = new DirectoryInfo(String.Format("{0}\\Datentransfer\\In\\{1}", this.Mandant.HomeDirectory.FullName, oldValue.ToString()));
-                                if(oldDi.Exists)
+                                if (oldDi.Exists)
                                 {
-                                   if(oldValue.ToString() != newValue.ToString())
+                                    if (oldValue.ToString() != newValue.ToString())
                                     {
                                         oldDi.MoveTo(String.Format("{0}\\Datentransfer\\In\\{1}", this.Mandant.HomeDirectory.FullName, newValue.ToString()));
                                     }
@@ -72,7 +63,7 @@ namespace FacilityInfo.Import.BusinessObjects
                                 else
                                 {
                                     newDi = new DirectoryInfo(String.Format("{0}\\Datentransfer\\In\\{1}", this.Mandant.HomeDirectory.FullName, newValue.ToString()));
-                                    if(!newDi.Exists)
+                                    if (!newDi.Exists)
                                     {
                                         newDi.Create();
                                     }
@@ -128,8 +119,8 @@ namespace FacilityInfo.Import.BusinessObjects
                 return retVal;
             }
         }
-    
-      
+
+
         [XafDisplayName("Importordner")]
         [RuleRequiredField]
         public String Ordnername
@@ -182,8 +173,8 @@ namespace FacilityInfo.Import.BusinessObjects
             }
         }
         [XafDisplayName("Aktiv")]
-        [ImagesForBoolValues("Action_Grant","Action_Deny")]
-        [CaptionsForBoolValues("ja","nein")]
+        [ImagesForBoolValues("Action_Grant", "Action_Deny")]
+        [CaptionsForBoolValues("ja", "nein")]
         public bool Aktiv
         {
             get
@@ -208,7 +199,7 @@ namespace FacilityInfo.Import.BusinessObjects
         }
 
         [XafDisplayName("Passwort")]
-        
+
         public String Passwort
         {
             get
@@ -233,8 +224,10 @@ namespace FacilityInfo.Import.BusinessObjects
             {
                 SetPropertyValue("FileType", ref _fileTyp, value);
 
-            }              
+            }
         }
+
+        public string Passwort1 { get => _passwort; set => _passwort = value; }
         #endregion
 
     }

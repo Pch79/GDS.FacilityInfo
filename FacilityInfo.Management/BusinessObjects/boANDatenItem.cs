@@ -24,7 +24,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
     public class boANDatenItem : BaseObject
     {
 
-        private boDatenItem _datenitem;
+        //private boDatenItem _datenitem;
         private System.Int32 _sortindex;
         public boANDatenItem(Session session)
             : base(session)
@@ -52,7 +52,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("Sortindex", ref _sortindex, value);
             }
         }
-
+        /*
 
         [XafDisplayName("Datenitem")]
         //nur Anlagen
@@ -68,7 +68,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 SetPropertyValue("DatenItem", ref _datenitem, value);
             }
         }
-
+        */
 
         [XafDisplayName("Anlagenarten")]
         [Association("boAnlagenArt-boANDatenItem"), DevExpress.ExpressApp.DC.Aggregated]

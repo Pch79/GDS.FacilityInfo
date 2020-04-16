@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.doAddHaustechnikKomponente = new DevExpress.ExpressApp.Actions.SingleChoiceAction(this.components);
             this.doAddAnlage = new DevExpress.ExpressApp.Actions.SingleChoiceAction(this.components);
-            this.doDeleteHtKomponente = new DevExpress.ExpressApp.Actions.PopupWindowShowAction(this.components);
+            this.doDeleteAnlagenGruppe = new DevExpress.ExpressApp.Actions.SingleChoiceAction(this.components);
             // 
             // doAddHaustechnikKomponente
             // 
-            this.doAddHaustechnikKomponente.Caption = "Anlagensystem hinzufügen";
+            this.doAddHaustechnikKomponente.Caption = "Anlagengruppe hinzufügen";
             this.doAddHaustechnikKomponente.Category = "RecordEdit";
             this.doAddHaustechnikKomponente.ConfirmationMessage = null;
             this.doAddHaustechnikKomponente.Id = "doAddHaustechnikKomponente";
@@ -61,25 +61,24 @@
             this.doAddAnlage.ToolTip = null;
             this.doAddAnlage.Execute += new DevExpress.ExpressApp.Actions.SingleChoiceActionExecuteEventHandler(this.doAddAnlage_Execute);
             // 
-            // doDeleteHtKomponente
+            // doDeleteAnlagenGruppe
             // 
-            this.doDeleteHtKomponente.AcceptButtonCaption = "löschen";
-            this.doDeleteHtKomponente.CancelButtonCaption = null;
-            this.doDeleteHtKomponente.Caption = "Anlagensystem entfernen";
-            this.doDeleteHtKomponente.Category = "RecordEdit";
-            this.doDeleteHtKomponente.ConfirmationMessage = null;
-            this.doDeleteHtKomponente.Id = "doDeleteHtKomponente";
-            this.doDeleteHtKomponente.ImageName = "cross_16";
-            this.doDeleteHtKomponente.PaintStyle = DevExpress.ExpressApp.Templates.ActionItemPaintStyle.CaptionAndImage;
-            this.doDeleteHtKomponente.ToolTip = null;
-            this.doDeleteHtKomponente.CustomizePopupWindowParams += new DevExpress.ExpressApp.Actions.CustomizePopupWindowParamsEventHandler(this.doDeleteHtKomponente_CustomizePopupWindowParams);
-            this.doDeleteHtKomponente.Execute += new DevExpress.ExpressApp.Actions.PopupWindowShowActionExecuteEventHandler(this.doDeleteHtKomponente_Execute);
+            this.doDeleteAnlagenGruppe.Caption = "Anlagengruppe löschen";
+            this.doDeleteAnlagenGruppe.Category = "RecordEdit";
+            this.doDeleteAnlagenGruppe.ConfirmationMessage = null;
+            this.doDeleteAnlagenGruppe.Id = "doDeleteAnlagenGruppe";
+            this.doDeleteAnlagenGruppe.ImageName = "cross_16";
+            this.doDeleteAnlagenGruppe.ItemType = DevExpress.ExpressApp.Actions.SingleChoiceActionItemType.ItemIsOperation;
+            this.doDeleteAnlagenGruppe.PaintStyle = DevExpress.ExpressApp.Templates.ActionItemPaintStyle.CaptionAndImage;
+            this.doDeleteAnlagenGruppe.ShowItemsOnClick = true;
+            this.doDeleteAnlagenGruppe.ToolTip = null;
+            this.doDeleteAnlagenGruppe.Execute += new DevExpress.ExpressApp.Actions.SingleChoiceActionExecuteEventHandler(this.doDeleteAnlagenGruppe_Execute);
             // 
             // Ctrl_Liegenschaft_DetailView
             // 
             this.Actions.Add(this.doAddHaustechnikKomponente);
             this.Actions.Add(this.doAddAnlage);
-            this.Actions.Add(this.doDeleteHtKomponente);
+            this.Actions.Add(this.doDeleteAnlagenGruppe);
 
         }
 
@@ -87,6 +86,6 @@
 
         private DevExpress.ExpressApp.Actions.SingleChoiceAction doAddHaustechnikKomponente;
         private DevExpress.ExpressApp.Actions.SingleChoiceAction doAddAnlage;
-        private DevExpress.ExpressApp.Actions.PopupWindowShowAction doDeleteHtKomponente;
+        private DevExpress.ExpressApp.Actions.SingleChoiceAction doDeleteAnlagenGruppe;
     }
 }

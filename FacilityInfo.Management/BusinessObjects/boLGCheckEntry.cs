@@ -126,10 +126,10 @@ namespace FacilityInfo.Management.BusinessObjects
                 case "checkResult":
                         if(newValue != null)
                         {
-                            enmMassnahmenStatus curStatus = this.LGCheckliste.status;
+                            enmBearbeitungsStatus curStatus = this.LGCheckliste.status;
                             this.erfasser = this.Session.GetObjectByKey<PermissionPolicyUser>(SecuritySystem.CurrentUserId);
                             this.erfassungsdatum = DateTime.Now;
-                            if((enmMassnahmenStatus)newValue != enmMassnahmenStatus.offen)
+                            if((enmBearbeitungsStatus)newValue != enmBearbeitungsStatus.neu)
                             {
                                 var doneQuery = from boLGCheckEntry item in this.LGCheckliste.lstLGCheckEntries
                                                 where item.checkResult != enmCheckResult.offen

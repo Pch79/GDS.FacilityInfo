@@ -19,7 +19,7 @@ namespace FacilityInfo.Management.BusinessObjects
     [XafDefaultProperty("Matchkey")]
     [XafDisplayName("Kostengruppe (DIN 276")]
     [Serializable]
-    [ImageName("table_money")]
+    [ImageName("table_money_16")]
     
     public class boKostenGruppe : BaseObject
     {
@@ -103,13 +103,13 @@ namespace FacilityInfo.Management.BusinessObjects
                 SetPropertyValue("ParentItem", ref _parentItem, value);
             }
         }
-        [XafDisplayName("Anlagengruppen")]
-        [Association("boKostenGruppe-boAnlagenGruppe")]
-        public XPCollection<boAnlagenGruppe> lstAnlagenGruppen
+        [XafDisplayName("Anlagenkategorien")]
+        [Association("boKostenGruppe-boAnlagenKategorie")]
+        public XPCollection<boAnlagenKategorie> lstAnlagenKategorien
         {
             get
             {
-                return GetCollection<boAnlagenGruppe>("lstAnlagenGruppen");
+                return GetCollection<boAnlagenKategorie>("lstAnlagenKategorien");
             }
         }
 
