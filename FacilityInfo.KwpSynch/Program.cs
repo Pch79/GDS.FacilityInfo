@@ -1647,6 +1647,18 @@ namespace FacilityInfo.KwpSynch
                     //hier die Termine löschen
                 }
 
+                if(workingVertrag.VertragsDatum != curKwpVertrag.Datum)
+                {
+                    workingVertrag.VertragsDatum = curKwpVertrag.Datum;
+                    workingVertrag.Save();
+                }
+
+                if(workingVertrag.VertragsBeginn != curKwpVertrag.Beginn)
+                {
+                    workingVertrag.VertragsBeginn = curKwpVertrag.Beginn;
+                    workingVertrag.Save();
+                }
+                
                 //Kündigung
                 if(workingVertrag.KuendigungsDatum != curKwpVertrag.KuendigungsDatum)
                 {

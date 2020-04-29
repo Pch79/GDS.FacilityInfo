@@ -304,11 +304,13 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 {
                     if (this.lstKwpVertrag != null)
                     {
-                        int contractgesamtCount = 0;
+                    var resultList = this.lstKwpVertrag.Where(t => t.WartungsAnlage != null).ToList();
+                    
+                    int contractgesamtCount = 0;
                         int contractAktivCount = 0;
                         try
                         {
-                            contractgesamtCount = this.lstKwpVertrag.Where(t => !t.WartungsAnlage.BrennstoffArt.StartsWith("LEGIO")).Count();
+                            contractgesamtCount = resultList.Where(t => !t.WartungsAnlage.BrennstoffArt.StartsWith("LEGIO")).Count();
                         }
                         catch
                         {
@@ -316,7 +318,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                         }
                         try
                         {
-                            contractAktivCount = this.lstKwpVertrag.Where(t => t.VertragZurueck == true && !t.WartungsAnlage.BrennstoffArt.StartsWith("LEGIO")).Count();
+                            contractAktivCount = resultList.Where(t => t.VertragZurueck == true && !t.WartungsAnlage.BrennstoffArt.StartsWith("LEGIO")).Count();
                         }
                         catch
                         {
