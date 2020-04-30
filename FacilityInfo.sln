@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDS.FacilityInfo.Module.Win", "GDS.FacilityInfo.Module.Win\GDS.FacilityInfo.Module.Win.csproj", "{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.Module.Win", "GDS.FacilityInfo.Module.Win\FacilityInfo.Module.Win.csproj", "{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDS.FacilityInfo.Win", "GDS.FacilityInfo.Win\GDS.FacilityInfo.Win.csproj", "{D05D93DF-312D-4D4E-B980-726871EC7833}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.Win", "GDS.FacilityInfo.Win\FacilityInfo.Win.csproj", "{D05D93DF-312D-4D4E-B980-726871EC7833}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.Management", "FacilityInfo.Management\FacilityInfo.Management.csproj", "{A488DFB4-0FA0-4F35-94AB-65FBA07B804E}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.KwpSynch", "Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.Import", "FacilityInfo.Import\FacilityInfo.Import.csproj", "{634257B2-E67E-4453-AD92-2D6BFC969573}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDS.FacilityInfo.Module", "GDS.FacilityInfo.Module\GDS.FacilityInfo.Module.csproj", "{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.Module", "GDS.FacilityInfo.Module\FacilityInfo.Module.csproj", "{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.Online.Module.Web", "FacilityInfo.Online.Module.Web\FacilityInfo.Online.Module.Web.csproj", "{A0ADC7E0-8528-42DF-BF25-78FF93F2E16B}"
 EndProject

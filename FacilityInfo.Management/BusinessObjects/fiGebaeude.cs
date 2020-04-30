@@ -65,6 +65,9 @@ namespace FacilityInfo.Building.BusinessObjects
             this.lstEbenen.Add(eg);
         }
 
+        /// <summary>
+        /// Called when [loaded].
+        /// </summary>
         protected override void OnLoaded()
         {
             base.OnLoaded();
@@ -72,7 +75,8 @@ namespace FacilityInfo.Building.BusinessObjects
             // wen
             if (this.lstEbenen != null)
             {
-                Int32 egCount = this.lstEbenen.Where(t => t.Art.Kuerzel == "EG").Count();
+               
+                Int32 egCount = this.lstEbenen.Where(s => s.Art != null && s.Art.Kuerzel == "EG").Count();
                 if(egCount == 0)
                 {
                     createEbene("EG",0);

@@ -160,6 +160,7 @@
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.DurableInstancing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -394,13 +395,11 @@
     <Compile Include="EnumStore\enmWorkflowStatus.cs" />
     <Compile Include="EnumStore\enmZeitraum.cs" />
     <Compile Include="EnumStore\enmZustand.cs" />
-    <Compile Include="FiWebService.cs" />
     <Compile Include="Helpers\BingGeoHelper.cs" />
     <Compile Include="Helpers\GoogleGeoHelper.cs" />
     <Compile Include="Helpers\PictureHelper.cs" />
     <Compile Include="Helpers\serviceHelper.cs" />
     <Compile Include="Helpers\TurnusHelper.cs" />
-    <Compile Include="IFiWebService.cs" />
     <Compile Include="Interfaces\Iactive.cs" />
     <Compile Include="Klassen\Category.cs" />
     <Compile Include="Klassen\MyLocalizedClassInfoTypeConverter.cs" />
@@ -442,8 +441,6 @@
   <ItemGroup>
     <None Include="Adresse.cd" />
     <None Include="app.config" />
-    <None Include="ClassDiagram2.cd" />
-    <None Include="ClassDiagram3.cd" />
     <None Include="DatabaseUpdate\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -1847,7 +1844,7 @@
     <Content Include="Images\wrench_orange_16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Reports\" />
+    <Folder Include="BusinessObjects\TechnicalSystem\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

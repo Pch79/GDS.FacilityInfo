@@ -1677,7 +1677,11 @@ namespace FacilityInfo.KwpSynch
                 uow.CommitChanges();
                 if (workingVertrag.VertragZurueck == false)
                 {
-                    deleteTermine(workingVertrag);
+                    writeToLogSimpel(workingVertrag.FremdsystemId);
+                    if (workingVertrag.WartungsAnlage != null)
+                    {
+                        deleteTermine(workingVertrag);
+                    }
                 }
             }
         }
@@ -1687,14 +1691,22 @@ namespace FacilityInfo.KwpSynch
             KwpWartungsAnlage workingAnlage = null;
             Session curSession = HauptsystemHelper.GetNewSession();
             UnitOfWork uow = new UnitOfWork(curSession.DataLayer);
-            workingAnlage = uow.GetObjectByKey<KwpWartungsAnlage>(curVertrag.WartungsAnlage.Oid);
-            if(workingAnlage != null)
+            try
             {
-                uow.Delete(workingAnlage.lstWartungsTermine);
+                workingAnlage = uow.GetObjectByKey<KwpWartungsAnlage>(curVertrag.WartungsAnlage.Oid);
+                if (workingAnlage != null)
+                {
+                    uow.Delete(workingAnlage.lstWartungsTermine);
+                    uow.CommitChanges();
+                }
+                workingAnlage.Save();
                 uow.CommitChanges();
             }
-            workingAnlage.Save();
-            uow.CommitChanges();
+            catch (Exception e)
+            {
+                writeToLog(e.Message);
+                writeToLog(curVertrag.WartungsAnlage.Anlagennummer);
+            }
 
         }
         private static Management.EnumStore.enmVertragsStatus getStatus(KwpWartungsVertrag workingVertrag)
@@ -2067,7 +2079,7 @@ namespace FacilityInfo.KwpSynch
 
                         //Session KwpXpoSession = XpoHelper.GetNewSession();
                         writeToLogSimpel(String.Format("Anzahl: {0} verarbeiten", lstHausbetreuer.Count.ToString()));
-                        boOrt curOrt = null;
+                      
                         //den Kunden suchen
                         for (int i = 0; i < lstHausbetreuer.Count(); i++)
                         {

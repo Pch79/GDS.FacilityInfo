@@ -309,9 +309,9 @@
       <Project>{a488dfb4-0fa0-4f35-94ab-65fba07b804e}</Project>
       <Name>FacilityInfo.Management</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GDS.FacilityInfo.Module\GDS.FacilityInfo.Module.csproj">
+    <ProjectReference Include="..\GDS.FacilityInfo.Module\FacilityInfo.Module.csproj">
       <Project>{5f15837d-d1e5-44dc-92f0-4f2ebe9c3f8d}</Project>
-      <Name>GDS.FacilityInfo.Module</Name>
+      <Name>FacilityInfo.Module</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

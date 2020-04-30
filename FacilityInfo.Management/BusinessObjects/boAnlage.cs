@@ -89,11 +89,6 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         private String _floorDesignation;
         private fiEbenenart _floorType;
 
-
-
-
-
-        //private System.String curMandantID = string.Empty;
         public boAnlage(Session session)
             : base(session)
         {

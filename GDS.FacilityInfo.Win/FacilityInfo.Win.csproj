@@ -1872,13 +1872,13 @@
       <Project>{a488dfb4-0fa0-4f35-94ab-65fba07b804e}</Project>
       <Name>FacilityInfo.Management</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GDS.FacilityInfo.Module.Win\GDS.FacilityInfo.Module.Win.csproj">
+    <ProjectReference Include="..\GDS.FacilityInfo.Module.Win\FacilityInfo.Module.Win.csproj">
       <Project>{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}</Project>
-      <Name>GDS.FacilityInfo.Module.Win</Name>
+      <Name>FacilityInfo.Module.Win</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GDS.FacilityInfo.Module\GDS.FacilityInfo.Module.csproj">
+    <ProjectReference Include="..\GDS.FacilityInfo.Module\FacilityInfo.Module.csproj">
       <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
-      <Name>GDS.FacilityInfo.Module</Name>
+      <Name>FacilityInfo.Module</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

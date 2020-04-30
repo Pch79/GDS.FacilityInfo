@@ -289,9 +289,9 @@
       <Project>{A488DFB4-0FA0-4F35-94AB-65FBA07B804E}</Project>
       <Name>FacilityInfo.Management</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GDS.FacilityInfo.Module\GDS.FacilityInfo.Module.csproj">
+    <ProjectReference Include="..\GDS.FacilityInfo.Module\FacilityInfo.Module.csproj">
       <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
-      <Name>GDS.FacilityInfo.Module</Name>
+      <Name>FacilityInfo.Module</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

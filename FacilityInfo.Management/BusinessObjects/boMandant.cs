@@ -183,13 +183,6 @@ namespace FacilityInfo.Core.BusinessObjects
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
             base.OnChanged(propertyName, oldValue, newValue);
-            //wenn sich die Mandantenkennung ändert
-            //gibt es mit dem Alten
-            DirectoryInfo workingDi = null;
-            DirectoryInfo curDi = null;
-           // var homeDir = clsStatic.AppHomeDirectory;
-            //var curPath = string.Format("{0}\\{1}", homeDir, this.Mandantenkennung);
-
             if (!this.Session.IsObjectToDelete(this))
             {
                 if (this.Session.IsObjectToSave(this))

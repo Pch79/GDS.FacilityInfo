@@ -38,10 +38,6 @@ namespace FacilityInfo.Action.BusinessObjects
         //reale Durchführung
         private DateTime _datumReal;
         //private DateTime _zeitReal;
-
-        //Wiederholung
-
-
         //beschreibung
         private String _bezeichnung;
         private String _beschreibung;
@@ -114,10 +110,6 @@ namespace FacilityInfo.Action.BusinessObjects
             {
                 createdAction.MonteurVerantwortlich = this.Session.GetObjectByKey<boMitarbeiter>(this.MonteurVerantwortlich.Oid);
             }
-  
-        
-
-
             createdAction.Save();
 
             //jetzt noch die Positionen übernehmen
@@ -128,35 +120,32 @@ namespace FacilityInfo.Action.BusinessObjects
                 for (int j = 0; j < this.lstActionPosition.Count; j++)
                 {
                     basePosition = this.lstActionPosition[j];
-                        curActionPosition = new actionActionPosition(this.Session);
+                    curActionPosition = new actionActionPosition(this.Session);
                     curActionPosition.ActionBase = createdAction;
-                        curActionPosition.WartungsPosition = this.Session.GetObjectByKey<wartungWartungsPosition>(basePosition.Oid);
-                        curActionPosition.PositionsNummer = basePosition.PositionsNummer;
-                        curActionPosition.PosLangText = basePosition.PosLangText;
-                        curActionPosition.PosText = basePosition.PosText;
-                        curActionPosition.SortIndex = basePosition.SortIndex;
-                        curActionPosition.ZeitVorgabe = basePosition.ZeitVorgabe;
-                        curActionPosition.AnzahlTechniker = basePosition.AnzahlTechniker;
-                        curActionPosition.ArbeitsAnweisung = basePosition.ArbeitsAnweisung;
-                        if (basePosition.Artikel != null)
-                        {
-                            curActionPosition.Artikel = this.Session.GetObjectByKey<artikelArtikelBase>(basePosition.Artikel.Oid);
-                            curActionPosition.ArtikelMenge = basePosition.ArtikelMenge;
-                        }
-                        if (basePosition.Bauteil != null)
-                        {
-                            curActionPosition.Bauteil = this.Session.GetObjectByKey<fiBauteil>(basePosition.Bauteil.Oid);
-                            curActionPosition.BauteilAnzahl = basePosition.BauteilAnzahl;
-                        }
-                        curActionPosition.Beschreibung = basePosition.Beschreibung;
-                        curActionPosition.Notizen = basePosition.Notizen;
-                        curActionPosition.Save();
-
-                    
+                    curActionPosition.WartungsPosition = this.Session.GetObjectByKey<wartungWartungsPosition>(basePosition.Oid);
+                    curActionPosition.PositionsNummer = basePosition.PositionsNummer;
+                    curActionPosition.PosLangText = basePosition.PosLangText;
+                    curActionPosition.PosText = basePosition.PosText;
+                    curActionPosition.SortIndex = basePosition.SortIndex;
+                    curActionPosition.ZeitVorgabe = basePosition.ZeitVorgabe;
+                    curActionPosition.AnzahlTechniker = basePosition.AnzahlTechniker;
+                    curActionPosition.ArbeitsAnweisung = basePosition.ArbeitsAnweisung;
+                    if (basePosition.Artikel != null)
+                    {
+                     curActionPosition.Artikel = this.Session.GetObjectByKey<artikelArtikelBase>(basePosition.Artikel.Oid);
+                     curActionPosition.ArtikelMenge = basePosition.ArtikelMenge;
+                    }
+                    if (basePosition.Bauteil != null)
+                    {
+                      curActionPosition.Bauteil = this.Session.GetObjectByKey<fiBauteil>(basePosition.Bauteil.Oid);
+                      curActionPosition.BauteilAnzahl = basePosition.BauteilAnzahl;
+                    }
+                    curActionPosition.Beschreibung = basePosition.Beschreibung;
+                    curActionPosition.Notizen = basePosition.Notizen;
+                    curActionPosition.Save();
                 }
             }
             this.Session.CommitTransaction();
-
         }
 
         #region Properties
@@ -166,6 +155,7 @@ namespace FacilityInfo.Action.BusinessObjects
         {
             get { return this.DatumFaellig.Year; }
         }
+
         [XafDisplayName("Monat (Fällig)")]
         public Int32 MonatFaellig
         {
@@ -200,7 +190,6 @@ namespace FacilityInfo.Action.BusinessObjects
             get { return _anzahlTechniker; }
             set { SetPropertyValue("AnzahlTechniker", ref _anzahlTechniker, value); }
         }
-
 
         [XafDisplayName("WartungsPlan")]
         public wartungWartungsPlan WartungsPlan

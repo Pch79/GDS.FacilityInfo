@@ -150,6 +150,10 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
 
             //createNumber();
         }
+
+        /// <summary>
+        /// Creates the number.
+        /// </summary>
         public void createNumber()
         {
             Type curType = this.GetType();
@@ -209,7 +213,7 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                     }
                     
                    */
-                    createDefaultBuilding();
+                    CreateDefaultBuilding();
                 }
             }
         }
@@ -220,7 +224,12 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
             //TODO Wartungsstatus muss anders gesetzt werden
             getWartungsStatus();
         }
-        private fiGebaeude createDefaultBuilding()
+
+        /// <summary>
+        /// Creates the default building.
+        /// </summary>
+        /// <returns></returns>
+        private fiGebaeude CreateDefaultBuilding()
         {
             fiGebaeude curBuilding = this.Session.FindObject<fiGebaeude>(new BinaryOperator("Liegenschaft.Oid", this.Oid, BinaryOperatorType.Equal));
             if(curBuilding == null)
