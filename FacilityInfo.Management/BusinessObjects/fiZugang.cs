@@ -59,7 +59,6 @@ namespace FacilityInfo.Management.BusinessObjects
        
        
         [XafDisplayName("Notiz")]
-        [Size(300)]
         public String Notiz
         {
             get
