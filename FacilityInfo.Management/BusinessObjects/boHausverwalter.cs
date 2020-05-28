@@ -7,8 +7,6 @@ using DevExpress.Xpo;
 using FacilityInfo.Adresse.BusinessObjects;
 using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
-using FacilityInfo.Management;
-using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
 using System;
 using System.Linq;

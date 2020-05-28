@@ -77,11 +77,11 @@ namespace FacilityInfo.Anlagen.Controllers
                    
                 }
 
-                curAnlage.checkAnlagenActions();
+              //  curAnlage.checkAnlagenActions();
                 curAnlage.Save();
                 curView.ObjectSpace.CommitChanges();
 
-                curAnlage.checkProduktActions();
+              //  curAnlage.checkProduktActions();
                 curAnlage.Save();
                 curView.ObjectSpace.CommitChanges();
 

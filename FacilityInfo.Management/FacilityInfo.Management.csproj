@@ -290,6 +290,7 @@
     <Compile Include="BusinessObjects\parameterParameterDefinition.cs" />
     <Compile Include="BusinessObjects\parameterAnlagenArtParam.cs" />
     <Compile Include="BusinessObjects\parameterProduktGruppeParam.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\ServicePosition.cs" />
     <Compile Include="BusinessObjects\serviceServicePackage.cs" />
     <Compile Include="BusinessObjects\vertragServiceVertrag.cs" />
     <Compile Include="BusinessObjects\vertragVertragBase.cs" />
@@ -309,10 +310,10 @@
     <Compile Include="BusinessObjects\KwpWartungsAuftrag.cs" />
     <Compile Include="BusinessObjects\KwpWartungsVertrag.cs" />
     <Compile Include="BusinessObjects\LgHaustechnikKomponente.cs" />
-    <Compile Include="BusinessObjects\wartungWartungsPlan.cs" />
-    <Compile Include="BusinessObjects\wartungWartungsPlanAnlagenArt.cs" />
-    <Compile Include="BusinessObjects\wartungWartungsPlanProdukt.cs" />
-    <Compile Include="BusinessObjects\wartungWartungsPosition.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\MaintenanceSchedule.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\ServiceSpecification.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\ComponentMaintenance.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\MaintenancePosition.cs" />
     <Compile Include="Controllers\Ctrl_ActionAnlage_DetailView.cs">
       <SubType>Component</SubType>
     </Compile>

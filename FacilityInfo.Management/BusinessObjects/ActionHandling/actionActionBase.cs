@@ -14,7 +14,6 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Management.EnumStore;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Management.BusinessObjects;
-using FacilityInfo.Wartung.BusinessObjects;
 using DevExpress.ExpressApp.Utils;
 using FacilityInfo.Management.Helpers;
 using FacilityInfo.Artikelverwaltung.BusinessObjects;
@@ -29,7 +28,7 @@ namespace FacilityInfo.Action.BusinessObjects
     {
 
         //gibt es einen Bezug zu einem Wartungsplan?
-        private wartungWartungsPlan _wartungsPlan; 
+       // private wartungWartungsPlan _wartungsPlan; 
         //zeitliche Planung
         private DateTime _datumFaellig;
         //geplante druchführung
@@ -82,7 +81,7 @@ namespace FacilityInfo.Action.BusinessObjects
             //einen neuen Service erstellen
 
             //TODO: Funktion für einen neuen Service
-
+            /*
             createdAction.DatumFaellig = TurnusHelper.getNextDate(this.DatumReal, this.Turnus, this.TurnusValue);
             //was passiert
             if (this.WartungsPlan.GetType() == typeof(wartungWartungsPlanAnlagenArt))
@@ -94,7 +93,7 @@ namespace FacilityInfo.Action.BusinessObjects
             {
                 createdAction.WartungsPlan = this.Session.GetObjectByKey<wartungWartungsPlanProdukt>(this.WartungsPlan.Oid);
             }
-
+            */
             createdAction.Liegenschaft = this.Session.GetObjectByKey<boLiegenschaft>(this.Liegenschaft.Oid);
             createdAction.ActionClassification = this.ActionClassification;
             createdAction.AnzahlTechniker = this.AnzahlTechniker;
@@ -122,7 +121,7 @@ namespace FacilityInfo.Action.BusinessObjects
                     basePosition = this.lstActionPosition[j];
                     curActionPosition = new actionActionPosition(this.Session);
                     curActionPosition.ActionBase = createdAction;
-                    curActionPosition.WartungsPosition = this.Session.GetObjectByKey<wartungWartungsPosition>(basePosition.Oid);
+                   // curActionPosition.WartungsPosition = this.Session.GetObjectByKey<wartungWartungsPosition>(basePosition.Oid);
                     curActionPosition.PositionsNummer = basePosition.PositionsNummer;
                     curActionPosition.PosLangText = basePosition.PosLangText;
                     curActionPosition.PosText = basePosition.PosText;
@@ -191,12 +190,15 @@ namespace FacilityInfo.Action.BusinessObjects
             set { SetPropertyValue("AnzahlTechniker", ref _anzahlTechniker, value); }
         }
 
+        /*
         [XafDisplayName("WartungsPlan")]
         public wartungWartungsPlan WartungsPlan
         {
             get { return _wartungsPlan; }
             set { SetPropertyValue("WartungsPlan", ref _wartungsPlan, value); }
         }
+        */
+
         [XafDisplayName("Serviceart")]
         public enmActionClassification ActionClassification
         {

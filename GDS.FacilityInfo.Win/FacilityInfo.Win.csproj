@@ -344,6 +344,22 @@
       <DependentUpon>WinApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="XpoHelper.cs" />
+    <None Include="UnusableNodes377.xml">
+      <DependentUpon>Model.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes376.xml">
+      <DependentUpon>Model.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes375.xml">
+      <DependentUpon>Model.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UnusableNodes374.xml">
+      <DependentUpon>Model.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="UnusableNodes373.xml">
       <DependentUpon>Model.xafml</DependentUpon>
       <SubType>Designer</SubType>

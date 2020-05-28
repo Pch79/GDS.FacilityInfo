@@ -12,17 +12,23 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Anlagen.BusinessObjects;
+using FacilityInfo.Management.EnumStore;
 
-namespace FacilityInfo.Wartung.BusinessObjects
+namespace FacilityInfo.Management.ServiceHandling.BusinessObjects
 {
     [DefaultClassOptions]
-   [XafDisplayName("Anlagenwartung")]
+   [XafDisplayName("Service-Specification")]
     [ImageName("gearTool_16")]
     [XafDefaultProperty("MatchKey")]
-    public class wartungWartungsPlanAnlagenArt : wartungWartungsPlan
+    public class ServiceSpecification : BaseObject
     {
         private boAnlagenArt _anlagenArt;
-        public wartungWartungsPlanAnlagenArt(Session session)
+        private String _bezeichnung;
+        private String _beschreibung;
+        private enmTurnus _turnus;
+        private Int32 _turnusValue;
+
+        public ServiceSpecification(Session session)
             : base(session)
         {
         }
@@ -32,39 +38,37 @@ namespace FacilityInfo.Wartung.BusinessObjects
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
-        protected override void OnLoaded()
-        {
-            base.OnLoaded();
-            if (this.LinkKey == null)
-            {
-                if (this.AnlagenArt != null)
-                {
-                    this.LinkKey = this.AnlagenArt.Oid.ToString();
-                    this.Save();
-                    this.Session.CommitTransaction();
-                }
-            }
 
-        }
-
-        protected override void OnChanged(string propertyName, object oldValue, object newValue)
-        {
-            base.OnChanged(propertyName, oldValue, newValue);
-            switch (propertyName)
-            {
-                case "AnlagenArt":
-                    if (newValue != null)
-                    {
-                        this.LinkKey = ((boAnlagenArt)newValue).Oid.ToString();
-                    }
-                    else
-                    {
-                        this.LinkKey = null;
-                    }
-                    break;
-            }
-        }
         #region Properties
+
+        [XafDisplayName("Bezeichnung")]
+        [RuleRequiredField]
+        public String Bezeichnung
+        {
+            get { return _bezeichnung; }
+            set { SetPropertyValue("Bezeichnung", ref _bezeichnung, value); }
+        }
+        [XafDisplayName("Beschreibung")]
+        [Size(-1)]
+        public String Beschreibung
+        {
+            get { return _beschreibung; }
+            set { SetPropertyValue("Beschreibung", ref _beschreibung, value); }
+        }
+
+
+        [XafDisplayName("Turnus")]
+        public enmTurnus Turnus
+        {
+            get { return _turnus; }
+            set { SetPropertyValue("Turnus", ref _turnus, value); }
+        }
+        [XafDisplayName("Turnuswert")]
+        public Int32 TurnusValue
+        {
+            get { return _turnusValue; }
+            set { SetPropertyValue("TurnusValue", ref _turnusValue, value); }
+        }
         [XafDisplayName("Matchkey")]
         public String MatchKey
         {
@@ -80,11 +84,19 @@ namespace FacilityInfo.Wartung.BusinessObjects
             }
         }
         [XafDisplayName("Anlagenart")]
-        [Association("boAnlagenArt-wartungWartungsPlanAnlagenArt")]
+        [Association("boAnlagenArt-ServiceSpecification")]
         public boAnlagenArt AnlagenArt
         {
             get { return _anlagenArt; }
             set { SetPropertyValue("AnlagenArt", ref _anlagenArt, value); }
+        }
+
+        [XafDisplayName("Postionen")]
+        [Association("ServiceSpecification-ServicePosition")]
+        public XPCollection<ServicePosition> lstServicePosition
+        {
+            get { return GetCollection<ServicePosition>("lstServicePosition"); }
+
         }
         #endregion
     }

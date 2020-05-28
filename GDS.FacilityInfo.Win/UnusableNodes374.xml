@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="fiHerstellerProdukt_lstWartungsPlan_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Beschreibung" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="0" />
+        <ColumnInfo Id="AnzahlTechniker" Index="1" />
+        <ColumnInfo Id="Turnus" Index="2" />
+        <ColumnInfo Id="TurnusValue" Index="3" />
+        <ColumnInfo Id="DauerVorgabe" Index="4" />
+      </Columns>
+    </ListView>
+    <DetailView Id="wartungWartungsPlan_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="wartungWartungsPlan" Caption="Wartungsplan">
+              <LayoutGroup Id="wartungWartungsPlan_col1">
+                <LayoutItem Id="Bezeichnung" Index="0" Removed="True" />
+                <LayoutItem Id="AnzahlTechniker" Index="2" Removed="True" />
+                <LayoutGroup Id="grpBezeichnung" Caption="">
+                  <LayoutItem Id="Bezeichnung" Index="0" ViewItem="Bezeichnung" ShowCaption="" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpHerstellerProdulkt" Caption="">
+                  <LayoutItem Id="HerstellerProdukt" Index="1" ViewItem="HerstellerProdukt" ShowCaption="" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="wartungWartungsPlan_col2">
+                <LayoutGroup Id="grpTurnus" Caption="" Direction="Horizontal" Index="0">
+                  <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="0" />
+                  <LayoutItem Id="TurnusValue" ViewItem="TurnusValue" ShowCaption="" Index="1" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpDauer" Caption="" Direction="Horizontal" Index="1">
+                  <LayoutItem Id="AnzahlTechniker" Index="2" ViewItem="AnzahlTechniker" ShowCaption="" />
+                  <LayoutItem Id="DauerVorgabe" ViewItem="DauerVorgabe" ShowCaption="" Index="3" />
+                </LayoutGroup>
+                <LayoutItem Id="DauerVorgabe" Removed="True" />
+                <LayoutItem Id="TurnusValue" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstWartungPosition_Group" Removed="True">
+            <LayoutItem Id="lstWartungPosition" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+          <TabbedGroup Id="tabData">
+            <LayoutGroup Id="tabWartungspositionen" Caption="Wartungspositionen" Index="0">
+              <LayoutItem Id="lstWartungPosition" ViewItem="lstWartungPosition" ShowCaption="" Index="0" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="wartungWartungsPlan_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="LinkKey" Index="-1" />
+        <ColumnInfo Id="Bezeichnung" Index="0" />
+        <ColumnInfo Id="SystemType" Index="1" />
+        <ColumnInfo Id="Turnus" Index="3" />
+        <ColumnInfo Id="TurnusValue" Index="4" />
+        <ColumnInfo Id="DauerVorgabe" Index="5" />
+        <ColumnInfo Id="AnzahlTechniker" Index="6" />
+        <ColumnInfo Id="Beschreibung" Index="7" Removed="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="wartungWartungsPlan_LookupListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Bezeichnung" Index="0" />
+      </Columns>
+    </ListView>
+    <ListView Id="wartungWartungsPlan_lstWartungPosition_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="ArbeitsAnweisung" Index="-1" />
+        <ColumnInfo Id="Beschreibung" Index="-1" />
+        <ColumnInfo Id="SortIndex" Index="-1" />
+        <ColumnInfo Id="PositionsNummer" Index="0" />
+        <ColumnInfo Id="PosText" Index="1" />
+        <ColumnInfo Id="AnzahlTechniker" Index="2" />
+        <ColumnInfo Id="ZeitVorgabe" Index="3" />
+        <ColumnInfo Id="ArtikelMenge" Index="4" />
+        <ColumnInfo Id="Artikel" Index="5" />
+        <ColumnInfo Id="BauteilAnzahl" Index="6" />
+        <ColumnInfo Id="Bauteil" Index="7" />
+      </Columns>
+    </ListView>
+    <DetailView Id="wartungWartungsPlanAnlagenArt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="wartungWartungsPlan">
+              <LayoutGroup Id="wartungWartungsPlan_col1">
+                <LayoutGroup Id="grpMatchkey" Caption="" Index="0">
+                  <LayoutItem Id="Matchkey" ViewItem="Matchkey" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpAnlagenArt" Caption="" Index="1">
+                  <LayoutItem Id="AnlagenArt" ViewItem="AnlagenArt" ShowCaption="" Index="0" />
+                </LayoutGroup>
+                <LayoutItem Id="AnzahlTechniker" Index="2" Removed="True" />
+                <LayoutItem Id="Turnus" Index="3" Removed="True" />
+                <LayoutItem Id="Bezeichnung" Removed="True" />
+                <LayoutGroup Id="grpBezeichnung" Caption="">
+                  <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" ShowCaption="" Index="1" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="wartungWartungsPlan_col2">
+                <LayoutGroup Id="grpTurnus" Caption="" Direction="Horizontal" Index="0">
+                  <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="0" />
+                  <LayoutItem Id="TurnusValue" Index="1" ViewItem="TurnusValue" ShowCaption="" />
+                </LayoutGroup>
+                <LayoutItem Id="TurnusValue" Index="1" Removed="True" />
+                <LayoutItem Id="DauerVorgabe" Index="2" Removed="True" />
+                <LayoutGroup Id="grpTechniker" Caption="" Direction="Horizontal">
+                  <LayoutItem Id="AnzahlTechniker" Index="2" ViewItem="AnzahlTechniker" ShowCaption="" />
+                  <LayoutItem Id="DauerVorgabe" Index="2" ViewItem="DauerVorgabe" ShowCaption="" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="wartungWartungsPlanAnlagenArt" Removed="True">
+              <LayoutItem Id="AnlagenArt" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstWartungPosition_Group" Removed="True">
+            <LayoutItem Id="lstWartungPosition" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="tabInfo">
+            <LayoutGroup Id="tabWartungsPosition" Caption="Positionen" Index="0">
+              <LayoutItem Id="lstWartungPosition" ViewItem="lstWartungPosition" ShowCaption="" Index="0" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" Index="1">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="wartungWartungsPlanProdukt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="wartungWartungsPlan" Caption="Wartungsplan">
+              <LayoutGroup Id="wartungWartungsPlan_col1" Index="1">
+                <LayoutGroup Id="grpMatchkey" Caption="" Index="0">
+                  <LayoutItem Id="Matchkey" ViewItem="Matchkey" Index="0" />
+                </LayoutGroup>
+                <LayoutItem Id="Bezeichnung" Index="1" Removed="True" />
+                <LayoutItem Id="AnzahlTechniker" Index="2" Removed="True" />
+                <LayoutItem Id="Turnus" Index="3" Removed="True" />
+                <LayoutGroup Id="grpBezeichnung" Caption="">
+                  <LayoutItem Id="Bezeichnung" Index="1" ViewItem="Bezeichnung" ShowCaption="" />
+                </LayoutGroup>
+                <LayoutGroup Id="grpProdukt" Caption="">
+                  <LayoutItem Id="HerstellerProdukt" ViewItem="HerstellerProdukt" ShowCaption="" Index="0" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="wartungWartungsPlan_col2" Index="2">
+                <LayoutGroup Id="grpTurnus" Caption="" Index="0" Direction="Horizontal">
+                  <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="0" />
+                  <LayoutItem Id="TurnusValue" Index="1" ViewItem="TurnusValue" ShowCaption="" />
+                </LayoutGroup>
+                <LayoutItem Id="TurnusValue" Index="1" Removed="True" />
+                <LayoutItem Id="DauerVorgabe" Index="2" Removed="True" />
+                <LayoutGroup Id="grpTechniker" Caption="" Direction="Horizontal">
+                  <LayoutItem Id="AnzahlTechniker" Index="2" ViewItem="AnzahlTechniker" ShowCaption="" />
+                  <LayoutItem Id="DauerVorgabe" Index="2" ViewItem="DauerVorgabe" ShowCaption="" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="wartungWartungsPlanProdukt" Removed="True">
+              <LayoutItem Id="HerstellerProdukt" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstWartungPosition_Group" Removed="True">
+            <LayoutItem Id="lstWartungPosition" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="tabInfoData">
+            <LayoutGroup Id="tabWartungspositionen" Caption="Wartungspositionen" Index="0">
+              <LayoutItem Id="lstWartungPosition" ViewItem="lstWartungPosition" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" Index="1">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="wartungWartungsPosition_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="ArbeitsAnweisung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
+        <PropertyEditor Id="Beschreibung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
+        <PropertyEditor Id="ZeitVorgabe" DisplayFormat="{0:n2}" EditMask="N2" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="wartungWartungsPosition" Caption="Wartungsposition" Direction="Vertical">
+              <LayoutGroup Id="grpMain" Caption="" Direction="Horizontal">
+                <LayoutGroup Id="wartungWartungsPosition_col1" Index="0" ShowCaption="False">
+                  <LayoutGroup Id="grpPosText" Caption="" Index="0">
+                    <LayoutItem Id="PosText" ViewItem="PosText" Index="1" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="grpPlan" Caption="" Index="1" Direction="Horizontal">
+                    <LayoutItem Id="PositionsNummer" ViewItem="PositionsNummer" ShowCaption="" Index="0" />
+                    <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" ShowCaption="" Index="1" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="grpTechniker" Caption="" Direction="Horizontal">
+                    <LayoutItem Id="AnzahlTechniker" ViewItem="AnzahlTechniker" ShowCaption="" Index="2" />
+                    <LayoutItem Id="ZeitVorgabe" ViewItem="ZeitVorgabe" ShowCaption="" Index="2" />
+                  </LayoutGroup>
+                </LayoutGroup>
+                <LayoutGroup Id="wartungWartungsPosition_col2" Index="1" ShowCaption="False">
+                  <LayoutGroup Id="grpArtikel" Caption="" Direction="Horizontal">
+                    <LayoutItem Id="ArtikelMenge" ViewItem="ArtikelMenge" Index="0" />
+                    <LayoutItem Id="Artikel" ViewItem="Artikel" Index="1" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="grpProdukt" Caption="" Direction="Horizontal">
+                    <LayoutItem Id="Bauteilanzahl" ViewItem="BauteilAnzahl" Index="0" />
+                    <LayoutItem Id="Bauteil" ViewItem="Bauteil" Index="1" />
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="wartungWartungsPosition_col1" Removed="True">
+                <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" ShowCaption="" Index="1" />
+                <LayoutItem Id="SortIndex" Index="2" />
+                <LayoutItem Id="ZeitVorgabe" Index="3" />
+                <LayoutItem Id="ArbeitsAnweisung" Removed="True" />
+                <LayoutItem Id="PositionsNummer" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="wartungWartungsPosition_col2" Removed="True">
+                <LayoutItem Id="PositionsNummer" ViewItem="PositionsNummer" ShowCaption="" Index="0" />
+                <LayoutItem Id="AnzahlTechniker" Index="2" />
+                <LayoutItem Id="Bezeichnung" Removed="True" />
+                <LayoutItem Id="WartungsPlan" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+          <TabbedGroup Id="tabDetails">
+            <LayoutGroup Id="tabPosLangText" Caption="Beschreibung" Index="0">
+              <LayoutItem Id="PosLangText" ShowCaption="False" Index="3" ViewItem="PosLangText" />
+            </LayoutGroup>
+            <LayoutGroup Id="Arbeitsanweisung" Caption="Arbeitsanweisung" Index="1">
+              <LayoutItem Id="ArbeitsAnweisung" ViewItem="ArbeitsAnweisung" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabNotitzen" Caption="Notitzen" Index="2">
+              <LayoutItem Id="Notizen" ViewItem="Notizen" ShowCaption="False" Index="0" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="wartungWartungsPosition_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="ArbeitsAnweisung" Index="-1" />
+        <ColumnInfo Id="Beschreibung" Index="-1" />
+        <ColumnInfo Id="SortIndex" Index="-1" />
+        <ColumnInfo Id="PositionsNummer" Index="0" />
+        <ColumnInfo Id="WartungsPlan" Index="2" />
+        <ColumnInfo Id="PosText" Index="3" />
+        <ColumnInfo Id="AnzahlTechniker" Index="4" />
+        <ColumnInfo Id="ZeitVorgabe" Index="5" />
+        <ColumnInfo Id="Artikelmenge" PropertyName="ArtikelMenge" Index="6" />
+        <ColumnInfo Id="Artikel" PropertyName="Artikel" Index="7" Removed="True" />
+        <ColumnInfo Id="BauteilAnzahl" Index="8" />
+        <ColumnInfo Id="Bauteil" Index="9" />
+        <ColumnInfo Id="ArtikelMenge" Removed="True" />
+      </Columns>
+    </ListView>
+    <DetailView Id="LGHaustechnikKomponente_Lookup_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstServices">
+              <LayoutItem Id="lstServices" ViewItem="lstServices" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="KwpWartTermin_Planing_ListView" PreviewColumnName="Liegenschaft" />
+    <DetailView Id="Hausverwalter_Lookup_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Adresse" View="boAdresse_LookupDetailView" />
+      </Items>
+    </DetailView>
+    <ListView Id="actionPositionPlaning_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="WartungsPosition" PropertyName="WartungsPosition" Index="-1" Width="70" />
+      </Columns>
+    </ListView>
+    <DetailView Id="actionActionAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="actionActionBase">
+              <LayoutGroup Id="actionActionBase_col1">
+                <LayoutItem Id="WartungsPlan" Index="3" Removed="True" />
+                <LayoutGroup Id="grpBezeichnung">
+                  <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="actionActionBase_col2">
+                <LayoutItem Id="Liegenschaft" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="actionActionAnlage_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="WartungsPlan" Index="4" />
+      </Columns>
+    </ListView>
+    <DetailView Id="actionActionBase_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="actionActionBase">
+              <LayoutGroup Id="actionActionBase_col1">
+                <LayoutGroup Id="grpBezeichnung">
+                  <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="actionActionBase_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="WartungsPlan" Index="3" />
+      </Columns>
+    </ListView>
+    <ListView Id="actionActionBase_lstActionPosition_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="WartungsPosition" Index="10" />
+      </Columns>
+    </ListView>
+    <ListView Id="boAnlage_lstActionAnlage_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="WartungsPlan" Index="3" />
+        <ColumnInfo Id="SystemType" PropertyName="WartungsPlan.SystemType" Index="12" />
+      </Columns>
+    </ListView>
+    <DetailView Id="boAnlagenArt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="tabFurtherData">
+            <LayoutGroup Id="tabWartungsPlaene">
+              <LayoutItem Id="lstWartungsPlan" ViewItem="lstWartungsPlan" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boMessprobe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="boMessprobe">
+              <LayoutGroup Id="boMessprobe_col2">
+                <LayoutItem Id="Geraet" ViewItem="Geraet" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiHerstellerProdukt_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstWartungsPlan" Index="3" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="fiZugang_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="fiZugang">
+              <TabbedGroup Id="tabInfo">
+                <LayoutGroup Id="tabKontakt">
+                  <LayoutItem Id="Kontakt" ViewItem="Kontakt" />
+                </LayoutGroup>
+              </TabbedGroup>
+              <LayoutGroup Id="fiZugang_col1">
+                <LayoutGroup Id="grpMatchkey">
+                  <LayoutItem Id="Matchkey" ViewItem="Matchkey" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="FunctionUnitAction_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="actionActionBase">
+            <LayoutGroup Id="actionActionBase_col1">
+              <LayoutGroup Id="grpBezeichnung">
+                <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="KwpWartTermin_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="KwpWartTermin">
+              <LayoutGroup Id="KwpWartTermin_col1">
+                <LayoutGroup Id="grpBezug">
+                  <LayoutItem Id="KwpAnlage" ViewItem="KwpAnlage" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <BOModel Id="BOModel">
+    <Class Name="FacilityInfo.Wartung.BusinessObjects.wartungWartungsPlan">
+      <OwnMembers Id="OwnMembers">
+        <Member Name="DauerVorgabe" EditMask="n2" DisplayFormat="{0:n2}" />
+      </OwnMembers>
+    </Class>
+    <Class Name="FacilityInfo.Wartung.BusinessObjects.wartungWartungsPosition" DefaultListViewAllowEdit="True" DefaultListViewNewItemRowPosition="Top">
+      <OwnMembers Id="OwnMembers">
+        <Member Name="ArtikelMenge" DisplayFormat="{0:N2}" EditMask="N2" />
+        <Member Name="BauteilAnzahl" DisplayFormat="{0:N2}" EditMask="N2" />
+        <Member Name="ZeitVorgabe" DisplayFormat="{0:N2} min" EditMask="N2" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Wartungswesen">
+        <Items Id="Items">
+          <Item Id="Wartungsposition" ViewId="wartungWartungsPosition_ListView" />
+          <Item Id="Wartung" ViewId="wartungWartung_ListView" />
+        </Items>
+      </Item>
+      <Item Id="Parkplatz">
+        <Items Id="Items">
+          <Item Id="navItemDatenfelder">
+            <Items Id="Items">
+              <Item Id="Antwortkatalog" ViewId="fiDatenfeldAntwort_ListView" />
+              <Item Id="navItemDatenfeld" ViewId="fiDatenfeld_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemDatenFeldProdukte">
+            <Items Id="Items">
+              <Item Id="Datenfeld (Produktgruppe)" ViewId="fiDatenfeldProduktgruppe_ListView" />
+              <Item Id="Antwortkatalog (Herstellerprodukt)" ViewId="fiDatenFeldHerstellerProduktAntwort_ListView" />
+              <Item Id="Produktdatenfeld" ViewId="fiDatenfeldHerstellerprodukt_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Developement">
+        <Items Id="Items">
+          <Item Id="navitemvertragsVerwaltung">
+            <Items Id="Items">
+              <Item Id="boVertragsleistung_ListView" ViewId="fiVertragsleistung_ListView" />
+              <Item Id="boVertrag_ListView" ViewId="fiVertrag_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemServiceSettings">
+            <Items Id="Items">
+              <Item Id="ServiceItem" ViewId="serviceServiceItem_ListView" />
+              <Item Id="servicepaket" ViewId="serviceServicePaket_ListView" />
+            </Items>
+          </Item>
+          <Item Id="navItemMassnahmen">
+            <Items Id="Items">
+              <Item Id="boMassnahmenArt_ListView" ViewId="boMassnahmenArt_ListView" />
+              <Item Id="navItemANMassnahme" ViewId="boANMassnahme_ListView" />
+              <Item Id="navitemLGMAssnahme" ViewId="boLGMassnahme_ListView" />
+              <Item Id="boMassnahme_ListView" ViewId="boMassnahme_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="Settings">
+        <Items Id="Items">
+          <Item Id="Settings_Anlagen">
+            <Items Id="Items">
+              <Item Id="navitemKomponenten" ViewId="AnKomponente_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="navItemService">
+        <Items Id="Items">
+          <Item Id="WartungsPlaene">
+            <Items Id="Items">
+              <Item Id="WartungsPositionen" ViewId="wartungWartungsPosition_ListView" />
+              <Item Id="WartPlanANlagenArt" ViewId="wartungWartungsPlanAnlagenArt_ListView" />
+              <Item Id="WartPlanProdukt" ViewId="wartungWartungsPlanProdukt_ListView" />
+              <Item Id="WartungsPlaeneList" ViewId="wartungWartungsPlan_ListView" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

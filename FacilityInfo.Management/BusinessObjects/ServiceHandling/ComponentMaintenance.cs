@@ -12,17 +12,18 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Hersteller.BusinessObjects;
+using FacilityInfo.Management.ServiceHandling.BusinessObjects;
 
-namespace FacilityInfo.Wartung.BusinessObjects
+namespace FacilityInfo.Management.ServiceHandling.BusinessObjects
 {
     [DefaultClassOptions]
   [XafDisplayName("Produktwartung")]
   [ImageName("gears_16")]
   [XafDefaultProperty("MatchKey")]
-    public class wartungWartungsPlanProdukt : wartungWartungsPlan
+    public class ComponentMaintenance : MaintenanceSchedule
     {
         private fiHerstellerProdukt _herstellerProdukt;
-        public wartungWartungsPlanProdukt(Session session)
+        public ComponentMaintenance(Session session)
             : base(session)
         {
         }
@@ -79,7 +80,7 @@ namespace FacilityInfo.Wartung.BusinessObjects
             }
         }
         [XafDisplayName("Produkt")]
-        [Association("fiHerstellerProdukt-wartungWartungsPlanProdukt")]
+        [Association("fiHerstellerProdukt-ComponentMaintenance")]
         public fiHerstellerProdukt HerstellerProdukt
         {
             get { return _herstellerProdukt; }

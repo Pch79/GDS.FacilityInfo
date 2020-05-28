@@ -16,14 +16,14 @@ using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Hersteller.BusinessObjects;
 using DevExpress.ExpressApp.Utils;
 
-namespace FacilityInfo.Wartung.BusinessObjects
+namespace FacilityInfo.Management.ServiceHandling.BusinessObjects
 {
   [DefaultClassOptions]
   [XafDisplayName("Wartungsplan")]
   [XafDefaultProperty("Bezeichnung")]
   [ImageName("gearSettings_16")]
 
-    public class wartungWartungsPlan : BaseObject
+    public class MaintenanceSchedule : BaseObject
     {
         private String _bezeichnung;
         private String _beschreibung;
@@ -34,7 +34,7 @@ namespace FacilityInfo.Wartung.BusinessObjects
         private Int32 _turnusValue;
         //Oid der Anlagenart oder des Produktes
         private String _linkKey;
-        public wartungWartungsPlan(Session session)
+        public MaintenanceSchedule(Session session)
             : base(session)
         {
         }
@@ -88,15 +88,15 @@ namespace FacilityInfo.Wartung.BusinessObjects
         }
 
         [XafDisplayName("Postionen")]
-        [Association("wartungWartung-wartungWartungPosition")]
-        public XPCollection<wartungWartungsPosition> lstWartungPosition
+        [Association("MaintenanceSchedule-MaintenancePosition")]
+        public XPCollection<MaintenancePosition> lstMaintenancePosition
         {
-            get { return GetCollection<wartungWartungsPosition>("lstWartungPosition"); }
+            get { return GetCollection<MaintenancePosition>("lstMaintenancePosition"); }
 
         }
 
-   
-
+        // TODO: Implement later on
+        /*
         [XafDisplayName("Dauer (Vorgabe)")]
         public Decimal DauerVorgabe
         {
@@ -110,7 +110,7 @@ namespace FacilityInfo.Wartung.BusinessObjects
                 return retval;
             }
         }
-
+        */
         //den Typ anzeigen
         [XafDisplayName("Typ")]
         [ValueConverter(typeof(TypeToStringConverter))]

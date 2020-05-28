@@ -88,18 +88,6 @@
         <Member Name="Beschreibung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
       </OwnMembers>
     </Class>
-    <Class Name="FacilityInfo.Wartung.BusinessObjects.wartungWartungsPlan">
-      <OwnMembers>
-        <Member Name="DauerVorgabe" EditMask="n2" DisplayFormat="{0:n2}" />
-      </OwnMembers>
-    </Class>
-    <Class Name="FacilityInfo.Wartung.BusinessObjects.wartungWartungsPosition" DefaultListViewAllowEdit="True" DefaultListViewNewItemRowPosition="Top">
-      <OwnMembers>
-        <Member Name="ArtikelMenge" DisplayFormat="{0:N2}" EditMask="N2" />
-        <Member Name="BauteilAnzahl" DisplayFormat="{0:N2}" EditMask="N2" />
-        <Member Name="ZeitVorgabe" DisplayFormat="{0:N2} min" EditMask="N2" />
-      </OwnMembers>
-    </Class>
   </BOModel>
   <CreatableItems>
     <CreatableItem ClassName="FacilityInfo.Adresse.BusinessObjects.boADRKommunikation" Index="-1" Removed="True" />
@@ -338,12 +326,18 @@
               <Item Id="ActionPosition" ViewId="actionActionPosition_ListView" Caption="Positionen (Maßnahme)" Index="3" IsNewNode="True" />
             </Items>
           </Item>
+          <Item Id="ServiceManagement" Caption="Servicemanagement" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="ServicePosition" ViewId="ServicePosition_ListView" Caption="ServicePosition" IsNewNode="True" />
+              <Item Id="ServiceSpecification" ViewId="ServiceSpecification_ListView" IsNewNode="True" />
+            </Items>
+          </Item>
           <Item Id="WartungsPlaene" Caption="Wartungspläne" ImageName="gearSettings_16" IsNewNode="True">
             <Items IsNewNode="True">
-              <Item Id="WartungsPlaeneList" Caption="Wartungspläne" Index="0" ViewId="wartungWartungsPlan_ListView" IsNewNode="True" />
-              <Item Id="WartPlanProdukt" ViewId="wartungWartungsPlanProdukt_ListView" Index="1" IsNewNode="True" />
-              <Item Id="WartPlanANlagenArt" ViewId="wartungWartungsPlanAnlagenArt_ListView" Index="2" IsNewNode="True" />
-              <Item Id="WartungsPositionen" Caption="Wartungspositionen" Index="3" ViewId="wartungWartungsPosition_ListView" IsNewNode="True" />
+              <Item Id="MaintenanceSchedule" Caption="Wartungspläne" Index="0" ViewId="MaintenanceSchedule_ListView" IsNewNode="True" />
+              <Item Id="MaintenancePosition" Caption="Wartungspositionen" Index="1" ViewId="MaintenancePosition_ListView" IsNewNode="True" />
+              <Item Id="WartPlanProdukt" ViewId="wartungWartungsPlanProdukt_ListView" Index="2" IsNewNode="True" />
+              <Item Id="WartPlanANlagenArt" ViewId="wartungWartungsPlanAnlagenArt_ListView" Index="3" IsNewNode="True" />
             </Items>
           </Item>
         </Items>
@@ -611,7 +605,6 @@
                   <LayoutItem Id="AnzahlTechniker" ViewItem="AnzahlTechniker" ShowCaption="" Index="1" IsNewNode="True" />
                 </LayoutGroup>
                 <LayoutItem Id="ActionClassification" Index="3" Removed="True" />
-                <LayoutItem Id="WartungsPlan" Index="3" Removed="True" />
                 <LayoutItem Id="DatumFaellig" Index="4" Removed="True" />
                 <LayoutItem Id="Turnus" Index="7" Removed="True" />
                 <LayoutItem Id="TurnusValue" Index="8" Removed="True" />
@@ -629,7 +622,6 @@
                 <LayoutItem Id="Bezeichnung" Removed="True" />
                 <LayoutItem Id="DatumGeplant" Removed="True" />
                 <LayoutItem Id="DatumReal" Removed="True" />
-                <LayoutItem Id="Liegenschaft" Removed="True" />
                 <LayoutItem Id="MonteurDurchfuehrung" Removed="True" />
                 <LayoutItem Id="MonteurGeplant" Removed="True" />
                 <LayoutItem Id="MonteurVerantwortlich" Removed="True" />
@@ -685,7 +677,6 @@
         <ColumnInfo Id="Anlage" Index="1" />
         <ColumnInfo Id="Liegenschaft" Index="2" />
         <ColumnInfo Id="Bezeichnung" Index="3" />
-        <ColumnInfo Id="WartungsPlan" Index="4" />
         <ColumnInfo Id="ActionClassification" Index="5" />
         <ColumnInfo Id="Turnus" Index="6" />
         <ColumnInfo Id="TurnusValue" Index="7" />
@@ -765,7 +756,6 @@
         <ColumnInfo Id="Status" Index="0" />
         <ColumnInfo Id="Liegenschaft" Index="1" />
         <ColumnInfo Id="Bezeichnung" Index="2" />
-        <ColumnInfo Id="WartungsPlan" Index="3" />
         <ColumnInfo Id="ActionClassification" Index="4" />
         <ColumnInfo Id="Turnus" Index="5" />
         <ColumnInfo Id="TurnusValue" Index="6" />
@@ -790,7 +780,6 @@
         <ColumnInfo Id="Artikel" Index="5" />
         <ColumnInfo Id="BauteilAnzahl" Index="6" />
         <ColumnInfo Id="Bauteil" Index="7" />
-        <ColumnInfo Id="WartungsPosition" Index="10" />
       </Columns>
     </ListView>
     <ListView Id="actionPositionPlaning_ListView" ClassName="FacilityInfo.Action.BusinessObjects.actionActionPosition" Caption="Maßnahmen (Planung)" IsFooterVisible="True" IsGroupPanelVisible="True" AutoExpandAllGroups="True" AllowDelete="False" AllowLink="False" AllowNew="False" AllowUnlink="True" ShowAutoFilterRow="True" ShowFindPanel="True" GroupSummary="Sum" IsNewNode="True">
@@ -803,7 +792,6 @@
         <ColumnInfo Id="PosLangText" PropertyName="PosLangText" Index="-1" Width="70" IsNewNode="True" />
         <ColumnInfo Id="PosText" PropertyName="PosText" Index="-1" Width="70" IsNewNode="True" />
         <ColumnInfo Id="SortIndex" PropertyName="SortIndex" Index="-1" Width="50" IsNewNode="True" />
-        <ColumnInfo Id="WartungsPosition" PropertyName="WartungsPosition" Index="-1" Width="70" IsNewNode="True" />
         <ColumnInfo Id="ActionLiegenschaft" PropertyName="ActionBase.Liegenschaft" Index="0" Width="89" IsNewNode="True" />
         <ColumnInfo Id="MatchKey" PropertyName="MatchKey" Index="1" Width="70" IsNewNode="True" />
         <ColumnInfo Id="ActionBase" PropertyName="ActionBase" Index="2" Width="70" IsNewNode="True" />
@@ -1739,7 +1727,6 @@
         <ColumnInfo Id="Status" Index="0" />
         <ColumnInfo Id="Liegenschaft" Index="1" />
         <ColumnInfo Id="Bezeichnung" Index="2" />
-        <ColumnInfo Id="WartungsPlan" Index="3" />
         <ColumnInfo Id="ActionClassification" Index="4" />
         <ColumnInfo Id="Turnus" Index="5" />
         <ColumnInfo Id="TurnusValue" Index="6" />
@@ -1748,7 +1735,6 @@
         <ColumnInfo Id="DatumReal" Index="9" />
         <ColumnInfo Id="MonteurVerantwortlich" Index="10" />
         <ColumnInfo Id="AnzahlTechniker" Index="11" />
-        <ColumnInfo Id="SystemType" PropertyName="WartungsPlan.SystemType" Index="12" IsNewNode="True" />
         <ColumnInfo Id="Prioritaet" Index="13" />
       </Columns>
     </ListView>
@@ -1860,14 +1846,14 @@
             <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" ImageName="note_16" Index="0" IsNewNode="True">
               <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" Index="0" ShowCaption="False" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="tabWartungsPlaene" Caption="Wartungspläne" Index="1" IsNewNode="True">
-              <LayoutItem Id="lstWartungsPlan" ViewItem="lstWartungsPlan" IsNewNode="True" />
+            <LayoutGroup Id="tabServiceSpecification" Caption="ServiceSpecification" Index="1" IsNewNode="True">
+              <LayoutItem Id="lsttServiceSpecification" ViewItem="lstServiceSpecification" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="tabParameterItem" Caption="Parameter" Index="2" IsNewNode="True">
-              <LayoutItem Id="lstParameterItems" ViewItem="lstParameterItem" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="tabAnlagen" Caption="Anlagen" Index="3" IsNewNode="True">
+            <LayoutGroup Id="tabAnlagen" Caption="Anlagen" Index="2" IsNewNode="True">
               <LayoutItem Id="lstAnlagen" ViewItem="lstAnlagen" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabParameterItem" Caption="Parameter" Index="3" IsNewNode="True">
+              <LayoutItem Id="lstParameterItems" ViewItem="lstParameterItem" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>
           <TabbedGroup Id="Tabs" Removed="True">
@@ -3545,6 +3531,49 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="ComponentMaintenance_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="ComponentMaintenance">
+              <LayoutItem Id="HerstellerProdukt" Removed="True" />
+              <LayoutItem Id="MatchKey" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="grpHeader" Caption="" Index="1" Direction="Horizontal" IsNewNode="True">
+              <LayoutItem Id="HerstellerProdukt" ViewItem="HerstellerProdukt" ShowCaption="" Index="0" IsNewNode="True" />
+              <LayoutItem Id="MatchKey" ViewItem="MatchKey" ShowCaption="" Index="1" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="MaintenanceSchedule" Index="2">
+              <LayoutGroup Id="MaintenanceSchedule_col1">
+                <LayoutItem Id="Bezeichnung" Index="0" />
+                <LayoutItem Id="LinkKey" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="MaintenanceSchedule_col2">
+                <LayoutGroup Id="grpTurnus" Caption="" Index="0" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="TurnusValue" ViewItem="TurnusValue" ShowCaption="" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="SystemType" Index="1" />
+                <LayoutItem Id="Turnus" Removed="True" />
+                <LayoutItem Id="TurnusValue" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstMaintenancePosition_Group" Removed="True">
+            <LayoutItem Id="lstMaintenancePosition" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+          <TabbedGroup Id="tabFurtherInfos" IsNewNode="True">
+            <LayoutGroup Id="tabPositions" Caption="Positionen" Index="0" IsNewNode="True">
+              <LayoutItem Id="lstMaintenancePosition" ViewItem="lstMaintenancePosition" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabDesignation" Caption="Beschreibung" IsNewNode="True">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="ComponentPart_DetailView">
       <Items>
         <PropertyEditor Id="Bild" PropertyEditorType="GDS.FacilityInfo.Module.Win.Editors.Win_ZoomImageEditor" />
@@ -4285,18 +4314,20 @@
             <LayoutGroup Id="tabLangtext" Caption="Langtext" Index="0" IsNewNode="True">
               <LayoutItem Id="Langtext" ViewItem="Langtext" ShowCaption="" Index="1" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="lstBauteile" Index="1" />
+            <LayoutGroup Id="lstComponentParts" Index="1" />
             <LayoutGroup Id="lstProduktDokumente" Index="2" />
             <LayoutGroup Id="lstAnlagenBaugruppe" Index="3" Removed="True" />
-            <LayoutGroup Id="lstWartungsPlan" Index="3" />
+            <LayoutGroup Id="lstComponentMaintenance" Index="3" />
             <LayoutGroup Id="MainImageWeb" Index="3" Removed="True" />
-            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" Index="4" ImageName="comment_16" IsNewNode="True">
-              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="2" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="Produktbild" Removed="True" />
-            <LayoutGroup Id="tabParameter" Caption="Parameter" IsNewNode="True">
+            <LayoutGroup Id="tabParameter" Caption="Parameter" Index="4" IsNewNode="True">
               <LayoutItem Id="ProduktParameter" ViewItem="lstProduktParameter" IsNewNode="True" />
             </LayoutGroup>
+            <LayoutGroup Id="Bild" Index="5" Removed="True" />
+            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" Index="5" ImageName="comment_16" IsNewNode="True">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="2" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstBauteile" Index="6" Caption="Bauteile (wird abgelöst)" />
+            <LayoutGroup Id="Produktbild" Removed="True" />
           </TabbedGroup>
           <LayoutGroup Id="SizeableEditors" Removed="True">
             <LayoutItem Id="Beschreibung" Removed="True" />
@@ -4370,16 +4401,6 @@
         <ColumnInfo Id="DefaultValue" Index="2" />
         <ColumnInfo Id="MinAllowedValue" Index="3" />
         <ColumnInfo Id="MaxAllowedValue" Index="4" />
-      </Columns>
-    </ListView>
-    <ListView Id="fiHerstellerProdukt_lstWartungsPlan_ListView">
-      <Columns>
-        <ColumnInfo Id="Beschreibung" Index="-1" />
-        <ColumnInfo Id="Bezeichnung" Index="0" />
-        <ColumnInfo Id="AnzahlTechniker" Index="1" />
-        <ColumnInfo Id="Turnus" Index="2" />
-        <ColumnInfo Id="TurnusValue" Index="3" />
-        <ColumnInfo Id="DauerVorgabe" Index="4" />
       </Columns>
     </ListView>
     <DetailView Id="fiHerstellerProduktAttachment_DetailView">
@@ -5992,6 +6013,54 @@
         </LayoutGroup>
       </Layout>
     </DashboardView>
+    <DetailView Id="MaintenancePosition_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="MaintenancePosition">
+              <LayoutGroup Id="MaintenancePosition_col1">
+                <LayoutGroup Id="grpSortIndex" Caption="" Index="0" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="PositionsNummer" ViewItem="PositionsNummer" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="SortIndex" Index="3" ViewItem="SortIndex" ShowCaption="" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="Artikel" Index="1" />
+                <LayoutItem Id="MatchKey" Index="1" Removed="True" />
+                <LayoutItem Id="ArtikelMenge" Index="2" Removed="True" />
+                <LayoutItem Id="Bauteil" Index="2" />
+                <LayoutItem Id="BauteilAnzahl" Index="3" Removed="True" />
+                <LayoutItem Id="ZeitVorgabe" Index="4" ViewItem="ZeitVorgabe" ShowCaption="" IsNewNode="True" />
+                <LayoutItem Id="ArbeitsAnweisung" Index="6" Removed="True" />
+                <LayoutItem Id="MaintenanceSchedule" Index="6" ViewItem="MaintenanceSchedule" ShowCaption="" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="MaintenancePosition_col2">
+                <LayoutItem Id="PosText" Index="0" />
+                <LayoutItem Id="ArtikelMenge" Index="1" ViewItem="ArtikelMenge" ShowCaption="" IsNewNode="True" />
+                <LayoutItem Id="BauteilAnzahl" Index="2" ViewItem="BauteilAnzahl" ShowCaption="" IsNewNode="True" />
+                <LayoutItem Id="SortIndex" Index="3" Removed="True" />
+                <LayoutItem Id="ZeitVorgabe" Index="4" Removed="True" />
+                <LayoutItem Id="AnzahlTechniker" Index="5" />
+                <LayoutItem Id="MaintenanceSchedule" Index="6" Removed="True" />
+                <LayoutItem Id="Matchkey" ViewItem="MatchKey" IsNewNode="True" />
+                <LayoutItem Id="PositionsNummer" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Beschreibung" Removed="True" />
+            <LayoutItem Id="Notizen" Removed="True" />
+            <LayoutItem Id="PosLangText" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="tabFurtherInfos" IsNewNode="True">
+            <LayoutGroup Id="tabArbeitsanweisung" Caption="Arbeitsanweisung" IsNewNode="True">
+              <LayoutItem Id="ArbeitsAnweisung" Index="6" ViewItem="ArbeitsAnweisung" ShowCaption="" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabLangtext" Caption="Langtext" IsNewNode="True">
+              <LayoutItem Id="PosLangText" ViewItem="PosLangText" ShowCaption="" Index="1" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="Messprobe_DetailView_Small" ClassName="FacilityInfo.Messung.BusinessObjects.boMessprobe" Caption="Messprobe" IsNewNode="True">
       <Items IsNewNode="True">
         <PropertyEditor Id="Beschriftung" PropertyName="Beschriftung" IsNewNode="True" />
@@ -6115,269 +6184,47 @@
         <ColumnInfo Id="Pruefanschluss" PropertyName="Pruefanschluss" Index="3" Width="70" IsNewNode="True" />
       </Columns>
     </ListView>
-    <DetailView Id="wartungWartungsPlan_DetailView">
+    <DetailView Id="ServicePosition_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="wartungWartungsPlan" Caption="Wartungsplan">
-              <LayoutGroup Id="wartungWartungsPlan_col1">
-                <LayoutItem Id="Bezeichnung" Index="0" Removed="True" />
-                <LayoutItem Id="AnzahlTechniker" Index="2" Removed="True" />
-                <LayoutGroup Id="grpBezeichnung" Caption="" IsNewNode="True">
-                  <LayoutItem Id="Bezeichnung" Index="0" ViewItem="Bezeichnung" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="grpHerstellerProdulkt" Caption="" IsNewNode="True">
-                  <LayoutItem Id="HerstellerProdukt" Index="1" ViewItem="HerstellerProdukt" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
+            <LayoutGroup Id="ServicePosition">
+              <LayoutGroup Id="grpNumber" Caption="" Index="1" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="PositionsNummer" ViewItem="PositionsNummer" ShowCaption="" Index="1" IsNewNode="True" />
+                <LayoutItem Id="SortIndex" ViewItem="SortIndex" ShowCaption="" Index="2" IsNewNode="True" />
               </LayoutGroup>
-              <LayoutGroup Id="wartungWartungsPlan_col2">
-                <LayoutGroup Id="grpTurnus" Caption="" Direction="Horizontal" Index="0" IsNewNode="True">
-                  <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="TurnusValue" ViewItem="TurnusValue" ShowCaption="" Index="1" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="grpDauer" Caption="" Direction="Horizontal" Index="1" IsNewNode="True">
-                  <LayoutItem Id="AnzahlTechniker" Index="2" ViewItem="AnzahlTechniker" ShowCaption="" IsNewNode="True" />
-                  <LayoutItem Id="DauerVorgabe" ViewItem="DauerVorgabe" ShowCaption="" Index="3" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="DauerVorgabe" Removed="True" />
-                <LayoutItem Id="TurnusValue" Removed="True" />
-              </LayoutGroup>
+              <LayoutItem Id="PosText" Index="2" />
+              <LayoutItem Id="PositionsNummer" Removed="True" />
+              <LayoutItem Id="SortIndex" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
-          <LayoutGroup Id="lstWartungPosition_Group" Removed="True">
-            <LayoutItem Id="lstWartungPosition" Removed="True" />
-          </LayoutGroup>
-          <LayoutGroup Id="SizeableEditors" Removed="True" />
-          <TabbedGroup Id="tabData" IsNewNode="True">
-            <LayoutGroup Id="tabWartungspositionen" Caption="Wartungspositionen" Index="0" IsNewNode="True">
-              <LayoutItem Id="lstWartungPosition" ViewItem="lstWartungPosition" ShowCaption="" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" IsNewNode="True">
-              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-          </TabbedGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="wartungWartungsPlan_ListView">
-      <Columns>
-        <ColumnInfo Id="LinkKey" Index="-1" />
-        <ColumnInfo Id="Bezeichnung" Index="0" />
-        <ColumnInfo Id="SystemType" Index="1" />
-        <ColumnInfo Id="Turnus" Index="3" />
-        <ColumnInfo Id="TurnusValue" Index="4" />
-        <ColumnInfo Id="DauerVorgabe" Index="5" />
-        <ColumnInfo Id="AnzahlTechniker" Index="6" />
-        <ColumnInfo Id="Beschreibung" Index="7" Removed="True" />
-      </Columns>
-    </ListView>
-    <ListView Id="wartungWartungsPlan_LookupListView">
-      <Columns>
-        <ColumnInfo Id="Bezeichnung" Index="0" />
-      </Columns>
-    </ListView>
-    <ListView Id="wartungWartungsPlan_lstWartungPosition_ListView">
-      <Columns>
-        <ColumnInfo Id="ArbeitsAnweisung" Index="-1" />
-        <ColumnInfo Id="Beschreibung" Index="-1" />
-        <ColumnInfo Id="SortIndex" Index="-1" />
-        <ColumnInfo Id="PositionsNummer" Index="0" />
-        <ColumnInfo Id="PosText" Index="1" />
-        <ColumnInfo Id="AnzahlTechniker" Index="2" />
-        <ColumnInfo Id="ZeitVorgabe" Index="3" />
-        <ColumnInfo Id="ArtikelMenge" Index="4" />
-        <ColumnInfo Id="Artikel" Index="5" />
-        <ColumnInfo Id="BauteilAnzahl" Index="6" />
-        <ColumnInfo Id="Bauteil" Index="7" />
-      </Columns>
-    </ListView>
-    <DetailView Id="wartungWartungsPlanAnlagenArt_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="wartungWartungsPlan">
-              <LayoutGroup Id="wartungWartungsPlan_col1">
-                <LayoutGroup Id="grpMatchkey" Caption="" Index="0" IsNewNode="True">
-                  <LayoutItem Id="Matchkey" ViewItem="Matchkey" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="grpAnlagenArt" Caption="" Index="1" IsNewNode="True">
-                  <LayoutItem Id="AnlagenArt" ViewItem="AnlagenArt" ShowCaption="" Index="0" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="AnzahlTechniker" Index="2" Removed="True" />
-                <LayoutItem Id="Turnus" Index="3" Removed="True" />
-                <LayoutItem Id="Bezeichnung" Removed="True" />
-                <LayoutGroup Id="grpBezeichnung" Caption="" IsNewNode="True">
-                  <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" ShowCaption="" Index="1" IsNewNode="True" />
-                </LayoutGroup>
-              </LayoutGroup>
-              <LayoutGroup Id="wartungWartungsPlan_col2">
-                <LayoutGroup Id="grpTurnus" Caption="" Direction="Horizontal" Index="0" IsNewNode="True">
-                  <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="TurnusValue" Index="1" ViewItem="TurnusValue" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="TurnusValue" Index="1" Removed="True" />
-                <LayoutItem Id="DauerVorgabe" Index="2" Removed="True" />
-                <LayoutGroup Id="grpTechniker" Caption="" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="AnzahlTechniker" Index="2" ViewItem="AnzahlTechniker" ShowCaption="" IsNewNode="True" />
-                  <LayoutItem Id="DauerVorgabe" Index="2" ViewItem="DauerVorgabe" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-            <LayoutGroup Id="wartungWartungsPlanAnlagenArt" Removed="True">
-              <LayoutItem Id="AnlagenArt" Removed="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="lstWartungPosition_Group" Removed="True">
-            <LayoutItem Id="lstWartungPosition" Removed="True" />
-          </LayoutGroup>
-          <LayoutGroup Id="SizeableEditors" Removed="True">
-            <LayoutItem Id="Beschreibung" Removed="True" />
-          </LayoutGroup>
-          <TabbedGroup Id="tabInfo" IsNewNode="True">
-            <LayoutGroup Id="tabWartungsPosition" Caption="Positionen" Index="0" IsNewNode="True">
-              <LayoutItem Id="lstWartungPosition" ViewItem="lstWartungPosition" ShowCaption="" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" Index="1" IsNewNode="True">
-              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-          </TabbedGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="wartungWartungsPlanProdukt_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="wartungWartungsPlan" Caption="Wartungsplan">
-              <LayoutGroup Id="wartungWartungsPlan_col1" Index="1">
-                <LayoutGroup Id="grpMatchkey" Caption="" Index="0" IsNewNode="True">
-                  <LayoutItem Id="Matchkey" ViewItem="Matchkey" Index="0" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="Bezeichnung" Index="1" Removed="True" />
-                <LayoutItem Id="AnzahlTechniker" Index="2" Removed="True" />
-                <LayoutItem Id="Turnus" Index="3" Removed="True" />
-                <LayoutGroup Id="grpBezeichnung" Caption="" IsNewNode="True">
-                  <LayoutItem Id="Bezeichnung" Index="1" ViewItem="Bezeichnung" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="grpProdukt" Caption="" IsNewNode="True">
-                  <LayoutItem Id="HerstellerProdukt" ViewItem="HerstellerProdukt" ShowCaption="" Index="0" IsNewNode="True" />
-                </LayoutGroup>
-              </LayoutGroup>
-              <LayoutGroup Id="wartungWartungsPlan_col2" Index="2">
-                <LayoutGroup Id="grpTurnus" Caption="" Index="0" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="TurnusValue" Index="1" ViewItem="TurnusValue" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="TurnusValue" Index="1" Removed="True" />
-                <LayoutItem Id="DauerVorgabe" Index="2" Removed="True" />
-                <LayoutGroup Id="grpTechniker" Caption="" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="AnzahlTechniker" Index="2" ViewItem="AnzahlTechniker" ShowCaption="" IsNewNode="True" />
-                  <LayoutItem Id="DauerVorgabe" Index="2" ViewItem="DauerVorgabe" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-            <LayoutGroup Id="wartungWartungsPlanProdukt" Removed="True">
-              <LayoutItem Id="HerstellerProdukt" Removed="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="lstWartungPosition_Group" Removed="True">
-            <LayoutItem Id="lstWartungPosition" Removed="True" />
-          </LayoutGroup>
-          <LayoutGroup Id="SizeableEditors" Removed="True">
-            <LayoutItem Id="Beschreibung" Removed="True" />
-          </LayoutGroup>
-          <TabbedGroup Id="tabInfoData" IsNewNode="True">
-            <LayoutGroup Id="tabWartungspositionen" Caption="Wartungspositionen" Index="0" IsNewNode="True">
-              <LayoutItem Id="lstWartungPosition" ViewItem="lstWartungPosition" ShowCaption="False" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" Index="1" IsNewNode="True">
-              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-          </TabbedGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="wartungWartungsPosition_DetailView">
+    <DetailView Id="ServiceSpecification_DetailView">
       <Items>
-        <PropertyEditor Id="ArbeitsAnweisung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
         <PropertyEditor Id="Beschreibung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
-        <PropertyEditor Id="ZeitVorgabe" DisplayFormat="{0:n2}" EditMask="N2" />
       </Items>
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="wartungWartungsPosition" Caption="Wartungsposition" Direction="Vertical">
-              <LayoutGroup Id="grpMain" Caption="" Direction="Horizontal" IsNewNode="True">
-                <LayoutGroup Id="wartungWartungsPosition_col1" Index="0" ShowCaption="False" IsNewNode="True">
-                  <LayoutGroup Id="grpPosText" Caption="" Index="0" IsNewNode="True">
-                    <LayoutItem Id="PosText" ViewItem="PosText" Index="1" IsNewNode="True" />
-                  </LayoutGroup>
-                  <LayoutGroup Id="grpPlan" Caption="" Index="1" Direction="Horizontal" IsNewNode="True">
-                    <LayoutItem Id="PositionsNummer" ViewItem="PositionsNummer" ShowCaption="" Index="0" IsNewNode="True" />
-                    <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" ShowCaption="" Index="1" IsNewNode="True" />
-                  </LayoutGroup>
-                  <LayoutGroup Id="grpTechniker" Caption="" Direction="Horizontal" IsNewNode="True">
-                    <LayoutItem Id="AnzahlTechniker" ViewItem="AnzahlTechniker" ShowCaption="" Index="2" IsNewNode="True" />
-                    <LayoutItem Id="ZeitVorgabe" ViewItem="ZeitVorgabe" ShowCaption="" Index="2" IsNewNode="True" />
-                  </LayoutGroup>
-                </LayoutGroup>
-                <LayoutGroup Id="wartungWartungsPosition_col2" Index="1" ShowCaption="False" IsNewNode="True">
-                  <LayoutGroup Id="grpArtikel" Caption="" Direction="Horizontal" IsNewNode="True">
-                    <LayoutItem Id="ArtikelMenge" ViewItem="ArtikelMenge" Index="0" IsNewNode="True" />
-                    <LayoutItem Id="Artikel" ViewItem="Artikel" Index="1" IsNewNode="True" />
-                  </LayoutGroup>
-                  <LayoutGroup Id="grpProdukt" Caption="" Direction="Horizontal" IsNewNode="True">
-                    <LayoutItem Id="Bauteilanzahl" ViewItem="BauteilAnzahl" Index="0" IsNewNode="True" />
-                    <LayoutItem Id="Bauteil" ViewItem="Bauteil" Index="1" IsNewNode="True" />
-                  </LayoutGroup>
-                </LayoutGroup>
+            <LayoutGroup Id="ServiceSpecification">
+              <LayoutGroup Id="ServiceSpecification_col1">
+                <LayoutItem Id="AnlagenArt" ViewItem="AnlagenArt" ShowCaption="" Index="1" IsNewNode="True" />
+                <LayoutItem Id="Turnus" Removed="True" />
+                <LayoutItem Id="TurnusValue" Removed="True" />
               </LayoutGroup>
-              <LayoutGroup Id="wartungWartungsPosition_col1" Removed="True">
-                <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" ShowCaption="" Index="1" IsNewNode="True" />
-                <LayoutItem Id="SortIndex" Index="2" />
-                <LayoutItem Id="ZeitVorgabe" Index="3" />
-                <LayoutItem Id="ArbeitsAnweisung" Removed="True" />
-                <LayoutItem Id="PositionsNummer" Removed="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="wartungWartungsPosition_col2" Removed="True">
-                <LayoutItem Id="PositionsNummer" ViewItem="PositionsNummer" ShowCaption="" Index="0" IsNewNode="True" />
-                <LayoutItem Id="AnzahlTechniker" Index="2" />
-                <LayoutItem Id="Bezeichnung" Removed="True" />
-                <LayoutItem Id="WartungsPlan" Removed="True" />
+              <LayoutGroup Id="ServiceSpecification_col2">
+                <LayoutItem Id="AnlagenArt" Removed="True" />
+                <LayoutGroup Id="grpTurnus" Caption="" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="Turnus" ViewItem="Turnus" ShowCaption="" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="TurnusValue" ViewItem="TurnusValue" ShowCaption="" Index="2" IsNewNode="True" />
+                </LayoutGroup>
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
-          <LayoutGroup Id="SizeableEditors" Removed="True" />
-          <TabbedGroup Id="tabDetails" IsNewNode="True">
-            <LayoutGroup Id="tabPosLangText" Caption="Beschreibung" Index="0" IsNewNode="True">
-              <LayoutItem Id="PosLangText" ShowCaption="False" Index="3" ViewItem="PosLangText" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="Arbeitsanweisung" Caption="Arbeitsanweisung" Index="1" IsNewNode="True">
-              <LayoutItem Id="ArbeitsAnweisung" ViewItem="ArbeitsAnweisung" ShowCaption="False" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="tabNotitzen" Caption="Notitzen" Index="2" IsNewNode="True">
-              <LayoutItem Id="Notizen" ViewItem="Notizen" ShowCaption="False" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-          </TabbedGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="wartungWartungsPosition_ListView">
-      <Columns>
-        <ColumnInfo Id="ArbeitsAnweisung" Index="-1" />
-        <ColumnInfo Id="Beschreibung" Index="-1" />
-        <ColumnInfo Id="SortIndex" Index="-1" />
-        <ColumnInfo Id="PositionsNummer" Index="0" />
-        <ColumnInfo Id="WartungsPlan" Index="2" />
-        <ColumnInfo Id="PosText" Index="3" />
-        <ColumnInfo Id="AnzahlTechniker" Index="4" />
-        <ColumnInfo Id="ZeitVorgabe" Index="5" />
-        <ColumnInfo Id="Artikelmenge" PropertyName="ArtikelMenge" Index="6" IsNewNode="True" />
-        <ColumnInfo Id="Artikel" PropertyName="Artikel" Index="7" IsNewNode="True" Removed="True" />
-        <ColumnInfo Id="BauteilAnzahl" Index="8" />
-        <ColumnInfo Id="Bauteil" Index="9" />
-        <ColumnInfo Id="ArtikelMenge" Removed="True" />
-      </Columns>
-    </ListView>
   </Views>
 </Application>

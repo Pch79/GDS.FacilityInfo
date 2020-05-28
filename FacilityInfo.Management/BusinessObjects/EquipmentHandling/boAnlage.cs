@@ -25,8 +25,6 @@ using FacilityInfo.Management.EnumStore;
 using FacilityInfo.Management.Helpers;
 using FacilityInfo.Messung.BusinessObjects;
 using FacilityInfo.Parameter.BusinessObjects;
-
-using FacilityInfo.Wartung.BusinessObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -145,7 +143,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
             return retVal;
         }
-
+        /*
         public void checkAnlagenActions()
         {
             //TODO die benötigten Maßnahmen laden;
@@ -225,7 +223,9 @@ namespace FacilityInfo.Anlagen.BusinessObjects
            
            
         }
+        */
 
+        /*
         public void checkProduktActions()
         {
             //TODO die benötigten Maßnahmen laden;
@@ -306,7 +306,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 }
             }
         }
-
+        */
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
@@ -367,17 +367,18 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                             //wenn sich die Anlagenart ändert ändert sich dann auch der Anlagentyp???
                             // completeNumber();
                             //auch hier die Wartungen noch schreiben
-                            List<actionActionAnlage> lstActionsToDelete = this.lstActionAnlage.Where(t => t.WartungsPlan.GetType() == typeof(wartungWartungsPlanAnlagenArt)).ToList();
+                          //  List<actionActionAnlage> lstActionsToDelete = this.lstActionAnlage.Where(t => t.WartungsPlan.GetType() == typeof(wartungWartungsPlanAnlagenArt)).ToList();
                            
+                            /*
                             if (lstActionsToDelete != null)
                             {
                                 this.Session.Delete(lstActionsToDelete);
                                 this.Save();
                                 this.Session.CommitTransaction();
                             }
+                            */
 
-
-                            checkAnlagenActions();
+                           // checkAnlagenActions();
                         }
                         break;
 
@@ -412,7 +413,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
                                 //die Maßnahmen updaten
                                 //alle Maßnahmen aus der vorigen Zuorndung löschen
-
+                                /*
                                 List<actionActionAnlage> lstActionsToDelete = this.lstActionAnlage.Where(t => t.WartungsPlan != null && t.WartungsPlan.GetType() == typeof(wartungWartungsPlanProdukt)).ToList();
                                 if (lstActionsToDelete != null)
                                         {
@@ -420,9 +421,9 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                                             this.Save();
                                             this.Session.CommitTransaction();
                                         }
+                                */
                                 
-                                
-                                checkProduktActions();
+                              //  checkProduktActions();
                         }
                             this.Session.CommitTransaction();
                         

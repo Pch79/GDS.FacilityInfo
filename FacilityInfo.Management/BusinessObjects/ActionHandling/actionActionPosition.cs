@@ -12,7 +12,6 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Artikelverwaltung.BusinessObjects;
-using FacilityInfo.Wartung.BusinessObjects;
 using FacilityInfo.Hersteller.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
 
@@ -39,7 +38,7 @@ namespace FacilityInfo.Action.BusinessObjects
 
         //hier muss das bauteil noch eingebaut werden
         //und der Bezug zur Wartungsposition
-        private wartungWartungsPosition _wartungsPosition;
+       // private wartungWartungsPosition _wartungsPosition;
         private Int32 _sortIndex;
 
         //Bauteile die bei dieser Wartung benötigt werden
@@ -92,6 +91,7 @@ namespace FacilityInfo.Action.BusinessObjects
                 SetPropertyValue("Status", ref _status, value);
             }
         }
+        /*
         [XafDisplayName("Wartungsposition")]
         public wartungWartungsPosition WartungsPosition
         {
@@ -101,6 +101,7 @@ namespace FacilityInfo.Action.BusinessObjects
             }
             set { SetPropertyValue("WartungsPosition", ref _wartungsPosition, value); }
         }
+        */
         [XafDisplayName("Artikelmenge")]
         public decimal ArtikelMenge
         {

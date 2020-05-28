@@ -18,11 +18,11 @@ using FacilityInfo.Parameter.BusinessObjects;
 using FacilityInfo.Anlagen.BusinessObjects;
 using System.Drawing;
 using FacilityInfo.Management.Helpers;
-using FacilityInfo.Wartung.BusinessObjects;
 using FacilityInfo.Artikelverwaltung.BusinessObjects;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.Management.BusinessObjects.ArticleHandling;
+using FacilityInfo.Management.ServiceHandling.BusinessObjects;
 
 namespace FacilityInfo.Hersteller.BusinessObjects
 {
@@ -350,10 +350,10 @@ namespace FacilityInfo.Hersteller.BusinessObjects
         //hat Wartungspunkte und er hat mehrere Bauteile
 
         [XafDisplayName("Wartungspläne")]
-        [Association("fiHerstellerProdukt-wartungWartungsPlanProdukt")]
-        public XPCollection<wartungWartungsPlanProdukt> lstWartungsPlan
+        [Association("fiHerstellerProdukt-ComponentMaintenance")]
+        public XPCollection<ComponentMaintenance> lstComponentMaintenance
         {
-            get { return GetCollection<wartungWartungsPlanProdukt>("lstWartungsPlan"); }
+            get { return GetCollection<ComponentMaintenance>("lstComponentMaintenance"); }
         }
         #endregion
 

@@ -14,7 +14,6 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
-using FacilityInfo.Wartung.BusinessObjects;
 
 namespace FacilityInfo.Action.BusinessObjects
 {

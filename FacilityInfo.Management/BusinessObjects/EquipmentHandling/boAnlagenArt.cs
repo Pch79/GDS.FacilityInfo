@@ -14,12 +14,12 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.Messung.BusinessObjects;
 using FacilityInfo.Parameter.BusinessObjects;
-using DevExpress.Persistent.Base.General;
-using FacilityInfo.Wartung.BusinessObjects;
+
 using FacilityInfo.Management.Helpers;
 using System.Drawing;
 
 using FacilityInfo.Action.BusinessObjects;
+using FacilityInfo.Management.ServiceHandling.BusinessObjects;
 
 namespace FacilityInfo.Anlagen.BusinessObjects
 {
@@ -295,10 +295,10 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         }
 
 
-        [Association("boAnlagenArt-wartungWartungsPlanAnlagenArt")]
-        public XPCollection<wartungWartungsPlanAnlagenArt> lstWartungsPlan
+        [Association("boAnlagenArt-ServiceSpecification")]
+        public XPCollection<ServiceSpecification> lstServiceSpecification
         {
-            get { return GetCollection<wartungWartungsPlanAnlagenArt>("lstWartungsPlan"); }
+            get { return GetCollection<ServiceSpecification>("lstServiceSpecification"); }
         }
 
 

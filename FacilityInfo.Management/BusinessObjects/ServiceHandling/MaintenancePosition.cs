@@ -14,28 +14,27 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Hersteller.BusinessObjects;
 using FacilityInfo.Artikelverwaltung.BusinessObjects;
 
-namespace FacilityInfo.Wartung.BusinessObjects
+namespace FacilityInfo.Management.ServiceHandling.BusinessObjects
 {
     [DefaultClassOptions]
     [XafDisplayName("Wartungsposition")]
     [ImageName("gears1_16")]
     [XafDefaultProperty("MatchKey")]
 
-    public class wartungWartungsPosition : BaseObject
+    public class MaintenancePosition : BaseObject
     {
         private String _posText;
         private String _posLangText;
-        private String _beschreibung;
         private Decimal _zeitVorgabe;
-        private Decimal _dauerGeplant;
+       
         private Int32 _anzahlTechniker;
-        private String _notizen;
+      
         private Int32 _positionsNummer;
         
         private String _arbeitsAnweisung;
 
         //TODO: müssen spezielle Werkzeuge mitgenommen werden????
-        private wartungWartungsPlan _wartungsPlan;
+        private MaintenanceSchedule _maintenanceSchedule;
         private Int32 _sortIndex;
 
         //Bauteile dioe bei dieser Wartung benötigt werden
@@ -49,17 +48,13 @@ namespace FacilityInfo.Wartung.BusinessObjects
 
 
 
-        public wartungWartungsPosition(Session session)
+        public MaintenancePosition(Session session)
             : base(session)
         {
         }
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            if(this.WartungsPlan != null)
-            {
-                this.AnzahlTechniker = this.WartungsPlan.AnzahlTechniker;
-            }
         }
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
@@ -70,12 +65,12 @@ namespace FacilityInfo.Wartung.BusinessObjects
                 case "WartungsPlan":
                     int posCount = 0;
                     //Anzahl bestimmen und dann eins hochzählen
-                    if((wartungWartungsPlan)newValue != null)
+                    if((MaintenanceSchedule)newValue != null)
                     {
-                        var curWartung = (wartungWartungsPlan)newValue;
-                        if (curWartung.lstWartungPosition != null)
+                        var curWartung = (MaintenanceSchedule)newValue;
+                        if (curWartung.lstMaintenancePosition != null)
                         {
-                            posCount = curWartung.lstWartungPosition.Count();
+                            posCount = curWartung.lstMaintenancePosition.Count();
                             posCount++;
                         }
                         else
@@ -83,7 +78,7 @@ namespace FacilityInfo.Wartung.BusinessObjects
                             posCount = 0;
                         }
                         //die Anzahl Techniker gleich mitübernehmen
-                        this.AnzahlTechniker = this.WartungsPlan.AnzahlTechniker;
+                        this.AnzahlTechniker = this.MaintenanceSchedule.AnzahlTechniker;
                     }
                     else
                     {
@@ -153,19 +148,21 @@ namespace FacilityInfo.Wartung.BusinessObjects
             get { return _bauteil; }
             set { SetPropertyValue("Bauteil", ref _bauteil, value); }
         }
-
+        
         private List<fiBauteil> lstAvailableBauteile
         {
             get { return getAvailableBauteile(); }
         }
+
+        
         public List<fiBauteil> getAvailableBauteile()
         {
             List<fiBauteil> lstBauteile = new List<fiBauteil>();
-            if (this.WartungsPlan != null)
+            if (this.MaintenanceSchedule != null)
             {
-                if (this.WartungsPlan.GetType() == typeof(wartungWartungsPlanProdukt))
+                if (this.MaintenanceSchedule.GetType() == typeof(ComponentMaintenance))
                 {
-                    wartungWartungsPlanProdukt curPlan = (wartungWartungsPlanProdukt)this.WartungsPlan;
+                    ComponentMaintenance curPlan = (ComponentMaintenance)this.MaintenanceSchedule;
                     if (curPlan.HerstellerProdukt != null)
                     {
                         if (curPlan.HerstellerProdukt.lstBauteile != null)
@@ -178,8 +175,10 @@ namespace FacilityInfo.Wartung.BusinessObjects
             }
             return lstBauteile;
         }
+        
 
         [XafDisplayName("Arbeitsanweisung")]
+        [Size(-1)]
         public String ArbeitsAnweisung
         {
             get { return _arbeitsAnweisung; }
@@ -217,19 +216,13 @@ namespace FacilityInfo.Wartung.BusinessObjects
             get { return _anzahlTechniker; }
             set { SetPropertyValue("AnzahlTechniker", ref _anzahlTechniker, value); }
         }
-        [XafDisplayName("Notizen")]
-        [Size(-1)]
-        public String Notizen
-        {
-            get { return _notizen; }
-            set { SetPropertyValue("Notizen", ref _notizen, value); }
-        }
+         
         [XafDisplayName("Wartung")]
-        [Association("wartungWartung-wartungWartungPosition")]
-        public wartungWartungsPlan WartungsPlan
+        [Association("MaintenanceSchedule-MaintenancePosition")]
+        public MaintenanceSchedule MaintenanceSchedule
         {
-            get { return _wartungsPlan; }
-            set { SetPropertyValue("WartungsPlan", ref _wartungsPlan, value); }
+            get { return _maintenanceSchedule; }
+            set { SetPropertyValue("MaintenanceSchedule", ref _maintenanceSchedule, value); }
         }
         [XafDisplayName("Positionstext")]
         
@@ -248,13 +241,6 @@ namespace FacilityInfo.Wartung.BusinessObjects
                 return _posLangText;
             }
             set { SetPropertyValue("PosLangText", ref _posLangText, value); }
-        }
-        [XafDisplayName("Beschreibung")]
-        [Size(-1)]
-        public String Beschreibung
-        {
-            get { return _beschreibung; }
-            set { SetPropertyValue("Beschreibung", ref _beschreibung, value); }
         }
       
         #endregion
