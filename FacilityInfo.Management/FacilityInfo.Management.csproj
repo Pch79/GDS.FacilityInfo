@@ -179,7 +179,7 @@
     <Compile Include="BusinessObjects\ActionHandling\actionActionPackage.cs" />
     <Compile Include="BusinessObjects\ActionHandling\actionActionPosition.cs" />
     <Compile Include="BusinessObjects\ActionHandling\FunctionUnitAction.cs" />
-    <Compile Include="BusinessObjects\adresseTitel.cs" />
+    <Compile Include="BusinessObjects\Address\adresseTitel.cs" />
     <Compile Include="BusinessObjects\ArticleHandling\ComponentPart.cs" />
     <Compile Include="BusinessObjects\EquipmentHandling\anlageAnlagenBaugruppe.cs" />
     <Compile Include="BusinessObjects\EquipmentHandling\anlageBauGruppe.cs" />
@@ -195,16 +195,16 @@
     <Compile Include="BusinessObjects\ArticleHandling\artikelWarenGruppe.cs" />
     <Compile Include="BusinessObjects\BildKategorie.cs" />
     <Compile Include="BusinessObjects\boAbteilung.cs" />
-    <Compile Include="BusinessObjects\boADRKommunikation.cs" />
+    <Compile Include="BusinessObjects\Address\boADRKommunikation.cs" />
     <Compile Include="BusinessObjects\EquipmentHandling\boANAttachment.cs" />
-    <Compile Include="BusinessObjects\boAdresse.cs" />
+    <Compile Include="BusinessObjects\Address\boAdresse.cs" />
     <Compile Include="BusinessObjects\EquipmentHandling\boAnlage.cs" />
     <Compile Include="BusinessObjects\EquipmentHandling\boAnlagenArt.cs" />
     <Compile Include="BusinessObjects\EquipmentHandling\boAnlagenBild.cs" />
     <Compile Include="BusinessObjects\EquipmentHandling\boAnlagenKategorie.cs" />
-    <Compile Include="BusinessObjects\boAnrede.cs" />
-    <Compile Include="BusinessObjects\boAnsprechPartner.cs" />
-    <Compile Include="BusinessObjects\boAttachmentkategorie.cs" />
+    <Compile Include="BusinessObjects\Address\boAnrede.cs" />
+    <Compile Include="BusinessObjects\Address\boAnsprechPartner.cs" />
+    <Compile Include="BusinessObjects\DMS\boAttachmentkategorie.cs" />
     <Compile Include="BusinessObjects\boBearbeitungsZeit.cs" />
     <Compile Include="BusinessObjects\boBundesland.cs" />
     <Compile Include="BusinessObjects\boCheckEntry.cs" />
@@ -212,14 +212,14 @@
     <Compile Include="BusinessObjects\boCheckItemKategorie.cs" />
     <Compile Include="BusinessObjects\boCheckItemValue.cs" />
     <Compile Include="BusinessObjects\boCheckliste.cs" />
-    <Compile Include="BusinessObjects\boAttachment.cs" />
-    <Compile Include="BusinessObjects\boAttachmentBibliothek.cs" />
+    <Compile Include="BusinessObjects\DMS\boAttachment.cs" />
+    <Compile Include="BusinessObjects\DMS\boAttachmentBibliothek.cs" />
     <Compile Include="BusinessObjects\boGeraet.cs" />
     <Compile Include="BusinessObjects\boGeraeteart.cs" />
     <Compile Include="BusinessObjects\boNummernkreis.cs" />
     <Compile Include="BusinessObjects\boEntnahmeStelle.cs" />
     <Compile Include="BusinessObjects\boHersteller.cs" />
-    <Compile Include="BusinessObjects\boKontaktKommunikation.cs" />
+    <Compile Include="BusinessObjects\Address\boKontaktKommunikation.cs" />
     <Compile Include="BusinessObjects\boKreis.cs" />
     <Compile Include="BusinessObjects\boKuendigungsGrund.cs" />
     <Compile Include="BusinessObjects\coreBusinessUnit.cs" />
@@ -254,8 +254,8 @@
     <Compile Include="BusinessObjects\boEinheit.cs" />
     <Compile Include="BusinessObjects\boFIObjekt.cs" />
     <Compile Include="BusinessObjects\boHausverwalter.cs" />
-    <Compile Include="BusinessObjects\boKommunikationItem.cs" />
-    <Compile Include="BusinessObjects\boKontakt.cs" />
+    <Compile Include="BusinessObjects\Address\boKommunikationItem.cs" />
+    <Compile Include="BusinessObjects\Address\boKontakt.cs" />
     <Compile Include="BusinessObjects\boKostenGruppe.cs" />
     <Compile Include="BusinessObjects\boLand.cs" />
     <Compile Include="BusinessObjects\boLiegenschaft.cs" />
@@ -1848,7 +1848,8 @@
     <Content Include="Images\wrench_orange_16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessObjects\TechnicalSystem\" />
+    <Folder Include="BusinessObjects\BaseData\" />
+    <Folder Include="BusinessObjects\BusinessData\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

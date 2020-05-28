@@ -35,7 +35,7 @@
             // 
             // doAddHaustechnikKomponente
             // 
-            this.doAddHaustechnikKomponente.Caption = "Anlagengruppe hinzufügen";
+            this.doAddHaustechnikKomponente.Caption = "Funktionseinheit hinzufügen";
             this.doAddHaustechnikKomponente.Category = "RecordEdit";
             this.doAddHaustechnikKomponente.ConfirmationMessage = null;
             this.doAddHaustechnikKomponente.Id = "doAddHaustechnikKomponente";
@@ -63,7 +63,7 @@
             // 
             // doDeleteAnlagenGruppe
             // 
-            this.doDeleteAnlagenGruppe.Caption = "Anlagengruppe löschen";
+            this.doDeleteAnlagenGruppe.Caption = "Funktionseinheit löschen";
             this.doDeleteAnlagenGruppe.Category = "RecordEdit";
             this.doDeleteAnlagenGruppe.ConfirmationMessage = null;
             this.doDeleteAnlagenGruppe.Id = "doDeleteAnlagenGruppe";

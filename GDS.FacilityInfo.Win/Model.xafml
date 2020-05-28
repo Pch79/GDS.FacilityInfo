@@ -2849,27 +2849,39 @@
             </LayoutGroup>
           </LayoutGroup>
           <TabbedGroup Id="Tabs" Index="2" RelativeSize="59.075907590759073" MultiLine="True">
-            <LayoutGroup Id="tabAnlagenverwaltung" Caption="Anlagen und Systeme" Index="-1" ImageName="centos_16" IsNewNode="True">
-              <LayoutGroup Id="Hauptanlagen" Index="3" RelativeSize="100" ShowCaption="True" TextAlignMode="AlignWithChildren" IsNewNode="True">
-                <LayoutItem Id="HauptAnlagen" ShowCaption="False" Index="0" TextAlignMode="AutoSize" RelativeSize="100" ViewItem="Hauptanlagen" IsNewNode="True" />
-              </LayoutGroup>
-            </LayoutGroup>
             <LayoutGroup Id="lstZugangLiegenschaft" ImageName="key_16" Index="0" />
+            <LayoutGroup Id="EquipmentTree" Caption="Anlagenbaum" Index="1" ImageName="centos_16" IsNewNode="True">
+              <LayoutItem Id="Equipment" ViewItem="Anlagen" IsNewNode="True" />
+            </LayoutGroup>
             <LayoutGroup Id="lstHauptanlagen" Index="1" Removed="True">
               <LayoutItem Id="lstHauptanlagen" ViewItem="lstHaustechnikKomponenten" />
             </LayoutGroup>
-            <LayoutGroup Id="EquipmentTree" Caption="Anlagenbaum" Index="2" ImageName="centos_16" IsNewNode="True">
-              <LayoutItem Id="Equipment" ViewItem="Anlagen" IsNewNode="True" />
-            </LayoutGroup>
             <LayoutGroup Id="lstAnsprechpartner" Index="2" Removed="True" />
             <LayoutGroup Id="lstHaustechnikKomponenten" Index="2" Removed="True" />
+            <LayoutGroup Id="tabFunctionUnit" Caption="Funktionseinheiten" Index="2" IsNewNode="True">
+              <LayoutItem Id="lstFunctionUnit" ViewItem="lstHaustechnikKomponenten" IsNewNode="True" />
+            </LayoutGroup>
             <LayoutGroup Id="Anlagen" TextAlignMode="AlignWithChildren" RelativeSize="100" Index="3" ImageName="centos_16" Removed="True">
               <LayoutItem Id="Anlagen" TextAlignMode="AutoSize" RelativeSize="100" />
             </LayoutGroup>
-            <LayoutGroup Id="Gebäude" Index="3" ImageName="real_estate_16" IsNewNode="True">
+            <LayoutGroup Id="lstActionBase" Index="3" />
+            <LayoutGroup Id="Dokumenete" Caption="Dokumente" Index="4" IsNewNode="True">
+              <LayoutGroup Id="lstLGAttachments" Index="11" ShowCaption="True" IsNewNode="True">
+                <LayoutItem Id="lstLGAttachments" ViewItem="lstLGAttachments" ShowCaption="False" Index="0" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="LiegenschaftsBilder" TextAlignMode="AlignWithChildren" RelativeSize="100" Index="5" ImageName="picture_16">
+              <LayoutItem Id="LiegenschaftsBilder" TextAlignMode="AutoSize" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup Id="Gebäude" Index="6" ImageName="real_estate_16" IsNewNode="True">
               <LayoutItem Id="lstGebaeude" ViewItem="lstGebaeude" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="KwpDaten" Caption="KWP-Daten" Index="4" Direction="Horizontal" ImageName="kwp_logo_16" IsNewNode="True">
+            <LayoutGroup Id="lstKwpVertrag" Index="6" Removed="True" />
+            <LayoutGroup Id="Beschreibung" Caption="Beschreibung" Index="7" IsNewNode="True">
+              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstKwpAnlagen" Index="7" Removed="True" />
+            <LayoutGroup Id="KwpDaten" Caption="KWP-Daten" Index="8" Direction="Horizontal" ImageName="kwp_logo_16" IsNewNode="True">
               <TabbedGroup Id="tabKwpData" Direction="Vertical" IsNewNode="True">
                 <LayoutGroup Id="lstKwpTermine" Index="5" ShowCaption="True" Caption="Wartungstermine (KWP)" IsNewNode="True">
                   <LayoutItem Id="lstKwpTermine" ShowCaption="False" Index="0" ViewItem="lstKwpWartungsTermine" IsNewNode="True" />
@@ -2882,24 +2894,10 @@
                 </LayoutGroup>
               </TabbedGroup>
             </LayoutGroup>
-            <LayoutGroup Id="LiegenschaftsBilder" TextAlignMode="AlignWithChildren" RelativeSize="100" Index="5" ImageName="picture_16">
-              <LayoutItem Id="LiegenschaftsBilder" TextAlignMode="AutoSize" RelativeSize="100" />
-            </LayoutGroup>
-            <LayoutGroup Id="Dokumenete" Caption="Dokumente" Index="6" IsNewNode="True">
-              <LayoutGroup Id="lstLGAttachments" Index="11" ShowCaption="True" IsNewNode="True">
-                <LayoutItem Id="lstLGAttachments" ViewItem="lstLGAttachments" ShowCaption="False" Index="0" IsNewNode="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-            <LayoutGroup Id="lstKwpVertrag" Index="6" Removed="True" />
-            <LayoutGroup Id="lstActionBase" Index="7" />
-            <LayoutGroup Id="lstKwpAnlagen" Index="7" Removed="True" />
             <LayoutGroup Id="lstLGCheckListes" Index="8" TextAlignMode="AlignWithChildren" RelativeSize="100" ImageName="application_home_16" Removed="True">
               <LayoutItem Id="lstLGCheckListes" TextAlignMode="AutoSize" RelativeSize="100" />
             </LayoutGroup>
             <LayoutGroup Id="lstLGAttachments" Index="11" Removed="True" />
-            <LayoutGroup Id="Beschreibung" Caption="Beschreibung" IsNewNode="True">
-              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" IsNewNode="True" />
-            </LayoutGroup>
             <LayoutGroup Id="lstGebaeude" Removed="True">
               <LayoutItem Id="lstGebaeude" Removed="True" />
             </LayoutGroup>
@@ -2976,15 +2974,21 @@
         <ColumnInfo Id="BasisAnlage" Removed="True" />
         <ColumnInfo Id="Beschreibung" Removed="True" />
         <ColumnInfo Id="Bezeichnung" Removed="True" />
+        <ColumnInfo Id="BezeichnungIntern" Removed="True" />
         <ColumnInfo Id="Ebene" Removed="True" />
+        <ColumnInfo Id="FloorDesignation" Removed="True" />
+        <ColumnInfo Id="FloorType" Removed="True" />
         <ColumnInfo Id="FremdsystemId" Removed="True" />
         <ColumnInfo Id="Gebaeude" Removed="True" />
         <ColumnInfo Id="Hausverwalter" Removed="True" />
+        <ColumnInfo Id="KwpAnlage" Removed="True" />
         <ColumnInfo Id="Liegenschaft" Removed="True" />
         <ColumnInfo Id="LinkKeyFremdsystem" Removed="True" />
         <ColumnInfo Id="Notiz" Removed="True" />
         <ColumnInfo Id="Oid" Removed="True" />
         <ColumnInfo Id="Raum" Removed="True" />
+        <ColumnInfo Id="RoomDesignation" Removed="True" />
+        <ColumnInfo Id="RoomType" Removed="True" />
         <ColumnInfo Id="Technikeinheit" Removed="True" />
         <ColumnInfo Id="VertragsStatus" Removed="True" />
       </Columns>
@@ -5907,9 +5911,6 @@
           <TabbedGroup Id="Tabs" Index="2" IsNewNode="True">
             <LayoutGroup Id="lstAnlagen" Index="0" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="lstAnlagen" ViewItem="lstAnlagen" ShowCaption="False" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="lstHauptAnlagen" Index="1" ShowCaption="True" Caption="Hauptanlagen" IsNewNode="True">
-              <LayoutItem Id="lstHauptAnlagen" ViewItem="lstHauptAnlagen" ShowCaption="False" Index="0" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="lstServices" Index="2" ShowCaption="True" IsNewNode="True">
               <LayoutItem Id="lstServices" ViewItem="lstServices" ShowCaption="False" Index="0" IsNewNode="True" />
