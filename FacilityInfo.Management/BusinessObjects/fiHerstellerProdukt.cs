@@ -22,11 +22,12 @@ using FacilityInfo.Wartung.BusinessObjects;
 using FacilityInfo.Artikelverwaltung.BusinessObjects;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using FacilityInfo.Core.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects.ArticleHandling;
 
 namespace FacilityInfo.Hersteller.BusinessObjects
 {
     [DefaultClassOptions]
-    [XafDisplayName("Herstellerartikel")]
+    [XafDisplayName("Anlagenkomponenten")]
     [XafDefaultProperty("Bezeichnung")]
     public class fiHerstellerProdukt : artikelArtikelBase
     {
@@ -310,6 +311,17 @@ namespace FacilityInfo.Hersteller.BusinessObjects
             get
             {
                 return GetCollection<fiBauteil>("lstBauteile");
+            }
+        }
+
+
+        [XafDisplayName("Component-Parts")]
+        [Association("fiHerstellerProdukt-ComponentPart")]
+        public XPCollection<ComponentPart> lstComponentParts
+        {
+            get
+            {
+                return GetCollection<ComponentPart>("lstComponentParts");
             }
         }
 

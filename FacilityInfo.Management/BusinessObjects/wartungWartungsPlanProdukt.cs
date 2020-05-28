@@ -16,7 +16,7 @@ using FacilityInfo.Hersteller.BusinessObjects;
 namespace FacilityInfo.Wartung.BusinessObjects
 {
     [DefaultClassOptions]
-  [XafDisplayName("Wartungsplan (Produkt)")]
+  [XafDisplayName("Produktwartung")]
   [ImageName("gears_16")]
   [XafDefaultProperty("MatchKey")]
     public class wartungWartungsPlanProdukt : wartungWartungsPlan
@@ -29,7 +29,6 @@ namespace FacilityInfo.Wartung.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
         protected override void OnLoaded()

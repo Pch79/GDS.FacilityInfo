@@ -22,11 +22,12 @@ using DevExpress.ExpressApp.Utils;
 using FacilityInfo.Management.Klassen;
 using FacilityInfo.Fremdsystem.BusinessObjects;
 using FacilityInfo.Action.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects.ActionHandling;
 
 namespace FacilityInfo.Anlagen.BusinessObjects
 {
     [DefaultClassOptions]
-    [XafDisplayName("Anlagengruppe")]
+    [XafDisplayName("Funktionseinheit")]
     [XafDefaultProperty("Systembezeichnung")]
     [ImageName("control_panel_16")]
     public class LgHaustechnikKomponente : BaseObject//,ITreeNode, ITreeNodeImageProvider
@@ -642,6 +643,14 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
+        //Maßnahmen
+        [XafDisplayName("Maßnahmen")]
+        [Association("LgHaustechnikKomponente-FunctionUnitAction")]
+        public XPCollection<FunctionUnitAction> lstFunctionUnitAction
+        {
+            get { return GetCollection<FunctionUnitAction>("lstFunctionUnitAction"); }
+        }
+
         [XafDisplayName("Anlagen")]
         [Association("LgHaustechnikKomponente-boAnlage")]
         [ImmediatePostData(true)]
@@ -689,17 +698,6 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                // XPCollection<actionActionAnlage> lstRetVal = new XPCollection<actionActionAnlage>(this.Session,new BinaryOperator(""))
             }
         }
-        /*
-        [XafDisplayName("Servces")]
-        [Association("LgHaustechnikKomponente-serviceKomponentenService")]
-        public XPCollection<serviceKomponentenService> lstServices
-        {
-            get
-            {
-                return GetCollection<serviceKomponentenService>("lstServices");
-            }
-        }
-        */
         #endregion
     }
 }

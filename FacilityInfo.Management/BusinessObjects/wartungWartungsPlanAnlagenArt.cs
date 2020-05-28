@@ -16,7 +16,7 @@ using FacilityInfo.Anlagen.BusinessObjects;
 namespace FacilityInfo.Wartung.BusinessObjects
 {
     [DefaultClassOptions]
-   [XafDisplayName("Wartungsplan (Anlagenart)")]
+   [XafDisplayName("Anlagenwartung")]
     [ImageName("gearTool_16")]
     [XafDefaultProperty("MatchKey")]
     public class wartungWartungsPlanAnlagenArt : wartungWartungsPlan

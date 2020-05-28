@@ -2,7 +2,9 @@
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
+using DevExpress.ExpressApp.Utils;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Base.General;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using DevExpress.Persistent.Validation;
@@ -38,7 +40,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
     [ImageName("centos_16")]
     [XafDefaultProperty("AnlagenNummer")]
 
-    public class boAnlage : BaseObject //,ITreeNode,ITreeNodeImageProvider
+    public class boAnlage : BaseObject ,ITreeNode,ITreeNodeImageProvider
     {
 
 
@@ -411,7 +413,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                                 //die Maßnahmen updaten
                                 //alle Maßnahmen aus der vorigen Zuorndung löschen
 
-                                List<actionActionAnlage> lstActionsToDelete = this.lstActionAnlage.Where(t => t.WartungsPlan.GetType() == typeof(wartungWartungsPlanProdukt)).ToList();
+                                List<actionActionAnlage> lstActionsToDelete = this.lstActionAnlage.Where(t => t.WartungsPlan != null && t.WartungsPlan.GetType() == typeof(wartungWartungsPlanProdukt)).ToList();
                                 if (lstActionsToDelete != null)
                                         {
                                             this.Session.Delete(lstActionsToDelete);
@@ -1511,7 +1513,40 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             }
         }
 
-      
+        #region ITreeNode
+        IBindingList ITreeNode.Children
+        {
+            get { return this.lstUnteranlagen; }
+        }
+
+        string ITreeNode.Name
+        {
+            get { return this.Bezeichnung; }
+        }
+
+        ITreeNode ITreeNode.Parent
+        {
+            get
+            {
+                return this.ParentAnlage;
+            }
+        }
+
+        public System.Drawing.Image GetImage(out string imageName)
+        {
+            if (this.lstUnteranlagen != null && this.lstUnteranlagen.Count > 0)
+            {
+                imageName = "BO_Category";
+            }
+            else
+            {
+                imageName = "BO_Product";
+            }
+            return ImageLoader.Instance.GetImageInfo(imageName).Image;
+        }
+        #endregion
+
+
         [XafDisplayName("Anlagengruppe")]
         [Association("LgHaustechnikKomponente-boAnlage")]
         [DataSourceCriteria("Liegenschaft.Oid ='@this.Liegenschaft.Oid' AND Oid != '@this.Oid'")]
@@ -1536,5 +1571,7 @@ namespace FacilityInfo.Anlagen.BusinessObjects
                 return GetCollection<fiKontaktAnlage>("lstKontakte");
             }
         }
+
+       
     }
 }
