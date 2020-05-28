@@ -354,9 +354,9 @@
             <Items IsNewNode="True">
               <Item Id="Artikel" ViewId="artikelArtikelBase_ListView" Index="0" IsNewNode="True" />
               <Item Id="HerstellerArtikel" ViewId="fiHerstellerProdukt_ListView" Caption="Komponenten" Index="1" IsNewNode="True" />
-              <Item Id="Bauteilverzeichnis" ViewId="fiBauteil_ListView" Caption="Bauteile" Index="2" IsNewNode="True" />
-              <Item Id="ComponentParts" Caption="Komponententeile" ViewId="ComponentPart_ListView" IsNewNode="True" />
-              <Item Id="ServiceArtikel" ViewId="artikelServiceArtikel_ListView" IsNewNode="True" />
+              <Item Id="ComponentParts" Caption="Komponententeile" ViewId="ComponentPart_ListView" Index="2" IsNewNode="True" />
+              <Item Id="ServiceArtikel" ViewId="artikelServiceArtikel_ListView" Index="3" IsNewNode="True" />
+              <Item Id="Bauteilverzeichnis" ViewId="fiBauteil_ListView" Caption="Bauteile (osolete)" Index="4" IsNewNode="True" />
             </Items>
           </Item>
           <Item Id="Verzeichnisse" Caption="Verzeichnisse" ImageName="data_grid_16" IsNewNode="True">
@@ -3538,6 +3538,72 @@
               <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="" Index="0" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ComponentPart_DetailView">
+      <Items>
+        <PropertyEditor Id="Bild" PropertyEditorType="GDS.FacilityInfo.Module.Win.Editors.Win_ZoomImageEditor" />
+        <PropertyEditor Id="Langtext" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="ComponentPart" Caption="Komponentendaten" ShowCaption="True" Direction="Horizontal">
+              <LayoutItem Id="Bauteilkennung" Index="0" Removed="True" />
+              <LayoutItem Id="Hersteller" Index="1" Removed="True" />
+              <LayoutItem Id="Bauteil" Index="2" Removed="True" />
+              <LayoutItem Id="BauteilOid" Index="3" Removed="True" />
+              <LayoutGroup Id="componentPart_col1" Caption="" IsNewNode="True">
+                <LayoutGroup Id="Bild" Index="2" ShowCaption="True" IsNewNode="True">
+                  <LayoutItem Id="Bild" ViewItem="Bild" ShowCaption="False" Index="0" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="componentPart_col2" Caption="" IsNewNode="True">
+                <LayoutItem Id="Bauteilkennung" Index="0" ViewItem="Bauteilkennung" ShowCaption="" IsNewNode="True" />
+                <LayoutItem Id="Hersteller" Index="1" ViewItem="Hersteller" ShowCaption="" IsNewNode="True" />
+                <LayoutItem Id="HerstellerNummer" ViewItem="HerstellerNummer" ShowCaption="" Index="1" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="artikelArtikelBase" Caption="Artikeldaten" Direction="Vertical">
+              <LayoutGroup Id="Kurztext" Caption="" Index="0" IsNewNode="True">
+                <LayoutItem Id="KurzText" ViewItem="KurzText" ShowCaption="" Index="2" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="artikelArtikelBase_col1" Index="1" Removed="True">
+                <LayoutItem Id="HerstellerNummer" Removed="True" />
+                <LayoutItem Id="KurzText" Removed="True" />
+                <LayoutItem Id="WarenGruppe" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="artikelArtikelBase_col2" Index="2" Removed="True">
+                <LayoutItem Id="WarenGruppe" ViewItem="WarenGruppe" ShowCaption="" Index="0" IsNewNode="True" />
+                <LayoutItem Id="ArtikelNummer" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="ArticleDataInfo" Caption="" Direction="Horizontal" IsNewNode="True">
+                <LayoutGroup Id="artikelArtikelBase_col1" ShowCaption="False" Index="1" IsNewNode="True">
+                  <LayoutItem Id="ArtikelNummer" ViewItem="ArtikelNummer" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="EanCode" ViewItem="EanCode" ShowCaption="" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="artikelArtikelBase_col2" Index="2" ShowCaption="False" IsNewNode="True">
+                  <LayoutItem Id="WarenGruppe" ViewItem="WarenGruppe" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="ArtikelKatalog" ViewItem="ArtikelKatalog" ShowCaption="" Index="2" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Langtext" Caption="Langtext" Index="0" IsNewNode="True">
+              <LayoutItem Id="Langtext" ViewItem="Langtext" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="lstHerstellerprodukte" Index="1" />
+            <LayoutGroup Id="Bild" Index="2" Removed="True" />
+            <LayoutGroup Id="BauteilInfo" Caption="Bauteilinfo" IsNewNode="True">
+              <LayoutItem Id="Bauteil" Index="2" ViewItem="Bauteil" ShowCaption="" IsNewNode="True" />
+              <LayoutItem Id="BauteilOid" Index="3" ViewItem="BauteilOid" ShowCaption="" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True">
+            <LayoutItem Id="Langtext" Removed="True" />
+          </LayoutGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
