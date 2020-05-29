@@ -2,9 +2,6 @@
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Utils;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
-using DevExpress.XtraPrinting.BarCode;
-using DevExpress.XtraReports.UI;
-using FacilityInfo.Action.BusinessObjects;
 using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Building.BusinessObjects;
 using FacilityInfo.Hersteller.BusinessObjects;

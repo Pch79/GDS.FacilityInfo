@@ -7,24 +7,21 @@ using System.ComponentModel;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
-using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
+
 using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
 
-namespace FacilityInfo.Action.BusinessObjects
+namespace FacilityInfo.Management.BusinessObjects.WorkItemHandling
 {
     [DefaultClassOptions]
     [XafDisplayName("Anlagenmaßnahme")]
     [ImageName("helmet_mine_16")]
     [XafDefaultProperty("MatchKey")]
-    public class actionActionAnlage : actionActionBase
+    public class EquipmentWorkItem : WorkItem
     {
         private boAnlage _anlage;
-        public actionActionAnlage(Session session)
+        public EquipmentWorkItem(Session session)
             : base(session)
         {
         }
@@ -40,6 +37,7 @@ namespace FacilityInfo.Action.BusinessObjects
             {
                 switch (propertyName)
                 {
+                    /*
                     case "Anlage":
                         if(newValue != null)
                         {
@@ -51,6 +49,7 @@ namespace FacilityInfo.Action.BusinessObjects
                             this.Liegenschaft = null;
                         }
                         break;
+                        */
                     case "Status":
                         if (((enmBearbeitungsStatus)newValue) == enmBearbeitungsStatus.erledigt)
                         {
@@ -60,8 +59,8 @@ namespace FacilityInfo.Action.BusinessObjects
                             if (this.TurnusValue > 0 && this.Turnus != enmTurnus.none)
                             {
 
-                                actionActionBase retValBase = (actionActionBase)this;
-                                createNewAction(retValBase);
+                                WorkItem retValBase = (WorkItem)this;
+                               // createNewAction(retValBase);
 
                             }
                         }
@@ -72,10 +71,11 @@ namespace FacilityInfo.Action.BusinessObjects
             }
         }
 
-        public override void createNewAction(actionActionBase curBaseAction)
+        /*
+        public override void createNewAction(WorkItem curBaseAction)
         {
-            actionActionAnlage retVal = new actionActionAnlage(this.Session);
-            actionActionBase retValBase = (actionActionBase)retVal;
+            EquipmentWorkItem retVal = new EquipmentWorkItem(this.Session);
+            WorkItem retValBase = (WorkItem)retVal;
             retVal.Anlage = Session.GetObjectByKey<boAnlage>(this.Anlage.Oid);
            
             retVal.Save();
@@ -84,6 +84,7 @@ namespace FacilityInfo.Action.BusinessObjects
 
 
         }
+        */
         #region Properties
         [XafDisplayName("Matchkey")]
         public String MatchKey
@@ -100,7 +101,7 @@ namespace FacilityInfo.Action.BusinessObjects
             }
         }
         [XafDisplayName("Anlage")]
-        [Association("boAnlage-actionActionAnlage")]
+        [Association("boAnlage-EquipmentWorkItem")]
         public boAnlage Anlage
         {
             get { return _anlage; }

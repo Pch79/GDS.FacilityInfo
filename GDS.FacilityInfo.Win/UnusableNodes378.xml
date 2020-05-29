@@ -1,6 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
   <Views Id="Views">
+    <ListView Id="boAnlage_lstActionAnlage_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="MonteurDurchfuehrung" Index="-1" />
+        <ColumnInfo Id="MonteurGeplant" Index="-1" />
+        <ColumnInfo Id="Status" Index="0" />
+        <ColumnInfo Id="Liegenschaft" Index="1" />
+        <ColumnInfo Id="Bezeichnung" Index="2" />
+        <ColumnInfo Id="ActionClassification" Index="4" />
+        <ColumnInfo Id="Turnus" Index="5" />
+        <ColumnInfo Id="TurnusValue" Index="6" />
+        <ColumnInfo Id="DatumFaellig" Index="7" />
+        <ColumnInfo Id="DatumGeplant" Index="8" />
+        <ColumnInfo Id="DatumReal" Index="9" />
+        <ColumnInfo Id="MonteurVerantwortlich" Index="10" />
+        <ColumnInfo Id="AnzahlTechniker" Index="11" />
+        <ColumnInfo Id="Prioritaet" Index="13" />
+      </Columns>
+    </ListView>
     <DetailView Id="LGHaustechnikKomponente_Lookup_DetailView">
       <Layout Id="Layout">
         <LayoutGroup Id="Main">
@@ -17,6 +35,31 @@
       <Items Id="Items">
         <PropertyEditor Id="Adresse" View="boAdresse_LookupDetailView" />
       </Items>
+    </DetailView>
+    <DetailView Id="MaintenancePosition_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="MaintenancePosition">
+              <LayoutGroup Id="MaintenancePosition_col1">
+                <LayoutItem Id="ArbeitsAnweisung" Index="6" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="MaintenancePosition_col2">
+                <LayoutItem Id="PositionsNummer" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstActionAnlage" Index="5" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
     </DetailView>
     <DetailView Id="boMessprobe_DetailView">
       <Layout Id="Layout">
@@ -66,7 +109,29 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="LgHaustechnikKomponente_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="tabInfos">
+            <LayoutGroup Id="tabActions">
+              <LayoutItem Id="lstActionAnlage" ViewItem="lstActionAnlage" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabFunctionUnitActions">
+              <LayoutItem Id="lstFunctionUnitAction" ViewItem="lstFunctionUnitAction" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
   </Views>
+  <BOModel Id="BOModel">
+    <Class Name="FacilityInfo.Action.BusinessObjects.actionActionPosition">
+      <OwnMembers Id="OwnMembers">
+        <Member Name="ArtikelMenge" DisplayFormat="{0:N2}" EditMask="N2" />
+        <Member Name="ZeitVorgabe" DisplayFormat="{0:N2} min" EditMask="N2" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
   <NavigationItems Id="NavigationItems">
     <Items Id="Items">
       <Item Id="Wartungswesen">

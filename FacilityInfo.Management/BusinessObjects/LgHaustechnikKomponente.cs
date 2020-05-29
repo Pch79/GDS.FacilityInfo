@@ -21,8 +21,7 @@ using DevExpress.Persistent.Base.General;
 using DevExpress.ExpressApp.Utils;
 using FacilityInfo.Management.Klassen;
 using FacilityInfo.Fremdsystem.BusinessObjects;
-using FacilityInfo.Action.BusinessObjects;
-using FacilityInfo.Management.BusinessObjects.ActionHandling;
+using FacilityInfo.Management.BusinessObjects.WorkItemHandling;
 
 namespace FacilityInfo.Anlagen.BusinessObjects
 {
@@ -645,10 +644,10 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
         //Maßnahmen
         [XafDisplayName("Maßnahmen")]
-        [Association("LgHaustechnikKomponente-FunctionUnitAction")]
-        public XPCollection<FunctionUnitAction> lstFunctionUnitAction
+        [Association("LgHaustechnikKomponente-FunctionUnitWorkItem")]
+        public XPCollection<FunctionUnitWorkItem> lstFunctionUnitWorkItems
         {
-            get { return GetCollection<FunctionUnitAction>("lstFunctionUnitAction"); }
+            get { return GetCollection<FunctionUnitWorkItem>("lstFunctionUnitWorkItems"); }
         }
 
         [XafDisplayName("Anlagen")]
@@ -676,20 +675,20 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
         //die Maßnahmen der Anlagen anzeigen
         [XafDisplayName("Maßnahmen")]
-        public List<actionActionAnlage> lstActionAnlage
+        public List<EquipmentWorkItem> lstEquipmentWorkItems
         {
             get
             {
-                List<actionActionAnlage> lstRetVal = new List<actionActionAnlage>();
+                List<EquipmentWorkItem> lstRetVal = new List<EquipmentWorkItem>();
                 if(this.lstAnlagen != null)
                 {
                     boAnlage workingAnlage;
                     for(int i=0;i<this.lstAnlagen.Count;i++)
                     {
                         workingAnlage = (boAnlage)this.lstAnlagen[i];
-                        if(workingAnlage.lstActionAnlage!= null)
+                        if(workingAnlage.lstEquipmentWorkItems!= null)
                         {
-                            lstRetVal.AddRange(workingAnlage.lstActionAnlage);
+                            lstRetVal.AddRange(workingAnlage.lstEquipmentWorkItems);
                         }
 
                     }

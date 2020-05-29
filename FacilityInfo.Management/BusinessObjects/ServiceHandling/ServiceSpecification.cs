@@ -14,7 +14,7 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
 
-namespace FacilityInfo.Management.ServiceHandling.BusinessObjects
+namespace FacilityInfo.Management.BusinessObjects.ServiceHandling
 {
     [DefaultClassOptions]
    [XafDisplayName("Service-Specification")]

@@ -22,7 +22,7 @@ using FacilityInfo.Artikelverwaltung.BusinessObjects;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using FacilityInfo.Core.BusinessObjects;
 using FacilityInfo.Management.BusinessObjects.ArticleHandling;
-using FacilityInfo.Management.ServiceHandling.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects.ServiceHandling;
 
 namespace FacilityInfo.Hersteller.BusinessObjects
 {

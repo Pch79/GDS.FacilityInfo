@@ -14,7 +14,7 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Hersteller.BusinessObjects;
 using FacilityInfo.Artikelverwaltung.BusinessObjects;
 
-namespace FacilityInfo.Management.ServiceHandling.BusinessObjects
+namespace FacilityInfo.Management.BusinessObjects.ServiceHandling
 {
     [DefaultClassOptions]
     [XafDisplayName("Wartungsposition")]

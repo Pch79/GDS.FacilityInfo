@@ -30,7 +30,7 @@ using FacilityInfo.Fremdsystem.BusinessObjects;
 using FacilityInfo.BusinessManagement.BusinessObjects;
 using FacilityInfo.Bildverarbeitung.BusinessObjects;
 using FacilityInfo.Management.Helpers;
-using FacilityInfo.Action.BusinessObjects;
+using DevExpress.ExpressApp.Actions;
 
 namespace FacilityInfo.Liegenschaft.BusinessObjects
 {
@@ -1099,13 +1099,6 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 XPCollection<KwpWartTermin> retVal = new XPCollection<KwpWartTermin>(this.Session ,new BinaryOperator("Liegenschaft.Oid", this.Oid, BinaryOperatorType.Equal));
                 return retVal;
             }
-        }
-
-        [XafDisplayName("Maßnahmen")]
-        [Association("boLiegenschaft-actionActionBase")]
-        public XPCollection<actionActionBase> lstActionBase
-        {
-            get { return GetCollection<actionActionBase>("lstActionBase"); }
         }
 
         #endregion

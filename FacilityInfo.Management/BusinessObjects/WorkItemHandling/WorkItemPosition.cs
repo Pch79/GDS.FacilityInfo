@@ -15,13 +15,13 @@ using FacilityInfo.Artikelverwaltung.BusinessObjects;
 using FacilityInfo.Hersteller.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
 
-namespace FacilityInfo.Action.BusinessObjects
+namespace FacilityInfo.Management.BusinessObjects.WorkItemHandling
 {
     [DefaultClassOptions]
     [ImageName("progressbar_16")]
     [XafDisplayName("Position (Maßnahme)")]
     [XafDefaultProperty("Matchkey")]
-    public class actionActionPosition : BaseObject
+    public class WorkItemPosition : BaseObject
     {
    
         private System.String _beschreibung;
@@ -32,7 +32,7 @@ namespace FacilityInfo.Action.BusinessObjects
         private String _posLangText;
         private Decimal _zeitVorgabe;
 
-        private actionActionBase _actionBase;
+        private WorkItem _workItem;
   
         private Decimal _dauerNominell;
 
@@ -53,7 +53,7 @@ namespace FacilityInfo.Action.BusinessObjects
 
         //Status
         private enmBearbeitungsStatus _status;
-        public actionActionPosition(Session session)
+        public WorkItemPosition(Session session)
             : base(session)
         {
         }
@@ -152,11 +152,11 @@ namespace FacilityInfo.Action.BusinessObjects
         {
             //für die bauteile muss ich auf d
             List<fiBauteil> lstBauteile = new List<fiBauteil>();
-            if (this.ActionBase != null)
+            if (this.WorkItem != null)
             {
-                if (this.ActionBase.GetType() == typeof(actionActionAnlage))
+                if (this.WorkItem.GetType() == typeof(EquipmentWorkItem))
                 {
-                    actionActionAnlage curAction  = (actionActionAnlage)this.ActionBase;
+                    EquipmentWorkItem curAction  = (EquipmentWorkItem)this.WorkItem;
                     if(curAction.Anlage != null)
                     {
                         if(curAction.Anlage.Typ != null)
@@ -219,11 +219,11 @@ namespace FacilityInfo.Action.BusinessObjects
         }
 
         [XafDisplayName("Wartung")]
-        [Association("actionActionBase-actionActionPosition")]
-        public actionActionBase ActionBase
+        [Association("WorkItem-WorkItemPosition")]
+        public WorkItem WorkItem
         {
-            get { return _actionBase; }
-            set { SetPropertyValue("ActionBase", ref _actionBase, value); }
+            get { return _workItem; }
+            set { SetPropertyValue("WorkItem", ref _workItem, value); }
         }
 
 

@@ -14,12 +14,9 @@ using DevExpress.Persistent.Validation;
 using FacilityInfo.Management.BusinessObjects;
 using FacilityInfo.Messung.BusinessObjects;
 using FacilityInfo.Parameter.BusinessObjects;
-
 using FacilityInfo.Management.Helpers;
 using System.Drawing;
-
-using FacilityInfo.Action.BusinessObjects;
-using FacilityInfo.Management.ServiceHandling.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects.ServiceHandling;
 
 namespace FacilityInfo.Anlagen.BusinessObjects
 {
@@ -311,14 +308,6 @@ namespace FacilityInfo.Anlagen.BusinessObjects
             {
                 return GetCollection<boAnlage>("lstAnlagen");
             }
-        }
-
-        //Actionpackages
-        [XafDisplayName("Maßnahmenpakete")]
-        [Association("boAnlagenArt-actionActionPackage")]
-        public XPCollection<actionActionPackage>lstActionPackage
-        {
-            get { return GetCollection<actionActionPackage>("lstActionPackage"); }
         }
     }
 }

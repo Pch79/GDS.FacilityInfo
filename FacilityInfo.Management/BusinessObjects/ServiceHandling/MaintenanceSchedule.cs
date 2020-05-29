@@ -16,7 +16,7 @@ using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Hersteller.BusinessObjects;
 using DevExpress.ExpressApp.Utils;
 
-namespace FacilityInfo.Management.ServiceHandling.BusinessObjects
+namespace FacilityInfo.Management.BusinessObjects.ServiceHandling
 {
   [DefaultClassOptions]
   [XafDisplayName("Wartungsplan")]

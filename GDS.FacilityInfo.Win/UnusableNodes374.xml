@@ -297,55 +297,6 @@
         <ColumnInfo Id="WartungsPosition" PropertyName="WartungsPosition" Index="-1" Width="70" />
       </Columns>
     </ListView>
-    <DetailView Id="actionActionAnlage_DetailView">
-      <Layout Id="Layout">
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="actionActionBase">
-              <LayoutGroup Id="actionActionBase_col1">
-                <LayoutItem Id="WartungsPlan" Index="3" Removed="True" />
-                <LayoutGroup Id="grpBezeichnung">
-                  <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
-                </LayoutGroup>
-              </LayoutGroup>
-              <LayoutGroup Id="actionActionBase_col2">
-                <LayoutItem Id="Liegenschaft" Removed="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <ListView Id="actionActionAnlage_ListView">
-      <Columns Id="Columns">
-        <ColumnInfo Id="WartungsPlan" Index="4" />
-      </Columns>
-    </ListView>
-    <DetailView Id="actionActionBase_DetailView">
-      <Layout Id="Layout">
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="actionActionBase">
-              <LayoutGroup Id="actionActionBase_col1">
-                <LayoutGroup Id="grpBezeichnung">
-                  <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
-                </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <ListView Id="actionActionBase_ListView">
-      <Columns Id="Columns">
-        <ColumnInfo Id="WartungsPlan" Index="3" />
-      </Columns>
-    </ListView>
-    <ListView Id="actionActionBase_lstActionPosition_ListView">
-      <Columns Id="Columns">
-        <ColumnInfo Id="WartungsPosition" Index="10" />
-      </Columns>
-    </ListView>
     <ListView Id="boAnlage_lstActionAnlage_ListView">
       <Columns Id="Columns">
         <ColumnInfo Id="WartungsPlan" Index="3" />
@@ -399,19 +350,6 @@
                 <LayoutGroup Id="grpMatchkey">
                   <LayoutItem Id="Matchkey" ViewItem="Matchkey" />
                 </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="FunctionUnitAction_DetailView">
-      <Layout Id="Layout">
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="actionActionBase">
-            <LayoutGroup Id="actionActionBase_col1">
-              <LayoutGroup Id="grpBezeichnung">
-                <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>

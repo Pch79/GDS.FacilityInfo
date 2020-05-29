@@ -3,23 +3,22 @@ using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
-using FacilityInfo.Action.BusinessObjects;
 using FacilityInfo.Anlagen.BusinessObjects;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
 
-namespace FacilityInfo.Management.BusinessObjects.ActionHandling
+namespace FacilityInfo.Management.BusinessObjects.WorkItemHandling
 {
     [DefaultClassOptions]
     [XafDisplayName("Maßnahem (Funktionseinheit)")]
     [ImageName("helmet_mine_16")]
     [XafDefaultProperty("MatchKey")]
-    public class FunctionUnitAction : actionActionBase
+    public class FunctionUnitWorkItem : WorkItem
     {
 
 
         private LgHaustechnikKomponente _functionUnit;
-        public FunctionUnitAction(Session session) : base(session)
+        public FunctionUnitWorkItem(Session session) : base(session)
         {
             // This constructor is used when an object is loaded from a persistent storage.
             // Do not place any code here.
@@ -38,6 +37,7 @@ namespace FacilityInfo.Management.BusinessObjects.ActionHandling
             {
                 switch (propertyName)
                 {
+                    /*
                     case "FunctionUnit":
                         if (newValue != null)
                         {
@@ -49,6 +49,7 @@ namespace FacilityInfo.Management.BusinessObjects.ActionHandling
                             this.Liegenschaft = null;
                         }
                         break;
+                        */
                     case "Status":
                         if (((enmBearbeitungsStatus)newValue) == enmBearbeitungsStatus.erledigt)
                         {
@@ -58,8 +59,8 @@ namespace FacilityInfo.Management.BusinessObjects.ActionHandling
                             if (this.TurnusValue > 0 && this.Turnus != enmTurnus.none)
                             {
 
-                                actionActionBase retValBase = (actionActionBase)this;
-                                createNewAction(retValBase);
+                                WorkItem retValBase = (WorkItem)this;
+                                //createNewAction(retValBase);
 
                             }
                         }
@@ -86,7 +87,7 @@ namespace FacilityInfo.Management.BusinessObjects.ActionHandling
             }
         }
         [XafDisplayName("Funktionseinheit")]
-        [Association("LgHaustechnikKomponente-FunctionUnitAction")]
+        [Association("LgHaustechnikKomponente-FunctionUnitWorkItem")]
         public LgHaustechnikKomponente FunctionUnit
         {
             get { return _functionUnit; }

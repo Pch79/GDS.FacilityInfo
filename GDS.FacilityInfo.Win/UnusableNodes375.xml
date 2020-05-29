@@ -29,36 +29,6 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <DetailView Id="actionActionAnlage_DetailView">
-      <Layout Id="Layout">
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="actionActionBase">
-              <LayoutGroup Id="actionActionBase_col1">
-                <LayoutGroup Id="grpBezeichnung">
-                  <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
-                </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="actionActionBase_DetailView">
-      <Layout Id="Layout">
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="actionActionBase">
-              <LayoutGroup Id="actionActionBase_col1">
-                <LayoutGroup Id="grpBezeichnung">
-                  <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
-                </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
     <DetailView Id="boMessprobe_DetailView">
       <Layout Id="Layout">
         <LayoutGroup Id="Main">
@@ -86,19 +56,6 @@
                 <LayoutGroup Id="grpMatchkey">
                   <LayoutItem Id="Matchkey" ViewItem="Matchkey" />
                 </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="FunctionUnitAction_DetailView">
-      <Layout Id="Layout">
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="actionActionBase">
-            <LayoutGroup Id="actionActionBase_col1">
-              <LayoutGroup Id="grpBezeichnung">
-                <LayoutItem Id="WartungsPlan" ViewItem="WartungsPlan" />
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>

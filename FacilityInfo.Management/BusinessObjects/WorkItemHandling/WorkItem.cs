@@ -19,12 +19,12 @@ using FacilityInfo.Management.Helpers;
 using FacilityInfo.Artikelverwaltung.BusinessObjects;
 using FacilityInfo.Hersteller.BusinessObjects;
 
-namespace FacilityInfo.Action.BusinessObjects
+namespace FacilityInfo.Management.BusinessObjects.WorkItemHandling
 {
     [DefaultClassOptions]
     [XafDisplayName("Maßnahme")]
     [ImageName("helmet_16")]
-    public class actionActionBase : BaseObject
+    public class WorkItem : BaseObject
     {
 
         //gibt es einen Bezug zu einem Wartungsplan?
@@ -66,7 +66,7 @@ namespace FacilityInfo.Action.BusinessObjects
         private Int32 _turnusValue;
 
 
-        public actionActionBase(Session session)
+        public WorkItem(Session session)
             : base(session)
         {
         }
@@ -76,7 +76,8 @@ namespace FacilityInfo.Action.BusinessObjects
          
         }
 
-        public virtual void createNewAction(actionActionBase createdAction)
+        /*
+        public virtual void createNewAction(WorkItem createdAction)
         {
             //einen neuen Service erstellen
 
@@ -93,7 +94,7 @@ namespace FacilityInfo.Action.BusinessObjects
             {
                 createdAction.WartungsPlan = this.Session.GetObjectByKey<wartungWartungsPlanProdukt>(this.WartungsPlan.Oid);
             }
-            */
+            
             createdAction.Liegenschaft = this.Session.GetObjectByKey<boLiegenschaft>(this.Liegenschaft.Oid);
             createdAction.ActionClassification = this.ActionClassification;
             createdAction.AnzahlTechniker = this.AnzahlTechniker;
@@ -114,12 +115,12 @@ namespace FacilityInfo.Action.BusinessObjects
             //jetzt noch die Positionen übernehmen
             if(this.lstActionPosition != null)
             {
-                actionActionPosition curActionPosition;
-                actionActionPosition basePosition;
+                WorkItemPosition curActionPosition;
+                WorkItemPosition basePosition;
                 for (int j = 0; j < this.lstActionPosition.Count; j++)
                 {
                     basePosition = this.lstActionPosition[j];
-                    curActionPosition = new actionActionPosition(this.Session);
+                    curActionPosition = new WorkItemPosition(this.Session);
                     curActionPosition.ActionBase = createdAction;
                    // curActionPosition.WartungsPosition = this.Session.GetObjectByKey<wartungWartungsPosition>(basePosition.Oid);
                     curActionPosition.PositionsNummer = basePosition.PositionsNummer;
@@ -146,6 +147,7 @@ namespace FacilityInfo.Action.BusinessObjects
             }
             this.Session.CommitTransaction();
         }
+        */
 
         #region Properties
         //Fällig
@@ -225,14 +227,7 @@ namespace FacilityInfo.Action.BusinessObjects
             set { SetPropertyValue("TurnusValue", ref _turnusValue, value); }
         }
 
-        [XafDisplayName("Liegenschaft")]
-        [Association("boLiegenschaft-actionActionBase")]
-        public boLiegenschaft Liegenschaft
-        {
-            get { return _liegenschaft; }
-            set { SetPropertyValue("Liegenschaft", ref _liegenschaft, value); }
-        }
-        
+       
 
         [XafDisplayName("Priorität")]
         [ImmediatePostData(true)]
@@ -352,10 +347,10 @@ namespace FacilityInfo.Action.BusinessObjects
 
 
         [XafDisplayName("Positionen")]
-        [Association("actionActionBase-actionActionPosition")]
-        public XPCollection<actionActionPosition> lstActionPosition
+        [Association("WorkItem-WorkItemPosition")]
+        public XPCollection<WorkItemPosition> lstWorkItemPositions
         {
-            get { return GetCollection<actionActionPosition>("lstActionPosition"); }
+            get { return GetCollection<WorkItemPosition>("lstWorkItemPositions"); }
         }
 
         [XafDisplayName("Typ")]

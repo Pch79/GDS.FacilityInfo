@@ -9,9 +9,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
-using FacilityInfo.Action.BusinessObjects;
 using FacilityInfo.Adresse.BusinessObjects;
-using FacilityInfo.Artikelverwaltung.BusinessObjects;
 using FacilityInfo.Bildverarbeitung.BusinessObjects;
 using FacilityInfo.Building.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
@@ -21,6 +19,7 @@ using FacilityInfo.Hersteller.BusinessObjects;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Management;
 using FacilityInfo.Management.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects.WorkItemHandling;
 using FacilityInfo.Management.EnumStore;
 using FacilityInfo.Management.Helpers;
 using FacilityInfo.Messung.BusinessObjects;
@@ -1453,10 +1452,10 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
         //Maßnahmen
         [XafDisplayName("Maßnahmen")]
-        [Association("boAnlage-actionActionAnlage")]
-        public XPCollection<actionActionAnlage> lstActionAnlage
+        [Association("boAnlage-EquipmentWorkItem")]
+        public XPCollection<EquipmentWorkItem> lstEquipmentWorkItems
         {
-            get { return GetCollection<actionActionAnlage>("lstActionAnlage"); }
+            get { return GetCollection<EquipmentWorkItem>("lstEquipmentWorkItems"); }
         }
 
 

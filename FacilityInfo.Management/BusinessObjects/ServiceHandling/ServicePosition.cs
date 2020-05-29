@@ -13,7 +13,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Anlagen.BusinessObjects;
 
-namespace FacilityInfo.Management.ServiceHandling.BusinessObjects
+namespace FacilityInfo.Management.BusinessObjects.ServiceHandling
 {
     [DefaultClassOptions]
    [XafDisplayName("ServicePosition")]

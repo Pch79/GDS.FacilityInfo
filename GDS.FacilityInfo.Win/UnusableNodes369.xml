@@ -18,20 +18,6 @@
         <PropertyEditor Id="Adresse" View="boAdresse_LookupDetailView" />
       </Items>
     </DetailView>
-    <DetailView Id="actionActionAnlage_DetailView">
-      <Layout Id="Layout">
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="actionActionBase">
-              <LayoutGroup Id="actionActionBase_col1">
-                <LayoutItem Id="Liegenschaft" Index="2" Removed="True" />
-                <LayoutItem Id="Prioritaet" Index="6" Removed="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
     <DetailView Id="boMessprobe_DetailView">
       <Layout Id="Layout">
         <LayoutGroup Id="Main">
