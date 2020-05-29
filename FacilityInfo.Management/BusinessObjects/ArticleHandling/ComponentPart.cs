@@ -105,6 +105,12 @@ namespace FacilityInfo.Management.BusinessObjects.ArticleHandling
             }
         }
 
+        [Association("TechnicalAssembly-ComponentPart")]
+        public XPCollection<TechnicalAssembly> lstTechnicalAssemblys
+        {
+            get { return GetCollection<TechnicalAssembly>("lstTechnicalAssemblys"); }
+        }
+
         [XafDisplayName("Bauteil-Oid")]
         public string BauteilOid
         {

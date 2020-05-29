@@ -282,7 +282,14 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="navItemAnlagen" Caption="Anlagenverwaltung" Index="1" ImageName="gear_3d_2_16" ChildItemsDisplayStyle="List" ViewId="boAnlage_ListView" IsNewNode="True">
+      <Item Id="TechnicalInstallation" Caption="TechnicalInstallation" Index="1" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="FunctionalUnit" ViewId="FunctionalUnit_ListView" IsNewNode="True" />
+          <Item Id="TechnicalAssembly" ViewId="TechnicalAssembly_ListView" IsNewNode="True" />
+          <Item Id="TechnicalInstallation" ViewId="TechnicalInstallation_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="navItemAnlagen" Caption="Anlagenverwaltung" Index="2" ImageName="gear_3d_2_16" ChildItemsDisplayStyle="List" ViewId="boAnlage_ListView" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="Anlagen" Caption="Anlagen" ViewId="boAnlage_ListView" Index="0" IsNewNode="True" />
           <Item Id="FunctionUnit" Index="1" ViewId="LgHaustechnikKomponente_ListView" Caption="Funktionseinheit" IsNewNode="True" />
@@ -291,7 +298,7 @@
           <Item Id="Technikeinheit" ViewId="fiTechnikeinheit_ListView" Index="4" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="navItemAdressen" Caption="Adressen und Kontakte" Index="2" ImageName="BO_Address" Visible="True" ChildItemsDisplayStyle="List" ViewId="boAdresse_ListView" IsNewNode="True">
+      <Item Id="navItemAdressen" Caption="Adressen und Kontakte" Index="3" ImageName="BO_Address" Visible="True" ChildItemsDisplayStyle="List" ViewId="boAdresse_ListView" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="Adresse" ViewId="boAdresse_ListView" Index="0" IsNewNode="True" />
           <Item Id="boKontakt_ListView" ViewId="boKontakt_ListView" ObjectKey="" Index="1" Caption="Kontakte" IsNewNode="True" />
@@ -301,7 +308,7 @@
           <Item Id="Debitorenkonten" Index="5" ViewId="Debitorenkonto_ListView" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="navItemService" Caption="Service/Wartung" Index="3" ChildItemsDisplayStyle="List" ImageName="gearTool_1_16" IsNewNode="True">
+      <Item Id="navItemService" Caption="Service/Wartung" Index="4" ChildItemsDisplayStyle="List" ImageName="gearTool_1_16" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="itmKwpDaten" Caption="KWP" Index="0" ImageName="KWP_Logo_16" IsNewNode="True">
             <Items IsNewNode="True">
@@ -328,7 +335,7 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="navItemKataloge" Caption="Kataloge/Bibliotheken" ChildItemsDisplayStyle="List" Index="4" ImageName="bookshelf_16" IsNewNode="True">
+      <Item Id="navItemKataloge" Caption="Kataloge/Bibliotheken" ChildItemsDisplayStyle="List" Index="5" ImageName="bookshelf_16" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="navitemArtikelverwaltung" Caption="Artikelverwaltung" Index="0" Visible="True" ImageName="box_closed_16" IsNewNode="True">
             <Items IsNewNode="True">
@@ -350,7 +357,7 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="Dokumentverwaltung" Index="5" ImageName="Aktenschrank_16" IsNewNode="True">
+      <Item Id="Dokumentverwaltung" Index="6" ImageName="Aktenschrank_16" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="boAttachment_ListView" ViewId="boAttachment_ListView" ObjectKey="" Index="0" Caption="Dokumente" IsNewNode="True" />
           <Item Id="boLGAttachment_ListView" ViewId="boLGAttachment_ListView" ObjectKey="" Index="1" Caption="Liegenschaftsdokumente" IsNewNode="True" />
@@ -360,7 +367,7 @@
           <Item Id="Produktdokument" ViewId="fiHerstellerProduktAttachment_ListView" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="Parameter" Caption="Parameter" Index="6" ImageName="mixer_16" IsNewNode="True">
+      <Item Id="Parameter" Caption="Parameter" Index="7" ImageName="mixer_16" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="Parametertyp" ViewId="parameterParameterTyp_ListView" Index="0" IsNewNode="True" />
           <Item Id="ParamDefinition" ViewId="parameterParameterDefinition_ListView" Index="1" IsNewNode="True" />
@@ -369,7 +376,7 @@
           <Item Id="ParamHerstellerProdukt" ViewId="parameterHerstellerProduktParameter_ListView" Caption="Parameter (Herstellerprodukt)" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="Settings" Caption="Settings" Index="7" ChildItemsDisplayStyle="List" ImageName="vslider_16" IsNewNode="True">
+      <Item Id="Settings" Caption="Settings" Index="8" ChildItemsDisplayStyle="List" ImageName="vslider_16" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="Stammdaten" Caption="Stammdaten" Index="0" ImageName="blogs_16" IsNewNode="True">
             <Items IsNewNode="True">
@@ -420,7 +427,7 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="navBusinessManagement" Caption="Business Management" ChildItemsDisplayStyle="List" Index="8" ImageName="stamp_pattern_16" IsNewNode="True">
+      <Item Id="navBusinessManagement" Caption="Business Management" ChildItemsDisplayStyle="List" Index="9" ImageName="stamp_pattern_16" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="navitemMandant" ViewId="boMandant_ListView" Index="0" IsNewNode="True" />
           <Item Id="navItemNummernkreise" ViewId="boNummernkreis_ListView" Index="1" Caption="Nummernkreise" IsNewNode="True" />
@@ -432,7 +439,7 @@
           <Item Id="boFIObjekt_ListView" ViewId="boFIObjekt_ListView" ObjectKey="" Index="8" Visible="False" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="Administration" Caption="Administration" Index="9" ChildItemsDisplayStyle="List" ImageName="wand_16" IsNewNode="True">
+      <Item Id="Administration" Caption="Administration" Index="10" ChildItemsDisplayStyle="List" ImageName="wand_16" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="PermissionPolicyUser_ListView" ViewId="PermissionPolicyUser_ListView" ObjectKey="" Index="0" Caption="Benutzer" IsNewNode="True" />
           <Item Id="PermissionPolicyRole_ListView" ViewId="PermissionPolicyRole_ListView" ObjectKey="" Index="1" Caption="Rollen" IsNewNode="True" />
@@ -440,7 +447,12 @@
           <Item Id="PortalAccount" ViewId="corePortalAccount_ListView" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="navitemFremdsystem" Caption="Fremdsystem" ChildItemsDisplayStyle="List" Index="10" ImageName="direction_16" IsNewNode="True">
+      <Item Id="Reports" Visible="True" Index="10" ImageName="BO_Report" Removed="True">
+        <Items>
+          <Item Id="ReportsV2" Index="0" />
+        </Items>
+      </Item>
+      <Item Id="navitemFremdsystem" Caption="Fremdsystem" ChildItemsDisplayStyle="List" Index="11" ImageName="direction_16" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="Fremdsystem" ViewId="fremdSysFremdsystem_ListView" Index="0" IsNewNode="True" />
           <Item Id="SynchItem" ViewId="fremdSysSynchItem_ListView" Index="1" IsNewNode="True" />
@@ -455,19 +467,14 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="Reports" Visible="True" Index="10" ImageName="BO_Report" Removed="True">
-        <Items>
-          <Item Id="ReportsV2" Index="0" />
-        </Items>
-      </Item>
-      <Item Id="navitemReporting" Caption="Reporting" Index="11" ImageName="report_16" Visible="False" IsNewNode="True">
+      <Item Id="navitemReporting" Caption="Reporting" Index="12" ImageName="report_16" Visible="False" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="ReportsV2" ViewId="ReportDataV2_ListView" ObjectKey="" Caption="Reports" Index="0" IsNewNode="True" />
           <Item Id="Analysis_ListView" ViewId="Analysis_ListView" ObjectKey="" Visible="False" IsNewNode="True" />
           <Item Id="Dashboards" ViewId="DashboardData_ListView" ObjectKey="" Caption="Dashboards" Visible="False" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="Developement" Caption="Developement" ChildItemsDisplayStyle="List" Index="12" Visible="False" IsNewNode="True">
+      <Item Id="Developement" Caption="Developement" ChildItemsDisplayStyle="List" Index="13" Visible="False" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="navitemChecklisten" Caption="Cheklisten" ChildItemsDisplayStyle="List" ImageName="TemplatesV2Images.Action_Edit" Index="2" Visible="False" IsNewNode="True">
             <Items IsNewNode="True">
@@ -511,7 +518,7 @@
           <Item Id="navItemDMS" Caption="Dokumente" ImageName="TemplatesV2Images.Action_Edit" Index="8" Visible="False" IsNewNode="True" />
         </Items>
       </Item>
-      <Item Id="Parkplatz" Caption="Parkplatz" ChildItemsDisplayStyle="List" Visible="False" Index="13" IsNewNode="True">
+      <Item Id="Parkplatz" Caption="Parkplatz" ChildItemsDisplayStyle="List" Visible="False" Index="14" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="Ansprechpartner" ViewId="fiKontaktLiegenschaft_ListView" Index="0" IsNewNode="True" />
           <Item Id="navitemKommunikation" Caption="Kommunikation" ImageName="telephone_16" ChildItemsDisplayStyle="List" Index="1" IsNewNode="True">
@@ -544,7 +551,7 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="Wartungswesen" Caption="Wartungswesen" Index="14" Visible="False" IsNewNode="True">
+      <Item Id="Wartungswesen" Caption="Wartungswesen" Index="15" Visible="False" IsNewNode="True">
         <Items IsNewNode="True">
           <Item Id="boAnlagenArt_ListView" ViewId="boAnlagenArt_ListView" ObjectKey="" Index="0" IsNewNode="True" />
           <Item Id="Wartung" ViewId="wartungWartung_ListView" Index="1" IsNewNode="True" />

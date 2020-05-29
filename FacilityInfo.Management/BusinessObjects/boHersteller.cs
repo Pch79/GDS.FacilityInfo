@@ -41,7 +41,7 @@ namespace FacilityInfo.Hersteller.BusinessObjects
         }
 
 
-        #region Properties
+        
         [XafDisplayName("Internet")]
         public System.String Internet
         {
@@ -108,7 +108,6 @@ namespace FacilityInfo.Hersteller.BusinessObjects
         }
       
         [XafDisplayName("Firmenlogo")]
-      //  [ImageEditor]
         public byte[] Firmenlogo
         {
             get
@@ -146,7 +145,15 @@ namespace FacilityInfo.Hersteller.BusinessObjects
             }
         }
 
-    
+        [Association("fiHersteller-TechnicalAssembly")]
+        public XPCollection<TechnicalAssembly> lstTechnicalAssemblys
+        {
+            get
+            {
+                return GetCollection<TechnicalAssembly>("lstTechnicalAssemblys");
+            }
+        }
+
         [XafDisplayName("Herstellerdokumente")]
         [Association("boHersteller-fiHerstellerAttachment"), DevExpress.ExpressApp.DC.Aggregated]
    
@@ -157,9 +164,5 @@ namespace FacilityInfo.Hersteller.BusinessObjects
                 return GetCollection<fiHerstellerAttachment>("lstHerstellerdokumente");
             }
         }
-
-        
-
-        #endregion
     }
 }
