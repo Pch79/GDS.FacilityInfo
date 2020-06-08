@@ -31,6 +31,7 @@ using FacilityInfo.BusinessManagement.BusinessObjects;
 using FacilityInfo.Bildverarbeitung.BusinessObjects;
 using FacilityInfo.Management.Helpers;
 using DevExpress.ExpressApp.Actions;
+using FacilityInfo.Management.BusinessObjects.TechnicalInstallation;
 
 namespace FacilityInfo.Liegenschaft.BusinessObjects
 {
@@ -1099,6 +1100,20 @@ namespace FacilityInfo.Liegenschaft.BusinessObjects
                 XPCollection<KwpWartTermin> retVal = new XPCollection<KwpWartTermin>(this.Session ,new BinaryOperator("Liegenschaft.Oid", this.Oid, BinaryOperatorType.Equal));
                 return retVal;
             }
+        }
+
+        [XafDisplayName("Funktionsgruppen")]
+        [Association("boLiegenschaft-FunctionalUnit")]
+        public XPCollection<FunctionalUnit> FunctionalUnits
+        {
+            get { return GetCollection<FunctionalUnit>("FunctionalUnits"); }
+        }
+
+        [XafDisplayName("Technische Anlagen")]
+        [Association("boLiegenschaft-TechnicalInstallation")]
+        public XPCollection<TechnicalInstallation> TechnicalInstallations
+        {
+            get { return GetCollection<TechnicalInstallation>("TechnicalInstallations"); }
         }
 
         #endregion

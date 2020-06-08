@@ -1113,8 +1113,6 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
         [XafDisplayName("Produkttyp")]
         [DataSourceProperty("AvailableProducts")]
-      
-        
         [ImmediatePostData]
         public fiHerstellerProdukt Typ
         {
@@ -1209,7 +1207,6 @@ namespace FacilityInfo.Anlagen.BusinessObjects
 
         [XafDisplayName("Liegenschaft")]
         [Association("boLiegenschaft-boAnlage")]
-       // [DataSourceCriteria("Mandant.Oid = '@this.curMandantID'")]
         [RuleRequiredField]
         public boLiegenschaft Liegenschaft
         {

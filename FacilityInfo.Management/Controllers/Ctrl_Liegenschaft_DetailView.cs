@@ -164,34 +164,37 @@ namespace FacilityInfo.Management.Controllers
                         try
                         {
                             //hier die Gruppen einbauen
-                            ChoiceActionItem mainItemAnlagenArten = new ChoiceActionItem(curLiegenschaft.Oid.ToString(), "-Anlagenarten-", curLiegenschaft);
-                            mainItemAnlagenArten.ImageName = "gear_in_16";
-                            mainItemAnlagenArten.BeginGroup = true;
-
-                            IList<boAnlagenKategorie> lstAnlagenGruppen = os.GetObjects<boAnlagenKategorie>(new BinaryOperator("Aktiv", true, BinaryOperatorType.Equal));
-                            //für jede Gruppe ein MainItem erstellen und dann die Arten dazu durchparsen
-
-                            foreach (boAnlagenKategorie anlGruppe in lstAnlagenGruppen)
+                            if (curLiegenschaft != null)
                             {
-                                ChoiceActionItem groupItem = new ChoiceActionItem(anlGruppe.Oid.ToString(), anlGruppe.Bezeichnung, curLiegenschaft);
-                                groupItem.ImageName = "interface_preferences";
-                                if (anlGruppe.lstAnlagenarten != null)
+                                ChoiceActionItem mainItemAnlagenArten = new ChoiceActionItem(curLiegenschaft.Oid.ToString(), "-Anlagenarten-", curLiegenschaft);
+                                mainItemAnlagenArten.ImageName = "gear_in_16";
+                                mainItemAnlagenArten.BeginGroup = true;
+
+                                IList<boAnlagenKategorie> lstAnlagenGruppen = os.GetObjects<boAnlagenKategorie>(new BinaryOperator("Aktiv", true, BinaryOperatorType.Equal));
+                                //für jede Gruppe ein MainItem erstellen und dann die Arten dazu durchparsen
+
+                                foreach (boAnlagenKategorie anlGruppe in lstAnlagenGruppen)
                                 {
-                                    foreach (boAnlagenArt anlagenArt in anlGruppe.lstAnlagenarten)
+                                    ChoiceActionItem groupItem = new ChoiceActionItem(anlGruppe.Oid.ToString(), anlGruppe.Bezeichnung, curLiegenschaft);
+                                    groupItem.ImageName = "interface_preferences";
+                                    if (anlGruppe.lstAnlagenarten != null)
                                     {
-                                        ChoiceActionItem curAnlagenItem = new ChoiceActionItem(anlagenArt.Oid.ToString(), anlagenArt.Bezeichnung, anlagenArt);
-                                        curAnlagenItem.ImageName = "gear_in_16";
+                                        foreach (boAnlagenArt anlagenArt in anlGruppe.lstAnlagenarten)
+                                        {
+                                            ChoiceActionItem curAnlagenItem = new ChoiceActionItem(anlagenArt.Oid.ToString(), anlagenArt.Bezeichnung, anlagenArt);
+                                            curAnlagenItem.ImageName = "gear_in_16";
 
-                                        groupItem.Items.Add(curAnlagenItem);
+                                            groupItem.Items.Add(curAnlagenItem);
+                                        }
                                     }
+                                    mainItemAnlagenArten.Items.Add(groupItem);
+
                                 }
-                                mainItemAnlagenArten.Items.Add(groupItem);
+                                //
 
+                                this.doAddAnlage.Items.Add(mainItemAnlagenArten);
+                                #endregion
                             }
-                            //
-
-                            this.doAddAnlage.Items.Add(mainItemAnlagenArten);
-                            #endregion
                         }
                         catch
                         {

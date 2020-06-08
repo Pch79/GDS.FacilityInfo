@@ -282,11 +282,11 @@
           </Item>
         </Items>
       </Item>
-      <Item Id="TechnicalInstallation" Caption="TechnicalInstallation" Index="1" IsNewNode="True">
+      <Item Id="TechnicalInstallation" Caption="TechnicalInstallation" Index="1" ChildItemsDisplayStyle="List" IsNewNode="True">
         <Items IsNewNode="True">
-          <Item Id="FunctionalUnit" ViewId="FunctionalUnit_ListView" IsNewNode="True" />
-          <Item Id="TechnicalAssembly" ViewId="TechnicalAssembly_ListView" IsNewNode="True" />
-          <Item Id="TechnicalInstallation" ViewId="TechnicalInstallation_ListView" IsNewNode="True" />
+          <Item Id="FunctionalUnit" ViewId="FunctionalUnit_ListView" Index="0" IsNewNode="True" />
+          <Item Id="TechnicalInstallation" ViewId="TechnicalInstallation_ListView" Caption="Technische Anlagen" Index="1" IsNewNode="True" />
+          <Item Id="TechnicalAssembly" ViewId="TechnicalAssembly_ListView" Index="2" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="navItemAnlagen" Caption="Anlagenverwaltung" Index="2" ImageName="gear_3d_2_16" ChildItemsDisplayStyle="List" ViewId="boAnlage_ListView" IsNewNode="True">
@@ -4779,6 +4779,37 @@
     </DetailView>
     <ListView Id="fremdSysSynchItem_ListView" AllowNew="True" AllowDelete="True" />
     <ListView Id="fremdSysSynchItem_LookupListView" AllowNew="True" AllowDelete="True" />
+    <DetailView Id="FunctionalUnit_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="FunctionalUnit">
+              <LayoutGroup Id="FunctionalUnit_col1">
+                <LayoutItem Id="SystemCode" Index="1" Removed="True" />
+                <LayoutItem Id="SystemDesignation" Index="1" ViewItem="SystemDesignation" ShowCaption="" IsNewNode="True" Removed="True" />
+                <LayoutItem Id="Classification" Index="2" Removed="True" />
+                <LayoutGroup Id="grpClassification" Caption="" Direction="Horizontal" IsNewNode="True">
+                  <LayoutItem Id="Classification" Index="2" ViewItem="Classification" ShowCaption="" IsNewNode="True" />
+                  <LayoutItem Id="SystemCode" Index="2" ViewItem="SystemCode" ShowCaption="" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="FunctionalUnit_col2">
+                <LayoutItem Id="RealEstate" ViewItem="RealEstate" ShowCaption="" Index="0" IsNewNode="True" Removed="True" />
+                <LayoutItem Id="OperatingState" Index="1" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="lstTechnicalInstallations_Group" Removed="True">
+            <LayoutItem Id="lstTechnicalInstallations" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="tabFurtherInfos" IsNewNode="True">
+            <LayoutGroup Id="tabTechnicalInstallations" Caption="Technische Anlagen" IsNewNode="True">
+              <LayoutItem Id="lstTechnicalInstallations" ViewItem="lstTechnicalInstallations" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="Hausverwalter_Lookup_DetailView" ClassName="FacilityInfo.Liegenschaft.BusinessObjects.boHausverwalter" IsNewNode="True">
       <Items IsNewNode="True">
         <PropertyEditor Id="Adresse" PropertyName="Adresse" PropertyEditorType="DevExpress.ExpressApp.Editors.DetailPropertyEditor" View="boAdresse_LookupDetailView" IsNewNode="True" />
@@ -5914,6 +5945,90 @@
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="TechnicalInstallation_DetailView">
+      <Items>
+        <PropertyEditor Id="MainImageThumb" PropertyEditorType="GDS.FacilityInfo.Module.Win.Editors.Win_ZoomImageEditor" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="TechnicalInstallation" Direction="Horizontal">
+              <LayoutGroup Id="TechnicalInstallation_col1" Index="1">
+                <LayoutItem Id="InstallationCode" Index="2" Removed="True" />
+                <LayoutItem Id="BillingAddress" Index="3" Removed="True" />
+                <LayoutItem Id="FunctionalUnit" Index="4" Removed="True" />
+                <LayoutItem Id="OperationState" Index="5" Removed="True" />
+                <LayoutItem Id="SerialNumber" Index="6" Removed="True" />
+                <LayoutItem Id="Client" Index="7" Removed="True" />
+                <LayoutItem Id="ConstructionYear" Index="8" Removed="True" />
+                <LayoutGroup Id="grpImage" Caption="" IsNewNode="True">
+                  <LayoutItem Id="OperationState" Index="0" ViewItem="OperationState" ShowCaption="" IsNewNode="True" />
+                  <LayoutItem Id="MainImageThumb" ViewItem="MainImageThumb" ShowCaption="False" Index="1" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutItem Id="MaintenanceZone" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="TechnicalInstallation_col2" Index="2" Direction="Horizontal">
+                <TabbedGroup Id="tabBasicInformation" Index="0" Direction="Horizontal" IsNewNode="True">
+                  <LayoutGroup Id="tabInstallationData" Caption="Anlagendaten" Index="1" Direction="Vertical" IsNewNode="True">
+                    <LayoutGroup Id="grpDesigantion" Caption="" Index="0" Direction="Horizontal" IsNewNode="True">
+                      <LayoutItem Id="Designation" ViewItem="Designation" ShowCaption="" Index="0" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpCode" Caption="" Index="1" Direction="Horizontal" IsNewNode="True">
+                      <LayoutItem Id="InsatallationNumber" Index="1" ViewItem="InsatallationNumber" ShowCaption="" IsNewNode="True" />
+                      <LayoutItem Id="InstallationCode" Index="4" ViewItem="InstallationCode" ShowCaption="" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpManufaturer" Caption="" Index="2" Direction="Horizontal" IsNewNode="True">
+                      <LayoutItem Id="Manufacturer" Index="4" ViewItem="Manufacturer" ShowCaption="" IsNewNode="True" />
+                      <LayoutItem Id="SerialNumber" Index="7" ViewItem="SerialNumber" ShowCaption="" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpDates" Caption="" Index="3" Direction="Horizontal" IsNewNode="True">
+                      <LayoutItem Id="ConstructionYear" Index="3" ViewItem="ConstructionYear" ShowCaption="" IsNewNode="True" />
+                      <LayoutItem Id="InstallationDate" Index="4" ViewItem="InstallationDate" ShowCaption="" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpFunctionalUnit" Caption="" Direction="Horizontal" IsNewNode="True">
+                      <LayoutItem Id="FunctionalUnit" Index="5" ViewItem="FunctionalUnit" ShowCaption="" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpMaintenanceZone" Caption="" Direction="Horizontal" IsNewNode="True">
+                      <LayoutItem Id="MaintenanceZone" ViewItem="MaintenanceZone" ShowCaption="" Index="0" IsNewNode="True" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabRealEstate" Caption="Liegenschaft" Index="2" IsNewNode="True">
+                    <LayoutItem Id="RealEstate" Index="4" ViewItem="RealEstate" ShowCaption="" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabBillingAddress" Caption="Rechnungsadresse" IsNewNode="True">
+                    <LayoutItem Id="BillingAddress" Index="3" ViewItem="BillingAddress" ShowCaption="" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="tabInstallationAddress" Caption="Anlagenadresse" IsNewNode="True">
+                    <LayoutItem Id="InstallationAddress" Index="5" ViewItem="InstallationAddress" ShowCaption="" IsNewNode="True" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutItem Id="InstallationDate" Index="1" Removed="True" />
+                <LayoutItem Id="Manufacturer" Index="2" Removed="True" />
+                <LayoutItem Id="Condition" Index="3" Removed="True" />
+                <LayoutItem Id="RealEstate" Index="4" Removed="True" />
+                <LayoutItem Id="InstallationAddress" Index="5" Removed="True" />
+                <LayoutItem Id="InsatallationNumber" Index="6" Removed="True" />
+                <LayoutItem Id="Designation" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+          <TabbedGroup Id="tabFurtherInformation" IsNewNode="True">
+            <LayoutGroup Id="lstTechnicalAssemblys_Group" Index="0" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
+              <LayoutItem Id="lstTechnicalAssemblys" ViewItem="lstTechnicalAssemblys" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="tabDescription" Caption="Beschreibung" IsNewNode="True">
+              <LayoutItem Id="Description" ViewItem="Description" ShowCaption="" Index="0" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+          <TabbedGroup Id="Tabs" Removed="True">
+            <LayoutGroup Id="Mainimage" Removed="True" />
+            <LayoutGroup Id="MainImageThumb" Removed="True" />
+            <LayoutGroup Id="MainImageWeb" Removed="True" />
+          </TabbedGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
