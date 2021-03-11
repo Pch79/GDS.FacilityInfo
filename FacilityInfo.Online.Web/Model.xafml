@@ -35,11 +35,11 @@
     <LayoutManagerOptions CaptionLocation="Top" />
   </Options>
   <SchemaModules>
-    <SchemaModule Name="CloneObjectModule" Version="18.2.5.0" IsNewNode="True" />
-    <SchemaModule Name="SchedulerAspNetModule" Version="18.2.5.0" IsNewNode="True" />
-    <SchemaModule Name="SchedulerModuleBase" Version="18.2.5.0" IsNewNode="True" />
-    <SchemaModule Name="SystemAspNetModule" Version="18.2.5.0" IsNewNode="True" />
-    <SchemaModule Name="SystemModule" Version="18.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="CloneObjectModule" Version="20.1.3.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerAspNetModule" Version="20.1.3.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="20.1.3.0" IsNewNode="True" />
+    <SchemaModule Name="SystemAspNetModule" Version="20.1.3.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="20.1.3.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
     <DetailView Id="Adresse_LookUp_DetailView" ClassName="FacilityInfo.Adresse.BusinessObjects.boAdresse" AllowDelete="False" AllowEdit="False" AllowNew="False" Caption="" IsNewNode="True">
@@ -125,7 +125,6 @@
         <PropertyEditor Id="lstAnlagenBilds" PropertyName="lstAnlagenBilds" View="boAnlage_lstAnlagenBilds_ListView" IsNewNode="True" />
         <PropertyEditor Id="lstAnlagengeraete" PropertyName="lstAnlagengeraete" View="boAnlage_lstAnlagengeraete_ListView" IsNewNode="True" />
         <PropertyEditor Id="lstAnlagenParameter" PropertyName="lstAnlagenParameter" View="boAnlage_lstAnlagenParameter_ListView" IsNewNode="True" />
-        <PropertyEditor Id="lstAnlagenService" PropertyName="lstAnlagenService" View="boAnlage_lstAnlagenService_ListView" IsNewNode="True" />
         <PropertyEditor Id="lstBuildings" PropertyName="lstBuildings" View="boAnlage_lstBuildings_ListView" IsNewNode="True" />
         <PropertyEditor Id="lstFloors" PropertyName="lstFloors" View="boAnlage_lstFloors_ListView" IsNewNode="True" />
         <PropertyEditor Id="lstKontakte" PropertyName="lstKontakte" View="boAnlage_lstKontakte_ListView" IsNewNode="True" />
@@ -286,7 +285,6 @@
         <PropertyEditor Id="lstAnlagenBilds" Index="-1" />
         <PropertyEditor Id="lstAnlagengeraete" Index="-1" />
         <PropertyEditor Id="lstAnlagenParameter" Index="-1" />
-        <PropertyEditor Id="lstAnlagenService" Index="-1" />
         <PropertyEditor Id="lstBauGruppe" Index="-1" />
         <PropertyEditor Id="lstBuildings" Index="-1" />
         <PropertyEditor Id="lstFloors" Index="-1" />
@@ -416,7 +414,6 @@
             <LayoutGroup Id="Produktdatenblatt" Caption="Produktdatenblatt" Index="2" IsNewNode="True">
               <LayoutItem Id="Produktdatenblatt" ViewItem="Produktdatenblatt" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="lstAnlagenService" Index="3" />
             <LayoutGroup Id="lstZugangAnlage" Index="3" Removed="True" />
             <LayoutGroup Id="Mainimage" Index="3" Removed="True" />
             <LayoutGroup Id="MainImageThumb" Index="4" Removed="True">
@@ -645,7 +642,6 @@
             <LayoutGroup Id="lstKwpWartungsTermine" Removed="True" />
             <LayoutGroup Id="lstLGAttachments" Removed="True" />
             <LayoutGroup Id="lstLGCheckListes" Removed="True" />
-            <LayoutGroup Id="lstServiceBase" Removed="True" />
             <LayoutGroup Id="MainImage" Removed="True" />
             <LayoutGroup Id="MainImageThumb" Removed="True" />
             <LayoutGroup Id="MainImageWeb" Removed="True" />
@@ -1218,7 +1214,6 @@
       <Items IsNewNode="True">
         <PropertyEditor Id="lstAnlagen" PropertyName="lstAnlagen" View="LgHaustechnikKomponente_lstAnlagen_ListView" IsNewNode="True" />
         <PropertyEditor Id="lstHauptAnlagen" PropertyName="lstHauptAnlagen" View="LgHaustechnikKomponente_lstHauptAnlagen_ListView" IsNewNode="True" />
-        <PropertyEditor Id="lstServices" PropertyName="lstServices" View="LgHaustechnikKomponente_lstServices_ListView" IsNewNode="True" />
       </Items>
       <Layout IsNewNode="True">
         <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">

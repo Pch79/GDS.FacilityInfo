@@ -1,4 +1,4 @@
-﻿namespace FacilityInfo.Hersteller.BusinessObjects
+﻿namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
 {
  using DevExpress.Xpo;
  using DevExpress.ExpressApp.DC;
@@ -13,6 +13,7 @@
  using DevExpress.ExpressApp;
     using FacilityInfo.Management.Helpers;
     using System.Drawing;
+    using FacilityInfo.Hersteller.BusinessObjects;
 
     [DefaultClassOptions]
     [XafDisplayName("Baugruppe")]
@@ -22,9 +23,7 @@
         private boHersteller _manufacturer;
         private System.String _designation;
         private System.String _modelName;
-        private System.String _description;
         private fiHerstellerProduktgruppe _productGroup;
-        private System.String _serialNumber;
 
         public TechnicalAssembly(Session session)
             : base(session)
@@ -87,31 +86,7 @@
             }
         }
 
-        public void makeMainThumbnail()
-        {
-            setMainThumbnail();
-            setMainImageWeb();
-        }
-        public void setMainThumbnail()
-        {
-            if (this.MainImage != null)
-            {
-                this.MainImageThumb = PictureHelper.getThumbnailByteArray(this.MainImage);
-                this.Save();
-                this.Session.CommitTransaction();
-            }
-        }
-
-        public void setMainImageWeb()
-        {
-            if (this.MainImage != null)
-            {
-                Image workingImage = PictureHelper.ImageFromByteArray(this.MainImage);
-                this.MainImageWeb = PictureHelper.ResizePicByWidth(workingImage, 300);
-                this.Save();
-                this.Session.CommitTransaction();
-            }
-        }
+      
 
         protected override void OnChanged(string propertyName, object oldValue, object newValue)
         {
@@ -172,19 +147,7 @@
                 SetPropertyValue("ProductGroup", ref _productGroup, value);
             }
         }
-        [XafDisplayName("Beschreibung")]
-        [Size(-1)]
-        public string Description
-        {
-            get
-            {
-                return _description;
-            }
-            set
-            {
-                SetPropertyValue("Description", ref _description, value);
-            }
-        }
+
         [XafDisplayName("Bezeichnung")]
         public string Designation
         {
@@ -198,22 +161,8 @@
             }
         }
 
-        [XafDisplayName("Seriennummer")]
-        public System.String SerialNumber
-        {
-
-            get
-            {
-                return _serialNumber;
-            }
-            set
-            {
-                SetPropertyValue("SerialNumber", ref _serialNumber, value);
-            }
-        }
-
         [XafDisplayName("Modellbezeichnung")]
-        public System.String ModModelName
+        public System.String ModelName
         {
             get
             {
@@ -239,31 +188,7 @@
             }
         }
         
-        [XafDisplayName("Vorschaubild")]
-        public byte[] MainImageThumb
-        {
-            get
-            {
-                return GetPropertyValue<byte[]>("MainImageThumb");
-            }
-            set { SetPropertyValue<byte[]>("MainImageThumb", value); }
-
-
-        }
-
-        [XafDisplayName("Titelbild (Web)")]
-        public byte[] MainImageWeb
-        {
-            get
-            {
-
-                return GetPropertyValue<byte[]>("MainImageWeb");
-            }
-            set
-            {
-                SetPropertyValue<byte[]>("MainImageWeb", value);
-            }
-        }
+       
 
         [XafDisplayName("Component-Parts")]
         [Association("TechnicalAssembly-ComponentPart")]

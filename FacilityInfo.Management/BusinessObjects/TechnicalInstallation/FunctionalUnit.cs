@@ -25,7 +25,7 @@ namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
     [DefaultClassOptions]
     [XafDisplayName("Funktionseinheit")]
     [ImageName("centos_16")]
-    [XafDefaultProperty("Bezeichnung")]
+    [XafDefaultProperty("MatchKey")]
     public class FunctionalUnit : BaseObject
     {
         private boLiegenschaft _realEstate;
@@ -42,6 +42,21 @@ namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
         public override void AfterConstruction()
         {
             base.AfterConstruction();
+        }
+
+        [XafDisplayName("Matchkey")]
+        public string MatchKey
+        {
+            get
+            {
+                string retVal = string.Empty;
+                var realEstate = string.Empty;
+                var designation = string.Empty;
+                realEstate = (this.RealEstate != null) ? this.RealEstate.Bezeichnung : "n.a.";
+                designation = (this.SystemDesignation != null)?this.SystemDesignation :"n.a.";
+                retVal = string.Format("{0} - {0}", realEstate, designation);
+                return retVal;
+            }
         }
 
         [XafDisplayName("Codierung")]

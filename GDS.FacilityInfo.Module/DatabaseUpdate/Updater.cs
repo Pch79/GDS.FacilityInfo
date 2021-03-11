@@ -43,13 +43,18 @@ namespace GDS.FacilityInfo.Module.DatabaseUpdate {
             }
 
 
-            PermissionPolicyUser gdsAdmin = ObjectSpace.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", "PcoAdmin"));
-            if (gdsAdmin == null)
+            PermissionPolicyUser pcoAdmin = ObjectSpace.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", "PcoAdmin"));
+            if (pcoAdmin == null)
             {
-                gdsAdmin = ObjectSpace.CreateObject<PermissionPolicyUser>();
-                gdsAdmin.UserName = "PcoAdmin";
+                pcoAdmin = ObjectSpace.CreateObject<PermissionPolicyUser>();
+                pcoAdmin.UserName = "PcoAdmin";
                 // Set a password if the standard authentication type is used
-                gdsAdmin.SetPassword("84Pco178");
+                // pcoAdmin.SetPassword("84Pco178");
+                pcoAdmin.SetPassword("19Pco79#");
+            }
+            else
+            {
+                pcoAdmin.SetPassword("19Pco79#");
             }
 
             // If a role with the Administrators name doesn't exist in the database, create this role
@@ -60,7 +65,7 @@ namespace GDS.FacilityInfo.Module.DatabaseUpdate {
             }
             adminRole.IsAdministrative = true;
 			userAdmin.Roles.Add(adminRole);
-            gdsAdmin.Roles.Add(adminRole);
+            pcoAdmin.Roles.Add(adminRole);
             ObjectSpace.CommitChanges(); //This line persists created object(s).
         }
         public override void UpdateDatabaseBeforeUpdateSchema() {

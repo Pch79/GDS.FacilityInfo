@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
+using FacilityInfo.Management.Helpers;
+using System.Drawing;
 
 namespace FacilityInfo.Artikelverwaltung.BusinessObjects
 {
@@ -35,6 +37,56 @@ namespace FacilityInfo.Artikelverwaltung.BusinessObjects
         {
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+        }
+
+        protected override void OnChanged(string propertyName, object oldValue, object newValue)
+        {
+            base.OnChanged(propertyName, oldValue, newValue);
+             switch (propertyName)
+            {
+                case "Bild":
+                    if (!this.IsLoading)
+                    {
+                        if (newValue != null)
+                        {
+                            setMainThumbnail();
+                            //hier kan ich auch gleich die Web-Implementierung erstellen
+                            setMainImageWeb();
+                        }
+                        if (newValue == null)
+                        {
+                            this.MainImageThumb = null;
+                            this.MainImageWeb = null;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        public void makeMainThumbnail()
+        {
+            setMainThumbnail();
+            setMainImageWeb();
+        }
+        public void setMainThumbnail()
+        {
+            if (this.Bild != null)
+            {
+                this.MainImageThumb = PictureHelper.getThumbnailByteArray(this.Bild);
+                this.Save();
+                this.Session.CommitTransaction();
+            }
+        }
+
+        public void setMainImageWeb()
+        {
+            if (this.Bild != null)
+            {
+                Image workingImage = PictureHelper.ImageFromByteArray(this.Bild);
+                this.MainImageWeb = PictureHelper.ResizePicByWidth(workingImage, 300);
+                this.Save();
+                this.Session.CommitTransaction();
+            }
         }
         #region Properties
         [XafDisplayName("Warengruppe")]
@@ -135,6 +187,32 @@ namespace FacilityInfo.Artikelverwaltung.BusinessObjects
             set
             {
                 SetPropertyValue<byte[]>("Bild", value);
+            }
+        }
+
+        [XafDisplayName("Vorschaubild")]
+        public byte[] MainImageThumb
+        {
+            get
+            {
+                return GetPropertyValue<byte[]>("MainImageThumb");
+            }
+            set { SetPropertyValue<byte[]>("MainImageThumb", value); }
+
+
+        }
+
+        [XafDisplayName("Titelbild (Web)")]
+        public byte[] MainImageWeb
+        {
+            get
+            {
+
+                return GetPropertyValue<byte[]>("MainImageWeb");
+            }
+            set
+            {
+                SetPropertyValue<byte[]>("MainImageWeb", value);
             }
         }
         #endregion

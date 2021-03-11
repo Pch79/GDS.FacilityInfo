@@ -77,7 +77,10 @@ namespace FacilityInfo.Adresse.BusinessObjects
         }
 
       
-
+        //TODO: Beim Erstellen der Adresse folgende Fälle Beachten:
+        // 1. Adresse ohne Anrede aber mit Firmenname
+        // 2. Adresse ohne Firmenname aber mit ausgefülltem Vornamen und Nachnamen
+        // Ergebnis sollte sein, jede Adresse 
 
         #region Wartungszone
 
@@ -384,6 +387,7 @@ namespace FacilityInfo.Adresse.BusinessObjects
             }
         }
 
+        [XafDisplayName("Firmenname/Bezeichnung")]
         public string firmenname
         {
             get

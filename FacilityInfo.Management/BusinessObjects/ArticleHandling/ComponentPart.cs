@@ -5,6 +5,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
 using FacilityInfo.Artikelverwaltung.BusinessObjects;
 using FacilityInfo.Hersteller.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects.TechnicalInstallation;
 
 namespace FacilityInfo.Management.BusinessObjects.ArticleHandling
 {
@@ -12,7 +13,7 @@ namespace FacilityInfo.Management.BusinessObjects.ArticleHandling
 
 
     [DefaultClassOptions]
-    [XafDisplayName("Artikel")]
+    [XafDisplayName("Component-Part")]
     [ImageName("box_16")]
     [XafDefaultProperty("KurzText")]
     public class ComponentPart : artikelArtikelBase

@@ -45,104 +45,106 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.ExpressApp.AuditTrail.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.DataAccess.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.AuditTrail.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Chart.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Chart.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.CloneObject.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.CloneObject.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Notifications.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Notifications.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Objects.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Objects.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.PivotChart.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.PivotChart.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.PivotGrid.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.PivotGrid.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ReportsV2.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.ReportsV2.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Scheduler.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Scheduler.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ScriptRecorder.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.ScriptRecorder.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.StateMachine.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Security.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.StateMachine.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Validation.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Workflow.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Workflow.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v19.2">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v19.2">
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v20.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v19.2.Export">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.2.Export">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Printing.v19.2.Core">
+    <Reference Include="DevExpress.Printing.v20.2.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Data.v19.2">
+    <Reference Include="DevExpress.Data.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v19.2">
+    <Reference Include="DevExpress.ExpressApp.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v19.2">
+    <Reference Include="DevExpress.Persistent.Base.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v19.2">
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Workflow.Activities.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Workflow.Activities.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v19.2">
+    <Reference Include="DevExpress.Xpo.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Sparkline.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.CodeParser.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v19.2.Extensions, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v19.2.Core, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v20.2.Wizard, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v20.2.UI, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.2.Extensions, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Core.Desktop, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="GDS.ExpressApp.Ui.Extensions.Web, Version=18.1822.2018.13, Culture=neutral, PublicKeyToken=4f431097afd917d8, processorArchitecture=MSIL">
       <HintPath>..\packages\GDS.ExpressApp.Ui.Extensions.Web.18.1822.2018.13\lib\net452\GDS.ExpressApp.Ui.Extensions.Web.dll</HintPath>
     </Reference>
@@ -173,35 +175,39 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessObjects\actionActionAnlage.cs" />
-    <Compile Include="BusinessObjects\actionActionBase.cs" />
-    <Compile Include="BusinessObjects\actionActionPackage.cs" />
-    <Compile Include="BusinessObjects\actionActionPosition.cs" />
-    <Compile Include="BusinessObjects\adresseTitel.cs" />
-    <Compile Include="BusinessObjects\anlageAnlagenBaugruppe.cs" />
-    <Compile Include="BusinessObjects\anlageBauGruppe.cs" />
-    <Compile Include="BusinessObjects\AnKomponentenTyp.cs" />
-    <Compile Include="BusinessObjects\anlagenServicePunkt.cs" />
-    <Compile Include="BusinessObjects\AnPruefanschluss.cs" />
-    <Compile Include="BusinessObjects\AnPruefPunkt.cs" />
-    <Compile Include="BusinessObjects\AnPruefPunktTyp.cs" />
-    <Compile Include="BusinessObjects\AnschlussKategorie.cs" />
-    <Compile Include="BusinessObjects\artikelArtikelBase.cs" />
-    <Compile Include="BusinessObjects\artikelArtikelKatalog.cs" />
-    <Compile Include="BusinessObjects\artikelServiceArtikel.cs" />
-    <Compile Include="BusinessObjects\artikelWarenGruppe.cs" />
+    <Compile Include="BusinessObjects\TechnicalInstallation\TechnicalAssembly.cs" />
+    <Compile Include="BusinessObjects\TechnicalInstallation\FunctionalUnit.cs" />
+    <Compile Include="BusinessObjects\TechnicalInstallation\TechnicalInstallation.cs" />
+    <Compile Include="BusinessObjects\WorkItemHandling\EquipmentWorkItem.cs" />
+    <Compile Include="BusinessObjects\WorkItemHandling\WorkItem.cs" />
+    <Compile Include="BusinessObjects\WorkItemHandling\WorkItemPosition.cs" />
+    <Compile Include="BusinessObjects\WorkItemHandling\FunctionUnitWorkItem.cs" />
+    <Compile Include="BusinessObjects\Address\adresseTitel.cs" />
+    <Compile Include="BusinessObjects\ArticleHandling\ComponentPart.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\anlageAnlagenBaugruppe.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\anlageBauGruppe.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\AnKomponentenTyp.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\anlagenServicePunkt.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\AnPruefanschluss.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\AnPruefPunkt.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\AnPruefPunktTyp.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\AnschlussKategorie.cs" />
+    <Compile Include="BusinessObjects\ArticleHandling\artikelArtikelBase.cs" />
+    <Compile Include="BusinessObjects\ArticleHandling\artikelArtikelKatalog.cs" />
+    <Compile Include="BusinessObjects\ArticleHandling\artikelServiceArtikel.cs" />
+    <Compile Include="BusinessObjects\ArticleHandling\artikelWarenGruppe.cs" />
     <Compile Include="BusinessObjects\BildKategorie.cs" />
     <Compile Include="BusinessObjects\boAbteilung.cs" />
-    <Compile Include="BusinessObjects\boADRKommunikation.cs" />
-    <Compile Include="BusinessObjects\boANAttachment.cs" />
-    <Compile Include="BusinessObjects\boAdresse.cs" />
-    <Compile Include="BusinessObjects\boAnlage.cs" />
-    <Compile Include="BusinessObjects\boAnlagenArt.cs" />
-    <Compile Include="BusinessObjects\boAnlagenBild.cs" />
-    <Compile Include="BusinessObjects\boAnlagenKategorie.cs" />
-    <Compile Include="BusinessObjects\boAnrede.cs" />
-    <Compile Include="BusinessObjects\boAnsprechPartner.cs" />
-    <Compile Include="BusinessObjects\boAttachmentkategorie.cs" />
+    <Compile Include="BusinessObjects\Address\boADRKommunikation.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\boANAttachment.cs" />
+    <Compile Include="BusinessObjects\Address\boAdresse.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\boAnlage.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\boAnlagenArt.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\boAnlagenBild.cs" />
+    <Compile Include="BusinessObjects\EquipmentHandling\boAnlagenKategorie.cs" />
+    <Compile Include="BusinessObjects\Address\boAnrede.cs" />
+    <Compile Include="BusinessObjects\Address\boAnsprechPartner.cs" />
+    <Compile Include="BusinessObjects\DMS\boAttachmentkategorie.cs" />
     <Compile Include="BusinessObjects\boBearbeitungsZeit.cs" />
     <Compile Include="BusinessObjects\boBundesland.cs" />
     <Compile Include="BusinessObjects\boCheckEntry.cs" />
@@ -209,14 +215,14 @@
     <Compile Include="BusinessObjects\boCheckItemKategorie.cs" />
     <Compile Include="BusinessObjects\boCheckItemValue.cs" />
     <Compile Include="BusinessObjects\boCheckliste.cs" />
-    <Compile Include="BusinessObjects\boAttachment.cs" />
-    <Compile Include="BusinessObjects\boAttachmentBibliothek.cs" />
+    <Compile Include="BusinessObjects\DMS\boAttachment.cs" />
+    <Compile Include="BusinessObjects\DMS\boAttachmentBibliothek.cs" />
     <Compile Include="BusinessObjects\boGeraet.cs" />
     <Compile Include="BusinessObjects\boGeraeteart.cs" />
     <Compile Include="BusinessObjects\boNummernkreis.cs" />
     <Compile Include="BusinessObjects\boEntnahmeStelle.cs" />
     <Compile Include="BusinessObjects\boHersteller.cs" />
-    <Compile Include="BusinessObjects\boKontaktKommunikation.cs" />
+    <Compile Include="BusinessObjects\Address\boKontaktKommunikation.cs" />
     <Compile Include="BusinessObjects\boKreis.cs" />
     <Compile Include="BusinessObjects\boKuendigungsGrund.cs" />
     <Compile Include="BusinessObjects\coreBusinessUnit.cs" />
@@ -240,7 +246,8 @@
     <Compile Include="BusinessObjects\fremdSysFremdsystem.cs" />
     <Compile Include="BusinessObjects\fiGebaeude.cs" />
     <Compile Include="BusinessObjects\fiHerstellerAttachment.cs" />
-    <Compile Include="BusinessObjects\SystemComponent.cs" />
+    <Compile Include="BusinessObjects\PersistentClass1.cs" />
+    <Compile Include="BusinessObjects\fiHerstellerProdukt.cs" />
     <Compile Include="BusinessObjects\fiHerstellerProduktAttachment.cs" />
     <Compile Include="BusinessObjects\fiHerstellerProduktgruppe.cs" />
     <Compile Include="BusinessObjects\fiLeistungskatalog.cs" />
@@ -250,8 +257,8 @@
     <Compile Include="BusinessObjects\boEinheit.cs" />
     <Compile Include="BusinessObjects\boFIObjekt.cs" />
     <Compile Include="BusinessObjects\boHausverwalter.cs" />
-    <Compile Include="BusinessObjects\boKommunikationItem.cs" />
-    <Compile Include="BusinessObjects\boKontakt.cs" />
+    <Compile Include="BusinessObjects\Address\boKommunikationItem.cs" />
+    <Compile Include="BusinessObjects\Address\boKontakt.cs" />
     <Compile Include="BusinessObjects\boKostenGruppe.cs" />
     <Compile Include="BusinessObjects\boLand.cs" />
     <Compile Include="BusinessObjects\boLiegenschaft.cs" />
@@ -286,6 +293,7 @@
     <Compile Include="BusinessObjects\parameterParameterDefinition.cs" />
     <Compile Include="BusinessObjects\parameterAnlagenArtParam.cs" />
     <Compile Include="BusinessObjects\parameterProduktGruppeParam.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\ServicePosition.cs" />
     <Compile Include="BusinessObjects\serviceServicePackage.cs" />
     <Compile Include="BusinessObjects\vertragServiceVertrag.cs" />
     <Compile Include="BusinessObjects\vertragVertragBase.cs" />
@@ -305,43 +313,55 @@
     <Compile Include="BusinessObjects\KwpWartungsAuftrag.cs" />
     <Compile Include="BusinessObjects\KwpWartungsVertrag.cs" />
     <Compile Include="BusinessObjects\LgHaustechnikKomponente.cs" />
-    <Compile Include="BusinessObjects\wartungWartungsPlan.cs" />
-    <Compile Include="BusinessObjects\wartungWartungsPlanAnlagenArt.cs" />
-    <Compile Include="BusinessObjects\wartungWartungsPlanProdukt.cs" />
-    <Compile Include="BusinessObjects\wartungWartungsPosition.cs" />
-    <Compile Include="Controllers\Ctrl_ActionAnlage_DetailView.cs" />
-    <Compile Include="Controllers\Ctrl_ActionAnlage_DetailView.Designer.cs">
-      <DependentUpon>Ctrl_ActionAnlage_DetailView.cs</DependentUpon>
+    <Compile Include="BusinessObjects\ServiceHandling\MaintenanceSchedule.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\ServiceSpecification.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\ComponentMaintenance.cs" />
+    <Compile Include="BusinessObjects\ServiceHandling\MaintenancePosition.cs" />
+    <Compile Include="Controllers\Ctrl_Anlage_DetailView.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controllers\Ctrl_Anlage_DetailView.cs" />
     <Compile Include="Controllers\Ctrl_Anlage_DetailView.Designer.cs">
       <DependentUpon>Ctrl_Anlage_DetailView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Ctrl_FremdSysSynchItem.cs" />
+    <Compile Include="Controllers\Ctrl_FremdSysSynchItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\Ctrl_FremdSysSynchItem.Designer.cs">
       <DependentUpon>Ctrl_FremdSysSynchItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Ctrl_LgHaustechnikKomponente_DetailView.cs" />
+    <Compile Include="Controllers\Ctrl_LgHaustechnikKomponente_DetailView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\Ctrl_LgHaustechnikKomponente_DetailView.Designer.cs">
       <DependentUpon>Ctrl_LgHaustechnikKomponente_DetailView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Ctrl_Liegenschaften_ListView.cs" />
+    <Compile Include="Controllers\Ctrl_Liegenschaften_ListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\Ctrl_Liegenschaften_ListView.Designer.cs">
       <DependentUpon>Ctrl_Liegenschaften_ListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Ctrl_Liegenschaft_DetailView.cs" />
+    <Compile Include="Controllers\Ctrl_Liegenschaft_DetailView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\Ctrl_Liegenschaft_DetailView.Designer.cs">
       <DependentUpon>Ctrl_Liegenschaft_DetailView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Ctrl_ListView.cs" />
+    <Compile Include="Controllers\Ctrl_ListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\Ctrl_ListView.Designer.cs">
       <DependentUpon>Ctrl_ListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Ctrl_Mandant_DetailView.cs" />
+    <Compile Include="Controllers\Ctrl_Mandant_DetailView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\Ctrl_Mandant_DetailView.Designer.cs">
       <DependentUpon>Ctrl_Mandant_DetailView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Ctrl_ZugangLiegenschaft_DetailView.cs" />
+    <Compile Include="Controllers\Ctrl_ZugangLiegenschaft_DetailView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\Ctrl_ZugangLiegenschaft_DetailView.Designer.cs">
       <DependentUpon>Ctrl_ZugangLiegenschaft_DetailView.cs</DependentUpon>
     </Compile>
@@ -352,6 +372,8 @@
     <Compile Include="DomainComponents\IcheckListe.cs" />
     <Compile Include="DomainComponents\Ikommunikation.cs" />
     <Compile Include="DomainComponents\IpictureItem.cs" />
+    <Compile Include="EnumStore\CodeFile1.cs" />
+    <Compile Include="EnumStore\TOperatingState.cs" />
     <Compile Include="EnumStore\dirEntryFileExtensions.cs" />
     <Compile Include="EnumStore\enmAttatchmenttyp.cs" />
     <Compile Include="EnumStore\enmBetreuungsStatus.cs" />
@@ -379,23 +401,26 @@
     <Compile Include="EnumStore\enmZustand.cs" />
     <Compile Include="Helpers\BingGeoHelper.cs" />
     <Compile Include="Helpers\GoogleGeoHelper.cs" />
+    <Compile Include="Interfaces\IClientService.cs" />
     <Compile Include="Helpers\PictureHelper.cs" />
     <Compile Include="Helpers\serviceHelper.cs" />
     <Compile Include="Helpers\TurnusHelper.cs" />
     <Compile Include="Interfaces\Iactive.cs" />
+    <Compile Include="Interfaces\IRealEstateService.cs" />
     <Compile Include="Klassen\Category.cs" />
     <Compile Include="Klassen\MyLocalizedClassInfoTypeConverter.cs" />
-    <Compile Include="Module.cs" />
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Module.Designer.cs">
       <DependentUpon>Module.cs</DependentUpon>
     </Compile>
     <Compile Include="BusinessObjects\parameterParameterTyp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ClientService.cs" />
+    <Compile Include="Services\RealEstateService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controllers\Ctrl_ActionAnlage_DetailView.resx">
-      <DependentUpon>Ctrl_ActionAnlage_DetailView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controllers\Ctrl_Anlage_DetailView.resx">
       <DependentUpon>Ctrl_Anlage_DetailView.cs</DependentUpon>
     </EmbeddedResource>
@@ -1824,7 +1849,8 @@
     <Content Include="Images\wrench_orange_16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessObjects\TechnicalSystem\" />
+    <Folder Include="BusinessObjects\BaseData\" />
+    <Folder Include="BusinessObjects\BusinessData\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

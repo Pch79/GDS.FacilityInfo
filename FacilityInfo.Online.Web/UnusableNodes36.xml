@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="fiherstellerProdukt_DetailView_Nested" CustomizationEnabled="False" />
+    <DetailView Id="LGHaustechnikKomponente_Lookup_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="lstServices" PropertyName="lstServices" View="LgHaustechnikKomponente_lstServices_ListView" />
+      </Items>
+    </DetailView>
+    <DetailView Id="boAdresse_Lookup_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstZugangsInfos">
+              <LayoutItem Id="lstZugangsInfos" ViewItem="lstZugangsInfos" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Anlage_SubAnlagen_LookUp_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="lstAnlagenService" PropertyName="lstAnlagenService" View="boAnlage_lstAnlagenService_ListView" />
+      </Items>
+    </DetailView>
+    <DetailView Id="boAnlage_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="lstAnlagenService" Index="-1" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstAnlagenService" Index="3" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="boLiegenschaft_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="lstServiceBase" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

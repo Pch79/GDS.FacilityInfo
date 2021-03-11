@@ -22,6 +22,7 @@ namespace GDS.FacilityInfo.Win {
         /// </summary>
         [STAThread]
         static void Main() {
+            DevExpress.ExpressApp.FrameworkSettings.DefaultSettingsCompatibilityMode = DevExpress.ExpressApp.FrameworkSettingsCompatibilityMode.v20_1;
 #if EASYTEST
             DevExpress.ExpressApp.Win.EasyTest.EasyTestRemotingRegistration.Register();
 #endif
@@ -31,6 +32,8 @@ namespace GDS.FacilityInfo.Win {
             DevExpress.XtraEditors.WindowsFormsSettings.AllowRibbonFormGlass = DevExpress.Utils.DefaultBoolean.True;
             DevExpress.XtraEditors.WindowsFormsSettings.DefaultRibbonStyle = DevExpress.XtraEditors.DefaultRibbonControlStyle.Office2019;
             DevExpress.XtraEditors.WindowsFormsSettings.SetDPIAware();
+            
+
 
 
             EditModelPermission.AlwaysGranted = System.Diagnostics.Debugger.IsAttached;

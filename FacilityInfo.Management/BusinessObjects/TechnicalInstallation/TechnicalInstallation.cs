@@ -1,35 +1,34 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
 using DevExpress.Xpo;
 using DevExpress.ExpressApp;
 using System.ComponentModel;
 using DevExpress.ExpressApp.DC;
 using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.Adresse.BusinessObjects;
 using FacilityInfo.Core.BusinessObjects;
-using DevExpress.CodeParser;
 using FacilityInfo.Hersteller.BusinessObjects;
 using FacilityInfo.Management.EnumStore;
-using DevExpress.Pdf.Native;
 using FacilityInfo.Liegenschaft.BusinessObjects;
 using FacilityInfo.Management.Helpers;
 using System.Drawing;
 using FacilityInfo.Management.Interfaces;
 using FacilityInfo.Management.Services;
+using BinaryOperatorType = DevExpress.Data.Filtering.BinaryOperatorType;
+using DevExpress.Persistent.Base.General;
+using DevExpress.ExpressApp.Utils;
+using FacilityInfo.Management.BusinessObjects.ArticleHandling;
 
 namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
 {
     [DefaultClassOptions]
     [XafDisplayName("Technische Anlage")]
     [ImageName("centos_16")]
-    [XafDefaultProperty("AnlagenNummer")]
-    public class TechnicalInstallation : BaseObject
+    [XafDefaultProperty("Designation")]
+    public class TechnicalInstallation : BaseObject, ITreeNode
     {
         private string _installationCode;
         //private System.String _ansprechcode;
@@ -50,7 +49,7 @@ namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
         private FunctionalUnit _functionalUnit;
         private TOperatingState _operstionState;
         private IClientService _clientService;
-
+        private TechnicalAssembly _technicalAssembly;
         public TechnicalInstallation(Session session)
             : base(session)
         {
@@ -131,6 +130,21 @@ namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
                             this.RealEstate = this.Session.GetObjectByKey<boLiegenschaft>(this.FunctionalUnit.RealEstate.Oid);
                         }
                         break;
+                    case "ParentInstallation":
+                        if (newValue != null)
+                        {
+                            TechnicalInstallation parent = (TechnicalInstallation)newValue;
+                            if (parent.FunctionalUnit != null)
+                            {
+                                this.FunctionalUnit = this.Session.GetObjectByKey<FunctionalUnit>(parent.FunctionalUnit.Oid);
+                            }
+                            if(parent.RealEstate != null)
+                            {
+                                this.RealEstate = this.Session.GetObjectByKey<boLiegenschaft>(parent.RealEstate.Oid);
+                            }
+                        }
+
+                        break;
                 }
             }
         }
@@ -146,6 +160,81 @@ namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
             this.InstallationAddress = curAdresse;
         }
 
+        private XPCollection<TechnicalAssembly> _availableAssemblies;
+        [Browsable(false)]
+        public XPCollection<TechnicalAssembly> AvailableAssemblies
+        {
+            get
+            {
+                if (_availableAssemblies == null)
+                {
+                    _availableAssemblies = new XPCollection<TechnicalAssembly>(this.Session);
+
+                    RefreshAvailableAssemblies();
+                }
+                return _availableAssemblies;
+            }
+        }
+
+        private void RefreshAvailableAssemblies()
+        {
+            if (_availableAssemblies == null)
+            {
+                return;
+            }
+            if (this.Manufacturer != null)
+            {
+                _availableAssemblies.Criteria = new BinaryOperator("Manufacturer.Oid", this.Manufacturer.Oid, BinaryOperatorType.Equal);
+            }
+            else
+            {
+                _availableAssemblies.Criteria = new BinaryOperator(1, 1, BinaryOperatorType.Equal);
+            }
+        }
+
+        public void makeMainThumbnail()
+        {
+            setMainThumbnail();
+            setMainImageWeb();
+        }
+        public void setMainThumbnail()
+        {
+            if (this.Mainimage != null)
+            {
+                this.MainImageThumb = PictureHelper.getThumbnailByteArray(this.Mainimage);
+                this.Save();
+                this.Session.CommitTransaction();
+            }
+        }
+
+        public void setMainImageWeb()
+        {
+            if (this.Mainimage != null)
+            {
+                Image workingImage = PictureHelper.ImageFromByteArray(this.Mainimage);
+                this.MainImageWeb = PictureHelper.ResizePicByWidth(workingImage, 400);
+                this.Save();
+                this.Session.CommitTransaction();
+            }
+        }
+
+        [XafDisplayName("Komponenten")]
+        public XPCollection<ComponentPart> ComponentParts
+        {
+            get
+            {
+                { return GetCollection<ComponentPart>("ComponentParts"); }
+            }
+        }
+
+        [XafDisplayName("TechnicalAsembly")]
+        [DataSourceProperty("AvailableAssemblies")]
+        [Association("TechnicalInstallation-TechnicalAssembly")]
+        public TechnicalAssembly TechnicalAssembly
+        {
+            get { return this._technicalAssembly; }
+            set { SetPropertyValue("TechnicalAssembly",ref _technicalAssembly,value);}
+        }
 
         [XafDisplayName("Wartungszone")]
         // [Delayed(true)]
@@ -195,12 +284,6 @@ namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
         {
             get { return this._functionalUnit; }
             set { SetPropertyValue("FunctionalUnit", ref _functionalUnit, value); }
-        }
-
-        [Association("TechnicalInstallation-TechnicalAssembly")]
-        public XPCollection<TechnicalAssembly> lstTechnicalAssemblys
-        {
-            get { return GetCollection<TechnicalAssembly>("lstTechnicalAssemblys"); }
         }
 
         [XafDisplayName("Anlagenstatus")]
@@ -280,7 +363,7 @@ namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
             set
             {
                 SetPropertyValue("Manufacturer", ref _manufacturer, value);
-                // RefreshAvailableProducts();
+                RefreshAvailableAssemblies();
             }
         }
 
@@ -406,30 +489,59 @@ namespace FacilityInfo.Management.BusinessObjects.TechnicalInstallation
             }
         }
 
-        public void makeMainThumbnail()
+        [XafDisplayName("Hauptanlage")]
+        //[DataSourceCriteria("Liegenschaft.Oid ='@this.Liegenschaft.Oid' AND Oid != '@this.Oid'")]
+        [Association("ParentInstallation-ChildInstallations")]
+        public TechnicalInstallation ParentInstallation
         {
-            setMainThumbnail();
-            setMainImageWeb();
-        }
-        public void setMainThumbnail()
-        {
-            if (this.Mainimage != null)
+            get
             {
-                this.MainImageThumb = PictureHelper.getThumbnailByteArray(this.Mainimage);
-                this.Save();
-                this.Session.CommitTransaction();
+                return _parentInstallation;
+            }
+            set
+            {
+                SetPropertyValue("ParentInstallation", ref _parentInstallation, value);
             }
         }
 
-        public void setMainImageWeb()
+        [Association("ParentInstallation-ChildInstallations")]
+        public XPCollection<TechnicalInstallation> ChildInstallations
         {
-            if (this.Mainimage != null)
+            get { return GetCollection<TechnicalInstallation>("ChildInstallations"); }
+        }
+       
+        IBindingList ITreeNode.Children
+        {
+            get { return this.ChildInstallations; }
+        }
+
+        string ITreeNode.Name
+        {
+            get { return this.Designation; }
+        }
+
+        ITreeNode ITreeNode.Parent
+        {
+            get
             {
-                Image workingImage = PictureHelper.ImageFromByteArray(this.Mainimage);
-                this.MainImageWeb = PictureHelper.ResizePicByWidth(workingImage, 400);
-                this.Save();
-                this.Session.CommitTransaction();
+                return this.ParentInstallation;
             }
         }
+
+        public System.Drawing.Image GetImage(out string imageName)
+        {
+            if (this.ChildInstallations != null && this.ChildInstallations.Count > 0)
+            {
+                imageName = "BO_Category";
+            }
+            else
+            {
+                imageName = "BO_Product";
+            }
+            return ImageLoader.Instance.GetImageInfo(imageName).Image;
+        }
+        
+
+       
     }
 }

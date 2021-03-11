@@ -12,6 +12,7 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using FacilityInfo.DMS.BusinessObjects;
+using FacilityInfo.Management.BusinessObjects.TechnicalInstallation;
 
 namespace FacilityInfo.Hersteller.BusinessObjects
 {

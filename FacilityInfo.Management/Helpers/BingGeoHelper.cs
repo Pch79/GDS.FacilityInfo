@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using DevExpress.Utils.OAuth.Provider;
 
 namespace FacilityInfo.Management.Helpers
 {
@@ -18,9 +17,5 @@ namespace FacilityInfo.Management.Helpers
         //den Code prüfen
         //den Request senden
         //Geolocation holen
-
-       
-
-
     }
 }

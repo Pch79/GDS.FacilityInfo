@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.Online.Web", "
 		{A488DFB4-0FA0-4F35-94AB-65FBA07B804E} = {A488DFB4-0FA0-4F35-94AB-65FBA07B804E}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacilityInfo.Services", "FacilityInfo.Services\FacilityInfo.Services.csproj", "{E45FDEF4-4BC5-4B8D-8B01-403ABD4C757C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,12 @@ Global
 		{70CA93DA-DF3D-4FF4-9DF6-962AB077D776}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
 		{70CA93DA-DF3D-4FF4-9DF6-962AB077D776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70CA93DA-DF3D-4FF4-9DF6-962AB077D776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45FDEF4-4BC5-4B8D-8B01-403ABD4C757C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45FDEF4-4BC5-4B8D-8B01-403ABD4C757C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45FDEF4-4BC5-4B8D-8B01-403ABD4C757C}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{E45FDEF4-4BC5-4B8D-8B01-403ABD4C757C}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{E45FDEF4-4BC5-4B8D-8B01-403ABD4C757C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45FDEF4-4BC5-4B8D-8B01-403ABD4C757C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

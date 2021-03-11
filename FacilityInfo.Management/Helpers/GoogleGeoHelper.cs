@@ -27,19 +27,22 @@ namespace FacilityInfo.Management.Helpers
                 var xdoc = XDocument.Load(response.GetResponseStream());
 
                 var result = xdoc.Element("GeocodeResponse").Element("result");
-                var resultStatus = xdoc.Element("GeocodeResponse").Element("status");
-                requestAnswer = resultStatus.Value;
-                Console.WriteLine("Antwortstatus: " + resultStatus.Value);
-               
-                var locationElement = result.Element("geometry").Element("location");
-                var lat = locationElement.Element("lat");
-                var lng = locationElement.Element("lng");
+                if (result != null)
+                {
+                    var resultStatus = xdoc.Element("GeocodeResponse").Element("status");
+                    requestAnswer = resultStatus.Value;
+                    Console.WriteLine("Antwortstatus: " + resultStatus.Value);
 
-                Console.WriteLine("latitude: " + lat.Value);
-                Console.WriteLine("longitude: " + lng.Value);
-                
-                locDict.Add("latitude", lat.Value);
-                locDict.Add("longitude", lng.Value);
+                    var locationElement = result.Element("geometry").Element("location");
+                    var lat = locationElement.Element("lat");
+                    var lng = locationElement.Element("lng");
+
+                    Console.WriteLine("latitude: " + lat.Value);
+                    Console.WriteLine("longitude: " + lng.Value);
+
+                    locDict.Add("latitude", lat.Value);
+                    locDict.Add("longitude", lng.Value);
+                }
 
             }
             catch (Exception geoException)

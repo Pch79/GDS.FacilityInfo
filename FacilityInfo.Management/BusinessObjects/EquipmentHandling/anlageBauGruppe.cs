@@ -23,22 +23,18 @@ namespace FacilityInfo.Anlagen.BusinessObjects
         private System.String _bezeichnung;
         private System.String _beschreibung;
         private boAnlagenArt _anlagenArt;
-        //default Serviceintervall
-
-
-        //die Wertebereiche dann individuell bei der Anlage definieren
-        
-
 
         public anlageBauGruppe(Session session)
             : base(session)
         {
         }
+
         public override void AfterConstruction()
         {
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
+
         #region Properties
         [XafDisplayName("Anlagenart")]
         [Association("boAnlagenart-anlageBauGruppe")]

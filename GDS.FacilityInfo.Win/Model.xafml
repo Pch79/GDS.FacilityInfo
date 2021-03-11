@@ -76,12 +76,6 @@
         <Member Name="ParamKey" EditMaskType="RegEx" EditMask="([A-Z]|\d)+" />
       </OwnMembers>
     </Class>
-    <Class Name="FacilityInfo.Vertrag.BusinessObjects.boKuendigungsGrund" ImageName="BO_Rules" />
-    <Class Name="FacilityInfo.Vertrag.BusinessObjects.fiLeistungskatalog">
-      <OwnMembers>
-        <Member Name="Beschreibung" PropertyEditorType="DevExpress.ExpressApp.HtmlPropertyEditor.Win.HtmlPropertyEditor" />
-      </OwnMembers>
-    </Class>
   </BOModel>
   <CreatableItems>
     <CreatableItem ClassName="FacilityInfo.Adresse.BusinessObjects.boADRKommunikation" Index="-1" Removed="True" />
@@ -91,7 +85,6 @@
     <CreatableItem ClassName="FacilityInfo.Adresse.BusinessObjects.boKontaktKommunikation" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Adresse.BusinessObjects.boMandantKommunikation" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Adresse.BusinessObjects.boOrt" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.AnKomponentenTyp" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.AnPruefanschluss" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.AnPruefPunkt" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.AnPruefPunktTyp" Index="-1" Removed="True" />
@@ -102,7 +95,6 @@
     <CreatableItem ClassName="FacilityInfo.Anlagen.BusinessObjects.fiAnlagenGeraet" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Artikelverwaltung.BusinessObjects.artikelArtikelBase" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Artikelverwaltung.BusinessObjects.artikelArtikelKatalog" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Artikelverwaltung.BusinessObjects.artikelServiceArtikel" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Building.BusinessObjects.fiEbene" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Building.BusinessObjects.fiEbenenart" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Building.BusinessObjects.fiGebaeude" Index="-1" Removed="True" />
@@ -131,11 +123,8 @@
     <CreatableItem ClassName="FacilityInfo.Hersteller.BusinessObjects.fiHerstellerProdukt" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Hersteller.BusinessObjects.fiHerstellerProduktgruppe" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Liegenschaft.BusinessObjects.boLiegenschaft" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.AnschlussKategorie" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boAnsprechPartner" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boBearbeitungsZeit" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boBundesland" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boCheckEntry" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boCheckItem" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boCheckItemKategorie" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boCheckItemValue" Index="-1" Removed="True" />
@@ -149,14 +138,10 @@
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boMitarbeiter" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boNummernkreis" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boPosition" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boServiceArt" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boTypenliste" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.boWartungszone" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.fiAnlagenparameter" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.fiMessungAttachment" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.fiTechnikDefinition" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.fiTechnikeinheit" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Messung.BusinessObjects.boEntnahmeStelle" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Messung.BusinessObjects.boMessItem" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Messung.BusinessObjects.boMessItemData" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Messung.BusinessObjects.boMessitemEntry" Index="-1" Removed="True" />
@@ -164,12 +149,6 @@
     <CreatableItem ClassName="FacilityInfo.Messung.BusinessObjects.boMesstyp" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Messung.BusinessObjects.boMessung" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Messung.BusinessObjects.boWertebereich" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Vertrag.BusinessObjects.boKuendigungsGrund" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Vertrag.BusinessObjects.fiLeistungskatalog" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Vertrag.BusinessObjects.fiProdukt" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Vertrag.BusinessObjects.vertragServiceVertrag" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Vertrag.BusinessObjects.vertragVertragBase" Index="-1" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Vertrag.BusinessObjects.vertragVertragsleistung" Index="-1" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Adresse.BusinessObjects.adresseTitel" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Adresse.BusinessObjects.fiKontaktAnlage" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Adresse.BusinessObjects.fiKontaktLiegenschaft" Removed="True" />
@@ -181,16 +160,8 @@
     <CreatableItem ClassName="FacilityInfo.Bildverarbeitung.BusinessObjects.boAnlagenBild" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Bildverarbeitung.BusinessObjects.boLiegenschaftsBild" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Bildverarbeitung.BusinessObjects.fiBildtitel" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.BusinessManagement.BusinessObjects.coreKostenStelle" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.BusinessManagement.BusinessObjects.Debitorenkonto" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.BusinessManagement.BusinessObjects.Kreditorenkonto" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Core.BusinessObjects.boAbteilung" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.DMS.BusinessObjects.dmsAttachmentLink" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Import.BusinessObjects.importDokumentObjekt" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Import.BusinessObjects.importDokumentTyp" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Import.BusinessObjects.importFileType" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Import.BusinessObjects.importObjektEigenschaft" Removed="True" />
-    <CreatableItem ClassName="FacilityInfo.Import.BusinessObjects.impotImportObjekt" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Liegenschaft.BusinessObjects.fiRisikoGruppe" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Management.BusinessObjects.fiFachbereich" Removed="True" />
     <CreatableItem ClassName="FacilityInfo.Parameter.BusinessObjects.parameterAnlagenArtParam" Removed="True" />
@@ -286,7 +257,8 @@
         <Items IsNewNode="True">
           <Item Id="FunctionalUnit" ViewId="FunctionalUnit_ListView" Index="0" IsNewNode="True" />
           <Item Id="TechnicalInstallation" ViewId="TechnicalInstallation_ListView" Caption="Technische Anlagen" Index="1" IsNewNode="True" />
-          <Item Id="TechnicalAssembly" ViewId="TechnicalAssembly_ListView" Index="2" IsNewNode="True" />
+          <Item Id="TechnicalAssembly" ViewId="TechnicalAssembly_ListView" Index="2" Caption="Baugruppe (TechnicalAssembly)" IsNewNode="True" />
+          <Item Id="ComponentPart" ViewId="ComponentPart_ListView" Caption="ComponentPart" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="navItemAnlagen" Caption="Anlagenverwaltung" Index="2" ImageName="gear_3d_2_16" ChildItemsDisplayStyle="List" ViewId="boAnlage_ListView" IsNewNode="True">
@@ -726,7 +698,6 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="AnKomponentenTyp_ListView" NewItemRowPosition="Top" />
     <ListView Id="Anlage_MainUndSubAnlage_ListView" ClassName="FacilityInfo.Anlagen.BusinessObjects.boAnlage" MasterDetailMode="ListViewAndDetailView" MasterDetailView="Anlage_SubAnlagen_LookUp_DetailView" IsNewNode="True">
       <Columns IsNewNode="True">
         <ColumnInfo Id="Mainimage" PropertyName="Mainimage" Index="-1" Width="70" IsNewNode="True" />
@@ -815,29 +786,6 @@
                 <LayoutItem Id="ArtikelKatalog" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="artikelServiceArtikel_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="artikelArtikelBase" Index="0">
-              <LayoutGroup Id="artikelArtikelBase_col1">
-                <LayoutItem Id="KurzText" Index="0" />
-                <LayoutItem Id="WarenGruppe" Index="1" />
-                <LayoutItem Id="ArtikelKatalog" ViewItem="ArtikelKatalog" ShowCaption="" Index="2" IsNewNode="True" />
-                <LayoutItem Id="HerstellerNummer" Index="2" Removed="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="artikelArtikelBase_col2">
-                <LayoutItem Id="HerstellerNummer" Index="0" ViewItem="HerstellerNummer" ShowCaption="" IsNewNode="True" />
-                <LayoutItem Id="ArtikelNummer" Index="1" />
-                <LayoutItem Id="EanCode" Index="2" />
-                <LayoutItem Id="ArtikelKatalog" Removed="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-            <LayoutGroup Id="artikelServiceArtikel" Direction="Horizontal" Index="1" />
           </LayoutGroup>
         </LayoutGroup>
       </Layout>
@@ -4311,75 +4259,6 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <DetailView Id="fiLeistungskatalog_DetailView">
-      <Items>
-        <PropertyEditor Id="itmLogo" PropertyName="Mandant.Logo" IsNewNode="True" />
-      </Items>
-      <Layout>
-        <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="grpHeader" Caption="grpHeader(2)" Direction="Horizontal" Index="0" ShowCaption="False" RelativeSize="31.042128603104214" IsNewNode="True">
-            <LayoutGroup Id="grpCol1" Caption="grpCol1(3)" Index="0" ShowCaption="False" RelativeSize="53.2617671345995" IsNewNode="True">
-              <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" Index="0" ShowCaption="" RelativeSize="17.857142857142858" IsNewNode="True" />
-              <LayoutItem Id="Mandant" ViewItem="Mandant" Index="1" ShowCaption="" RelativeSize="15" IsNewNode="True" />
-              <LayoutItem Id="Aktiv" ViewItem="Aktiv" ShowCaption="" Index="2" RelativeSize="67.142857142857139" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="grpCol2" Caption="grpCol2(7)" ShowCaption="False" Direction="Horizontal" Index="1" RelativeSize="46.7382328654005" IsNewNode="True">
-              <LayoutItem Id="itmLogo" ViewItem="itmLogo" Index="0" RelativeSize="44.876325088339222" IsNewNode="True" />
-              <LayoutItem Id="Item1" Index="1" RelativeSize="30" IsNewNode="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="lstProdukte_Group" Index="1" Removed="True">
-            <LayoutItem Id="lstProdukte" ViewItem="lstProdukte" />
-          </LayoutGroup>
-          <TabbedGroup Id="tabFurtherInfos" Index="1" RelativeSize="68.957871396895783" IsNewNode="True">
-            <LayoutGroup Id="lstProdukte_Group" Index="0" Direction="Vertical" ShowCaption="True" TextAlignMode="AlignWithChildren" RelativeSize="100" IsNewNode="True">
-              <LayoutItem Id="lstProdukte" ViewItem="lstProdukte" ShowCaption="" Index="0" TextAlignMode="AutoSize" RelativeSize="100" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" ShowCaption="True" TextAlignMode="AlignWithChildren" Index="1" RelativeSize="100" IsNewNode="True">
-              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="0" TextAlignMode="AutoSize" RelativeSize="100" IsNewNode="True" />
-            </LayoutGroup>
-          </TabbedGroup>
-          <LayoutGroup Id="SimpleEditors" Index="2" Removed="True">
-            <LayoutGroup Id="fiLeistungskatalog" Removed="True">
-              <LayoutItem Id="Aktiv" ViewItem="Aktiv" Removed="True" />
-              <LayoutItem Id="Bezeichnung" ViewItem="Bezeichnung" Removed="True" />
-              <LayoutItem Id="Mandant" ViewItem="Mandant" Removed="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="fiProdukt_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="grpheader" Caption="" Direction="Horizontal" IsNewNode="True">
-            <LayoutGroup Id="col2" Caption="" Index="0" IsNewNode="True">
-              <LayoutItem Id="Name" ViewItem="Name" ShowCaption="" Index="0" IsNewNode="True" />
-              <LayoutGroup Id="grp Preis" Caption="" IsNewNode="True">
-                <LayoutItem Id="VkPreis" ViewItem="VkPreis" ShowCaption="" Index="1" IsNewNode="True" />
-                <LayoutItem Id="EkPreis" ViewItem="EkPreis" ShowCaption="" Index="2" IsNewNode="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-            <LayoutGroup Id="col1" Caption="" Index="1" IsNewNode="True">
-              <LayoutItem Id="Produktbild" ViewItem="Produktbild" ShowCaption="" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="SimpleEditors" Removed="True">
-            <LayoutGroup Id="fiProdukt">
-              <LayoutItem Id="EkPreis" Removed="True" />
-              <LayoutItem Id="Name" Removed="True" />
-              <LayoutItem Id="Produktbild" Removed="True" />
-              <LayoutItem Id="VkPreis" Removed="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <TabbedGroup Id="tabFurtherInfos" IsNewNode="True">
-            <LayoutGroup Id="tabBeschreibung" Caption="Beschreibung" ShowCaption="True" IsNewNode="True">
-              <LayoutItem Id="Beschreibung" ViewItem="Beschreibung" ShowCaption="False" Index="0" IsNewNode="True" />
-            </LayoutGroup>
-          </TabbedGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
     <DetailView Id="fiRaum_DetailView">
       <Items>
         <PropertyEditor Id="Ebene" PropertyName="Ebene" IsNewNode="True" />
@@ -4842,114 +4721,6 @@
               <LayoutItem Id="Adresse" ViewItem="Adresse" Index="2" IsNewNode="True" />
             </LayoutGroup>
           </TabbedGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="importDokumentObjekt_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="importDokumentObjekt" Caption="Dokumentobjekt">
-              <LayoutGroup Id="importDokumentObjekt_col1">
-                <LayoutItem Id="DokumentTyp" Index="0" />
-                <LayoutGroup Id="grpbezeichnung" Caption="" Index="1" IsNewNode="True">
-                  <LayoutItem Id="Bezeichnung" Index="3" ViewItem="Bezeichnung" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="grpObjekt" Caption="" Index="2" IsNewNode="True">
-                  <LayoutItem Id="ImportObjekt" Index="3" ViewItem="ImportObjekt" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="ImportAktiv" Index="2" Removed="True" />
-                <LayoutItem Id="Bezeichnung" Index="3" Removed="True" />
-                <LayoutGroup Id="grpAktiv" Caption="" Index="3" IsNewNode="True">
-                  <LayoutItem Id="ImportAktiv" Index="2" ViewItem="ImportAktiv" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="ImportObjekt" Index="3" Removed="True" />
-                <LayoutItem Id="StartIndexZeile" Removed="True" />
-                <LayoutItem Id="StopIndexZeile" Removed="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="importDokumentObjekt_col2">
-                <LayoutGroup Id="grpIndexZeile" Caption="" Direction="Horizontal" Index="0" IsNewNode="True">
-                  <LayoutItem Id="StartIndexZeile" ViewItem="StartIndexZeile" ShowCaption="" Index="4" IsNewNode="True" />
-                  <LayoutItem Id="StopIndexZeile" ViewItem="StopIndexZeile" ShowCaption="" Index="5" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="grpIndexSpalte" Caption="" Direction="Horizontal" Index="1" IsNewNode="True">
-                  <LayoutItem Id="StartIndexSpalte" ViewItem="StartIndexSpalte" ShowCaption="" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="StopIndexSpalte" ViewItem="StopIndexSpalte" ShowCaption="" Index="1" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="grpStringZeile" Caption="" Direction="Horizontal" Index="2" IsNewNode="True">
-                  <LayoutItem Id="StartStringZeile" ViewItem="StartStringZeile" ShowCaption="" Index="2" IsNewNode="True" />
-                  <LayoutItem Id="StopStringZeile" ViewItem="StopStringZeile" ShowCaption="" Index="3" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutGroup Id="grpStringSpalte" Caption="" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="StartStringSpalte" ViewItem="StartStringSpalte" ShowCaption="" Index="4" IsNewNode="True" />
-                  <LayoutItem Id="StopStringSpalte" ViewItem="StopStringSpalte" ShowCaption="" Index="5" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="StartIndexSpalte" Removed="True" />
-                <LayoutItem Id="StartStringSpalte" Removed="True" />
-                <LayoutItem Id="StartStringZeile" Removed="True" />
-                <LayoutItem Id="StopIndexSpalte" Removed="True" />
-                <LayoutItem Id="StopStringSpalte" Removed="True" />
-                <LayoutItem Id="StopStringZeile" Removed="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="importDokumentTyp_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="importDokumentTyp" Caption="Dokumenttyp">
-              <LayoutGroup Id="importDokumentTyp_col1">
-                <LayoutItem Id="Bezeichnung" ShowCaption="" Index="0" ViewItem="Bezeichnung" IsNewNode="True" />
-                <LayoutGroup Id="grpAktiv" Caption="" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="Kuerzel" ViewItem="Kuerzel" ShowCaption="" Index="1" IsNewNode="True" />
-                  <LayoutItem Id="Aktiv" ViewItem="Aktiv" ShowCaption="" Index="2" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="ImportDirectory" Removed="True" />
-                <LayoutItem Id="Ordnername" Removed="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="importDokumentTyp_col2">
-                <LayoutItem Id="Ordnername" ViewItem="Ordnername" ShowCaption="" Index="0" IsNewNode="True" />
-                <LayoutItem Id="ImportDirectory" ViewItem="ImportDirectory" ShowCaption="" Index="1" IsNewNode="True" />
-                <LayoutItem Id="Aktiv" Removed="True" />
-                <LayoutItem Id="FileType" Removed="True" />
-                <LayoutGroup Id="grpPasswort" Caption="" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="FileType" ViewItem="FileType" ShowCaption="" Index="0" IsNewNode="True" />
-                  <LayoutItem Id="Passwort" ViewItem="Passwort" ShowCaption="" Index="1" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="Passwort" Removed="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <DetailView Id="importObjektEigenschaft_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main">
-          <LayoutGroup Id="SimpleEditors">
-            <LayoutGroup Id="importObjektEigenschaft">
-              <LayoutGroup Id="importObjektEigenschaft_col1">
-                <LayoutItem Id="DokumentObjekt" ViewItem="DokumentObjekt" Removed="True" />
-                <LayoutGroup Id="grpDokumentObjekt" Caption="" IsNewNode="True">
-                  <LayoutItem Id="DokumentObjekt" ViewItem="DokumentObjekt" Index="2" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-                <LayoutItem Id="PropertyName" ViewItem="PropertyName" Removed="True" />
-              </LayoutGroup>
-              <LayoutGroup Id="importObjektEigenschaft_col2">
-                <LayoutItem Id="PropertyName" ViewItem="PropertyName" Index="0" ShowCaption="" IsNewNode="True" />
-                <LayoutItem Id="FieldName" Index="1" ViewItem="FieldName" />
-                <LayoutItem Id="RowIndex" ViewItem="RowIndex" Index="2" Removed="True" />
-                <LayoutItem Id="ColumnIndex" ViewItem="ColumnIndex" Index="3" Removed="True" />
-                <LayoutGroup Id="grpIndex" Caption="" Direction="Horizontal" IsNewNode="True">
-                  <LayoutItem Id="RowIndex" ViewItem="RowIndex" Index="2" ShowCaption="" IsNewNode="True" />
-                  <LayoutItem Id="ColumnIndex" ViewItem="ColumnIndex" Index="3" ShowCaption="" IsNewNode="True" />
-                </LayoutGroup>
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
@@ -5948,8 +5719,71 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="TechnicalAssembly_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Index="2" Direction="Horizontal">
+            <LayoutGroup Id="MainCol1" Caption="" Index="0" IsNewNode="True">
+              <LayoutGroup Id="grpMainImage" Caption="" IsNewNode="True">
+                <LayoutItem Id="MainImageThumb" ViewItem="MainImageThumb" ShowCaption="False" Index="0" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="artikelArtikelBase" Removed="True">
+              <LayoutGroup Id="artikelArtikelBase_col1" Removed="True" />
+              <LayoutGroup Id="artikelArtikelBase_col2" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="MainCol2" Caption="" IsNewNode="True">
+              <TabbedGroup Id="tabBaseInfos" IsNewNode="True">
+                <LayoutGroup Id="tabAssemblyInfo" Caption="Produktdaten" Index="0" IsNewNode="True">
+                  <LayoutItem Id="Manufacturer" ViewItem="Manufacturer" ShowCaption="" Index="0" IsNewNode="True" />
+                  <LayoutItem Id="ModelName" ViewItem="ModelName" ShowCaption="" Index="1" IsNewNode="True" />
+                  <LayoutItem Id="ProductGroup" ViewItem="ProductGroup" ShowCaption="" Index="2" IsNewNode="True" />
+                  <LayoutItem Id="Designation" ViewItem="Designation" ShowCaption="" Index="3" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="tabArticleData" Caption="Artikeldaten" IsNewNode="True">
+                  <LayoutGroup Id="artikelArtikelBase_col1" Index="0" ShowCaption="False" IsNewNode="True">
+                    <LayoutItem Id="WarenGruppe" ViewItem="WarenGruppe" ShowCaption="" Index="0" IsNewNode="True" />
+                    <LayoutItem Id="HerstellerNummer" ViewItem="HerstellerNummer" ShowCaption="" Index="1" IsNewNode="True" />
+                    <LayoutItem Id="KurzText" ViewItem="KurzText" ShowCaption="" Index="2" IsNewNode="True" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="artikelArtikelBase_col2" Index="1" ShowCaption="False" IsNewNode="True">
+                    <LayoutItem Id="ArtikelNummer" ViewItem="ArtikelNummer" ShowCaption="" Index="0" IsNewNode="True" />
+                    <LayoutItem Id="EanCode" ViewItem="EanCode" ShowCaption="" Index="1" IsNewNode="True" />
+                    <LayoutItem Id="ArtikelKatalog" ViewItem="ArtikelKatalog" ShowCaption="" Index="2" IsNewNode="True" />
+                  </LayoutGroup>
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="TechnicalAssembly" Removed="True">
+              <LayoutItem Id="Designation" Removed="True" />
+              <LayoutItem Id="Manufacturer" Removed="True" />
+              <LayoutItem Id="ModelName" Removed="True" />
+              <LayoutItem Id="ProductGroup" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Index="3" Removed="True">
+            <LayoutItem Id="Description" Removed="True" />
+            <LayoutItem Id="Langtext" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="4">
+            <LayoutGroup Id="lstComponentParts" Index="0" />
+            <LayoutGroup Id="LongText" Caption="Langtext" Index="1" IsNewNode="True">
+              <LayoutItem Id="Langtext" ViewItem="Langtext" ShowCaption="False" Index="1" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Bild" Index="2" Removed="True" />
+            <LayoutGroup Id="lstTechnicalInstallations" Index="2" />
+            <LayoutGroup Id="MainImage" Removed="True" />
+            <LayoutGroup Id="MainImageThumb" Removed="True">
+              <LayoutItem Id="MainImageThumb" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="MainImageWeb" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="TechnicalInstallation_DetailView">
       <Items>
+        <PropertyEditor Id="ConstructionYear" DisplayFormat="0:N0" />
         <PropertyEditor Id="MainImageThumb" PropertyEditorType="GDS.FacilityInfo.Module.Win.Editors.Win_ZoomImageEditor" />
       </Items>
       <Layout>
@@ -5963,12 +5797,13 @@
                 <LayoutItem Id="OperationState" Index="5" Removed="True" />
                 <LayoutItem Id="SerialNumber" Index="6" Removed="True" />
                 <LayoutItem Id="Client" Index="7" Removed="True" />
-                <LayoutItem Id="ConstructionYear" Index="8" Removed="True" />
+                <LayoutItem Id="ConstructionYear" Removed="True" />
                 <LayoutGroup Id="grpImage" Caption="" IsNewNode="True">
                   <LayoutItem Id="OperationState" Index="0" ViewItem="OperationState" ShowCaption="" IsNewNode="True" />
                   <LayoutItem Id="MainImageThumb" ViewItem="MainImageThumb" ShowCaption="False" Index="1" IsNewNode="True" />
                 </LayoutGroup>
                 <LayoutItem Id="MaintenanceZone" Removed="True" />
+                <LayoutItem Id="TechnicalAssembly" Removed="True" />
               </LayoutGroup>
               <LayoutGroup Id="TechnicalInstallation_col2" Index="2" Direction="Horizontal">
                 <TabbedGroup Id="tabBasicInformation" Index="0" Direction="Horizontal" IsNewNode="True">
@@ -5984,12 +5819,18 @@
                       <LayoutItem Id="Manufacturer" Index="4" ViewItem="Manufacturer" ShowCaption="" IsNewNode="True" />
                       <LayoutItem Id="SerialNumber" Index="7" ViewItem="SerialNumber" ShowCaption="" IsNewNode="True" />
                     </LayoutGroup>
-                    <LayoutGroup Id="grpDates" Caption="" Index="3" Direction="Horizontal" IsNewNode="True">
+                    <LayoutGroup Id="grpTechnicalAssembly" Caption="" Index="3" Direction="Horizontal" IsNewNode="True">
+                      <LayoutItem Id="TechnicalAssembly" ViewItem="TechnicalAssembly" ShowCaption="" Index="0" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpDates" Caption="" Index="4" Direction="Horizontal" IsNewNode="True">
                       <LayoutItem Id="ConstructionYear" Index="3" ViewItem="ConstructionYear" ShowCaption="" IsNewNode="True" />
                       <LayoutItem Id="InstallationDate" Index="4" ViewItem="InstallationDate" ShowCaption="" IsNewNode="True" />
                     </LayoutGroup>
-                    <LayoutGroup Id="grpFunctionalUnit" Caption="" Direction="Horizontal" IsNewNode="True">
+                    <LayoutGroup Id="grpFunctionalUnit" Caption="" Direction="Horizontal" Index="5" IsNewNode="True">
                       <LayoutItem Id="FunctionalUnit" Index="5" ViewItem="FunctionalUnit" ShowCaption="" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="grpMainInstallation" Caption="" IsNewNode="True">
+                      <LayoutItem Id="ParentInstallation" ViewItem="ParentInstallation" ShowCaption="" Index="7" IsNewNode="True" />
                     </LayoutGroup>
                     <LayoutGroup Id="grpMaintenanceZone" Caption="" Direction="Horizontal" IsNewNode="True">
                       <LayoutItem Id="MaintenanceZone" ViewItem="MaintenanceZone" ShowCaption="" Index="0" IsNewNode="True" />
@@ -6012,13 +5853,14 @@
                 <LayoutItem Id="InstallationAddress" Index="5" Removed="True" />
                 <LayoutItem Id="InsatallationNumber" Index="6" Removed="True" />
                 <LayoutItem Id="Designation" Removed="True" />
+                <LayoutItem Id="ParentInstallation" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
           <LayoutGroup Id="SizeableEditors" Removed="True" />
           <TabbedGroup Id="tabFurtherInformation" IsNewNode="True">
-            <LayoutGroup Id="lstTechnicalAssemblys_Group" Index="0" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
-              <LayoutItem Id="lstTechnicalAssemblys" ViewItem="lstTechnicalAssemblys" ShowCaption="" Index="0" IsNewNode="True" />
+            <LayoutGroup Id="lstChildInstallations" Index="0" Direction="Horizontal" ShowCaption="True" Caption="ChildInstallations" IsNewNode="True">
+              <LayoutItem Id="ChildInstallations" ShowCaption="" Index="0" ViewItem="ChildInstallations" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="tabDescription" Caption="Beschreibung" IsNewNode="True">
               <LayoutItem Id="Description" ViewItem="Description" ShowCaption="" Index="0" IsNewNode="True" />
